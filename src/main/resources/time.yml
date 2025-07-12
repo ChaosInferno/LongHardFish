@@ -1,0 +1,13 @@
+#Defines time range for rarity injection modifiers
+day:
+  min: 0
+  max: 12000
+dusk:
+  min: 12001
+  max: 13000
+night:
+  min: 13001
+  max: 23000
+dawn:
+  min: 23001
+  max: 23999

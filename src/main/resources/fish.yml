@@ -1,0 +1,90 @@
+#FishName
+#   Name: Front facing name
+#   Class: Front facing descriptor of rarity (C, B, A, S, SS); and definition of base rarity values as a % (0.00-1.00). Can be influenced by outside factors "injectors" to increase of decrease base values
+#   Model: Model #
+#   Difficulty: How difficult catching the fish will (>0.00-1.00), with >0 being any non-zero number being the hardest difficulty possible and 1 being base minecraft; NOT IMPLEMENTED KEEP VALUES AT 1
+#   Biomes:
+squidward:
+  name: "Squidward"
+  rarity: UNCOMMON
+  model: 2
+  biomes:
+    OCEAN: 0.1
+    PLAINS: 0.1
+    DESERT: 0.1
+    WINDSWEPT_HILLS: 0.1
+    FOREST: 0.1
+    TAIGA: 0.1
+    SWAMP: 0.1
+    MANGROVE_SWAMP: 0.1
+    RIVER: 0.1
+    NETHER_WASTES: 0.1
+    THE_END: 0.1
+    FROZEN_OCEAN: 0.1
+    FROZEN_RIVER: 0.1
+    SNOWY_PLAINS: 0.1
+    MUSHROOM_FIELDS: 0.1
+    BEACH: 0.1
+    JUNGLE: 0.1
+    SPARSE_JUNGLE: 0.1
+    DEEP_OCEAN: 0.1
+    STONY_SHORE: 0.1
+    SNOWY_BEACH: 0.1
+    BIRCH_FOREST: 0.1
+    DARK_FOREST: 0.1
+    SNOWY_TAIGA: 0.1
+    OLD_GROWTH_PINE_TAIGA: 0.1
+    WINDSWEPT_FOREST: 0.1
+    SAVANNA: 0.1
+    SAVANNA_PLATEAU: 0.1
+    BADLANDS: 0.1
+    WOODED_BADLANDS: 0.1
+    SMALL_END_ISLANDS: 0.1
+    END_MIDLANDS: 0.1
+    END_HIGHLANDS: 0.1
+    END_BARRENS: 0.1
+    WARM_OCEAN: 0.1
+    LUKEWARM_OCEAN: 0.1
+    COLD_OCEAN: 0.1
+    DEEP_LUKEWARM_OCEAN: 0.1
+    DEEP_COLD_OCEAN: 0.1
+    DEEP_FROZEN_OCEAN: 0.1
+    THE_VOID: 0.1
+    SUNFLOWER_PLAINS: 0.1
+    WINDSWEPT_GRAVELLY_HILLS: 0.1
+    FLOWER_FOREST: 0.1
+    ICE_SPIKES: 0.1
+    OLD_GROWTH_BIRCH_FOREST: 0.1
+    OLD_GROWTH_SPRUCE_TAIGA: 0.1
+    WINDSWEPT_SAVANNA: 0.1
+    ERODED_BADLANDS: 0.1
+    BAMBOO_JUNGLE: 0.1
+    SOUL_SAND_VALLEY: 0.1
+    CRIMSON_FOREST: 0.1
+    WARPED_FOREST: 0.1
+    BASALT_DELTAS: 0.1
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+    DEEP_DARK: 0.1
+    MEADOW: 0.1
+    GROVE: 0.1
+    SNOWY_SLOPES: 0.1
+    FROZEN_PEAKS: 0.1
+    JAGGED_PEAKS: 0.1
+    STONY_PEAKS: 0.1
+    CHERRY_GROVE: 0.1
+  times:
+    DAWN: 0.50
+    DAY: 0.06
+    EVENING: 0.10
+    NIGHT: 0.05
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  water-type: OPEN

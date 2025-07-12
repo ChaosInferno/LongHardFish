@@ -1,0 +1,25 @@
+#Defines time range for moon phases
+new:
+  min: 0
+  max: 24000
+crescent:
+  min: 24001
+  max: 48000
+first-quarter:
+  min: 48001
+  max: 72000
+gibbous:
+  min: 72001
+  max: 96000
+full:
+  min: 96001
+  max: 120000
+disseminating:
+  min: 120001
+  max: 144000
+last-quarter:
+  min: 144001
+  max: 168000
+balsamic:
+  min: 168001
+  max: 192000
