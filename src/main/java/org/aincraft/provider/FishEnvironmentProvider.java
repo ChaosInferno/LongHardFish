@@ -12,13 +12,14 @@ import java.util.*;
 
 public class FishEnvironmentProvider {
     private final FishConfig holder;
+    private final Plugin plugin;
+    private final FishEnvironmentDefaultsProvider defaultsProvider;
 
-    public FishEnvironmentProvider(FishConfig holder, Plugin plugin) {
+    public FishEnvironmentProvider(FishConfig holder, FishEnvironmentDefaultsProvider defaultsProvider, Plugin plugin) {
         this.holder = holder;
         this.plugin = plugin;
+        this.defaultsProvider = defaultsProvider;
     }
-
-    private final Plugin plugin;
 
     public Map<NamespacedKey, FishEnvironment> parseFishEnvironmentObjects() {
         FileConfiguration config = holder.getConfig();
@@ -26,43 +27,73 @@ public class FishEnvironmentProvider {
         Map<NamespacedKey, FishEnvironment> fishEnvironments = new HashMap<>();
 
         for (String key : keys) {
-            ConfigurationSection configurationSection = config.getConfigurationSection(key);
-            if (configurationSection != null) {
-                // --- Biomes ---
-                ConfigurationSection configurationSectionBiome = configurationSection.getConfigurationSection("biomes");
-                Map<Biome, Double> biomeWeights = new HashMap<>();
-                if (configurationSectionBiome != null) {
-                    for (String biomeKey : configurationSectionBiome.getKeys(false)) {
-                        Biome biome = Biome.valueOf(biomeKey.toUpperCase(Locale.ENGLISH));
-                        double weight = configurationSectionBiome.getDouble(biomeKey);
-                        biomeWeights.put(biome, weight);
-                    }
-                }
-                // --- Times ---
-                ConfigurationSection configurationSectionTime = configurationSection.getConfigurationSection("times");
-                Map<FishTimeCycle, Double> timeWeights = new HashMap<>();
-                if (configurationSectionTime != null) {
-                    for (String timeKey : configurationSectionTime.getKeys(false)) {
-                        FishTimeCycle time = FishTimeCycle.valueOf(timeKey.toUpperCase(Locale.ENGLISH));
-                        double weight = configurationSectionTime.getDouble(timeKey);
-                        timeWeights.put(time, weight);
-                    }
-                }
-                // --- Moons ---
-                ConfigurationSection configurationSectionMoon = configurationSection.getConfigurationSection("moons");
-                Map<FishMoonCycle, Double> moonWeights = new HashMap<>();
-                if (configurationSectionMoon != null) {
-                    for (String moonKey : configurationSectionMoon.getKeys(false)) {
-                        FishMoonCycle moon = FishMoonCycle.valueOf(moonKey.toUpperCase(Locale.ENGLISH));
-                        double weight = configurationSectionMoon.getDouble(moonKey);
-                        moonWeights.put(moon, weight);
-                    }
-                }
-                boolean openWaterRequired = configurationSection.getBoolean("open-water-required", false);
-                boolean rainRequired = configurationSection.getBoolean("rain-required",false);
+            ConfigurationSection section = config.getConfigurationSection(key);
+            if (section == null) continue;
 
-                fishEnvironments.put(new NamespacedKey(plugin, key), new FishEnvironment(biomeWeights, timeWeights, moonWeights, openWaterRequired, rainRequired));
+            Map<Biome, Double> biomeWeights = new HashMap<>();
+            Map<FishTimeCycle, Double> timeWeights = new HashMap<>();
+            Map<FishMoonCycle, Double> moonWeights = new HashMap<>();
+
+            // 1. Load defaults from `defaults:` section
+            List<String> defaultGroups = section.getStringList("defaults");
+            for (String group : defaultGroups) {
+                FishEnvironment defaults = defaultsProvider.getDefaults(group);
+                if (defaults != null) {
+                    defaults.getEnvironmentBiomes().forEach((biome, weight) -> biomeWeights.putIfAbsent(biome, weight));
+                    defaults.getEnvironmentTimes().forEach((time, weight) -> timeWeights.putIfAbsent(time, weight));
+                    defaults.getEnvironmentMoons().forEach((moon, weight) -> moonWeights.putIfAbsent(moon, weight));
+                }
             }
+
+            // 2. Override with fish-specific biomes
+            ConfigurationSection biomesSection = section.getConfigurationSection("biomes");
+            if (biomesSection != null) {
+                for (String biomeKey : biomesSection.getKeys(false)) {
+                    try {
+                        Biome biome = Biome.valueOf(biomeKey.toUpperCase(Locale.ENGLISH));
+                        double weight = biomesSection.getDouble(biomeKey);
+                        biomeWeights.put(biome, weight);
+                    } catch (IllegalArgumentException e) {
+                        plugin.getLogger().warning("Unknown biome: " + biomeKey + " in fish: " + key);
+                    }
+                }
+            }
+
+            // 3. Override with fish-specific times
+            ConfigurationSection timesSection = section.getConfigurationSection("times");
+            if (timesSection != null) {
+                for (String timeKey : timesSection.getKeys(false)) {
+                    try {
+                        FishTimeCycle time = FishTimeCycle.valueOf(timeKey.toUpperCase(Locale.ENGLISH));
+                        double weight = timesSection.getDouble(timeKey);
+                        timeWeights.put(time, weight);
+                    } catch (IllegalArgumentException e) {
+                        plugin.getLogger().warning("Unknown time cycle: " + timeKey + " in fish: " + key);
+                    }
+                }
+            }
+
+            // 4. Override with fish-specific moons
+            ConfigurationSection moonsSection = section.getConfigurationSection("moons");
+            if (moonsSection != null) {
+                for (String moonKey : moonsSection.getKeys(false)) {
+                    try {
+                        FishMoonCycle moon = FishMoonCycle.valueOf(moonKey.toUpperCase(Locale.ENGLISH));
+                        double weight = moonsSection.getDouble(moonKey);
+                        moonWeights.put(moon, weight);
+                    } catch (IllegalArgumentException e) {
+                        plugin.getLogger().warning("Unknown moon cycle: " + moonKey + " in fish: " + key);
+                    }
+                }
+            }
+
+            boolean openWaterRequired = section.getBoolean("open-water-required", false);
+            boolean rainRequired = section.getBoolean("rain-required", false);
+
+            fishEnvironments.put(
+                    new NamespacedKey(plugin, key),
+                    new FishEnvironment(biomeWeights, timeWeights, moonWeights, openWaterRequired, rainRequired)
+            );
         }
 
         return fishEnvironments;

@@ -5,10 +5,10 @@ import org.bukkit.block.Biome;
 import java.util.Map;
 
 public enum FishRarity {
-    COMMON("C",0.6),
-    UNCOMMON("B",0.3),
-    RARE("A",0.08),
-    LEGENDARY("S",0.02),
+    COMMON("C",0.7),
+    UNCOMMON("B",0.2),
+    RARE("A",0.0985),
+    LEGENDARY("S",0.0015),
     EVENT("SS",0);
 
     private final String frontRarityName;

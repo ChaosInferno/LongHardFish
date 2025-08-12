@@ -1,0 +1,14 @@
+name: LongHardFish
+version: 1.0
+main: org.aincraft.LongHardFish
+api-version: 1.20
+
+commands:
+  piratechest:
+    description: Configure the Pirate Chest
+    usage: /piratechest set|clear
+    permission: piratechest.admin
+
+permissions:
+  piratechest.admin:
+    default: op

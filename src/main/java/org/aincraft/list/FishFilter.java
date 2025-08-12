@@ -73,8 +73,12 @@ public class FishFilter {
                 rainCheck = false;
             }
 
-            if (openWaterMatch && !hook.isInOpenWater()) {
+            if (!openWaterMatch && hook.isInOpenWater()) {
                 openWaterCheck = false;
+            }
+
+            if (!openWaterMatch && !hook.isInOpenWater()) {
+                openWaterCheck = true;
             }
 
             if (biomeWeight != 0 && timeWeight != 0 && moonWeight != 0 && rainCheck && openWaterCheck) {

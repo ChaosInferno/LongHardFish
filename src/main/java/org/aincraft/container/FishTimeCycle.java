@@ -4,7 +4,9 @@ public enum FishTimeCycle {
     DAWN("Morning",22000,1000),
     DAY("Noon",1000,11700),
     EVENING("Evening",11700,14500),
-    NIGHT("Midnight",14500,22000);
+    NIGHT("Midnight",14500,22000),
+    DAYONLY("Day",22750,13400),
+    NIGHTONLY("Night",13400,22750);
 
     private final String frontTimeName;
     private final double startTime;

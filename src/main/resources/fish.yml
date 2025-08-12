@@ -4,80 +4,1012 @@
 #   Model: Model #
 #   Difficulty: How difficult catching the fish will (>0.00-1.00), with >0 being any non-zero number being the hardest difficulty possible and 1 being base minecraft; NOT IMPLEMENTED KEEP VALUES AT 1
 #   Biomes:
-squidward:
-  name: "Squidward"
-  rarity: UNCOMMON
-  model: 2
+
+glider-bananafish:
+  name: Glider Bananafish
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+  tier: 1
   biomes:
-    OCEAN: 0.1
-    PLAINS: 0.1
-    DESERT: 0.1
-    WINDSWEPT_HILLS: 0.1
-    FOREST: 0.1
-    TAIGA: 0.1
-    SWAMP: 0.1
-    MANGROVE_SWAMP: 0.1
     RIVER: 0.1
-    NETHER_WASTES: 0.1
-    THE_END: 0.1
-    FROZEN_OCEAN: 0.1
-    FROZEN_RIVER: 0.1
-    SNOWY_PLAINS: 0.1
-    MUSHROOM_FIELDS: 0.1
-    BEACH: 0.1
+  model: 1
+glider-sturgeon:
+  name: Glider Sturgeon
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 2
+glider-chungus:
+  name: Glider Chungus
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 3
+glider-gudgeon:
+  name: Glider Gudgeon
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 4
+rose-fili:
+  name: Rose Fili
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - flat-lands
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  model: 5
+chonkler-pip:
+  name: Chonkler Pip
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - woodlands
+    - all-time
+    - all-week
+  tier: 1
+  model: 6
+mountain-bananafish:
+  name: Mountain Bananafish
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+    - rain-forest
+    - flat-lands
+    - all-time
+    - all-week
+  tier: 1
+  model: 7
+muddy-salmon:
+  name: Muddy Salmon
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+    - wet-lands
+    - all-time
+    - all-week
+  tier: 1
+  model: 8
+tiger-carp:
+  name: Tiger Carp
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
     JUNGLE: 0.1
-    SPARSE_JUNGLE: 0.1
-    DEEP_OCEAN: 0.1
-    STONY_SHORE: 0.1
-    SNOWY_BEACH: 0.1
-    BIRCH_FOREST: 0.1
-    DARK_FOREST: 0.1
-    SNOWY_TAIGA: 0.1
-    OLD_GROWTH_PINE_TAIGA: 0.1
-    WINDSWEPT_FOREST: 0.1
-    SAVANNA: 0.1
-    SAVANNA_PLATEAU: 0.1
-    BADLANDS: 0.1
-    WOODED_BADLANDS: 0.1
-    SMALL_END_ISLANDS: 0.1
-    END_MIDLANDS: 0.1
-    END_HIGHLANDS: 0.1
-    END_BARRENS: 0.1
-    WARM_OCEAN: 0.1
-    LUKEWARM_OCEAN: 0.1
-    COLD_OCEAN: 0.1
-    DEEP_LUKEWARM_OCEAN: 0.1
-    DEEP_COLD_OCEAN: 0.1
-    DEEP_FROZEN_OCEAN: 0.1
-    THE_VOID: 0.1
-    SUNFLOWER_PLAINS: 0.1
-    WINDSWEPT_GRAVELLY_HILLS: 0.1
-    FLOWER_FOREST: 0.1
-    ICE_SPIKES: 0.1
-    OLD_GROWTH_BIRCH_FOREST: 0.1
-    OLD_GROWTH_SPRUCE_TAIGA: 0.1
-    WINDSWEPT_SAVANNA: 0.1
-    ERODED_BADLANDS: 0.1
-    BAMBOO_JUNGLE: 0.1
-    SOUL_SAND_VALLEY: 0.1
-    CRIMSON_FOREST: 0.1
-    WARPED_FOREST: 0.1
-    BASALT_DELTAS: 0.1
+  model: 9
+tiger-trout:
+  name: Tiger Trout
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - rain-forest
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 10
+glider-mystelune:
+  name: Glider Mystelune
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+    - woodlands
+    - rain-forest
+    - flat-lands
+    - wet-lands
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 11
+red-tailed-dart:
+  name: Red-tailed Dart
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - woodlands
+    - flat-lands
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 12
+muddy-brugis:
+  name: Muddy Brugis
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - wet-lands
+    - all-time
+  tier: 1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 13
+mossy-mudskip:
+  name: Mossy Mudskip
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+    - woodlands
+    - rain-forest
+    - wet-lands
+    - all-time
+    - all-week
+  tier: 1
+  model: 14
+sandy-carp:
+  name: Sandy Carp
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: true
+  defaults:
+    - hot-places
+    - all-time
+    - all-week
+  tier: 1
+  model: 15
+muddy-estuary:
+  name: Muddy Estuary
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+    - wet-lands
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  model: 16
+muddy-bass:
+  name: Muddy Bass
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - rain-forest
+    - wet-lands
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 17
+bloodfin-phyra:
+  name: Bloodfin Phyra
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: true
+  defaults:
+    - mountains
+    - cold-places
+    - flat-lands
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 18
+owhmiewemoa-shin:
+  name: Owhmiewemoa Shin
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+    - all-time
+    - first-half
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 19
+wandering-ptidiwhiskir:
+  name: Wandering Ptidiwhiskir
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - woodlands
+    - rain-forest
+    - wet-lands
+    - all-week
+  tier: 1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 20
+ancient-boopsnoot:
+  name: Ancient Boopsnoot
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+    - wet-lands
+    - all-time
+    - first-half
+  tier: 1
+  model: 21
+ancient-dorado:
+  name: Ancient Dorado
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - flat-lands
+    - wet-lands
+    - all-time
+    - first-half
+  tier: 1
+  model: 22
+ancient-elara:
+  name: Ancient Elara
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - woodlands
+    - wet-lands
+    - all-time
+    - last-half
+  tier: 1
+  model: 23
+largemouth-bass:
+  name: Largemouth Bass
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - wet-lands
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  model: 24
+mossy-goby:
+  name: Mossy Goby
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - woodlands
+    - rain-forest
+    - all-time
+    - all-week
+  tier: 1
+  model: 25
+rising-dancefin:
+  name: Rising Dancefin
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+    - flat-lands
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 26
+jade-bananafish:
+  name: Jade Bananafish
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 27
+honeykelp-flowfin:
+  name: Honeykelp Flowfin
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - woodlands
+    - rain-forest
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  model: 28
+broseph-hookfin:
+  name: Broseph Hookfin
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 29
+emerald-estuary:
+  name: Emerald Estuary
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - rain-forest
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 30
+poison-soaked-sensei:
+  name: Poison-soaked Sensei
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+    - flat-lands
+    - all-week
+  tier: 1
+  times:
+    EVENING: 0.1
+  model: 31
+coral-bylowin:
+  name: Coral Bylowin
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - rain-forest
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 32
+coral-seraphine:
+  name: Coral Seraphine
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - rain-forest
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 33
+loving-gutpike:
+  name: Loving Gutpike
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  times:
+    NIGHT: 0.1
+  model: 34
+glimmering-bananafish:
+  name: Glimmering Bananafish
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: true
+  defaults:
+    - mountains
+    - woodlands
+    - all-time
+    - all-week
+  tier: 1
+  model: 35
+spotted-rhyb:
+  name: Spotted Rhyb
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+    - all-time
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  moons:
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 36
+amethyst-riptideon:
+  name: Amethyst Riptideon
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
     DRIPSTONE_CAVES: 0.1
+  model: 37
+emerald-crytalanth:
+  name: Emerald Crytalanth
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
     LUSH_CAVES: 0.1
-    DEEP_DARK: 0.1
-    MEADOW: 0.1
-    GROVE: 0.1
-    SNOWY_SLOPES: 0.1
-    FROZEN_PEAKS: 0.1
-    JAGGED_PEAKS: 0.1
-    STONY_PEAKS: 0.1
+  model: 38
+rainbow-piranha:
+  name: Rainbow Piranha
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - flat-lands
+    - all-time
+    - last-half
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 39
+obsidian-bussernut:
+  name: Obsidian Bussernut
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: true
+  defaults:
+    - cold-places
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 40
+radiated-klauknbals:
+  name: Radiated Klauknbals
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+    - wet-lands
+  tier: 1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 41
+moonlit-schnozzer:
+  name: Moonlit Schnozzer
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+    - cold-places
+    - woodlands
+    - flat-lands
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  times:
+    NIGHT: 0.1
+  model: 42
+prismarine-gutpike:
+  name: Prismarine Gutpike
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-places
+    - wet-lands
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 43
+prismarine-kelvorn:
+  name: Prismarine Kelvorn
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-places
+    - wet-lands
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 44
+pearlestra:
+  name: Pearlestra
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+    - rain-forest
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 45
+moonlit-boopsnoot:
+  name: Moonlit Boopsnoot
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: true
+  defaults:
+    - mountains
+    - woodlands
+    - flat-lands
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  times:
+    NIGHT: 0.1
+  model: 46
+cerulean-riptideon:
+  name: Cerulean Riptideon
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-places
+    - woodlands
+    - wet-lands
+    - all-time
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 47
+oxidized-copper-sturgeon:
+  name: Oxidized-copper Sturgeon
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 48
+berserker-doomageddon:
+  name: Berserker Doomageddon
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: true
+  defaults:
+    - woodlands
+    - rain-forest
+    - flat-lands
+    - wet-lands
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 49
+ecstatic-minsk:
+  name: Ecstatic Minsk
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: true
+  defaults:
+    - flat-lands
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  model: 50
+tiger-mudjack:
+  name: Tiger Mudjack
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: true
+  defaults:
+    - woodlands
+    - rain-forest
+    - wet-lands
+    - all-time
+    - all-week
+  tier: 1
+  model: 51
+heidifish:
+  name: Heidifish
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 1
+  biomes:
     CHERRY_GROVE: 0.1
   times:
-    DAWN: 0.50
-    DAY: 0.06
-    EVENING: 0.10
-    NIGHT: 0.05
+    DAY: 0.1
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+  model: 52
+sandy-woodskip:
+  name: Sandy Woodskip
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+    - all-time
+    - all-week
+  tier: 1
+  model: 53
+glider-lingcod:
+  name: Glider Lingcod
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-places
+    - woodlands
+    - rain-forest
+    - flat-lands
+    - wet-lands
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 54
+charging-pepet:
+  name: Charging Pepet
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - woodlands
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  times:
+    DAY: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 55
+muddy-bream:
+  name: Muddy Bream
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - rain-forest
+    - wet-lands
+    - all-time
+    - all-week
+  tier: 1
+  model: 56
+muddy-boopsnoot:
+  name: Muddy Boopsnoot
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - rain-forest
+    - flat-lands
+    - wet-lands
+    - all-time
+    - all-week
+  tier: 1
+  model: 57
+arctic-grayling:
+  name: Arctic Grayling
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+    - cold-places
+    - all-time
+    - all-week
+  tier: 1
+  model: 58
+dark-heidifish:
+  name: Dark Heidifish
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 1
+  biomes:
+    PALE_GARDEN: 0.1
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 59
+relic-canth:
+  name: Relic Canth
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+    - cold-places
+    - all-time
+    - all-week
+  tier: 1
+  model: 60
+wavering-puckerfish:
+  name: Wavering Puckerfish
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - woodlands
+    - all-time
+    - all-week
+  tier: 1
+  model: 61
+glider-poppicok:
+  name: Glider Poppicok
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+    - cold-places
+    - woodlands
+    - rain-forest
+    - wet-lands
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 62
+arctic-minnoe:
+  name: Arctic Minnoe
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-places
+    - all-time
+    - all-week
+  tier: 1
+  model: 63
+polar-bananafish:
+  name: Polar Bananafish
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+    - cold-places
+    - flat-lands
+    - all-time
+    - all-week
+  tier: 1
+  model: 64
+lonely-minsk:
+  name: Lonely Minsk
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-places
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 65
+polar-fili:
+  name: Polar Fili
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: true
+  defaults:
+    - mountains
+    - cold-places
+    - all-time
+  tier: 1
   moons:
     FULL_MOON: 0.1
     WANING_GIBBOUS: 0.1
@@ -85,6 +1017,4121 @@ squidward:
     WANING_CRESCENT: 0.1
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
+  model: 66
+arctic-tuna:
+  name: Arctic Tuna
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-places
+    - flat-lands
+    - all-time
+    - all-week
+  tier: 1
+  model: 67
+grubshark:
+  name: Grubshark
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+    - rain-forest
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 68
+arctic-horizonfin:
+  name: Arctic Horizonfin
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-places
+    - rain-forest
+    - flat-lands
+    - wet-lands
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 69
+arctic-mystelune:
+  name: Arctic Mystelune
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-places
+    - all-time
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 70
+arctic-bylowin:
+  name: Arctic Bylowin
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+    - cold-places
+    - woodlands
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  model: 71
+sand-minnoe:
+  name: Sand Minnoe
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+    - all-time
+    - all-week
+  tier: 1
+  model: 72
+frozen-nautivora:
+  name: Frozen Nautivora
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-places
+    - all-time
+  tier: 1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 73
+abraisive-traavelpin:
+  name: Abraisive Traavelpin
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+    - wet-lands
+    - all-week
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  times:
+    DAY: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 74
+sahara-poppicok:
+  name: Sahara Poppicok
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+    - all-time
+    - all-week
+  tier: 1
+  model: 75
+sky-tilapia:
+  name: Sky Tilapia
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - cold-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 76
+glacial-albacore:
+  name: Glacial Albacore
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 77
+frostbite-fili:
+  name: Frostbite Fili
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 78
+runic-menhaden:
+  name: Runic Menhaden
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - cold-saltwater
+    - all-time
+  tier: 1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
-  water-type: OPEN
+  model: 79
+moonlit-aruana:
+  name: Moonlit Aruana
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - cold-saltwater
+  tier: 1
+  times:
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 80
+glacial-boopsnoot:
+  name: Glacial Boopsnoot
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 81
+depressed-minsk:
+  name: Depressed Minsk
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - cold-saltwater
+    - all-week
+  tier: 1
+  times:
+    DAY: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 82
+enlightened-albacore:
+  name: Enlightened Albacore
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-saltwater
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  model: 83
+glacial-bananafish:
+  name: Glacial Bananafish
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - cold-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 84
+retreating-pepet:
+  name: Retreating Pepet
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-saltwater
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 85
+dormant-doomageddon:
+  name: Dormant Doomageddon
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 86
+primal-halibut:
+  name: Primal Halibut
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: true
+  defaults:
+    - general-saltwater
+    - cold-saltwater
+    - all-time
+  tier: 1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 87
+blue-jellyjelly:
+  name: Blue Jellyjelly
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - cold-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 88
+boreal-tetra:
+  name: Boreal Tetra
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - cold-saltwater
+    - first-half
+  tier: 1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 89
+boreal-squid:
+  name: Boreal Squid
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - cold-saltwater
+    - last-half
+  tier: 1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 90
+voidborn-boopsnoot:
+  name: Voidborn Boopsnoot
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 91
+boreal-coralspine:
+  name: Boreal Coralspine
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+  tier: 1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 92
+primal-glydefin:
+  name: Primal Glydefin
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+  tier: 1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 93
+voidborn-goldberg:
+  name: Voidborn Goldberg
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 94
+boreal-albacore:
+  name: Boreal Albacore
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+  tier: 1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 95
+voidborn-seaglider:
+  name: Voidborn Seaglider
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - cold-saltwater
+    - warm-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 96
+fading-dancefin:
+  name: Fading Dancefin
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - cold-saltwater
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 97
+ruined-poppicok:
+  name: Ruined Poppicok
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 98
+voidborn-minnoe:
+  name: Voidborn Minnoe
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 99
+primal-mullet:
+  name: Primal Mullet
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 100
+read-herring:
+  name: Read Herring
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 101
+rhodonite-estuary:
+  name: Rhodonite Estuary
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 102
+golden-albacore:
+  name: Golden Albacore
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-week
+  tier: 1
+  times:
+    DAY: 0.1
+  model: 103
+sunny-woodskip:
+  name: Sunny Woodskip
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 104
+dawnglider-riptideon:
+  name: Dawnglider Riptideon
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+  model: 105
+crimson-flounder:
+  name: Crimson Flounder
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 106
+sunset-lionfish:
+  name: Sunset Lionfish
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - all-week
+  tier: 1
+  times:
+    EVENING: 0.1
+  model: 107
+sunset-goldberg:
+  name: Sunset Goldberg
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-week
+  tier: 1
+  times:
+    EVENING: 0.1
+  model: 108
+dawnglider-poppicok:
+  name: Dawnglider Poppicok
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+  model: 109
+dawnglider-herring:
+  name: Dawnglider Herring
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  model: 110
+lucid-puckerfish:
+  name: Lucid Puckerfish
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 111
+soulless-puckerfish:
+  name: Soulless Puckerfish
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+  tier: 1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 112
+sunrise-boopsnoot:
+  name: Sunrise Boopsnoot
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  model: 113
+albino-grayling:
+  name: Albino Grayling
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+    - last-half
+  tier: 1
+  model: 114
+ascended-puckerfish:
+  name: Ascended Puckerfish
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+  tier: 1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+  model: 115
+crumbling-klauknbals:
+  name: Crumbling Klauknbals
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    MUSHROOM_FIELDS: 0.1
+  model: 116
+bottom-angelfish:
+  name: Bottom Angelfish
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - saltwater
+  tier: 1
+  model: 117
+tiger-goby:
+  name: Tiger Goby
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 118
+gravel-finfin:
+  name: Gravel Finfin
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - cold-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 119
+chonkler-finfin:
+  name: Chonkler Finfin
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 120
+nanides-shin:
+  name: Nanides Shin
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 121
+primal-bananafish:
+  name: Primal Bananafish
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 122
+dry-aged-rhyb:
+  name: Dry-aged Rhyb
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-week
+  tier: 1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 123
+saltwater-bass:
+  name: Saltwater Bass
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - saltwater
+  tier: 1
+  model: 124
+dark-boopsnoot:
+  name: Dark Boopsnoot
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+  tier: 1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 125
+tropical-takoki:
+  name: Tropical Takoki
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 126
+royal-gramma:
+  name: Royal Gramma
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 127
+waning-threadfin:
+  name: Waning Threadfin
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 128
+forgetful-tang:
+  name: Forgetful Tang
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - first-half
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  model: 129
+fatherly-clownfish:
+  name: Fatherly Clownfish
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - first-half
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  model: 130
+sunrise-threadfin:
+  name: Sunrise Threadfin
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: true
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 131
+masked-blenny:
+  name: Masked Blenny
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 132
+tropical-wobbletail:
+  name: Tropical Wobbletail
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 133
+sunstreak-butterflyfish:
+  name: Sunstreak Butterflyfish
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  model: 134
+amethyst-cichilid:
+  name: Amethyst Cichilid
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 135
+full-moon-threadfin:
+  name: Full-Moon Threadfin
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+  tier: 1
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+  model: 136
+cerulean-razorback:
+  name: Cerulean Razorback
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - all-time
+  tier: 1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 137
+moonlit-butterflyfish:
+  name: Moonlit Butterflyfish
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+    - all-week
+  tier: 1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 138
+sunstreak-elara:
+  name: Sunstreak Elara
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+    - all-week
+  tier: 1
+  biomes:
+    MUSHROOM_FIELDS: 0.1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  model: 139
+seafoam-waverunner:
+  name: Seafoam Waverunner
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 140
+rainbow-bananafish:
+  name: Rainbow Bananafish
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - all-time
+  tier: 1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 141
+candy-drillcod:
+  name: Candy Drillcod
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+    - all-time
+  tier: 1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 142
+courting-klauknbals:
+  name: Courting Klauknbals
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 143
+rosegold-flowfin:
+  name: Rosegold Flowfin
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 144
+prismarine-betta:
+  name: Prismarine Betta
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - warm-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 145
+aquamarine-estuary:
+  name: Aquamarine Estuary
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+    - all-time
+    - all-week
+  tier: 1
+  model: 146
+fruity-albacore:
+  name: Fruity Albacore
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+    - all-time
+  tier: 1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 147
+eroti-dancefin:
+  name: Eroti Dancefin
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+  tier: 1
+  times:
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 148
+tropical-zing:
+  name: Tropical Zing
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+    - all-time
+    - first-half
+  tier: 1
+  model: 149
+bismuth-estuary:
+  name: Bismuth Estuary
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-saltwater
+    - warm-saltwater
+    - all-time
+  tier: 1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 150
+nightfall-threadfin:
+  name: Nightfall Threadfin
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-saltwater
+    - all-week
+  tier: 2
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 151
+heavenly-jetfin:
+  name: Heavenly Jetfin
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+  tier: 2
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 152
+treasured-luminae:
+  name: Treasured Luminae
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+    - all-time
+    - last-half
+  tier: 2
+  model: 153
+glorious-dancefin:
+  name: Glorious Dancefin
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: true
+  tier: 2
+  biomes:
+    MUSHROOM_FIELDS: 0.1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 154
+elusive-eel:
+  name: Elusive Eel
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+  tier: 2
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 155
+treasured-ptidiwhiskir:
+  name: Treasured Ptidiwhiskir
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 2
+  biomes:
+    STONY_SHORE: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 156
+ethereal-mindwatcher:
+  name: Ethereal Mindwatcher
+  rarity: LEGENDARY
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 4
+  biomes:
+    DEEP_LUKEWARM_OCEAN: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 157
+dream-threadfin:
+  name: Dream Threadfin
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: true
+  defaults:
+    - warm-saltwater
+  tier: 2
+  times:
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+  model: 158
+albino-dragling:
+  name: Albino Dragling
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+  tier: 2
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+  model: 159
+top-angelfish:
+  name: Top Angelfish
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+  tier: 2
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 160
+dream-squid:
+  name: Dream Squid
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-saltwater
+  tier: 2
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 161
+treasured-minnoe:
+  name: Treasured Minnoe
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 2
+  biomes:
+    BEACH: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 162
+fulfilled-minsk:
+  name: Fulfilled Minsk
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+  tier: 2
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 163
+brosephina-hookfin:
+  name: Brosephina Hookfin
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: true
+  defaults:
+    - cold-saltwater
+  tier: 2
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 164
+sunset-threadfin:
+  name: Sunset Threadfin
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+  tier: 2
+  times:
+    EVENING: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 165
+commanding-pepet:
+  name: Commanding Pepet
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: true
+  defaults:
+    - all-time
+    - all-week
+    - saltwater
+  tier: 2
+  model: 166
+luminous-lionfish:
+  name: Luminous Lionfish
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+  tier: 2
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 167
+golden-dart:
+  name: Golden Dart
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+    - all-week
+  tier: 2
+  model: 168
+full-moon-poppicok:
+  name: Full-Moon Poppicok
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-saltwater
+  tier: 2
+  times:
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+  model: 169
+shrouded-ghostly-grubshark:
+  name: Shrouded-Ghostly Grubshark
+  rarity: LEGENDARY
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+  tier: 4
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 170
+prime-rhyb:
+  name: Prime Rhyb
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+  tier: 2
+  times:
+    DAY: 0.1
+    EVENING: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+  model: 171
+ghostly-puckerfish:
+  name: Ghostly Puckerfish
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-saltwater
+  tier: 2
+  times:
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 172
+rose-goldfish:
+  name: Rose Goldfish
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - warm-saltwater
+    - all-time
+    - all-week
+  tier: 2
+  model: 173
+isle-takoki:
+  name: Isle Takoki
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 2
+  biomes:
+    MUSHROOM_FIELDS: 0.1
+  model: 174
+luminous-whelk:
+  name: Luminous Whelk
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+  tier: 2
+  times:
+    NIGHT: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 175
+beeper-sneepihr:
+  name: Beeper Sneepihr
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 2
+  biomes:
+    OLD_GROWTH_BIRCH_FOREST: 0.1
+  model: 176
+yeeper-sneepihr:
+  name: Yeeper Sneepihr
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 2
+  biomes:
+    OLD_GROWTH_SPRUCE_TAIGA: 0.1
+  model: 177
+bola-claymore:
+  name: Bola & Claymore
+  rarity: LEGENDARY
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - first-half
+  tier: 4
+  biomes:
+    BAMBOO_JUNGLE: 0.1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 178
+pure-goldfish:
+  name: Pure Goldfish
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+    - all-time
+  tier: 2
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 179
+green-apple-goomi:
+  name: Green-apple Goomi
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 2
+  biomes:
+    MEADOW: 0.1
+  model: 180
+weeh-shee-wooshi:
+  name: Weeh, Shee & Wooshi
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 2
+  biomes:
+    CHERRY_GROVE: 0.1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 181
+cerulean-merfish:
+  name: Cerulean Merfish
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - wet-lands
+    - all-week
+  tier: 2
+  times:
+    NIGHT: 0.1
+  model: 182
+travelling-belogna:
+  name: Travelling Belogna
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 2
+  biomes:
+    RIVER: 0.1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 183
+raging-boomfish:
+  name: Raging Boomfish
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 2
+  biomes:
+    BADLANDS: 0.1
+    ERODED_BADLANDS: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 184
+whoopee-anamalo:
+  name: Whoopee Anamalo
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 2
+  biomes:
+    DESERT: 0.1
+  moons:
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 185
+bronze-skrub:
+  name: Bronze Skrub
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+  tier: 2
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 186
+ethereal-chungus:
+  name: Ethereal Chungus
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 2
+  biomes:
+    PALE_GARDEN: 0.1
+  times:
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 187
+nightfall-puffer:
+  name: Nightfall Puffer
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - wet-lands
+    - last-half
+  tier: 2
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 188
+sunrise-puffer:
+  name: Sunrise Puffer
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - wet-lands
+    - first-half
+  tier: 2
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  model: 189
+common-snail:
+  name: Common Snail
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - woodlands
+    - rain-forest
+    - flat-lands
+    - wet-lands
+  tier: 2
+  biomes:
+    RIVER: 0.1
+  times:
+    DAWN: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+  model: 190
+alto-falloshimp:
+  name: Alto Falloshimp
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 2
+  biomes:
+    RIVER: 0.1
+  times:
+    DAY: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 191
+jaques-clenshimp:
+  name: Jaques Clenshimp
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - rain-forest
+    - all-week
+  tier: 2
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  model: 192
+common-gripper:
+  name: Common Gripper
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - rain-forest
+    - all-week
+  tier: 2
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  model: 193
+nightmare-squid:
+  name: Nightmare Squid
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 2
+  biomes:
+    DARK_FOREST: 0.1
+  times:
+    NIGHT: 0.1
+  moons:
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 194
+albino-kreken:
+  name: Albino Kreken
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - wet-lands
+  tier: 2
+  times:
+    DAWN: 0.1
+    NIGHT: 0.1
+  moons:
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 195
+pink-jellyjelly:
+  name: Pink Jellyjelly
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 2
+  biomes:
+    FLOWER_FOREST: 0.1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+  model: 196
+haunted-fishbones:
+  name: Haunted Fishbones
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-places
+  tier: 2
+  times:
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+  model: 197
+abyssal-jetfin:
+  name: Abyssal Jetfin
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-places
+    - all-time
+  tier: 2
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 198
+primal-canth:
+  name: Primal Canth
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 2
+  biomes:
+    ICE_SPIKES: 0.1
+  moons:
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 199
+concealed-eel:
+  name: Concealed Eel
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - woodlands
+  tier: 2
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 200
+diamonite-bananafish:
+  name: Diamonite Bananafish
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  model: 201
+  biomes:
+    DEEP_DARK: 0.1
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+rubinite-salmon:
+  name: Rubinite Salmon
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  model: 202
+  biomes:
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+quartzenite-gutpike:
+  name: Quartzenite Gutpike
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 203
+  biomes:
+    DEEP_DARK: 0.1
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+charged-quartzenite-gutpike:
+  name: Charged Quartzenite Gutpike
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 1
+  moons:
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 204
+  biomes:
+    DEEP_DARK: 0.1
+    DRIPSTONE_CAVES: 0.1
+prismarinite-minnoe:
+  name: Prismarinite Minnoe
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  model: 205
+  biomes:
+    LUSH_CAVES: 0.1
+amethysite-minnoe:
+  name: Amethysite Minnoe
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  model: 206
+  biomes:
+    DRIPSTONE_CAVES: 0.1
+emerald-schmeckle:
+  name: Emerald Schmeckle
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  model: 207
+  biomes:
+    DEEP_DARK: 0.1
+crystalline-back-rhyb:
+  name: Crystalline Back Rhyb
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 208
+  biomes:
+    DEEP_DARK: 0.1
+anchor-mimook:
+  name: Anchor Mimook
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  model: 209
+  biomes:
+    DEEP_DARK: 0.1
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+fishhook-mimook:
+  name: Fishhook Mimook
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  model: 210
+  biomes:
+    DEEP_DARK: 0.1
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+azalea-grubshark:
+  name: Azalea Grubshark
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  tier: 1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 211
+  biomes:
+    LUSH_CAVES: 0.1
+emeraldite-discus:
+  name: Emeraldite Discus
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  model: 212
+  biomes:
+    LUSH_CAVES: 0.1
+primal-eel:
+  name: Primal Eel
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: true
+  tier: 1
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 213
+  biomes:
+    DRIPSTONE_CAVES: 0.1
+ruling-turok:
+  name: Ruling Turok
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - first-half
+  tier: 1
+  times:
+    DAY: 0.1
+  model: 214
+  biomes:
+    LUSH_CAVES: 0.1
+jasper-gripper:
+  name: Jasper Gripper
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  model: 215
+  biomes:
+    DRIPSTONE_CAVES: 0.1
+lush-slimswimer:
+  name: Lush Slimswimer
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  model: 216
+  biomes:
+    LUSH_CAVES: 0.1
+reborn-puckerfish:
+  name: Reborn Puckerfish
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  model: 217
+  biomes:
+    DEEP_DARK: 0.1
+reborn-razorback:
+  name: Reborn Razorback
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  model: 218
+  biomes:
+    DEEP_DARK: 0.1
+amethyst-sculblade:
+  name: Amethyst Sculblade
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 219
+  biomes:
+    DRIPSTONE_CAVES: 0.1
+crystal-jellyjelly:
+  name: Crystal Jellyjelly
+  rarity: RARE
+  description: ''
+  open-water-required: false
+  rain-required: false
+  tier: 2
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+  model: 220
+  biomes:
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+crystal-jetfin:
+  name: Crystal Jetfin
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 221
+  biomes:
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+amethyst-minnoe:
+  name: Amethyst Minnoe
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  model: 222
+  biomes:
+    DRIPSTONE_CAVES: 0.1
+emeraldite-teetle:
+  name: Emeraldite Teetle
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-week
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  model: 223
+  biomes:
+    LUSH_CAVES: 0.1
+loving-scrubber:
+  name: Loving Scrubber
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  tier: 1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 224
+  biomes:
+    DEEP_DARK: 0.1
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+seafoam-zing:
+  name: Seafoam Zing
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  model: 225
+  biomes:
+    LUSH_CAVES: 0.1
+crimson-gripper:
+  name: Crimson Gripper
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - rain-forest
+    - last-half
+  tier: 3
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  model: 226
+dune-gripper:
+  name: Dune Gripper
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+    - first-half
+  tier: 3
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  model: 227
+obsidian-gripper:
+  name: Obsidian Gripper
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - wet-lands
+  tier: 3
+  times:
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 228
+bone-gripper:
+  name: Bone Gripper
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: true
+  defaults:
+    - flat-lands
+  tier: 3
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 229
+sunset-gripper:
+  name: Sunset Gripper
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 3
+  biomes:
+    RIVER: 0.1
+  times:
+    EVENING: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 230
+jade-gripper:
+  name: Jade Gripper
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+    - all-time
+  tier: 3
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+  model: 231
+amethyst-gripper:
+  name: Amethyst Gripper
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 3
+  moons:
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 232
+  biomes:
+    DRIPSTONE_CAVES: 0.1
+twinhorn-gripper:
+  name: Twinhorn Gripper
+  rarity: RARE
+  description: ''
+  open-water-required: false
+  rain-required: true
+  defaults:
+    - first-half
+  tier: 3
+  times:
+    DAY: 0.1
+    EVENING: 0.1
+  model: 233
+  biomes:
+    LUSH_CAVES: 0.1
+wellfed-gripper:
+  name: Wellfed Gripper
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: true
+  defaults:
+    - warm-saltwater
+  tier: 3
+  times:
+    DAWN: 0.1
+    NIGHT: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 234
+sunshine-gripper:
+  name: Sunshine Gripper
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - woodlands
+  tier: 3
+  times:
+    DAY: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+  model: 235
+surface-gripper:
+  name: Surface Gripper
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - last-half
+  tier: 3
+  times:
+    DAWN: 0.1
+    NIGHT: 0.1
+  model: 236
+radiated-gripper:
+  name: Radiated Gripper
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 3
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 237
+  biomes:
+    DEEP_DARK: 0.1
+mr-gripper:
+  name: Mr. Gripper
+  rarity: LEGENDARY
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-week
+  tier: 4
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  model: 238
+concealed-gripper:
+  name: Concealed Gripper
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+    - last-half
+  tier: 3
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 239
+crawling-gripper:
+  name: Crawling Gripper
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-places
+    - first-half
+  tier: 3
+  times:
+    DAWN: 0.1
+    NIGHT: 0.1
+  model: 240
+sonic-gripper:
+  name: Sonic Gripper
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 3
+  biomes:
+    MUSHROOM_FIELDS: 0.1
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 241
+pivot-gripper:
+  name: Pivot Gripper
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-saltwater
+  tier: 3
+  times:
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 242
+  biomes:
+    LUSH_CAVES: 0.1
+rhudon-gripper:
+  name: Rhudon Gripper
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+  tier: 3
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 243
+rockbash-gripper:
+  name: Rockbash Gripper
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+    - warm-saltwater
+  tier: 3
+  times:
+    DAY: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 244
+headhunt-gripper:
+  name: Headhunt Gripper
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - flat-lands
+  tier: 3
+  times:
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 245
+bean-gripper:
+  name: Bean Gripper
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+  tier: 3
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 246
+bouncy-gripper:
+  name: Bouncy Gripper
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 3
+  biomes:
+    RIVER: 0.1
+  moons:
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 247
+hypno-gripper:
+  name: Hypno Gripper
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - woodlands
+  tier: 3
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 248
+emerald-gripper:
+  name: Emerald Gripper
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 3
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 249
+  biomes:
+    DRIPSTONE_CAVES: 0.1
+fleshrend-gripper:
+  name: Fleshrend Gripper
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 3
+  biomes:
+    THE_END: 0.1
+    SMALL_END_ISLANDS: 0.1
+    END_MIDLANDS: 0.1
+    END_HIGHLANDS: 0.1
+    END_BARRENS: 0.1
+  times:
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 250
+til-a-i-pia:
+  name: Til-A.I.-pia
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 4
+  biomes:
+    SAVANNA: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 251
+bigbyte-piranha:
+  name: BigByte Piranha
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - last-half
+  tier: 4
+  biomes:
+    JUNGLE: 0.1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 252
+mechaphyra:
+  name: Mechaphyra
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 4
+  biomes:
+    RIVER: 0.1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 253
+troutomobile:
+  name: Troutomobile
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - last-half
+  tier: 4
+  biomes:
+    BIRCH_FOREST: 0.1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  model: 254
+moderated-threadfin:
+  name: Moderated Threadfin
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - first-half
+  tier: 4
+  biomes:
+    WARM_OCEAN: 0.1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  model: 255
+old-timey-poppicog:
+  name: Old-Timey Poppicog
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+  tier: 4
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 256
+oled-anglefish:
+  name: OLED Anglefish
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - first-half
+  tier: 4
+  biomes:
+    DEEP_COLD_OCEAN: 0.1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 257
+betafish:
+  name: BETAfish
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 4
+  biomes:
+    SUNFLOWER_PLAINS: 0.1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 258
+escargobot:
+  name: Escargobot
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - first-half
+  tier: 4
+  biomes:
+    OLD_GROWTH_BIRCH_FOREST: 0.1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 259
+escargomid:
+  name: Escargomid
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 4
+  biomes:
+    OLD_GROWTH_PINE_TAIGA: 0.1
+  times:
+    DAWN: 0.1
+    NIGHT: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 260
+chronotrouter:
+  name: Chronotrouter
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 4
+  biomes:
+    FLOWER_FOREST: 0.1
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 261
+initial-tee:
+  name: Initial Tee
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - last-half
+  tier: 4
+  biomes:
+    MANGROVE_SWAMP: 0.1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 262
+snowgrave-rodtail:
+  name: Snowgrave Rodtail
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 4
+  biomes:
+    ICE_SPIKES: 0.1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 263
+eelbow:
+  name: Eelbow
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+  tier: 4
+  biomes:
+    DESERT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 264
+locknplea:
+  name: Locknplea
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 4
+  biomes:
+    BEACH: 0.1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 265
+water-bybass:
+  name: Water Bybass
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 4
+  biomes:
+    BADLANDS: 0.1
+    ERODED_BADLANDS: 0.1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 266
+chromadine:
+  name: Chromadine
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - last-half
+  tier: 4
+  times:
+    DAY: 0.1
+    EVENING: 0.1
+  model: 267
+  biomes:
+    DRIPSTONE_CAVES: 0.1
+broken-wheel:
+  name: Broken Wheel
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  tier: 4
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 268
+  biomes:
+    DEEP_DARK: 0.1
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+dr-octogonapus:
+  name: Dr Octogonapus
+  rarity: LEGENDARY
+  description: ''
+  open-water-required: false
+  rain-required: false
+  tier: 4
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 269
+  biomes:
+    DEEP_DARK: 0.1
+cognutive:
+  name: CogNUTive
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 4
+  biomes:
+    PLAINS: 0.1
+  times:
+    NIGHT: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 270
+servo-moray:
+  name: Servo-Moray
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - first-half
+  tier: 4
+  biomes:
+    DEEP_OCEAN: 0.1
+  times:
+    DAY: 0.1
+    EVENING: 0.1
+  model: 271
+escargotop:
+  name: Escargotop
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - last-half
+  tier: 4
+  biomes:
+    OLD_GROWTH_SPRUCE_TAIGA: 0.1
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 272
+boopsnoototron:
+  name: Boopsnoototron
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 4
+  biomes:
+    DARK_FOREST: 0.1
+  times:
+    DAY: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 273
+floundrive:
+  name: Floundrive
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - last-half
+  tier: 4
+  biomes:
+    GROVE: 0.1
+  times:
+    DAWN: 0.1
+    NIGHT: 0.1
+  model: 274
+autoboros:
+  name: Autoboros
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 4
+  biomes:
+    CHERRY_GROVE: 0.1
+  model: 275
+skulkborn-moray:
+  name: Skulkborn Moray
+  rarity: RARE
+  description: ''
+  open-water-required: false
+  rain-required: false
+  tier: 4
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 276
+  biomes:
+    DEEP_DARK: 0.1
+dimensional-basilisk:
+  name: Dimensional Basilisk
+  rarity: RARE
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - first-half
+  tier: 4
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  model: 277
+  biomes:
+    LUSH_CAVES: 0.1
+ripper-roofin:
+  name: Ripper Roofin
+  rarity: LEGENDARY
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - hot-places
+  tier: 4
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 278
+chip-skydark:
+  name: Chip Skydark
+  rarity: LEGENDARY
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-places
+    - first-half
+  tier: 4
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 279
+rafflebones:
+  name: Rafflebones
+  rarity: LEGENDARY
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - cold-saltwater
+  tier: 4
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 280
+goobly-gobbler:
+  name: Goobly Gobbler
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - rain-forest
+  tier: 4
+  times:
+    DAY: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+  model: 281
+yin-dynastii:
+  name: Yin Dynastii
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - first-half
+  tier: 4
+  biomes:
+    CHERRY_GROVE: 0.1
+  times:
+    DAY: 0.1
+  model: 282
+yang-dynastii:
+  name: Yang Dynastii
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - last-half
+  tier: 4
+  biomes:
+    CHERRY_GROVE: 0.1
+  times:
+    NIGHT: 0.1
+  model: 283
+dinkus-the-deep:
+  name: Dinkus the Deep
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - all-time
+  tier: 4
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+  model: 284
+worldeater:
+  name: Worldeater
+  rarity: LEGENDARY
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - woodlands
+    - all-time
+  tier: 4
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 285
+the-mindflayer:
+  name: The Mindflayer
+  rarity: LEGENDARY
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 4
+  biomes:
+    PALE_GARDEN: 0.1
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 286
+mr-boombastic:
+  name: Mr Boombastic
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 4
+  biomes:
+    DARK_FOREST: 0.1
+  times:
+    EVENING: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 287
+needlessly-large-rodtail:
+  name: Needlessly Large Rodtail
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - general-saltwater
+    - last-half
+  tier: 4
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  model: 288
+rodtail-of-domnion:
+  name: Rodtail of Domnion
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+  tier: 4
+  times:
+    DAY: 0.1
+    NIGHT: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 289
+abaia-of-isles:
+  name: Abaia of Isles
+  rarity: RARE
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - last-half
+  tier: 4
+  times:
+    DAY: 0.1
+  model: 290
+  biomes:
+    DRIPSTONE_CAVES: 0.1
+jim:
+  name: Jim
+  rarity: LEGENDARY
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - first-half
+  tier: 4
+  biomes:
+    RIVER: 0.1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  model: 291
+king-jellyjelly:
+  name: King Jellyjelly
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - wet-lands
+  tier: 4
+  times:
+    NIGHT: 0.1
+  moons:
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 292
+wither-s-rodtail:
+  name: Wither’s Rodtail
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 4
+  biomes:
+    WOODED_BADLANDS: 0.1
+  times:
+    EVENING: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 293
+shadowmaw-grubshark:
+  name: Shadowmaw Grubshark
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - saltwater
+  tier: 4
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  moons:
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 294
+astrological-mindwatcher:
+  name: Astrological Mindwatcher
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - flat-lands
+  tier: 4
+  times:
+    DAWN: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+  model: 295
+chuchu-pik:
+  name: Chuchu Pik
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 4
+  biomes:
+    MANGROVE_SWAMP: 0.1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+    EVENING: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 296
+illithid-maggot:
+  name: Illithid Maggot
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 4
+  biomes:
+    NETHER_WASTES: 0.1
+    SOUL_SAND_VALLEY: 0.1
+    CRIMSON_FOREST: 0.1
+    WARPED_FOREST: 0.1
+    BASALT_DELTAS: 0.1
+    THE_END: 0.1
+    SMALL_END_ISLANDS: 0.1
+    END_MIDLANDS: 0.1
+    END_HIGHLANDS: 0.1
+    END_BARRENS: 0.1
+    THE_VOID: 0.1
+  model: 297
+redacted:
+  name: '[REDACTED]'
+  rarity: LEGENDARY
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 4
+  biomes:
+    NETHER_WASTES: 0.1
+    SOUL_SAND_VALLEY: 0.1
+    CRIMSON_FOREST: 0.1
+    WARPED_FOREST: 0.1
+    BASALT_DELTAS: 0.1
+    THE_END: 0.1
+    SMALL_END_ISLANDS: 0.1
+    END_MIDLANDS: 0.1
+    END_HIGHLANDS: 0.1
+    END_BARRENS: 0.1
+    THE_VOID: 0.1
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+  model: 298
+luminous-shulk:
+  name: Luminous Shulk
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  tier: 4
+  biomes:
+    NETHER_WASTES: 0.1
+    SOUL_SAND_VALLEY: 0.1
+    CRIMSON_FOREST: 0.1
+    WARPED_FOREST: 0.1
+    BASALT_DELTAS: 0.1
+    THE_END: 0.1
+    SMALL_END_ISLANDS: 0.1
+    END_MIDLANDS: 0.1
+    END_HIGHLANDS: 0.1
+    END_BARRENS: 0.1
+    THE_VOID: 0.1
+  times:
+    DAWN: 0.1
+    DAY: 0.1
+  moons:
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
+  model: 299
+voidborn-moray:
+  name: Voidborn Moray
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-week
+  tier: 4
+  biomes:
+    NETHER_WASTES: 0.1
+    SOUL_SAND_VALLEY: 0.1
+    CRIMSON_FOREST: 0.1
+    WARPED_FOREST: 0.1
+    BASALT_DELTAS: 0.1
+    THE_END: 0.1
+    SMALL_END_ISLANDS: 0.1
+    END_MIDLANDS: 0.1
+    END_HIGHLANDS: 0.1
+    END_BARRENS: 0.1
+    THE_VOID: 0.1
+  times:
+    DAWN: 0.1
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 300
+stray-seagrass:
+  name: Stray Seagrass
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+  tier: 0
+  biomes:
+    RIVER: 0.1
+  model: 301
+old-boot:
+  name: Old Boot
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  model: 302
+  biomes:
+    DEEP_DARK: 0.1
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+waterlogged-boot:
+  name: Waterlogged Boot
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+    - saltwater
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 303
+message-in-a-bottle:
+  name: Message in a Bottle
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - saltwater
+  tier: 1
+  model: 304
+broken-chain:
+  name: Broken Chain
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  model: 305
+  biomes:
+    DEEP_DARK: 0.1
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+strange-biomass:
+  name: Strange Biomass
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    THE_END: 0.1
+    SMALL_END_ISLANDS: 0.1
+    END_MIDLANDS: 0.1
+    END_HIGHLANDS: 0.1
+    END_BARRENS: 0.1
+  model: 306
+chorus-kelp:
+  name: Chorus Kelp
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  biomes:
+    THE_END: 0.1
+    SMALL_END_ISLANDS: 0.1
+    END_MIDLANDS: 0.1
+    END_HIGHLANDS: 0.1
+    END_BARRENS: 0.1
+  model: 307
+smooth-rock:
+  name: Smooth Rock
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+    - saltwater
+  tier: 0
+  biomes:
+    RIVER: 0.1
+    DEEP_DARK: 0.1
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+  model: 308
+small-shell:
+  name: Small Shell
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - saltwater
+  tier: 1
+  model: 309
+large-shell:
+  name: Large Shell
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - saltwater
+  tier: 1
+  model: 310
+coral-shell:
+  name: Coral Shell
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - saltwater
+  tier: 1
+  model: 311
+castaway-chest:
+  name: Castaway Chest
+  rarity: COMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+    - saltwater
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 312
+seafarers-chest:
+  name: Seafarers Chest
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+    - saltwater
+  tier: 1
+  biomes:
+    RIVER: 0.1
+  model: 313
+captains-chest:
+  name: Captains Chest
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+    - saltwater
+  tier: 2
+  biomes:
+    RIVER: 0.1
+  model: 314
+chest-of-ancient-tributes:
+  name: Chest of Ancient Tributes
+  rarity: LEGENDARY
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+    - saltwater
+  tier: 4
+  biomes:
+    RIVER: 0.1
+  model: 315
+chest-of-wonderous-secrets:
+  name: Chest of Wonderous Secrets
+  rarity: LEGENDARY
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+    - saltwater
+  tier: 4
+  biomes:
+    RIVER: 0.1
+  model: 316
+broken-glasses:
+  name: Broken Glasses
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+  tier: 1
+  biomes:
+    RIVER: 0.1
+    DEEP_DARK: 0.1
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+  model: 317
+rotting-produce:
+  name: Rotting Produce
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+    - saltwater
+  tier: 1
+  biomes:
+    RIVER: 0.1
+    LUSH_CAVES: 0.1
+  model: 318
+floating-kelp:
+  name: Floating Kelp
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - saltwater
+  tier: 0
+  model: 319
+pristine-pearl:
+  name: Pristine Pearl
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - saltwater
+  tier: 1
+  model: 320
+oyster-of-secrets:
+  name: Oyster of Secrets
+  rarity: RARE
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - saltwater
+  tier: 1
+  model: 321
+crumpled-bottle:
+  name: Crumpled Bottle
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+    - saltwater
+  tier: 1
+  biomes:
+    RIVER: 0.1
+    DEEP_DARK: 0.1
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+  model: 322
+dead-kelp:
+  name: Dead Kelp
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: true
+  defaults:
+    - all-time
+    - all-week
+  tier: 1
+  model: 323
+  biomes:
+    DEEP_DARK: 0.1
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+dark-pearl-cluster:
+  name: Dark Pearl Cluster
+  rarity: UNCOMMON
+  description: ''
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - mountains
+    - woodlands
+    - all-week
+  tier: 1
+  times:
+    EVENING: 0.1
+    NIGHT: 0.1
+  model: 324
+  biomes:
+    DEEP_DARK: 0.1
+    DRIPSTONE_CAVES: 0.1
+trash:
+  name: Trash
+  rarity: COMMON
+  description: ''
+  open-water-required: false
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+    - saltwater
+  tier: 0
+  biomes:
+    RIVER: 0.1
+    DEEP_DARK: 0.1
+    DRIPSTONE_CAVES: 0.1
+    LUSH_CAVES: 0.1
+  model: 325

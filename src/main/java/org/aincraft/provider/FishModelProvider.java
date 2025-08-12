@@ -1,8 +1,6 @@
 package org.aincraft.provider;
 
 import org.aincraft.config.FishConfig;
-import org.aincraft.container.FishDistrubution;
-import org.aincraft.container.FishRarity;
 import org.aincraft.container.FishModel;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
@@ -10,7 +8,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -23,27 +20,39 @@ public class FishModelProvider {
         this.plugin = plugin;
     }
 
+    /**
+     * Parses fish data from the config and returns a map of fish keys to their name/description info.
+     *
+     * @return Map of NamespacedKey to FishModel
+     */
     public Map<NamespacedKey, FishModel> parseFishModelObjects() {
         FileConfiguration config = holder.getConfig();
-        Set<String> keys = config.getKeys(false);
+        Set<String> fishKeys = config.getKeys(false);
         Map<NamespacedKey, FishModel> modelMap = new HashMap<>();
 
-        for (String key : keys) {
-            ConfigurationSection configurationSection = config.getConfigurationSection(key);
-            if (configurationSection != null) {
-                // --Model--
-                String modelString = configurationSection.getString("model");
-                if (rarityString != null) {
-                    try {
-                        FishRarity rarity = FishRarity.valueOf(rarityString.toUpperCase(Locale.ENGLISH));
-                        NamespacedKey namespacedKey = new NamespacedKey(plugin, key);
-                        rarityDistribution.put(namespacedKey, new FishDistrubution(rarity));
-                    } catch (IllegalArgumentException e) {
-                        plugin.getLogger().warning("Invalid rarity: " + rarityString + " for fish: " + key);
-                    }
-                }
+        for (String fishKey : fishKeys) {
+            ConfigurationSection section = config.getConfigurationSection(fishKey);
+            if (section == null) {
+                plugin.getLogger().warning("Missing configuration section for fish: " + fishKey);
+                continue;
             }
+
+            String name = section.getString("name");
+            String description = section.getString("description");
+
+            if (name == null || description == null) {
+                plugin.getLogger().warning("Missing name or description for fish: " + fishKey);
+                continue;
+            }
+
+            NamespacedKey key = new NamespacedKey(plugin, fishKey);
+            modelMap.put(key, new FishModel(name, description));
         }
-        return rarityDistribution;
+
+        return modelMap;
+    }
+
+    public Plugin getPlugin() {
+        return this.plugin;
     }
 }
