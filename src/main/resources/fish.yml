@@ -3393,8 +3393,8 @@ crystal-jetfin:
   biomes:
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
-amethyst-minnoe:
-  name: Amethyst Minnoe
+docile-doomageddon:
+  name: Docile Doomageddon
   rarity: COMMON
   description: ''
   open-water-required: false

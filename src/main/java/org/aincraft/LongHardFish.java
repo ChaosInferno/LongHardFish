@@ -10,6 +10,7 @@ import org.aincraft.provider.FishModelProvider;
 import org.aincraft.provider.FishRarityProvider;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -43,15 +44,16 @@ public class LongHardFish extends JavaPlugin {
         );
 
         // --- Register Pirate Chest listener + command ---
-        // (This class implements Listener and CommandExecutor; it is NOT a JavaPlugin)
-        PirateChestListener pirateChest = new PirateChestListener();
+        PirateChestListener pirateChest = new PirateChestListener(this); // <-- pass plugin
         getServer().getPluginManager().registerEvents(pirateChest, this);
-        if (getCommand("piratechest") != null) {
-            getCommand("piratechest").setExecutor(pirateChest);
-            // Optional: tab completion if your class implements TabCompleter
-            // getCommand("piratechest").setTabCompleter(piratechest);
+
+        PluginCommand cmd = getCommand("piratechest");
+        if (cmd != null) {
+            cmd.setExecutor(pirateChest);       // reuse the SAME instance
+            // If your listener also implements TabCompleter, you can do:
+            // cmd.setTabCompleter(pirateChest);
         } else {
-            getLogger().warning("Command 'piratechest' is not defined in plugin.yml!");
+            getLogger().severe("Command 'piratechest' is not defined in plugin.yml!");
         }
 
         // --- Optional Debug Logging ---
