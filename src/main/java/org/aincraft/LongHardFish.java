@@ -19,11 +19,14 @@ import java.io.File;
 import java.util.Map;
 
 public class LongHardFish extends JavaPlugin {
+    private PirateChestListener guiListener;
 
     @Override
     public void onEnable() {
         // --- Load main fish config ---
         FishConfig config = new FishConfig("fish.yml", this);
+        guiListener = new PirateChestListener(this);
+        getServer().getPluginManager().registerEvents(guiListener, this);
 
         // --- Load defaults config (fish_defaults.yml) ---
         saveResource("fish_defaults.yml", false); // Copy from JAR if missing
@@ -64,6 +67,12 @@ public class LongHardFish extends JavaPlugin {
             Bukkit.getLogger().info("  Biomes: " + entry.getValue().getEnvironmentBiomes());
             Bukkit.getLogger().info("  Times: " + entry.getValue().getEnvironmentTimes());
             Bukkit.getLogger().info("  Moons: " + entry.getValue().getEnvironmentMoons());
+        }
+    }
+
+    public void onDisable() {
+        if (guiListener != null) {
+            guiListener.restoreAllMasks();
         }
     }
 }

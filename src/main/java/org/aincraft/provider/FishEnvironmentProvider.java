@@ -39,9 +39,9 @@ public class FishEnvironmentProvider {
             for (String group : defaultGroups) {
                 FishEnvironment defaults = defaultsProvider.getDefaults(group);
                 if (defaults != null) {
-                    defaults.getEnvironmentBiomes().forEach((biome, weight) -> biomeWeights.putIfAbsent(biome, weight));
-                    defaults.getEnvironmentTimes().forEach((time, weight) -> timeWeights.putIfAbsent(time, weight));
-                    defaults.getEnvironmentMoons().forEach((moon, weight) -> moonWeights.putIfAbsent(moon, weight));
+                    defaults.getEnvironmentBiomes().forEach(biomeWeights::putIfAbsent);
+                    defaults.getEnvironmentTimes().forEach(timeWeights::putIfAbsent);
+                    defaults.getEnvironmentMoons().forEach(moonWeights::putIfAbsent);
                 }
             }
 
