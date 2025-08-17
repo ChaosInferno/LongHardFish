@@ -10,6 +10,7 @@ version = "1.0.0"
 repositories {
     gradlePluginPortal()
     mavenCentral()
+    maven("https://nexus.neetgames.com/repository/maven-releases/")
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://oss.sonatype.org/content/groups/public/")
 }
@@ -27,6 +28,8 @@ tasks.withType<JavaCompile>().configureEach {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.7-R0.1-SNAPSHOT")
     compileOnly("org.jetbrains:annotations:24.1.0")
+    implementation("com.github.ben-manes.caffeine:caffeine:3.2.2")
+    implementation("com.zaxxer:HikariCP:7.0.1")
 }
 
 tasks {
