@@ -70,16 +70,85 @@ public class PirateChestListener implements Listener, CommandExecutor {
             GuiItemSlot.putImmovableIcon(gui,35,Material.COD,Key.key("longhardfish", "icons/full_moon"),IMMOVABLE_KEY);
             GuiItemSlot.putImmovableIcon(gui,44,Material.COD,Key.key("longhardfish", "icons/waning_gibbous"),IMMOVABLE_KEY);
             GuiItemSlot.putImmovableIcon(gui,53,Material.COD,Key.key("longhardfish", "icons/last_quarter"),IMMOVABLE_KEY);
-
-            GuiItemSlot.putImmovableIcon(player.getInventory(),GuiItemSlot.main(2,7),Material.COD,Key.key("longhardfish", "icons/waning_crescent"),IMMOVABLE_KEY);
-            GuiItemSlot.putImmovableIcon(player.getInventory(),GuiItemSlot.main(2,5),Material.COD,Key.key("longhardfish", "icons/new_moon"),IMMOVABLE_KEY);
-            GuiItemSlot.putImmovableIcon(player.getInventory(),GuiItemSlot.main(2,8),Material.COD,Key.key("longhardfish", "icons/waxing_crescent"),IMMOVABLE_KEY);
-            GuiItemSlot.putImmovableIcon(player.getInventory(),GuiItemSlot.main(2,6),Material.COD,Key.key("longhardfish", "icons/first_quarter"),IMMOVABLE_KEY);
+            GuiItemSlot.putImmovableIcon(player.getInventory(),GuiItemSlot.main(0,7),Material.COD,Key.key("longhardfish", "icons/waning_crescent"),IMMOVABLE_KEY);
+            GuiItemSlot.putImmovableIcon(player.getInventory(),GuiItemSlot.hotbar(8),Material.COD,Key.key("longhardfish", "icons/new_moon"),IMMOVABLE_KEY);
+            GuiItemSlot.putImmovableIcon(player.getInventory(),GuiItemSlot.main(1,8),Material.COD,Key.key("longhardfish", "icons/waxing_crescent"),IMMOVABLE_KEY);
+            GuiItemSlot.putImmovableIcon(player.getInventory(),GuiItemSlot.main(0,6),Material.COD,Key.key("longhardfish", "icons/first_quarter"),IMMOVABLE_KEY);
             GuiItemSlot.putImmovableIcon(player.getInventory(),GuiItemSlot.main(0,8),Material.COD,Key.key("longhardfish", "icons/waxing_gibbous"),IMMOVABLE_KEY);
 
             GuiItemSlot.putImmovableIcon(gui,45,Material.COD,Key.key("longhardfish", "icons/rarity-rare"),IMMOVABLE_KEY);
 
-            GuiItemSlot.putImmovableIcon(player.getInventory(),GuiItemSlot.main(2,0),Material.COD,Key.key("longhardfish", "icons/4-star"),IMMOVABLE_KEY);
+            GuiItemSlot.putImmovableIcon(player.getInventory(),GuiItemSlot.main(1,0),Material.COD,Key.key("longhardfish", "icons/4-star"),IMMOVABLE_KEY);
+
+            GuiItemSlot.putImmovableIcon(gui,9,Material.COD,Key.key("longhardfish", "offsets/abyssal-jetfin-offset"),IMMOVABLE_KEY);
+
+            GuiItemSlot.putImmovableIcon(gui,0,Material.COD,Key.key("longhardfish", "icons/fish-menu"),IMMOVABLE_KEY);
+
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(1,3), Material.COD, Key.key("longhardfish", "icons/env-river"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(1,1), Material.COD, Key.key("longhardfish", "icons/env-shallow-saltwater"), IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(1,2), Material.COD, Key.key("longhardfish", "icons/env-cold-saltwater"), IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(2,0), Material.COD, Key.key("longhardfish", "icons/env-war-saltwater"), IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(2,1), Material.COD, Key.key("longhardfish", "icons/env-caves"), IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(2,2), Material.COD, Key.key("longhardfish", "icons/env-weird"), IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(2,3), Material.COD, Key.key("longhardfish", "icons/env-mountain"), IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(1,6), Material.COD, Key.key("longhardfish", "icons/env-hot-places"), IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(1,7), Material.COD, Key.key("longhardfish", "icons/env-woodlands"), IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(1,5), Material.COD, Key.key("longhardfish", "icons/env-cold-places"), IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(2,6), Material.COD, Key.key("longhardfish", "icons/env-rain-forest"), IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(2,7), Material.COD, Key.key("longhardfish", "icons/env-flat-lands"), IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(2,8), Material.COD, Key.key("longhardfish", "icons/env-wet-lands"), IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(2,5), Material.COD, Key.key("longhardfish", "icons/env-deep-saltwater"), IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(1,4), Material.COD, Key.key("longhardfish", "icons/env-deep-saltwater"), IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(2,4), Material.COD, Key.key("longhardfish", "icons/env-deep-saltwater"), IMMOVABLE_KEY, false);
+
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(0,3), Material.COD, Key.key("longhardfish", "icons/bait-icon-full"), IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(0,4), Material.COD, Key.key("longhardfish", "icons/description-gem-icon"), IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(), GuiItemSlot.main(0,5), Material.COD, Key.key("longhardfish", "icons/sunny-icon"), IMMOVABLE_KEY, false);
+
+            GuiItemSlot.putImmovableIcon(gui,10,Material.COD,Key.key("longhardfish", "albino-grayling"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,11,Material.COD,Key.key("longhardfish", "albino-kreken"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,12,Material.COD,Key.key("longhardfish", "alto-falloshimp"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,13,Material.COD,Key.key("longhardfish", "amethysite-minnoe"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,14,Material.COD,Key.key("longhardfish", "amethyst-cichilid"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,15,Material.COD,Key.key("longhardfish", "amethyst-gripper"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,16,Material.COD,Key.key("longhardfish", "amethyst-riptideon"),IMMOVABLE_KEY,false);
+
+            GuiItemSlot.putImmovableIcon(gui,19,Material.COD,Key.key("longhardfish", "amethyst-sculblade"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,20,Material.COD,Key.key("longhardfish", "anchor-mimook"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,21,Material.COD,Key.key("longhardfish", "ancient-boopsnoot"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,22,Material.COD,Key.key("longhardfish", "ancient-dorado"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,23,Material.COD,Key.key("longhardfish", "ancient-elara"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,24,Material.COD,Key.key("longhardfish", "aquamarine-estuary"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,25,Material.COD,Key.key("longhardfish", "arctic-bylowin"),IMMOVABLE_KEY,false);
+
+            GuiItemSlot.putImmovableIcon(gui,28,Material.COD,Key.key("longhardfish", "arctic-grayling"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,29,Material.COD,Key.key("longhardfish", "arctic-horizonfin"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,30,Material.COD,Key.key("longhardfish", "ascended-puckerfish"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,31,Material.COD,Key.key("longhardfish", "astrological-mindwatcher"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,32,Material.COD,Key.key("longhardfish", "autoboros"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,33,Material.COD,Key.key("longhardfish", "azalea-grubshark"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,34,Material.COD,Key.key("longhardfish", "bean-gripper"),IMMOVABLE_KEY,false);
+
+            GuiItemSlot.putImmovableIcon(gui,37,Material.COD,Key.key("longhardfish", "beeper-sneepihr"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,38,Material.COD,Key.key("longhardfish", "berserker-doomageddon"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,39,Material.COD,Key.key("longhardfish", "betafish"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,40,Material.COD,Key.key("longhardfish", "bigbyte-piranha"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,41,Material.COD,Key.key("longhardfish", "bismuth-estuary"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,42,Material.COD,Key.key("longhardfish", "bloodfin-phyra"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,43,Material.COD,Key.key("longhardfish", "blue-jellyjelly"),IMMOVABLE_KEY,false);
+
+            GuiItemSlot.putImmovableIcon(gui,46,Material.COD,Key.key("longhardfish", "bola-claymore"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,47,Material.COD,Key.key("longhardfish", "bone-gripper"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,48,Material.COD,Key.key("longhardfish", "boopsnoototron"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,49,Material.COD,Key.key("longhardfish", "boreal-albacore"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,50,Material.COD,Key.key("longhardfish", "anchor-mimook"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,51,Material.COD,Key.key("longhardfish", "ancient-boopsnoot"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(gui,52,Material.COD,Key.key("longhardfish", "ancient-dorado"),IMMOVABLE_KEY,false);
+
+            GuiItemSlot.putImmovableIcon(player.getInventory(),GuiItemSlot.hotbar(6),Material.COD,Key.key("longhardfish", "icons/next-1"),IMMOVABLE_KEY,false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(),GuiItemSlot.hotbar(7),Material.COD,Key.key("longhardfish", "icons/next-all"),IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(),GuiItemSlot.hotbar(2),Material.COD,Key.key("longhardfish", "icons/previous-1"),IMMOVABLE_KEY, false);
+            GuiItemSlot.putImmovableIcon(player.getInventory(),GuiItemSlot.hotbar(1),Material.COD,Key.key("longhardfish", "icons/previous-all"),IMMOVABLE_KEY, false);
 
             Bukkit.getScheduler().runTask(plugin,()->{
                 player.openInventory(gui);

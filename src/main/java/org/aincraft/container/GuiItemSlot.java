@@ -14,7 +14,8 @@ public class GuiItemSlot {
 
     public static ItemStack immovableIcon(Material base,
                                           Key modelKey,
-                                          NamespacedKey immovableKey) {
+                                          NamespacedKey immovableKey,
+                                          boolean hideTooltip) {
         ItemStack item = new ItemStack(base);
 
         // Custom model (from your resource pack)
@@ -26,13 +27,34 @@ public class GuiItemSlot {
             m.getPersistentDataContainer().set(immovableKey, PersistentDataType.BYTE, (byte) 1);
         });
 
-        // Hide the entire tooltip box
-        item.setData(
-                DataComponentTypes.TOOLTIP_DISPLAY,
-                TooltipDisplay.tooltipDisplay().hideTooltip(true).build()
-        );
+        // Tooltip visibility
+        if (hideTooltip) {
+            item.setData(
+                    DataComponentTypes.TOOLTIP_DISPLAY,
+                    TooltipDisplay.tooltipDisplay().hideTooltip(true).build()
+            );
+        } else {
+            // Explicitly remove any tooltip-display override so vanilla tooltip shows
+            item.resetData(DataComponentTypes.TOOLTIP_DISPLAY);
+        }
 
         return item;
+    }
+
+    public static ItemStack immovableIcon(Material base,
+                                          Key modelKey,
+                                          NamespacedKey immovableKey) {
+        return immovableIcon(base, modelKey, immovableKey, true);
+    }
+
+    /* === Chest/any Inventory === */
+    public static void putImmovableIcon(Inventory inv,
+                                        int slot,
+                                        Material base,
+                                        Key modelKey,
+                                        NamespacedKey immovableKey,
+                                        boolean hideTooltip) {
+        inv.setItem(slot, immovableIcon(base, modelKey, immovableKey, hideTooltip));
     }
 
     public static void putImmovableIcon(Inventory inv,
@@ -40,7 +62,21 @@ public class GuiItemSlot {
                                         Material base,
                                         Key modelKey,
                                         NamespacedKey immovableKey) {
-        inv.setItem(slot, immovableIcon(base, modelKey, immovableKey));
+        putImmovableIcon(inv, slot, base, modelKey, immovableKey, true);
+    }
+
+    public static void putImmovableIcon(PlayerInventory inv,
+                                        int storageSlot,
+                                        Material base,
+                                        Key modelKey,
+                                        NamespacedKey immovableKey,
+                                        boolean hideTooltip) {
+        if (storageSlot < 0 || storageSlot >= 36) {
+            throw new IllegalArgumentException("storageSlot must be in 0..35 (player storage)");
+        }
+        ItemStack[] storage = inv.getStorageContents();
+        storage[storageSlot] = immovableIcon(base, modelKey, immovableKey, hideTooltip);
+        inv.setStorageContents(storage);
     }
 
     public static void putImmovableIcon(PlayerInventory inv,
@@ -48,12 +84,7 @@ public class GuiItemSlot {
                                         Material base,
                                         Key modelKey,
                                         NamespacedKey immovableKey) {
-        if (storageSlot < 0 || storageSlot >= 36) {
-            throw new IllegalArgumentException("storageSlot must be in 0..35 (player storage)");
-        }
-        ItemStack[] storage = inv.getStorageContents();
-        storage[storageSlot] = immovableIcon(base, modelKey, immovableKey);
-        inv.setStorageContents(storage);
+        putImmovableIcon(inv, storageSlot, base, modelKey, immovableKey, true);
     }
 
     public static int hotbar(int col0to8) {
