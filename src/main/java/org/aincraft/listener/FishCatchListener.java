@@ -1,5 +1,6 @@
 package org.aincraft.listener;
 
+import io.papermc.paper.datacomponent.DataComponentTypes;
 import org.aincraft.calculator.FishCalculator;
 import org.aincraft.container.FishDistrubution;
 import org.aincraft.container.FishRarity;
@@ -9,6 +10,7 @@ import org.aincraft.list.FishPercentCalculator;
 import org.aincraft.provider.FishEnvironmentProvider;
 import org.aincraft.provider.FishModelProvider;
 import org.aincraft.provider.FishRarityProvider;
+import org.aincraft.service.StatsService;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.FishHook;
@@ -18,22 +20,37 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.java.JavaPlugin;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class FishCatchListener implements Listener {
+
+    private final JavaPlugin plugin;
+    private final StatsService stats;
 
     private final FishEnvironmentProvider environmentProvider;
     private final FishRarityProvider rarityProvider;
     private final FishCreator fishCreator;
+    private final FishFilter filter;
 
-    public FishCatchListener(FishEnvironmentProvider environmentProvider,
+    public FishCatchListener(JavaPlugin plugin,
+                             FishEnvironmentProvider environmentProvider,
                              FishRarityProvider rarityProvider,
-                             FishModelProvider modelProvider) {
+                             FishModelProvider modelProvider,
+                             StatsService stats) {
+        this.plugin = Objects.requireNonNull(plugin, "plugin");
+        this.stats = Objects.requireNonNull(stats, "StatsService is null");
         this.environmentProvider = environmentProvider;
         this.rarityProvider = rarityProvider;
-        this.fishCreator = new FishCreator(modelProvider.parseFishModelObjects());
+        this.fishCreator = new FishCreator(plugin, modelProvider.parseFishModelObjects());
+        this.filter = new FishFilter(stats);
     }
 
     @EventHandler
@@ -56,52 +73,68 @@ public class FishCatchListener implements Listener {
         FishHook hook = (FishHook) event.getHook();
         Location hookLocation = hook.getLocation();
 
-        // Get rarity data
-        Map<NamespacedKey, FishDistrubution> rawRarityMap = rarityProvider.parseFishDistributorObjects();
+        // Build rarity map
+        Map<NamespacedKey, FishDistrubution> raw = rarityProvider.parseFishDistributorObjects();
         Map<NamespacedKey, FishRarity> rarityMap = new HashMap<>();
-        for (Map.Entry<NamespacedKey, FishDistrubution> entry : rawRarityMap.entrySet()) {
-            rarityMap.put(entry.getKey(), entry.getValue().getRarity());
-        }
+        for (var e : raw.entrySet()) rarityMap.put(e.getKey(), e.getValue().getRarity());
 
-        // Get valid fish from filter
-        FishFilter fishFilter = new FishFilter();
-        Map<NamespacedKey, Double> validFish = fishFilter.getValidFish(player, hookLocation, hook, environmentProvider, rarityMap);
+        // ✅ Use the existing field 'filter' (DO NOT new FishFilter())
+        Map<NamespacedKey, Double> validFish =
+                filter.getValidFish(player, hookLocation, hook, environmentProvider, rarityMap);
+
         Map<NamespacedKey, Double> validFishPercent = FishPercentCalculator.calculatePercentages(validFish);
-
         if (validFishPercent.isEmpty()) {
             player.sendMessage("No fish are available to catch right now.");
             return;
         }
 
-        // Debug list of catchable fish
-        player.sendMessage("Available fish and scores:");
-        validFishPercent.forEach((key, score) ->
-                player.sendMessage(" - " + key.getKey() + " | Chance: " + String.format("%.2f", score) + "%")
-        );
-
-        // Choose fish using weighted chance
-        FishCalculator fishCalculator = new FishCalculator(validFishPercent);
-        NamespacedKey chosenFishKey = fishCalculator.getRandomFish();
+        // Weighted choice
+        FishCalculator calc = new FishCalculator(validFishPercent);
+        NamespacedKey chosenFishKey = calc.getRandomFish();
         if (chosenFishKey == null) {
             player.sendMessage("Something went wrong while picking a fish.");
             return;
         }
 
-        // Create the custom fish item
+        // Create custom item
         ItemStack customFish = fishCreator.createFishItem(chosenFishKey);
-        if (customFish != null) {
-            if (customFish.hasItemMeta() && customFish.getItemMeta().hasCustomModelData()) {
-                int modelData = customFish.getItemMeta().getCustomModelData();
-            }
-
-            // Replace the item stack inside the caught entity
-            if (event.getCaught() instanceof Item caughtItem) {
-                caughtItem.setItemStack(customFish);
-            } else {
-                player.sendMessage("Caught entity is not an item.");
-            }
-        } else {
+        if (customFish == null) {
             player.sendMessage("Failed to create custom fish item.");
+            return;
+        }
+
+        String displayNameText = null;
+
+        Component nameComp = customFish.getData(DataComponentTypes.ITEM_NAME);
+        if (nameComp != null) {
+            displayNameText = PlainTextComponentSerializer.plainText().serialize(nameComp);
+        }
+
+        if (displayNameText == null) {
+            ItemMeta meta2 = customFish.getItemMeta();
+            if (meta2 != null) {
+                Component comp = meta2.displayName();
+                if (comp != null) {
+                    displayNameText = PlainTextComponentSerializer.plainText().serialize(comp);
+                } else if (meta2.hasDisplayName()) { // legacy
+                    displayNameText = meta2.getDisplayName();
+                }
+            }
+        }
+
+        if (displayNameText == null) {
+            String pretty = chosenFishKey.getKey().replace('_',' ');
+            displayNameText = Character.toUpperCase(pretty.charAt(0)) + pretty.substring(1);
+        }
+
+        // 🧮 Record the catch in the DB (this increments caught_count)
+        stats.recordCatchAsync(player.getUniqueId(), chosenFishKey.toString(), displayNameText);
+
+        // Swap the caught entity’s stack
+        if (event.getCaught() instanceof Item caughtItem) {
+            caughtItem.setItemStack(customFish);
+        } else {
+            player.sendMessage("Caught entity is not an item.");
         }
     }
 }

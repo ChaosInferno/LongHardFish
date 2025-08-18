@@ -51,10 +51,16 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
 
     // Keep fish display name fresh if we get a non-null name later
     private static final String SQL_UPSERT_FISH = """
-      INSERT INTO fish (fish_key, display_name) VALUES (?, ?)
-      ON CONFLICT(fish_key) DO UPDATE SET
-        display_name = COALESCE(excluded.display_name, fish.display_name)
-      """;
+    INSERT INTO fish (fish_key, display_name) VALUES (?, ?)
+    ON CONFLICT(fish_key) DO UPDATE SET
+      display_name = COALESCE(excluded.display_name, display_name)
+    """;
+
+    private static final String SQL_UPSERT_FISH_NAME = """
+     INSERT INTO fish (fish_key, display_name) VALUES (?, ?)
+     ON CONFLICT(fish_key) DO UPDATE SET
+     display_name = excluded.display_name
+  """;
 
     private static final String SQL_UPSERT_CATCH = """
       INSERT INTO player_fish_stats (player_uuid, fish_key, caught_count, last_caught_at)
@@ -221,6 +227,28 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
             ps.setString(2, fishKey);
             try (ResultSet rs = ps.executeQuery()) {
                 return rs.next();
+            }
+        }
+    }
+
+    @Override
+    public void refreshFishNames(Map<String, String> keyToName) throws SQLException {
+        try (Connection c = ds.getConnection()) {
+            c.setAutoCommit(false);
+            try (PreparedStatement ps = c.prepareStatement(SQL_UPSERT_FISH_NAME)) {
+                for (Map.Entry<String, String> e : keyToName.entrySet()) {
+                    ps.setString(1, e.getKey());
+                    ps.setString(2, e.getValue());
+                    ps.addBatch();
+                }
+                ps.executeBatch();
+                c.commit();
+            } catch (Throwable t) {
+                c.rollback();
+                if (t instanceof SQLException se) throw se;
+                throw new SQLException("refreshFishNames failed", t);
+            } finally {
+                c.setAutoCommit(true);
             }
         }
     }

@@ -70,7 +70,8 @@ public final class FishStatsCommand implements CommandExecutor, TabCompleter {
             }
             int rank = 1;
             for (Map.Entry<String, Integer> e : map.entrySet()) {
-                sender.sendMessage(ChatColor.YELLOW + "" + rank + ". "
+                String gap = (rank < 10) ? "   " : " "; // extra space for 1–9
+                sender.sendMessage(ChatColor.YELLOW + "" + rank + "." + gap
                         + ChatColor.AQUA + e.getKey()
                         + ChatColor.GRAY + " — "
                         + ChatColor.WHITE + e.getValue());

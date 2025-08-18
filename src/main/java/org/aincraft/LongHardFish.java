@@ -31,43 +31,51 @@ public class LongHardFish extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // --- Load main fish config ---
         FishConfig config = new FishConfig("fish.yml", this);
-        guiListener = new PirateChestListener(this);
-        getServer().getPluginManager().registerEvents(guiListener, this);
-
-        // --- Load defaults config (fish_defaults.yml) ---
-        saveResource("fish_defaults.yml", false); // Copy from JAR if missing
+        saveResource("fish_defaults.yml", false);
         File defaultsFile = new File(getDataFolder(), "fish_defaults.yml");
         FileConfiguration defaultsConfig = YamlConfiguration.loadConfiguration(defaultsFile);
 
-        // --- Create Defaults Provider ---
         FishEnvironmentDefaultsProvider defaultsProvider = new FishEnvironmentDefaultsProvider(defaultsConfig, this);
-
-        // --- Create Main Providers ---
         FishEnvironmentProvider environmentProvider = new FishEnvironmentProvider(config, defaultsProvider, this);
         FishRarityProvider rarityProvider = new FishRarityProvider(config, this);
         FishModelProvider modelProvider = new FishModelProvider(config, this);
 
-        // --- Register Fish listener ---
-        getServer().getPluginManager().registerEvents(
-                new FishCatchListener(environmentProvider, rarityProvider, modelProvider), this
-        );
-
-        // --- Register Pirate Chest listener + command ---
-        PirateChestListener pirateChest = new PirateChestListener(this); // <-- pass plugin
-        getServer().getPluginManager().registerEvents(pirateChest, this);
-
-        PluginCommand cmd = getCommand("piratechest");
-        if (cmd != null) {
-            cmd.setExecutor(pirateChest);       // reuse the SAME instance
-            // If your listener also implements TabCompleter, you can do:
-            // cmd.setTabCompleter(pirateChest);
-        } else {
-            getLogger().severe("Command 'piratechest' is not defined in plugin.yml!");
+        // --- DB + Stats (MUST be before registering FishCatchListener) ---
+        saveDefaultConfig();
+        try {
+            Path dbFile = getDataFolder().toPath().resolve("data.db");
+            db = new SQLiteDatabase(dbFile);
+            db.init();
+            stats = new StatsService(this, db);
+            getLogger().info("Stats service initialized.");
+        } catch (Exception e) {
+            getLogger().severe("Failed to init database: " + e.getMessage());
+            getServer().getPluginManager().disablePlugin(this);
+            return;
         }
 
-        // --- Optional Debug Logging ---
+        stats.refreshFishNamesAsync(modelProvider.parseFishModelObjects());
+
+        guiListener = new PirateChestListener(this);
+        getServer().getPluginManager().registerEvents(guiListener, this);
+        getServer().getPluginManager().registerEvents(
+                new FishCatchListener(this, environmentProvider, rarityProvider, modelProvider, stats),
+                this);
+
+        PluginCommand chestCmd = getCommand("piratechest");
+        if (chestCmd != null) chestCmd.setExecutor(guiListener);
+        FishStatsCommand statsCmd = new FishStatsCommand(this, stats);
+        Objects.requireNonNull(getCommand("fishstats")).setExecutor(statsCmd);
+        Objects.requireNonNull(getCommand("fishstats")).setTabCompleter(statsCmd);
+
+        // --- Fish catch listener (AFTER stats exists) ---
+        getServer().getPluginManager().registerEvents(
+                new FishCatchListener(this, environmentProvider, rarityProvider, modelProvider, stats),
+                this
+        );
+
+        // --- Optional debug logging ---
         Map<NamespacedKey, FishEnvironment> fishEnvironments = environmentProvider.parseFishEnvironmentObjects();
         Bukkit.getLogger().info("Parsed fish environments:");
         for (Map.Entry<NamespacedKey, FishEnvironment> entry : fishEnvironments.entrySet()) {
@@ -76,23 +84,8 @@ public class LongHardFish extends JavaPlugin {
             Bukkit.getLogger().info("  Times: " + entry.getValue().getEnvironmentTimes());
             Bukkit.getLogger().info("  Moons: " + entry.getValue().getEnvironmentMoons());
         }
-
-        saveDefaultConfig();
-        try {
-            Path dbFile = getDataFolder().toPath().resolve("data.db");
-            db = new SQLiteDatabase(dbFile); // your class from earlier
-            db.init();                       // create tables
-            stats = new StatsService(this, db);
-        } catch (Exception e) {
-            getLogger().severe("Failed to init database: " + e.getMessage());
-            getServer().getPluginManager().disablePlugin(this);
-            return;
-        }
-
-        FishStatsCommand statsCmd = new FishStatsCommand(this, stats);
-        Objects.requireNonNull(getCommand("fishstats")).setExecutor(statsCmd);
-        Objects.requireNonNull(getCommand("fishstats")).setTabCompleter(statsCmd);
     }
+
 
     public void onDisable() {
         if (guiListener != null) {

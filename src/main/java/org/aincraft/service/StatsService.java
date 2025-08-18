@@ -1,10 +1,13 @@
 package org.aincraft.service;
 
+import org.aincraft.container.FishModel;
 import org.aincraft.storage.Database;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -18,13 +21,23 @@ public final class StatsService {
 
     public void recordCatchAsync(UUID pid, String fishKey, @Nullable String name) {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-            try { db.recordCatch(pid, fishKey, name); } catch (Exception e) { e.printStackTrace(); }
+            try {
+                db.recordCatch(pid, fishKey, name);
+            } catch (Exception e) {
+                plugin.getLogger().severe("[StatsService] recordCatch failed for " + pid + " / " + fishKey + ": " + e.getMessage());
+                e.printStackTrace();
+            }
         });
     }
 
     public void markDropSeenAsync(UUID pid, String fishKey, @Nullable String name) {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-            try { db.markDropSeen(pid, fishKey, name); } catch (Exception e) { e.printStackTrace(); }
+            try {
+                db.markDropSeen(pid, fishKey, name);
+            } catch (Exception e) {
+                plugin.getLogger().severe("[StatsService] markDropSeen failed for " + pid + " / " + fishKey + ": " + e.getMessage());
+                e.printStackTrace();
+            }
         });
     }
 
@@ -36,6 +49,17 @@ public final class StatsService {
             } catch (Exception e) {
                 throw new CompletionException(e);
             }
+        });
+    }
+
+    public void refreshFishNamesAsync(Map<NamespacedKey, FishModel> models) {
+        Map<String, String> map = new HashMap<>();
+        for (var e : models.entrySet()) {
+            map.put(e.getKey().toString(), e.getValue().getName());
+        }
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            try { db.refreshFishNames(map); }
+            catch (Exception e) { plugin.getLogger().severe("[StatsService] refreshFishNames failed: " + e.getMessage()); e.printStackTrace(); }
         });
     }
 }

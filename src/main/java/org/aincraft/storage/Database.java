@@ -17,4 +17,5 @@ public interface Database extends AutoCloseable {
         // (optional helpers)
         Map<String,Integer> topFish(UUID playerId, int limit) throws Exception;
         boolean hasDropSeen(UUID playerId, String fishKey) throws Exception;
+        void refreshFishNames(Map<String, String> keyToName) throws Exception;
     }

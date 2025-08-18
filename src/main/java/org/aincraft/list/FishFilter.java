@@ -6,6 +6,7 @@ import org.aincraft.container.FishRarity;
 import org.aincraft.container.FishTimeCycle;
 import org.aincraft.provider.FishEnvironmentProvider;
 import org.aincraft.provider.MinecraftTimeParser;
+import org.aincraft.service.StatsService;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
@@ -15,12 +16,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerFishEvent;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class FishFilter {
+    private final StatsService stats;
+
+    public FishFilter(StatsService stats) {
+        this.stats = stats;
+    }
 
     /**
      * Filters valid fish and returns a map of fish to their calculated rarity scores.
@@ -88,6 +91,14 @@ public class FishFilter {
                 distributedFish.put(fishKey, score);
             }
         }
+
+        if (!distributedFish.isEmpty() && stats != null) {
+            UUID pid = player.getUniqueId();
+            for (NamespacedKey key : distributedFish.keySet()) {
+                stats.markDropSeenAsync(pid, key.toString(), null); // "namespace:key"
+            }
+        }
+
         return distributedFish;
     }
 }
