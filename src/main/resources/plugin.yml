@@ -8,7 +8,14 @@ commands:
     description: Configure the Pirate Chest
     usage: /piratechest set|clear
     permission: piratechest.admin
+  fishstats:
+    description: Show top caught fish
+    usage: "/fishstats [player] [limit]"
+    permission: longhardfish.stats
 
 permissions:
   piratechest.admin:
     default: op
+  longhardfish.stats:
+    description: Use /fishstats to view stats
+    default: true
