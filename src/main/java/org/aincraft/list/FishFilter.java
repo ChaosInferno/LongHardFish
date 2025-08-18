@@ -19,20 +19,8 @@ import org.bukkit.event.player.PlayerFishEvent;
 import java.util.*;
 
 public class FishFilter {
-    private final StatsService stats;
 
-    public FishFilter(StatsService stats) {
-        this.stats = stats;
-    }
-
-    /**
-     * Filters valid fish and returns a map of fish to their calculated rarity scores.
-     *
-     * @param player         The player fishing
-     * @param hookLocation   The fishing hook location
-     * @param provider       The environment provider
-     * @return A map of valid fish and their rarity scores
-     */
+    public FishFilter() {}
 
     public Map<NamespacedKey, Double> getValidFish(
         Player player,
@@ -89,13 +77,6 @@ public class FishFilter {
                         rarity, env, currentBiome, currentTime, currentMoonPhase
                 );
                 distributedFish.put(fishKey, score);
-            }
-        }
-
-        if (!distributedFish.isEmpty() && stats != null) {
-            UUID pid = player.getUniqueId();
-            for (NamespacedKey key : distributedFish.keySet()) {
-                stats.markDropSeenAsync(pid, key.toString(), null); // "namespace:key"
             }
         }
 

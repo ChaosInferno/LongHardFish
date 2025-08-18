@@ -63,26 +63,26 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
   """;
 
     private static final String SQL_UPSERT_CATCH = """
-      INSERT INTO player_fish_stats (player_uuid, fish_key, caught_count, last_caught_at)
-      VALUES (?, ?, 1, unixepoch())
-      ON CONFLICT(player_uuid, fish_key) DO UPDATE SET
-        caught_count   = player_fish_stats.caught_count + 1,
-        last_caught_at = unixepoch()
-      """;
+  INSERT INTO player_fish_stats (player_uuid, fish_key, caught_count, last_caught_at)
+  VALUES (?, ?, 1, unixepoch())
+  ON CONFLICT(player_uuid, fish_key) DO UPDATE SET
+    caught_count   = caught_count + 1,
+    last_caught_at = unixepoch()
+  """;
 
     private static final String SQL_UPSERT_DROP_SEEN = """
-      INSERT INTO player_fish_stats (player_uuid, fish_key, drop_seen, last_drop_at)
-      VALUES (?, ?, 1, unixepoch())
-      ON CONFLICT(player_uuid, fish_key) DO UPDATE SET
-        drop_seen   = 1,
-        last_drop_at = unixepoch()
-      """;
+  INSERT INTO player_fish_stats (player_uuid, fish_key, drop_seen, last_drop_at)
+  VALUES (?, ?, 1, unixepoch())
+  ON CONFLICT(player_uuid, fish_key) DO UPDATE SET
+    drop_seen   = 1,
+    last_drop_at = unixepoch()
+  """;
 
     private static final String SQL_TOP_FISH = """
       SELECT COALESCE(f.display_name, p.fish_key) AS name, p.caught_count
       FROM player_fish_stats p
       LEFT JOIN fish f ON f.fish_key = p.fish_key
-      WHERE p.player_uuid = ?
+      WHERE p.player_uuid = ? AND p.caught_count > 0
       ORDER BY p.caught_count DESC
       LIMIT ?
       """;
@@ -196,14 +196,6 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
 
     @Override
     public Map<String, Integer> topFish(UUID playerId, int limit) throws SQLException {
-        String sql = """
-      SELECT COALESCE(f.display_name, p.fish_key) AS name, p.caught_count
-      FROM player_fish_stats p
-      LEFT JOIN fish f ON f.fish_key = p.fish_key
-      WHERE p.player_uuid = ?
-      ORDER BY p.caught_count DESC
-      LIMIT ?
-      """;
 
         try (Connection c = ds.getConnection();
              PreparedStatement ps = c.prepareStatement(SQL_TOP_FISH)) {

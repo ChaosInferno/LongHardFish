@@ -28,6 +28,7 @@ public class LongHardFish extends JavaPlugin {
     private PirateChestListener guiListener;
     private Database db;          // NEW
     private StatsService stats;
+    private FishCatchListener catchListener;
 
     @Override
     public void onEnable() {
@@ -59,9 +60,9 @@ public class LongHardFish extends JavaPlugin {
 
         guiListener = new PirateChestListener(this);
         getServer().getPluginManager().registerEvents(guiListener, this);
-        getServer().getPluginManager().registerEvents(
-                new FishCatchListener(this, environmentProvider, rarityProvider, modelProvider, stats),
-                this);
+
+        catchListener = new FishCatchListener(this, environmentProvider, rarityProvider, modelProvider, stats);
+        getServer().getPluginManager().registerEvents(catchListener, this);
 
         PluginCommand chestCmd = getCommand("piratechest");
         if (chestCmd != null) chestCmd.setExecutor(guiListener);

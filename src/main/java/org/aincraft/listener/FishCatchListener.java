@@ -11,6 +11,7 @@ import org.aincraft.provider.FishEnvironmentProvider;
 import org.aincraft.provider.FishModelProvider;
 import org.aincraft.provider.FishRarityProvider;
 import org.aincraft.service.StatsService;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.FishHook;
@@ -26,9 +27,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class FishCatchListener implements Listener {
 
@@ -50,7 +50,7 @@ public class FishCatchListener implements Listener {
         this.environmentProvider = environmentProvider;
         this.rarityProvider = rarityProvider;
         this.fishCreator = new FishCreator(plugin, modelProvider.parseFishModelObjects());
-        this.filter = new FishFilter(stats);
+        this.filter = new FishFilter();
     }
 
     @EventHandler
@@ -65,13 +65,18 @@ public class FishCatchListener implements Listener {
         hook.setApplyLure(false);
     }
 
+    private static final Set<UUID> processingHooks = ConcurrentHashMap.newKeySet();
+
     @EventHandler
     public void onFish(PlayerFishEvent event) {
         if (event.getState() != PlayerFishEvent.State.CAUGHT_FISH) return;
 
-        Player player = event.getPlayer();
         FishHook hook = (FishHook) event.getHook();
+        UUID hookId = hook.getUniqueId();
+        Player player = event.getPlayer();
         Location hookLocation = hook.getLocation();
+        if (!processingHooks.add(hookId)) return;           // already handled
+        Bukkit.getScheduler().runTask(plugin, () -> processingHooks.remove(hookId));
 
         // Build rarity map
         Map<NamespacedKey, FishDistrubution> raw = rarityProvider.parseFishDistributorObjects();
@@ -97,7 +102,9 @@ public class FishCatchListener implements Listener {
         }
 
         // Create custom item
-        ItemStack customFish = fishCreator.createFishItem(chosenFishKey);
+        ItemStack customFish = fishCreator.createFishItem(
+                chosenFishKey,
+                rarityMap.get(chosenFishKey));
         if (customFish == null) {
             player.sendMessage("Failed to create custom fish item.");
             return;
@@ -129,6 +136,13 @@ public class FishCatchListener implements Listener {
 
         // 🧮 Record the catch in the DB (this increments caught_count)
         stats.recordCatchAsync(player.getUniqueId(), chosenFishKey.toString(), displayNameText);
+
+        // Mark other eligible fish as "seen" (not the one we caught)
+        for (NamespacedKey key : validFish.keySet()) {
+                if (!key.equals(chosenFishKey)) {
+                       stats.markDropSeenAsync(player.getUniqueId(), key.toString(), null);
+                    }
+            }
 
         // Swap the caught entity’s stack
         if (event.getCaught() instanceof Item caughtItem) {

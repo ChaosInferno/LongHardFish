@@ -1,4 +1,4 @@
-package org.aincraft.container;
+package org.aincraft.gui;
 
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.TooltipDisplay;
