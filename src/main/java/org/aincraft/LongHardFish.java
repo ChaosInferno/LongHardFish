@@ -1,7 +1,10 @@
 package org.aincraft;
 
 import org.aincraft.config.FishConfig;
+import org.aincraft.container.FishDistribution;
 import org.aincraft.container.FishEnvironment;
+import org.aincraft.container.FishModel;
+import org.aincraft.gui.FishDexFishSelector;
 import org.aincraft.listener.FishCatchListener;
 import org.aincraft.listener.PirateChestListener;
 import org.aincraft.provider.FishEnvironmentDefaultsProvider;
@@ -17,6 +20,8 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -29,6 +34,7 @@ public class LongHardFish extends JavaPlugin {
     private Database db;          // NEW
     private StatsService stats;
     private FishCatchListener catchListener;
+    private FishDexFishSelector fishDex;
 
     @Override
     public void onEnable() {
@@ -70,10 +76,29 @@ public class LongHardFish extends JavaPlugin {
         Objects.requireNonNull(getCommand("fishstats")).setExecutor(statsCmd);
         Objects.requireNonNull(getCommand("fishstats")).setTabCompleter(statsCmd);
 
-        // --- Fish catch listener (AFTER stats exists) ---
-        getServer().getPluginManager().registerEvents(
-                new FishCatchListener(this, environmentProvider, rarityProvider, modelProvider, stats),
-                this
+        // --- Build lookups for the selector ---
+        Map<NamespacedKey, FishEnvironment> envMap = environmentProvider.parseFishEnvironmentObjects();
+        Map<NamespacedKey, FishModel>       modelMap = modelProvider.parseFishModelObjects();
+        Map<NamespacedKey, FishDistribution>   distMap  = rarityProvider.parseFishDistributorObjects();
+
+        // Key used by GuiItemSlot to lock icons in place
+        NamespacedKey immovableKey = new NamespacedKey(this, "immovable");
+
+        // Optional: mask the GUI with your existing listener (no-op here for testing)
+        java.util.function.BiConsumer<Player, Inventory> mask = (p, inv) -> { /* no-op */ };
+
+        // How a FishModel maps to your RP icon suffix. Adjust to your pack!
+        FishDexFishSelector.FishIconSuffix fishIcon = (FishModel m) -> "fish/model-" + m.getModelNumber();
+
+        // Create selector
+        fishDex = FishDexFishSelector.create(
+                this,
+                immovableKey,
+                mask,
+                envMap::get,     // EnvLookup
+                modelMap::get,   // ModelLookup
+                distMap::get,    // DistributionLookup (rarity)
+                fishIcon         // FishIconSuffix
         );
 
         // --- Optional debug logging ---

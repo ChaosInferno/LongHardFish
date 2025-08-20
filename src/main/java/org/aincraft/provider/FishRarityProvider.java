@@ -1,7 +1,7 @@
 package org.aincraft.provider;
 
 import org.aincraft.config.FishConfig;
-import org.aincraft.container.FishDistrubution;
+import org.aincraft.container.FishDistribution;
 import org.aincraft.container.FishRarity;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
@@ -22,10 +22,10 @@ public class FishRarityProvider {
         this.plugin = plugin;
     }
 
-    public Map<NamespacedKey, FishDistrubution> parseFishDistributorObjects() {
+    public Map<NamespacedKey, FishDistribution> parseFishDistributorObjects() {
         FileConfiguration config = holder.getConfig();
         Set<String> keys = config.getKeys(false);
-        Map<NamespacedKey, FishDistrubution> rarityDistribution = new HashMap<>();
+        Map<NamespacedKey, FishDistribution> rarityDistribution = new HashMap<>();
 
         for (String key : keys) {
             ConfigurationSection configurationSection = config.getConfigurationSection(key);
@@ -35,7 +35,7 @@ public class FishRarityProvider {
                     try {
                         FishRarity rarity = FishRarity.valueOf(rarityString.toUpperCase(Locale.ENGLISH));
                         NamespacedKey namespacedKey = new NamespacedKey(plugin, key);
-                        rarityDistribution.put(namespacedKey, new FishDistrubution(rarity));
+                        rarityDistribution.put(namespacedKey, new FishDistribution(rarity));
                     } catch (IllegalArgumentException e) {
                         plugin.getLogger().warning("Invalid rarity: " + rarityString + " for fish: " + key);
                     }

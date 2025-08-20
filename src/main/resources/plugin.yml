@@ -12,6 +12,13 @@ commands:
     description: Show top caught fish
     usage: "/fishstats [player] [limit]"
     permission: longhardfish.stats
+  fishdex:
+    description: Open the FishDex for a specific fish id
+    usage: /<command> <fish-id>
+    permission: longhardfish.fishdex
+  permissions:
+    longhardfish.fishdex:
+      default: true
 
 permissions:
   piratechest.admin:

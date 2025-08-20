@@ -1,9 +1,9 @@
 package org.aincraft.container;
 
-public class FishDistrubution {
+public class FishDistribution {
     private final FishRarity rarity;
 
-    public FishDistrubution(FishRarity rarity) {
+    public FishDistribution(FishRarity rarity) {
         this.rarity = rarity;
     }
 

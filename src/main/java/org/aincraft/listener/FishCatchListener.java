@@ -2,7 +2,7 @@ package org.aincraft.listener;
 
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import org.aincraft.calculator.FishCalculator;
-import org.aincraft.container.FishDistrubution;
+import org.aincraft.container.FishDistribution;
 import org.aincraft.container.FishRarity;
 import org.aincraft.list.FishCreator;
 import org.aincraft.list.FishFilter;
@@ -22,7 +22,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -79,7 +78,7 @@ public class FishCatchListener implements Listener {
         Bukkit.getScheduler().runTask(plugin, () -> processingHooks.remove(hookId));
 
         // Build rarity map
-        Map<NamespacedKey, FishDistrubution> raw = rarityProvider.parseFishDistributorObjects();
+        Map<NamespacedKey, FishDistribution> raw = rarityProvider.parseFishDistributorObjects();
         Map<NamespacedKey, FishRarity> rarityMap = new HashMap<>();
         for (var e : raw.entrySet()) rarityMap.put(e.getKey(), e.getValue().getRarity());
 
