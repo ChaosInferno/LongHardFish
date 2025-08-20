@@ -34,14 +34,18 @@ public class FishEnvironmentProvider {
             Map<FishTimeCycle, Double> timeWeights = new HashMap<>();
             Map<FishMoonCycle, Double> moonWeights = new HashMap<>();
 
+            Integer defaultsModel = null;
+
             // 1. Load defaults from `defaults:` section
-            List<String> defaultGroups = section.getStringList("defaults");
-            for (String group : defaultGroups) {
-                FishEnvironment defaults = defaultsProvider.getDefaults(group);
-                if (defaults != null) {
-                    defaults.getEnvironmentBiomes().forEach(biomeWeights::putIfAbsent);
-                    defaults.getEnvironmentTimes().forEach(timeWeights::putIfAbsent);
-                    defaults.getEnvironmentMoons().forEach(moonWeights::putIfAbsent);
+            for (String group : section.getStringList("defaults")) {
+                FishEnvironment def = defaultsProvider.getDefaults(group);
+                if (def == null) continue;
+
+                def.getEnvironmentBiomes().forEach(biomeWeights::putIfAbsent);
+                def.getEnvironmentTimes().forEach(timeWeights::putIfAbsent);
+                def.getEnvironmentMoons().forEach(moonWeights::putIfAbsent);
+                if (defaultsModel == null && def.getModel() != null) {
+                    defaultsModel = def.getModel();
                 }
             }
 
@@ -90,9 +94,19 @@ public class FishEnvironmentProvider {
             boolean openWaterRequired = section.getBoolean("open-water-required", false);
             boolean rainRequired = section.getBoolean("rain-required", false);
 
+            Integer model = defaultsModel;
+            if (section.isInt("model")) {
+                int raw = section.getInt("model", -1);
+                if (raw > 0) {
+                    model = raw;
+                } else {
+                    plugin.getLogger().warning("Invalid model for fish '" + key + "': " + raw);
+                }
+            }
+
             fishEnvironments.put(
                     new NamespacedKey(plugin, key),
-                    new FishEnvironment(biomeWeights, timeWeights, moonWeights, openWaterRequired, rainRequired)
+                    new FishEnvironment(biomeWeights, timeWeights, moonWeights, model, openWaterRequired, rainRequired)
             );
         }
 

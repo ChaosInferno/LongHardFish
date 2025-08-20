@@ -73,7 +73,7 @@ public class PirateChestListener implements Listener, CommandExecutor {
 
             GuiItemSlot.putImmovableIcon(player.getInventory(),GuiItemSlot.main(1,0),Material.COD,Key.key("longhardfish", "icons/4-star"),IMMOVABLE_KEY);
 
-            GuiItemSlot.putImmovableIcon(gui,9,Material.COD,Key.key("longhardfish", "offsets/abyssal-jetfin-offset"),IMMOVABLE_KEY);
+            GuiItemSlot.putImmovableIcon(gui,9,Material.COD,Key.key("longhardfish", "abyssal-jetfin-offset"),IMMOVABLE_KEY);
 
             GuiItemSlot.putImmovableIcon(gui,0,Material.COD,Key.key("longhardfish", "icons/fish-menu"),IMMOVABLE_KEY);
 

@@ -68,7 +68,17 @@ public class FishEnvironmentDefaultsProvider {
             }
         }
 
+        Integer model = null;
+        if (section.isInt("model")) {
+            int raw = section.getInt("model", -1);
+            if (raw > 0) {
+                model = raw;
+            } else {
+                plugin.getLogger().warning("Invalid 'model' in defaults '" + group + "': " + raw);
+            }
+        }
+
         // Defaults for openWaterRequired and rainRequired could be false or read from config if you add those fields to defaults
-        return new FishEnvironment(biomes, times, moons, false, false);
+        return new FishEnvironment(biomes, times, moons, model,false, false);
     }
 }

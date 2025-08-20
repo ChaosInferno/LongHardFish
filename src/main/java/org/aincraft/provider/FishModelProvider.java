@@ -20,11 +20,6 @@ public class FishModelProvider {
         this.plugin = plugin;
     }
 
-    /**
-     * Parses fish data from the config and returns a map of fish keys to their name/description info.
-     *
-     * @return Map of NamespacedKey to FishModel
-     */
     public Map<NamespacedKey, FishModel> parseFishModelObjects() {
         FileConfiguration config = holder.getConfig();
         Set<String> fishKeys = config.getKeys(false);
@@ -39,6 +34,12 @@ public class FishModelProvider {
 
             String name = section.getString("name");
             String description = section.getString("description");
+            int modelNumber = section.getInt("model", -1);
+
+            if (modelNumber <= 0) {
+                plugin.getLogger().warning("Invalid or missing 'model' for fish '" + fishKey + "'. Skipping.");
+                continue;
+            }
 
             if (name == null || description == null) {
                 plugin.getLogger().warning("Missing name or description for fish: " + fishKey);
@@ -46,7 +47,7 @@ public class FishModelProvider {
             }
 
             NamespacedKey key = new NamespacedKey(plugin, fishKey);
-            modelMap.put(key, new FishModel(name, description));
+            modelMap.put(key, new FishModel(name, description, modelNumber));
         }
 
         return modelMap;
