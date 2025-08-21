@@ -1,6 +1,7 @@
 package org.aincraft.gui;
 
 import net.kyori.adventure.key.Key;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.aincraft.container.FishDistribution;
 import org.aincraft.container.FishEnvironment;
@@ -14,6 +15,8 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.*;
@@ -30,15 +33,21 @@ public class FishDexFishSelector {
     public interface ModelLookup { FishModel get(NamespacedKey fishId); }
     public interface DistributionLookup { FishDistribution get(NamespacedKey fishId); }
 
-    /** Holder for the GUI so we can recognize it and store the page mapping. */
+    /** Holder so we can recognize the GUI and keep paging/click mapping. */
     public static final class DexHolder implements InventoryHolder {
         private Inventory inv;
-        public java.util.Map<Integer, NamespacedKey> slotToFish = new java.util.HashMap<>();
+        public final Map<Integer, NamespacedKey> slotToFish = new HashMap<>();
         public NamespacedKey selected;
+
+        // paging state
+        public List<NamespacedKey> ordered = List.of();
+        public int pageIndex = 0;
+        public int pageCount = 1;
+
         @Override public Inventory getInventory() { return inv; }
     }
 
-    /** Create WITH page-fill: pass a supplier of all fish IDs (e.g., () -> modelMap.keySet()). */
+    /** Factory with paging (pass e.g. () -> modelMap.keySet()). */
     public static FishDexFishSelector createWithPaging(
             JavaPlugin plugin,
             NamespacedKey immovableKey,
@@ -61,6 +70,12 @@ public class FishDexFishSelector {
 
     private static final String NS = "longhardfish";
     private static final int PAGE_SIZE = 35;
+
+    // Hotbar nav indices (0..8)
+    public static final int HOTBAR_PREV_ALL = 1;
+    public static final int HOTBAR_PREV_1   = 2;
+    public static final int HOTBAR_NEXT_1   = 6;
+    public static final int HOTBAR_NEXT_ALL = 7;
 
     // Time icons
     private static final Map<FishTimeCycle, Integer> TIME_SLOTS = Map.of(
@@ -169,45 +184,55 @@ public class FishDexFishSelector {
                 54,
                 text("\ue001\ua020\ue002\ua021").font(key(NS, "interface")).color(TextColor.color(0xFFFFFF))
         );
+        //noinspection ConstantConditions
         holder.inv = gui;
 
         if (maskApplier != null) maskApplier.accept(player, gui);
 
-        // Background/offset art (adjust if needed)
+        // Background / offset art
         putIcon(gui, 9, fishId.getKey() + "-offset");
 
         // Resolve data
-        FishEnvironment env = (envLookup != null) ? envLookup.get(fishId) : null;
-        FishModel model       = (modelLookup != null) ? modelLookup.get(fishId) : null;
-        FishDistribution dist = (distributionLookup != null) ? distributionLookup.get(fishId) : null;
+        FishEnvironment env = envLookup != null ? envLookup.get(fishId) : null;
+        FishModel model       = modelLookup != null ? modelLookup.get(fishId) : null;
+        FishDistribution dist = distributionLookup != null ? distributionLookup.get(fishId) : null;
 
-        // ===== Fish grid =====
+        // ===== Fish grid (with paging) =====
         holder.slotToFish.clear();
 
         if (allFishIds != null && model != null) {
-            int modelNumber = model.getModelNumber();
-            int pageIndex = Math.max(0, (modelNumber - 1) / PAGE_SIZE);
-            int start = pageIndex * PAGE_SIZE;
-
-            List<NamespacedKey> sorted = new ArrayList<>(allFishIds.get());
-            sorted.sort(Comparator.comparingInt(id -> {
+            // Build ordered list (by model number)
+            List<NamespacedKey> ordered = new ArrayList<>(allFishIds.get());
+            ordered.sort(Comparator.comparingInt(id -> {
                 FishModel fm = modelLookup.get(id);
                 return (fm != null) ? fm.getModelNumber() : Integer.MAX_VALUE;
             }));
+            holder.ordered = ordered;
 
-            for (int i = 0; i < FISH_GRID_SLOTS.length && (start + i) < sorted.size(); i++) {
-                NamespacedKey idOnPage = sorted.get(start + i);
+            int modelNumber = model.getModelNumber();
+            int pageIndex = Math.max(0, (modelNumber - 1) / PAGE_SIZE);
+            int pageCount = Math.max(1, (int) Math.ceil(ordered.size() / (double) PAGE_SIZE));
+            holder.pageIndex = pageIndex;
+            holder.pageCount = pageCount;
+
+            int start = pageIndex * PAGE_SIZE;
+            for (int i = 0; i < FISH_GRID_SLOTS.length && (start + i) < ordered.size(); i++) {
+                NamespacedKey idOnPage = ordered.get(start + i);
                 FishModel fm = modelLookup.get(idOnPage);
 
-                String suffix = idOnPage.getKey(); // you confirmed this works with your current pack
+                // Your RP mapping: longhardfish:<fish-id> (JSON files in assets/longhardfish/items/<fish-id>.json)
+                String suffix = idOnPage.getKey();
 
                 if (suffix != null && !suffix.isEmpty()) {
                     int guiSlot = FISH_GRID_SLOTS[i];
                     putIcon(gui, guiSlot, suffix);
-                    holder.slotToFish.put(guiSlot, idOnPage); // record mapping for clicks
+                    holder.slotToFish.put(guiSlot, idOnPage);
+                    applyFishTooltip(gui, guiSlot, fm);
                 }
             }
+
             putIcon(gui, Math.min(6, pageIndex), "icons/fish-menu");
+            placeNavIcons(player, pageIndex, pageCount);
 
         } else {
             // No paging: show only the selected fish in first slot
@@ -216,12 +241,17 @@ public class FishDexFishSelector {
                 int slot = FISH_GRID_SLOTS[0];
                 putIcon(gui, slot, fishSuffix);
                 holder.slotToFish.put(slot, fishId);
+                applyFishTooltip(gui, slot, model);
             }
             if (model != null) {
                 putIcon(gui, chooseMenuSlotFromModel(model.getModelNumber()), "icons/fish-menu");
             } else {
                 putIcon(gui, 0, "icons/fish-menu");
             }
+            holder.ordered = List.of(fishId);
+            holder.pageIndex = 0;
+            holder.pageCount = 1;
+            placeNavIcons(player, 0, 1);
         }
 
         // ===== Time & Moon =====
@@ -239,13 +269,18 @@ public class FishDexFishSelector {
         putPlayerIconMain(player, 0, 3, "icons/bait-icon-full");
         putPlayerIconMain(player, 0, 4, "icons/description-gem-icon");
 
-        // Nav icons
-        putPlayerIconHotbar(player, 6, "icons/next-1");
-        putPlayerIconHotbar(player, 7, "icons/next-all");
-        putPlayerIconHotbar(player, 2, "icons/previous-1");
-        putPlayerIconHotbar(player, 1, "icons/previous-all");
-
         Bukkit.getScheduler().runTask(plugin, () -> player.openInventory(gui));
+    }
+
+    // Enable/disable nav buttons by page
+    private void placeNavIcons(Player p, int pageIndex, int pageCount) {
+        boolean atFirst = pageIndex <= 0;
+        boolean atLast  = pageIndex >= pageCount - 1;
+
+        putPlayerIconHotbar(p, HOTBAR_PREV_1,   atFirst ? "icons/previous-1_empty"   : "icons/previous-1");
+        putPlayerIconHotbar(p, HOTBAR_PREV_ALL, atFirst ? "icons/previous-all_empty" : "icons/previous-all");
+        putPlayerIconHotbar(p, HOTBAR_NEXT_1,   atLast  ? "icons/next-1_empty"       : "icons/next-1");
+        putPlayerIconHotbar(p, HOTBAR_NEXT_ALL, atLast  ? "icons/next-all_empty"     : "icons/next-all");
     }
 
     // ===== Time & moon =====
@@ -321,9 +356,31 @@ public class FishDexFishSelector {
         return Math.min(6, pageIndex);
     }
 
+    private static String modelNo3(int n) {
+        return String.format("%03d", n);
+    }
+
+    private void applyFishTooltip(Inventory gui, int slot, FishModel fm) {
+        if (fm == null) return;
+        ItemStack stack = gui.getItem(slot);
+        if (stack == null) return;
+        ItemMeta meta = stack.getItemMeta();
+        if (meta == null) return;
+
+        // Unhide tooltip if supported (1.20.5+/1.21+); ignore if not available
+        try { meta.getClass().getMethod("setHideTooltip", boolean.class).invoke(meta, false); }
+        catch (Throwable ignored) {}
+
+        meta.displayName(Component.text(fm.getName()));
+        meta.lore(List.of(Component.text("No. " + modelNo3(fm.getModelNumber()))));
+
+        stack.setItemMeta(meta);
+        gui.setItem(slot, stack);
+    }
+
     // ===== Icon helpers =====
     private void putIcon(Inventory inv, int slot, String modelSuffix) {
-        GuiItemSlot.putImmovableIcon(inv, slot, Material.COD, Key.key(NS, modelSuffix), IMMOVABLE_KEY);
+        GuiItemSlot.putImmovableIcon(inv, slot, Material.COD, Key.key(NS, modelSuffix), IMMOVABLE_KEY, false);
     }
     private void putPlayerIconMain(Player p, int row, int col, String modelSuffix) {
         GuiItemSlot.putImmovableIcon(p.getInventory(), GuiItemSlot.main(row, col),
