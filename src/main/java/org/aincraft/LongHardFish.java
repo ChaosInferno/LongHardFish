@@ -1,5 +1,6 @@
 package org.aincraft;
 
+import org.aincraft.commands.FishDexCommand;
 import org.aincraft.config.FishConfig;
 import org.aincraft.container.FishDistribution;
 import org.aincraft.container.FishEnvironment;
@@ -28,6 +29,7 @@ import java.io.File;
 import java.nio.file.Path;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.BiConsumer;
 
 public class LongHardFish extends JavaPlugin {
     private PirateChestListener guiListener;
@@ -85,21 +87,24 @@ public class LongHardFish extends JavaPlugin {
         NamespacedKey immovableKey = new NamespacedKey(this, "immovable");
 
         // Optional: mask the GUI with your existing listener (no-op here for testing)
-        java.util.function.BiConsumer<Player, Inventory> mask = (p, inv) -> { /* no-op */ };
-
-        // How a FishModel maps to your RP icon suffix. Adjust to your pack!
-        FishDexFishSelector.FishIconSuffix fishIcon = (FishModel m) -> "fish/model-" + m.getModelNumber();
+        BiConsumer<Player, Inventory> mask = (p, inv) -> { /* no-op */ };
 
         // Create selector
-        fishDex = FishDexFishSelector.create(
+        fishDex = FishDexFishSelector.createWithPaging(
                 this,
                 immovableKey,
                 mask,
                 envMap::get,     // EnvLookup
                 modelMap::get,   // ModelLookup
                 distMap::get,    // DistributionLookup (rarity)
-                fishIcon         // FishIconSuffix
+                () -> modelMap.keySet()
         );
+
+        getServer().getPluginManager().registerEvents(new org.aincraft.listener.FishDexGuiListener(fishDex), this);
+
+        var fishDexCmd = new FishDexCommand(this, fishDex, modelMap.keySet());
+        Objects.requireNonNull(getCommand("fishdex")).setExecutor(fishDexCmd);
+        Objects.requireNonNull(getCommand("fishdex")).setTabCompleter(fishDexCmd);
 
         // --- Optional debug logging ---
         Map<NamespacedKey, FishEnvironment> fishEnvironments = environmentProvider.parseFishEnvironmentObjects();

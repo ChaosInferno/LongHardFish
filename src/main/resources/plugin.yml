@@ -14,11 +14,7 @@ commands:
     permission: longhardfish.stats
   fishdex:
     description: Open the FishDex for a specific fish id
-    usage: /<command> <fish-id>
-    permission: longhardfish.fishdex
-  permissions:
-    longhardfish.fishdex:
-      default: true
+    usage: /fishdex <fish-id>
 
 permissions:
   piratechest.admin:
