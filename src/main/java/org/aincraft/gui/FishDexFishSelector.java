@@ -231,7 +231,7 @@ public class FishDexFishSelector {
                 }
             }
 
-            putIcon(gui, Math.min(6, pageIndex), "icons/fish-menu");
+            placeMenuIcon(gui, pageIndex);
             placeNavIcons(player, pageIndex, pageCount);
 
         } else {
@@ -243,11 +243,11 @@ public class FishDexFishSelector {
                 holder.slotToFish.put(slot, fishId);
                 applyFishTooltip(gui, slot, model);
             }
+            int pageIndex = 0;
             if (model != null) {
-                putIcon(gui, chooseMenuSlotFromModel(model.getModelNumber()), "icons/fish-menu");
-            } else {
-                putIcon(gui, 0, "icons/fish-menu");
+                pageIndex = Math.max(0, (model.getModelNumber() - 1) / PAGE_SIZE);
             }
+            placeMenuIcon(gui, pageIndex);
             holder.ordered = List.of(fishId);
             holder.pageIndex = 0;
             holder.pageCount = 1;
@@ -267,7 +267,8 @@ public class FishDexFishSelector {
 
         // Extra chrome
         putPlayerIconMain(player, 0, 3, "icons/bait-icon-full");
-        putPlayerIconMain(player, 0, 4, "icons/description-gem-icon");
+
+        placeDescriptionGemWithTooltip(player, model);
 
         Bukkit.getScheduler().runTask(plugin, () -> player.openInventory(gui));
     }
@@ -281,6 +282,17 @@ public class FishDexFishSelector {
         putPlayerIconHotbar(p, HOTBAR_PREV_ALL, atFirst ? "icons/previous-all_empty" : "icons/previous-all");
         putPlayerIconHotbar(p, HOTBAR_NEXT_1,   atLast  ? "icons/next-1_empty"       : "icons/next-1");
         putPlayerIconHotbar(p, HOTBAR_NEXT_ALL, atLast  ? "icons/next-all_empty"     : "icons/next-all");
+
+        setHotbarTooltip(p, 6, Component.text("Next"));
+        setHotbarTooltip(p, 7, Component.text("Last"));
+        setHotbarTooltip(p, 2, Component.text("Previous"));
+        setHotbarTooltip(p, 1, Component.text("First"));
+    }
+
+    private void placeMenuIcon(Inventory gui, int pageIndex) {
+        int slot = Math.min(6, pageIndex);        // same slot logic as before
+        String tex = "icons/fish-menu_" + (pageIndex + 1); // 1-based page number
+        putIcon(gui, slot, tex);
     }
 
     // ===== Time & moon =====
@@ -405,5 +417,106 @@ public class FishDexFishSelector {
     private void placeRarityIcon(Inventory gui, FishDistribution dist) {
         String suffix = iconSuffixForRarity(dist != null ? dist.getRarity() : null);
         putIcon(gui, 45, suffix);
+    }
+
+    private void placeDescriptionGemWithTooltip(Player player, FishModel model) {
+        // Place the icon first (keeps your RP texture + immovable tag)
+        putPlayerIconMain(player, 0, 4, "icons/description-gem-icon");
+
+        int slot = GuiItemSlot.main(0, 4);
+        ItemStack stack = player.getInventory().getItem(slot);
+        if (stack == null) return;
+
+        ItemMeta meta = stack.getItemMeta();
+        if (meta == null) return;
+
+        // Unhide tooltip if supported (1.20.5+/1.21+)
+        try { meta.getClass().getMethod("setHideTooltip", boolean.class).invoke(meta, false); }
+        catch (Throwable ignored) {}
+
+        String name = (model != null && model.getName() != null) ? model.getName() : "";
+        String desc = (model != null && model.getDescription() != null) ? model.getDescription() : "";
+
+        meta.displayName(Component.text(name));
+        // Wrap description to up to 3 lines, ~32 chars per line (tweak if you want tighter/looser)
+        meta.lore(wrapLore(desc, 32, 3));
+
+        stack.setItemMeta(meta);
+        player.getInventory().setItem(slot, stack);
+    }
+
+    private static List<Component> wrapLore(String text, int maxLen, int maxLines) {
+        if (text == null || text.isBlank()) {
+            return List.of(Component.text(""));
+        }
+
+        List<String> lines = new ArrayList<>(maxLines);
+        StringBuilder curr = new StringBuilder();
+        String[] words = text.trim().split("\\s+");
+
+        for (int i = 0; i < words.length; i++) {
+            String w = words[i];
+
+            // hard-split very long words
+            while (w.length() > maxLen) {
+                if (lines.size() == maxLines - 1) {
+                    lines.add((curr.length() > 0 ? curr + " " : "")
+                            + w.substring(0, Math.max(0, maxLen - 1)) + "…");
+                    return toComponents(lines);
+                }
+                lines.add(w.substring(0, maxLen));
+                w = w.substring(maxLen);
+            }
+
+            if (curr.length() == 0) {
+                curr.append(w);
+            } else if (curr.length() + 1 + w.length() <= maxLen) {
+                curr.append(' ').append(w);
+            } else {
+                lines.add(curr.toString());
+                if (lines.size() == maxLines) {
+                    String last = lines.remove(lines.size() - 1);
+                    if (last.length() >= maxLen - 1) last = last.substring(0, maxLen - 1) + "…";
+                    else last = last + "…";
+                    lines.add(last);
+                    return toComponents(lines);
+                }
+                curr.setLength(0);
+                curr.append(w);
+            }
+        }
+
+        if (curr.length() > 0 && lines.size() < maxLines) {
+            lines.add(curr.toString());
+        }
+
+        return toComponents(lines);
+    }
+
+    private static List<Component> toComponents(List<String> lines) {
+        List<Component> out = new ArrayList<>(lines.size());
+        for (String s : lines) out.add(Component.text(s));
+        return out;
+    }
+
+    private void setHotbarTooltip(Player p, int index, Component displayName) {
+        int slot = GuiItemSlot.hotbar(index);
+        ItemStack stack = p.getInventory().getItem(slot);
+        if (stack == null) return;
+
+        ItemMeta meta = stack.getItemMeta();
+        if (meta == null) return;
+
+        // Make sure tooltips aren’t hidden (reflective for 1.20.5+/1.21+; safe no-op otherwise)
+        try {
+            meta.getClass().getMethod("setHideTooltip", boolean.class).invoke(meta, false);
+        } catch (Throwable ignored) {}
+
+        meta.displayName(displayName);
+        // optional: clear lore so only the title shows
+        meta.lore(null);
+
+        stack.setItemMeta(meta);
+        p.getInventory().setItem(slot, stack);
     }
 }

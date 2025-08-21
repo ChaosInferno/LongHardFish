@@ -8,7 +8,7 @@
 glider-bananafish:
   name: Glider Bananafish
   rarity: COMMON
-  description: ''
+  description: 'Airy yellow glider that skims current crests.'
   open-water-required: true
   rain-required: false
   defaults:
@@ -22,7 +22,7 @@ glider-bananafish:
 glider-sturgeon:
   name: Glider Sturgeon
   rarity: COMMON
-  description: ''
+  description: 'Armored river glider coasting just above silt.'
   open-water-required: true
   rain-required: false
   defaults:
@@ -36,7 +36,7 @@ glider-sturgeon:
 glider-chungus:
   name: Glider Chungus
   rarity: COMMON
-  description: ''
+  description: 'Big-bellied drifter surprisingly light on fins.'
   open-water-required: true
   rain-required: false
   defaults:
@@ -50,7 +50,7 @@ glider-chungus:
 glider-gudgeon:
   name: Glider Gudgeon
   rarity: COMMON
-  description: ''
+  description: 'Tiny dartfish that hitchhikes on ripples.'
   open-water-required: true
   rain-required: false
   defaults:
@@ -64,7 +64,7 @@ glider-gudgeon:
 rose-fili:
   name: Rose Fili
   rarity: COMMON
-  description: ''
+  description: 'Blush-pink sprinter with petal-soft fins.'
   open-water-required: true
   rain-required: false
   defaults:
