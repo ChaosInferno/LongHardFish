@@ -1,6 +1,7 @@
 package org.aincraft.listener;
 
 import org.aincraft.gui.FishDexFishSelector;
+import org.aincraft.service.InventoryBackupService;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -8,18 +9,41 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 public final class FishDexGuiListener implements Listener {
 
     private final FishDexFishSelector selector;
+    private final InventoryBackupService backup;
 
-    public FishDexGuiListener(FishDexFishSelector selector) {
+    public FishDexGuiListener(FishDexFishSelector selector, InventoryBackupService backup) {
         this.selector = selector;
+        this.backup = backup;
+    }
+
+    private void backupAndClear(Player p) {
+        try {
+            var id = p.getUniqueId();
+            if (!backup.hasBackup(id)) {
+                backup.backupIfNeeded(p);  // snapshot only once
+            }
+            // clear main/hotbar/offhand/cursor/extras (leave armor; uncomment if you really want to clear armor too)
+            p.getInventory().clear();
+            p.getInventory().setExtraContents(null);
+            p.getInventory().setItemInOffHand(null);
+            p.setItemOnCursor(null);
+            // p.getInventory().setArmorContents(null); // optional
+        } catch (Exception ex) {
+            Bukkit.getLogger().log(Level.SEVERE, "Failed to backup+clear inventory for " + p.getName(), ex);
+            p.sendMessage("§cCouldn't update the FishDex safely (inventory backup failed).");
+        }
     }
 
     private static boolean isFishDexTop(Inventory inv) {
@@ -43,7 +67,7 @@ public final class FishDexGuiListener implements Listener {
             Map<Integer, NamespacedKey> map = holder.slotToFish;
             if (map != null && map.containsKey(slot)) {
                 NamespacedKey fishId = map.get(slot);
-                // reopen focused on clicked fish (page recalculated from its model number)
+                backupAndClear(p);
                 Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.open(p, fishId));
             }
             return;
@@ -58,12 +82,14 @@ public final class FishDexGuiListener implements Listener {
             if (hotbarIndex == FishDexFishSelector.HOTBAR_NEXT_1) {
                 if (current < max) {
                     int target = current + 1;
+                    backupAndClear(p);
                     Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.openPage(p, target));
                 }
                 return;
             }
             if (hotbarIndex == FishDexFishSelector.HOTBAR_NEXT_ALL) {
                 if (current < max) {
+                    backupAndClear(p);
                     Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.openPage(p, max));
                 }
                 return;
@@ -71,12 +97,14 @@ public final class FishDexGuiListener implements Listener {
             if (hotbarIndex == FishDexFishSelector.HOTBAR_PREV_1) {
                 if (current > 0) {
                     int target = current - 1;
+                    backupAndClear(p);
                     Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.openPage(p, target));
                 }
                 return;
             }
             if (hotbarIndex == FishDexFishSelector.HOTBAR_PREV_ALL) {
                 if (current > 0) {
+                    backupAndClear(p);
                     Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.openPage(p, 0));
                 }
                 return;
@@ -119,5 +147,27 @@ public final class FishDexGuiListener implements Listener {
         }
         // Also cancel to block moving items around in the bottom while Dex is open
         e.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onClose(InventoryCloseEvent e) {
+        Inventory top = e.getView().getTopInventory();
+        if (!isFishDexTop(top)) return;
+
+        Player p = (Player) e.getPlayer();
+
+        // Delay and check if the player opened another Dex immediately (paging)
+        Bukkit.getScheduler().runTaskLater(selector.plugin(), () -> {
+            Inventory curTop = p.getOpenInventory().getTopInventory();
+            boolean stillDex = curTop != null && curTop.getHolder() instanceof FishDexFishSelector.DexHolder;
+            if (!stillDex) {
+                try {
+                    backup.restoreIfPresent(p);
+                } catch (Exception ex) {
+                    Bukkit.getLogger().log(java.util.logging.Level.SEVERE,
+                            "Failed to restore inventory for " + p.getName(), ex);
+                }
+            }
+        }, 2L); // 2 ticks is plenty; 1 tick can also work
     }
 }

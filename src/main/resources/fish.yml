@@ -1,14 +1,7 @@
-#FishName
-#   Name: Front facing name
-#   Class: Front facing descriptor of rarity (C, B, A, S, SS); and definition of base rarity values as a % (0.00-1.00). Can be influenced by outside factors "injectors" to increase of decrease base values
-#   Model: Model #
-#   Difficulty: How difficult catching the fish will (>0.00-1.00), with >0 being any non-zero number being the hardest difficulty possible and 1 being base minecraft; NOT IMPLEMENTED KEEP VALUES AT 1
-#   Biomes:
-
 glider-bananafish:
   name: Glider Bananafish
   rarity: COMMON
-  description: 'Airy yellow glider that skims current crests.'
+  description: Airy yellow glider that skims current crests.
   open-water-required: true
   rain-required: false
   defaults:
@@ -22,7 +15,7 @@ glider-bananafish:
 glider-sturgeon:
   name: Glider Sturgeon
   rarity: COMMON
-  description: 'Armored river glider coasting just above silt.'
+  description: Armored river glider coasting just above silt.
   open-water-required: true
   rain-required: false
   defaults:
@@ -36,7 +29,7 @@ glider-sturgeon:
 glider-chungus:
   name: Glider Chungus
   rarity: COMMON
-  description: 'Big-bellied drifter surprisingly light on fins.'
+  description: Big-bellied drifter surprisingly light on fins.
   open-water-required: true
   rain-required: false
   defaults:
@@ -50,7 +43,7 @@ glider-chungus:
 glider-gudgeon:
   name: Glider Gudgeon
   rarity: COMMON
-  description: 'Tiny dartfish that hitchhikes on ripples.'
+  description: Tiny dartfish that hitchhikes on ripples.
   open-water-required: true
   rain-required: false
   defaults:
@@ -64,7 +57,7 @@ glider-gudgeon:
 rose-fili:
   name: Rose Fili
   rarity: COMMON
-  description: 'Blush-pink sprinter with petal-soft fins.'
+  description: Blush-pink sprinter with petal-soft fins.
   open-water-required: true
   rain-required: false
   defaults:
@@ -81,7 +74,8 @@ rose-fili:
 chonkler-pip:
   name: Chonkler Pip
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Chonkler Pip, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -93,7 +87,8 @@ chonkler-pip:
 mountain-bananafish:
   name: Mountain Bananafish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Mountain Bananafish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -107,7 +102,8 @@ mountain-bananafish:
 muddy-salmon:
   name: Muddy Salmon
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Muddy Salmon, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -120,7 +116,8 @@ muddy-salmon:
 tiger-carp:
   name: Tiger Carp
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Tiger Carp, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -133,7 +130,8 @@ tiger-carp:
 tiger-trout:
   name: Tiger Trout
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Tiger Trout, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -147,7 +145,8 @@ tiger-trout:
 glider-mystelune:
   name: Glider Mystelune
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Glider Mystelune, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -165,7 +164,8 @@ glider-mystelune:
 red-tailed-dart:
   name: Red-tailed Dart
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Red Tailed Dart, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -183,7 +183,8 @@ red-tailed-dart:
 muddy-brugis:
   name: Muddy Brugis
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Muddy Brugis, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -201,7 +202,8 @@ muddy-brugis:
 mossy-mudskip:
   name: Mossy Mudskip
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Mossy Mudskip, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -216,7 +218,8 @@ mossy-mudskip:
 sandy-carp:
   name: Sandy Carp
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Sandy Carp, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: true
   defaults:
@@ -228,7 +231,8 @@ sandy-carp:
 muddy-estuary:
   name: Muddy Estuary
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Muddy Estuary, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -243,7 +247,8 @@ muddy-estuary:
 muddy-bass:
   name: Muddy Bass
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Muddy Bass, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -258,7 +263,8 @@ muddy-bass:
 bloodfin-phyra:
   name: Bloodfin Phyra
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Bloodfin Phyra, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: true
   defaults:
@@ -277,7 +283,8 @@ bloodfin-phyra:
 owhmiewemoa-shin:
   name: Owhmiewemoa Shin
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Owhmiewemoa Shin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -291,7 +298,8 @@ owhmiewemoa-shin:
 wandering-ptidiwhiskir:
   name: Wandering Ptidiwhiskir
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Wandering Ptidiwhiskir, with distinctive
+    traits and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -307,7 +315,8 @@ wandering-ptidiwhiskir:
 ancient-boopsnoot:
   name: Ancient Boopsnoot
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Ancient Boopsnoot, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -320,7 +329,8 @@ ancient-boopsnoot:
 ancient-dorado:
   name: Ancient Dorado
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Ancient Dorado, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -333,7 +343,8 @@ ancient-dorado:
 ancient-elara:
   name: Ancient Elara
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Ancient Elara, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -346,7 +357,8 @@ ancient-elara:
 largemouth-bass:
   name: Largemouth Bass
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Largemouth Bass, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -361,7 +373,8 @@ largemouth-bass:
 mossy-goby:
   name: Mossy Goby
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Mossy Goby, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -374,7 +387,8 @@ mossy-goby:
 rising-dancefin:
   name: Rising Dancefin
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Rising Dancefin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -395,7 +409,8 @@ rising-dancefin:
 jade-bananafish:
   name: Jade Bananafish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Jade Bananafish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -408,7 +423,8 @@ jade-bananafish:
 honeykelp-flowfin:
   name: Honeykelp Flowfin
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Honeykelp Flowfin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -423,7 +439,8 @@ honeykelp-flowfin:
 broseph-hookfin:
   name: Broseph Hookfin
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Broseph Hookfin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -442,7 +459,8 @@ broseph-hookfin:
 emerald-estuary:
   name: Emerald Estuary
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Emerald Estuary, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -456,7 +474,8 @@ emerald-estuary:
 poison-soaked-sensei:
   name: Poison-soaked Sensei
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Poison Soaked Sensei, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -470,7 +489,8 @@ poison-soaked-sensei:
 coral-bylowin:
   name: Coral Bylowin
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Coral Bylowin, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -484,7 +504,8 @@ coral-bylowin:
 coral-seraphine:
   name: Coral Seraphine
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Coral Seraphine, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -504,7 +525,8 @@ coral-seraphine:
 loving-gutpike:
   name: Loving Gutpike
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Loving Gutpike, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -518,7 +540,8 @@ loving-gutpike:
 glimmering-bananafish:
   name: Glimmering Bananafish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Glimmering Bananafish, with distinctive
+    traits and behaviors.
   open-water-required: true
   rain-required: true
   defaults:
@@ -531,7 +554,8 @@ glimmering-bananafish:
 spotted-rhyb:
   name: Spotted Rhyb
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Spotted Rhyb, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -547,7 +571,8 @@ spotted-rhyb:
 amethyst-riptideon:
   name: Amethyst Riptideon
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Amethyst Riptideon, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -561,7 +586,8 @@ amethyst-riptideon:
 emerald-crytalanth:
   name: Emerald Crytalanth
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Emerald Crytalanth, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -575,7 +601,8 @@ emerald-crytalanth:
 rainbow-piranha:
   name: Rainbow Piranha
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Rainbow Piranha, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -589,21 +616,24 @@ rainbow-piranha:
 obsidian-bussernut:
   name: Obsidian Bussernut
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Obsidian Bussernut, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: true
   defaults:
     - cold-places
     - all-time
-    - all-week
   tier: 1
   biomes:
     RIVER: 0.1
+  moons:
+    NEW_MOON: 0.1
   model: 40
 radiated-klauknbals:
   name: Radiated Klauknbals
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Radiated Klauknbals, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -624,7 +654,8 @@ radiated-klauknbals:
 moonlit-schnozzer:
   name: Moonlit Schnozzer
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Moonlit Schnozzer, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -642,7 +673,8 @@ moonlit-schnozzer:
 prismarine-gutpike:
   name: Prismarine Gutpike
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Prismarine Gutpike, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -657,7 +689,8 @@ prismarine-gutpike:
 prismarine-kelvorn:
   name: Prismarine Kelvorn
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Prismarine Kelvorn, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -672,7 +705,8 @@ prismarine-kelvorn:
 pearlestra:
   name: Pearlestra
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Pearlestra, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -692,7 +726,8 @@ pearlestra:
 moonlit-boopsnoot:
   name: Moonlit Boopsnoot
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Moonlit Boopsnoot, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: true
   defaults:
@@ -709,7 +744,8 @@ moonlit-boopsnoot:
 cerulean-riptideon:
   name: Cerulean Riptideon
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Cerulean Riptideon, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -731,7 +767,8 @@ cerulean-riptideon:
 oxidized-copper-sturgeon:
   name: Oxidized-copper Sturgeon
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Oxidized Copper Sturgeon, with distinctive
+    traits and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -746,7 +783,8 @@ oxidized-copper-sturgeon:
 berserker-doomageddon:
   name: Berserker Doomageddon
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Berserker Doomageddon, with distinctive
+    traits and behaviors.
   open-water-required: true
   rain-required: true
   defaults:
@@ -763,7 +801,8 @@ berserker-doomageddon:
 ecstatic-minsk:
   name: Ecstatic Minsk
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Ecstatic Minsk, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: true
   defaults:
@@ -778,7 +817,8 @@ ecstatic-minsk:
 tiger-mudjack:
   name: Tiger Mudjack
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Tiger Mudjack, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: true
   defaults:
@@ -792,7 +832,7 @@ tiger-mudjack:
 heidifish:
   name: Heidifish
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Heidifish, with distinctive traits and behaviors.
   open-water-required: true
   rain-required: false
   tier: 1
@@ -808,7 +848,8 @@ heidifish:
 sandy-woodskip:
   name: Sandy Woodskip
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Sandy Woodskip, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -820,7 +861,8 @@ sandy-woodskip:
 glider-lingcod:
   name: Glider Lingcod
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Glider Lingcod, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -838,7 +880,8 @@ glider-lingcod:
 charging-pepet:
   name: Charging Pepet
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Charging Pepet, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -859,7 +902,8 @@ charging-pepet:
 muddy-bream:
   name: Muddy Bream
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Muddy Bream, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -872,7 +916,8 @@ muddy-bream:
 muddy-boopsnoot:
   name: Muddy Boopsnoot
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Muddy Boopsnoot, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -886,7 +931,8 @@ muddy-boopsnoot:
 arctic-grayling:
   name: Arctic Grayling
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Arctic Grayling, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -899,7 +945,8 @@ arctic-grayling:
 dark-heidifish:
   name: Dark Heidifish
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Dark Heidifish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   tier: 1
@@ -919,7 +966,8 @@ dark-heidifish:
 relic-canth:
   name: Relic Canth
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Relic Canth, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -932,7 +980,8 @@ relic-canth:
 wavering-puckerfish:
   name: Wavering Puckerfish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Wavering Puckerfish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -944,7 +993,8 @@ wavering-puckerfish:
 glider-poppicok:
   name: Glider Poppicok
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Glider Poppicok, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -962,7 +1012,8 @@ glider-poppicok:
 arctic-minnoe:
   name: Arctic Minnoe
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Arctic Minnoe, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -974,7 +1025,8 @@ arctic-minnoe:
 polar-bananafish:
   name: Polar Bananafish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Polar Bananafish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -988,7 +1040,8 @@ polar-bananafish:
 lonely-minsk:
   name: Lonely Minsk
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Lonely Minsk, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1002,7 +1055,8 @@ lonely-minsk:
 polar-fili:
   name: Polar Fili
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Polar Fili, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: true
   defaults:
@@ -1021,7 +1075,8 @@ polar-fili:
 arctic-tuna:
   name: Arctic Tuna
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Arctic Tuna, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1034,7 +1089,7 @@ arctic-tuna:
 grubshark:
   name: Grubshark
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Grubshark, with distinctive traits and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1051,7 +1106,8 @@ grubshark:
 arctic-horizonfin:
   name: Arctic Horizonfin
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Arctic Horizonfin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1068,7 +1124,8 @@ arctic-horizonfin:
 arctic-mystelune:
   name: Arctic Mystelune
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Arctic Mystelune, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1086,7 +1143,8 @@ arctic-mystelune:
 arctic-bylowin:
   name: Arctic Bylowin
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Arctic Bylowin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1103,7 +1161,8 @@ arctic-bylowin:
 sand-minnoe:
   name: Sand Minnoe
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Sand Minnoe, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1115,7 +1174,8 @@ sand-minnoe:
 frozen-nautivora:
   name: Frozen Nautivora
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Frozen Nautivora, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1131,7 +1191,8 @@ frozen-nautivora:
 abraisive-traavelpin:
   name: Abraisive Traavelpin
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Abraisive Traavelpin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1149,7 +1210,8 @@ abraisive-traavelpin:
 sahara-poppicok:
   name: Sahara Poppicok
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Sahara Poppicok, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1161,20 +1223,23 @@ sahara-poppicok:
 sky-tilapia:
   name: Sky Tilapia
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Sky Tilapia, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - cold-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 76
 glacial-albacore:
   name: Glacial Albacore
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Glacial Albacore, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1186,7 +1251,8 @@ glacial-albacore:
 frostbite-fili:
   name: Frostbite Fili
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Frostbite Fili, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1198,13 +1264,15 @@ frostbite-fili:
 runic-menhaden:
   name: Runic Menhaden
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Runic Menhaden, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - cold-saltwater
     - all-time
+    - deep-saltwater
   tier: 1
   moons:
     FULL_MOON: 0.1
@@ -1217,11 +1285,13 @@ runic-menhaden:
 moonlit-aruana:
   name: Moonlit Aruana
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Moonlit Aruana, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - deep-saltwater
+    - shallow-saltwater
     - cold-saltwater
   tier: 1
   times:
@@ -1237,7 +1307,8 @@ moonlit-aruana:
 glacial-boopsnoot:
   name: Glacial Boopsnoot
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Glacial Boopsnoot, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1249,13 +1320,15 @@ glacial-boopsnoot:
 depressed-minsk:
   name: Depressed Minsk
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Depressed Minsk, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - cold-saltwater
     - all-week
+    - deep-saltwater
   tier: 1
   times:
     DAY: 0.1
@@ -1265,7 +1338,8 @@ depressed-minsk:
 enlightened-albacore:
   name: Enlightened Albacore
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Enlightened Albacore, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1279,20 +1353,23 @@ enlightened-albacore:
 glacial-bananafish:
   name: Glacial Bananafish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Glacial Bananafish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - cold-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 84
 retreating-pepet:
   name: Retreating Pepet
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Retreating Pepet, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1311,7 +1388,8 @@ retreating-pepet:
 dormant-doomageddon:
   name: Dormant Doomageddon
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Dormant Doomageddon, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1323,13 +1401,15 @@ dormant-doomageddon:
 primal-halibut:
   name: Primal Halibut
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Primal Halibut, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: true
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - cold-saltwater
     - all-time
+    - deep-saltwater
   tier: 1
   moons:
     LAST_QUARTER: 0.1
@@ -1340,24 +1420,27 @@ primal-halibut:
 blue-jellyjelly:
   name: Blue Jellyjelly
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Blue Jellyjelly, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - cold-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 88
 boreal-tetra:
   name: Boreal Tetra
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Boreal Tetra, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - cold-saltwater
     - first-half
   tier: 1
@@ -1368,11 +1451,13 @@ boreal-tetra:
 boreal-squid:
   name: Boreal Squid
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Boreal Squid, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - deep-saltwater
+    - shallow-saltwater
     - cold-saltwater
     - last-half
   tier: 1
@@ -1383,23 +1468,27 @@ boreal-squid:
 voidborn-boopsnoot:
   name: Voidborn Boopsnoot
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Voidborn Boopsnoot, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 91
 boreal-coralspine:
   name: Boreal Coralspine
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Boreal Coralspine, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - deep-saltwater
+    - shallow-saltwater
     - warm-saltwater
   tier: 1
   times:
@@ -1414,12 +1503,14 @@ boreal-coralspine:
 primal-glydefin:
   name: Primal Glydefin
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Primal Glydefin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
+    - deep-saltwater
   tier: 1
   moons:
     FULL_MOON: 0.1
@@ -1430,23 +1521,27 @@ primal-glydefin:
 voidborn-goldberg:
   name: Voidborn Goldberg
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Voidborn Goldberg, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 94
 boreal-albacore:
   name: Boreal Albacore
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Boreal Albacore, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - deep-saltwater
+    - shallow-saltwater
   tier: 1
   times:
     EVENING: 0.1
@@ -1462,27 +1557,31 @@ boreal-albacore:
 voidborn-seaglider:
   name: Voidborn Seaglider
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Voidborn Seaglider, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - cold-saltwater
     - warm-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 96
 fading-dancefin:
   name: Fading Dancefin
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Fading Dancefin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - cold-saltwater
     - all-week
+    - deep-saltwater
   tier: 1
   times:
     DAWN: 0.1
@@ -1492,60 +1591,69 @@ fading-dancefin:
 ruined-poppicok:
   name: Ruined Poppicok
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Ruined Poppicok, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 98
 voidborn-minnoe:
   name: Voidborn Minnoe
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Voidborn Minnoe, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 99
 primal-mullet:
   name: Primal Mullet
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Primal Mullet, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 100
 read-herring:
   name: Read Herring
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Read Herring, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 101
 rhodonite-estuary:
   name: Rhodonite Estuary
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Rhodonite Estuary, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
     - all-week
   tier: 1
@@ -1553,11 +1661,12 @@ rhodonite-estuary:
 golden-albacore:
   name: Golden Albacore
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Golden Albacore, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-week
   tier: 1
   times:
@@ -1566,11 +1675,12 @@ golden-albacore:
 sunny-woodskip:
   name: Sunny Woodskip
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Sunny Woodskip, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - all-time
     - all-week
@@ -1579,13 +1689,15 @@ sunny-woodskip:
 dawnglider-riptideon:
   name: Dawnglider Riptideon
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Dawnglider Riptideon, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - all-week
+    - deep-saltwater
   tier: 1
   times:
     DAWN: 0.1
@@ -1593,11 +1705,12 @@ dawnglider-riptideon:
 crimson-flounder:
   name: Crimson Flounder
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Crimson Flounder, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
     - all-week
   tier: 1
@@ -1605,11 +1718,12 @@ crimson-flounder:
 sunset-lionfish:
   name: Sunset Lionfish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Sunset Lionfish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - all-week
   tier: 1
@@ -1619,11 +1733,12 @@ sunset-lionfish:
 sunset-goldberg:
   name: Sunset Goldberg
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Sunset Goldberg, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-week
   tier: 1
   times:
@@ -1632,13 +1747,15 @@ sunset-goldberg:
 dawnglider-poppicok:
   name: Dawnglider Poppicok
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Dawnglider Poppicok, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - all-week
+    - deep-saltwater
   tier: 1
   times:
     DAWN: 0.1
@@ -1646,13 +1763,15 @@ dawnglider-poppicok:
 dawnglider-herring:
   name: Dawnglider Herring
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Dawnglider Herring, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - all-week
+    - deep-saltwater
   tier: 1
   times:
     DAWN: 0.1
@@ -1661,23 +1780,27 @@ dawnglider-herring:
 lucid-puckerfish:
   name: Lucid Puckerfish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Lucid Puckerfish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 111
 soulless-puckerfish:
   name: Soulless Puckerfish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Soulless Puckerfish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - deep-saltwater
+    - shallow-saltwater
     - warm-saltwater
   tier: 1
   times:
@@ -1694,11 +1817,12 @@ soulless-puckerfish:
 sunrise-boopsnoot:
   name: Sunrise Boopsnoot
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Sunrise Boopsnoot, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-week
   tier: 1
   times:
@@ -1708,23 +1832,26 @@ sunrise-boopsnoot:
 albino-grayling:
   name: Albino Grayling
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Albino Grayling, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
+    - deep-saltwater
     - last-half
   tier: 1
   model: 114
 ascended-puckerfish:
   name: Ascended Puckerfish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Ascended Puckerfish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
   tier: 1
   moons:
@@ -1734,7 +1861,8 @@ ascended-puckerfish:
 crumbling-klauknbals:
   name: Crumbling Klauknbals
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Crumbling Klauknbals, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1747,7 +1875,8 @@ crumbling-klauknbals:
 bottom-angelfish:
   name: Bottom Angelfish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Bottom Angelfish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1759,11 +1888,12 @@ bottom-angelfish:
 tiger-goby:
   name: Tiger Goby
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Tiger Goby, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
     - all-week
   tier: 1
@@ -1771,61 +1901,70 @@ tiger-goby:
 gravel-finfin:
   name: Gravel Finfin
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Gravel Finfin, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - cold-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 119
 chonkler-finfin:
   name: Chonkler Finfin
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Chonkler Finfin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 120
 nanides-shin:
   name: Nanides Shin
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Nanides Shin, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 121
 primal-bananafish:
   name: Primal Bananafish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Primal Bananafish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 122
 dry-aged-rhyb:
   name: Dry-aged Rhyb
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Dry Aged Rhyb, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-week
   tier: 1
   times:
@@ -1835,7 +1974,8 @@ dry-aged-rhyb:
 saltwater-bass:
   name: Saltwater Bass
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Saltwater Bass, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1847,12 +1987,14 @@ saltwater-bass:
 dark-boopsnoot:
   name: Dark Boopsnoot
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Dark Boopsnoot, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
+    - deep-saltwater
   tier: 1
   moons:
     LAST_QUARTER: 0.1
@@ -1863,11 +2005,12 @@ dark-boopsnoot:
 tropical-takoki:
   name: Tropical Takoki
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Tropical Takoki, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - all-time
     - all-week
@@ -1876,11 +2019,12 @@ tropical-takoki:
 royal-gramma:
   name: Royal Gramma
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Royal Gramma, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - all-time
     - all-week
@@ -1889,7 +2033,8 @@ royal-gramma:
 waning-threadfin:
   name: Waning Threadfin
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Waning Threadfin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1901,11 +2046,13 @@ waning-threadfin:
 forgetful-tang:
   name: Forgetful Tang
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Forgetful Tang, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - deep-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - first-half
   tier: 1
@@ -1917,11 +2064,13 @@ forgetful-tang:
 fatherly-clownfish:
   name: Fatherly Clownfish
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Fatherly Clownfish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - deep-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - first-half
   tier: 1
@@ -1933,11 +2082,12 @@ fatherly-clownfish:
 sunrise-threadfin:
   name: Sunrise Threadfin
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Sunrise Threadfin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: true
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - all-time
     - all-week
@@ -1946,7 +2096,8 @@ sunrise-threadfin:
 masked-blenny:
   name: Masked Blenny
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Masked Blenny, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1961,11 +2112,12 @@ masked-blenny:
 tropical-wobbletail:
   name: Tropical Wobbletail
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Tropical Wobbletail, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - all-time
     - all-week
@@ -1974,7 +2126,8 @@ tropical-wobbletail:
 sunstreak-butterflyfish:
   name: Sunstreak Butterflyfish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Sunstreak Butterflyfish, with distinctive
+    traits and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1989,13 +2142,15 @@ sunstreak-butterflyfish:
 amethyst-cichilid:
   name: Amethyst Cichilid
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Amethyst Cichilid, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - all-week
+    - deep-saltwater
   tier: 1
   times:
     DAWN: 0.1
@@ -2005,7 +2160,8 @@ amethyst-cichilid:
 full-moon-threadfin:
   name: Full-Moon Threadfin
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Full Moon Threadfin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2022,13 +2178,15 @@ full-moon-threadfin:
 cerulean-razorback:
   name: Cerulean Razorback
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Cerulean Razorback, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - all-time
+    - deep-saltwater
   tier: 1
   moons:
     FULL_MOON: 0.1
@@ -2039,7 +2197,8 @@ cerulean-razorback:
 moonlit-butterflyfish:
   name: Moonlit Butterflyfish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Moonlit Butterflyfish, with distinctive
+    traits and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2053,7 +2212,8 @@ moonlit-butterflyfish:
 sunstreak-elara:
   name: Sunstreak Elara
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Sunstreak Elara, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2069,24 +2229,27 @@ sunstreak-elara:
 seafoam-waverunner:
   name: Seafoam Waverunner
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Seafoam Waverunner, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 140
 rainbow-bananafish:
   name: Rainbow Bananafish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Rainbow Bananafish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - all-time
   tier: 1
@@ -2099,7 +2262,8 @@ rainbow-bananafish:
 candy-drillcod:
   name: Candy Drillcod
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Candy Drillcod, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2117,7 +2281,8 @@ candy-drillcod:
 courting-klauknbals:
   name: Courting Klauknbals
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Courting Klauknbals, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2138,7 +2303,8 @@ courting-klauknbals:
 rosegold-flowfin:
   name: Rosegold Flowfin
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Rosegold Flowfin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2150,20 +2316,23 @@ rosegold-flowfin:
 prismarine-betta:
   name: Prismarine Betta
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Prismarine Betta, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - warm-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 1
   model: 145
 aquamarine-estuary:
   name: Aquamarine Estuary
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Aquamarine Estuary, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2175,7 +2344,8 @@ aquamarine-estuary:
 fruity-albacore:
   name: Fruity Albacore
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Fruity Albacore, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2191,7 +2361,8 @@ fruity-albacore:
 eroti-dancefin:
   name: Eroti Dancefin
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Eroti Dancefin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2208,7 +2379,8 @@ eroti-dancefin:
 tropical-zing:
   name: Tropical Zing
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Tropical Zing, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2220,7 +2392,8 @@ tropical-zing:
 bismuth-estuary:
   name: Bismuth Estuary
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Bismuth Estuary, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2237,7 +2410,8 @@ bismuth-estuary:
 nightfall-threadfin:
   name: Nightfall Threadfin
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Nightfall Threadfin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2251,11 +2425,12 @@ nightfall-threadfin:
 heavenly-jetfin:
   name: Heavenly Jetfin
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Heavenly Jetfin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
   tier: 2
   moons:
@@ -2267,7 +2442,8 @@ heavenly-jetfin:
 treasured-luminae:
   name: Treasured Luminae
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Treasured Luminae, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2279,7 +2455,8 @@ treasured-luminae:
 glorious-dancefin:
   name: Glorious Dancefin
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Glorious Dancefin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: true
   tier: 2
@@ -2297,11 +2474,13 @@ glorious-dancefin:
 elusive-eel:
   name: Elusive Eel
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Elusive Eel, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - deep-saltwater
+    - shallow-saltwater
   tier: 2
   times:
     DAWN: 0.1
@@ -2315,7 +2494,8 @@ elusive-eel:
 treasured-ptidiwhiskir:
   name: Treasured Ptidiwhiskir
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Treasured Ptidiwhiskir, with distinctive
+    traits and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2334,7 +2514,8 @@ treasured-ptidiwhiskir:
 ethereal-mindwatcher:
   name: Ethereal Mindwatcher
   rarity: LEGENDARY
-  description: ''
+  description: A unique fish known as the Ethereal Mindwatcher, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2353,7 +2534,8 @@ ethereal-mindwatcher:
 dream-threadfin:
   name: Dream Threadfin
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Dream Threadfin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: true
   defaults:
@@ -2368,12 +2550,14 @@ dream-threadfin:
 albino-dragling:
   name: Albino Dragling
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Albino Dragling, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
+    - deep-saltwater
   tier: 2
   moons:
     LAST_QUARTER: 0.1
@@ -2382,11 +2566,12 @@ albino-dragling:
 top-angelfish:
   name: Top Angelfish
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Top Angelfish, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
   tier: 2
   times:
     EVENING: 0.1
@@ -2402,7 +2587,8 @@ top-angelfish:
 dream-squid:
   name: Dream Squid
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Dream Squid, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2422,7 +2608,8 @@ dream-squid:
 treasured-minnoe:
   name: Treasured Minnoe
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Treasured Minnoe, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2439,11 +2626,12 @@ treasured-minnoe:
 fulfilled-minsk:
   name: Fulfilled Minsk
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Fulfilled Minsk, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
   tier: 2
   moons:
@@ -2455,7 +2643,8 @@ fulfilled-minsk:
 brosephina-hookfin:
   name: Brosephina Hookfin
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Brosephina Hookfin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: true
   defaults:
@@ -2474,7 +2663,8 @@ brosephina-hookfin:
 sunset-threadfin:
   name: Sunset Threadfin
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Sunset Threadfin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2493,7 +2683,8 @@ sunset-threadfin:
 commanding-pepet:
   name: Commanding Pepet
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Commanding Pepet, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: true
   defaults:
@@ -2505,7 +2696,8 @@ commanding-pepet:
 luminous-lionfish:
   name: Luminous Lionfish
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Luminous Lionfish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2525,19 +2717,22 @@ luminous-lionfish:
 golden-dart:
   name: Golden Dart
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Golden Dart, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
     - all-week
+    - deep-saltwater
   tier: 2
   model: 168
 full-moon-poppicok:
   name: Full-Moon Poppicok
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Full Moon Poppicok, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2552,11 +2747,13 @@ full-moon-poppicok:
 shrouded-ghostly-grubshark:
   name: Shrouded-Ghostly Grubshark
   rarity: LEGENDARY
-  description: ''
+  description: A unique fish known as the Shrouded Ghostly Grubshark, with distinctive
+    traits and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - deep-saltwater
+    - shallow-saltwater
   tier: 4
   times:
     DAWN: 0.1
@@ -2572,11 +2769,12 @@ shrouded-ghostly-grubshark:
 prime-rhyb:
   name: Prime Rhyb
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Prime Rhyb, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
   tier: 2
   times:
     DAY: 0.1
@@ -2588,7 +2786,8 @@ prime-rhyb:
 ghostly-puckerfish:
   name: Ghostly Puckerfish
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Ghostly Puckerfish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2607,7 +2806,8 @@ ghostly-puckerfish:
 rose-goldfish:
   name: Rose Goldfish
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Rose Goldfish, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2619,7 +2819,8 @@ rose-goldfish:
 isle-takoki:
   name: Isle Takoki
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Isle Takoki, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2632,11 +2833,13 @@ isle-takoki:
 luminous-whelk:
   name: Luminous Whelk
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Luminous Whelk, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - deep-saltwater
+    - shallow-saltwater
   tier: 2
   times:
     NIGHT: 0.1
@@ -2651,7 +2854,8 @@ luminous-whelk:
 beeper-sneepihr:
   name: Beeper Sneepihr
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Beeper Sneepihr, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2664,7 +2868,8 @@ beeper-sneepihr:
 yeeper-sneepihr:
   name: Yeeper Sneepihr
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Yeeper Sneepihr, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2677,7 +2882,8 @@ yeeper-sneepihr:
 bola-claymore:
   name: Bola & Claymore
   rarity: LEGENDARY
-  description: ''
+  description: A unique fish known as the Bola Claymore, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2692,7 +2898,8 @@ bola-claymore:
 pure-goldfish:
   name: Pure Goldfish
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Pure Goldfish, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2710,7 +2917,8 @@ pure-goldfish:
 green-apple-goomi:
   name: Green-apple Goomi
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Green Apple Goomi, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2723,7 +2931,8 @@ green-apple-goomi:
 weeh-shee-wooshi:
   name: Weeh, Shee & Wooshi
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Weeh Shee Wooshi, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   tier: 2
@@ -2742,7 +2951,8 @@ weeh-shee-wooshi:
 cerulean-merfish:
   name: Cerulean Merfish
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Cerulean Merfish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2755,7 +2965,8 @@ cerulean-merfish:
 travelling-belogna:
   name: Travelling Belogna
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Travelling Belogna, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   tier: 2
@@ -2776,7 +2987,8 @@ travelling-belogna:
 raging-boomfish:
   name: Raging Boomfish
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Raging Boomfish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2796,7 +3008,8 @@ raging-boomfish:
 whoopee-anamalo:
   name: Whoopee Anamalo
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Whoopee Anamalo, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2811,7 +3024,8 @@ whoopee-anamalo:
 bronze-skrub:
   name: Bronze Skrub
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Bronze Skrub, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2832,7 +3046,8 @@ bronze-skrub:
 ethereal-chungus:
   name: Ethereal Chungus
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Ethereal Chungus, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   tier: 2
@@ -2851,7 +3066,8 @@ ethereal-chungus:
 nightfall-puffer:
   name: Nightfall Puffer
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Nightfall Puffer, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2865,7 +3081,8 @@ nightfall-puffer:
 sunrise-puffer:
   name: Sunrise Puffer
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Sunrise Puffer, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2879,7 +3096,8 @@ sunrise-puffer:
 common-snail:
   name: Common Snail
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Common Snail, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2899,7 +3117,8 @@ common-snail:
 alto-falloshimp:
   name: Alto Falloshimp
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Alto Falloshimp, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   tier: 2
@@ -2920,7 +3139,8 @@ alto-falloshimp:
 jaques-clenshimp:
   name: Jaques Clenshimp
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Jaques Clenshimp, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2934,7 +3154,8 @@ jaques-clenshimp:
 common-gripper:
   name: Common Gripper
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Common Gripper, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2949,7 +3170,8 @@ common-gripper:
 nightmare-squid:
   name: Nightmare Squid
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Nightmare Squid, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   tier: 2
@@ -2964,7 +3186,8 @@ nightmare-squid:
 albino-kreken:
   name: Albino Kreken
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Albino Kreken, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2980,7 +3203,8 @@ albino-kreken:
 pink-jellyjelly:
   name: Pink Jellyjelly
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Pink Jellyjelly, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   tier: 2
@@ -2996,7 +3220,8 @@ pink-jellyjelly:
 haunted-fishbones:
   name: Haunted Fishbones
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Haunted Fishbones, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3011,7 +3236,8 @@ haunted-fishbones:
 abyssal-jetfin:
   name: Abyssal Jetfin
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Abyssal Jetfin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3029,7 +3255,8 @@ abyssal-jetfin:
 primal-canth:
   name: Primal Canth
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Primal Canth, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3044,7 +3271,8 @@ primal-canth:
 concealed-eel:
   name: Concealed Eel
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Concealed Eel, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3064,7 +3292,8 @@ concealed-eel:
 diamonite-bananafish:
   name: Diamonite Bananafish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Diamonite Bananafish, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3079,7 +3308,8 @@ diamonite-bananafish:
 rubinite-salmon:
   name: Rubinite Salmon
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Rubinite Salmon, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3093,7 +3323,8 @@ rubinite-salmon:
 quartzenite-gutpike:
   name: Quartzenite Gutpike
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Quartzenite Gutpike, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3114,7 +3345,8 @@ quartzenite-gutpike:
 charged-quartzenite-gutpike:
   name: Charged Quartzenite Gutpike
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Charged Quartzenite Gutpike, with distinctive
+    traits and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3130,7 +3362,8 @@ charged-quartzenite-gutpike:
 prismarinite-minnoe:
   name: Prismarinite Minnoe
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Prismarinite Minnoe, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3143,7 +3376,8 @@ prismarinite-minnoe:
 amethysite-minnoe:
   name: Amethysite Minnoe
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Amethysite Minnoe, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3156,7 +3390,8 @@ amethysite-minnoe:
 emerald-schmeckle:
   name: Emerald Schmeckle
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Emerald Schmeckle, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3169,7 +3404,8 @@ emerald-schmeckle:
 crystalline-back-rhyb:
   name: Crystalline Back Rhyb
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Crystalline Back Rhyb, with distinctive
+    traits and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3188,7 +3424,8 @@ crystalline-back-rhyb:
 anchor-mimook:
   name: Anchor Mimook
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Anchor Mimook, with distinctive traits and
+    behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3203,7 +3440,8 @@ anchor-mimook:
 fishhook-mimook:
   name: Fishhook Mimook
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Fishhook Mimook, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3218,7 +3456,8 @@ fishhook-mimook:
 azalea-grubshark:
   name: Azalea Grubshark
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Azalea Grubshark, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   tier: 1
@@ -3238,7 +3477,8 @@ azalea-grubshark:
 emeraldite-discus:
   name: Emeraldite Discus
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Emeraldite Discus, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3251,7 +3491,8 @@ emeraldite-discus:
 primal-eel:
   name: Primal Eel
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Primal Eel, with distinctive traits and
+    behaviors.
   open-water-required: false
   rain-required: true
   tier: 1
@@ -3270,7 +3511,8 @@ primal-eel:
 ruling-turok:
   name: Ruling Turok
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Ruling Turok, with distinctive traits and
+    behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3284,7 +3526,8 @@ ruling-turok:
 jasper-gripper:
   name: Jasper Gripper
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Jasper Gripper, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3297,7 +3540,8 @@ jasper-gripper:
 lush-slimswimer:
   name: Lush Slimswimer
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Lush Slimswimer, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3310,7 +3554,8 @@ lush-slimswimer:
 reborn-puckerfish:
   name: Reborn Puckerfish
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Reborn Puckerfish, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3326,7 +3571,8 @@ reborn-puckerfish:
 reborn-razorback:
   name: Reborn Razorback
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Reborn Razorback, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3342,7 +3588,8 @@ reborn-razorback:
 amethyst-sculblade:
   name: Amethyst Sculblade
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Amethyst Sculblade, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3359,7 +3606,8 @@ amethyst-sculblade:
 crystal-jellyjelly:
   name: Crystal Jellyjelly
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Crystal Jellyjelly, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   tier: 2
@@ -3376,7 +3624,8 @@ crystal-jellyjelly:
 crystal-jetfin:
   name: Crystal Jetfin
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Crystal Jetfin, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3396,7 +3645,8 @@ crystal-jetfin:
 docile-doomageddon:
   name: Docile Doomageddon
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Docile Doomageddon, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3409,7 +3659,8 @@ docile-doomageddon:
 emeraldite-teetle:
   name: Emeraldite Teetle
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Emeraldite Teetle, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3425,7 +3676,8 @@ emeraldite-teetle:
 loving-scrubber:
   name: Loving Scrubber
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Loving Scrubber, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   tier: 1
@@ -3447,7 +3699,8 @@ loving-scrubber:
 seafoam-zing:
   name: Seafoam Zing
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Seafoam Zing, with distinctive traits and
+    behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3460,7 +3713,8 @@ seafoam-zing:
 crimson-gripper:
   name: Crimson Gripper
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Crimson Gripper, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3475,7 +3729,8 @@ crimson-gripper:
 dune-gripper:
   name: Dune Gripper
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Dune Gripper, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3490,7 +3745,8 @@ dune-gripper:
 obsidian-gripper:
   name: Obsidian Gripper
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Obsidian Gripper, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3507,7 +3763,8 @@ obsidian-gripper:
 bone-gripper:
   name: Bone Gripper
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Bone Gripper, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: true
   defaults:
@@ -3523,7 +3780,8 @@ bone-gripper:
 sunset-gripper:
   name: Sunset Gripper
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Sunset Gripper, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   tier: 3
@@ -3540,7 +3798,8 @@ sunset-gripper:
 jade-gripper:
   name: Jade Gripper
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Jade Gripper, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3554,7 +3813,8 @@ jade-gripper:
 amethyst-gripper:
   name: Amethyst Gripper
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Amethyst Gripper, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3569,7 +3829,8 @@ amethyst-gripper:
 twinhorn-gripper:
   name: Twinhorn Gripper
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Twinhorn Gripper, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: true
   defaults:
@@ -3584,7 +3845,8 @@ twinhorn-gripper:
 wellfed-gripper:
   name: Wellfed Gripper
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Wellfed Gripper, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: true
   defaults:
@@ -3604,7 +3866,8 @@ wellfed-gripper:
 sunshine-gripper:
   name: Sunshine Gripper
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Sunshine Gripper, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3619,11 +3882,12 @@ sunshine-gripper:
 surface-gripper:
   name: Surface Gripper
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Surface Gripper, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - last-half
   tier: 3
   times:
@@ -3633,7 +3897,8 @@ surface-gripper:
 radiated-gripper:
   name: Radiated Gripper
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Radiated Gripper, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3652,12 +3917,14 @@ radiated-gripper:
 mr-gripper:
   name: Mr. Gripper
   rarity: LEGENDARY
-  description: ''
+  description: A unique fish known as the Mr Gripper, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-week
+    - deep-saltwater
   tier: 4
   times:
     DAWN: 0.1
@@ -3667,7 +3934,8 @@ mr-gripper:
 concealed-gripper:
   name: Concealed Gripper
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Concealed Gripper, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3681,7 +3949,8 @@ concealed-gripper:
 crawling-gripper:
   name: Crawling Gripper
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Crawling Gripper, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3695,7 +3964,8 @@ crawling-gripper:
 sonic-gripper:
   name: Sonic Gripper
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Sonic Gripper, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   tier: 3
@@ -3713,7 +3983,8 @@ sonic-gripper:
 pivot-gripper:
   name: Pivot Gripper
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Pivot Gripper, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3734,11 +4005,13 @@ pivot-gripper:
 rhudon-gripper:
   name: Rhudon Gripper
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Rhudon Gripper, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - deep-saltwater
+    - shallow-saltwater
   tier: 3
   times:
     DAWN: 0.1
@@ -3753,7 +4026,8 @@ rhudon-gripper:
 rockbash-gripper:
   name: Rockbash Gripper
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Rockbash Gripper, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3773,7 +4047,8 @@ rockbash-gripper:
 headhunt-gripper:
   name: Headhunt Gripper
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Headhunt Gripper, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3792,11 +4067,12 @@ headhunt-gripper:
 bean-gripper:
   name: Bean Gripper
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Bean Gripper, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
   tier: 3
   times:
     DAWN: 0.1
@@ -3810,7 +4086,8 @@ bean-gripper:
 bouncy-gripper:
   name: Bouncy Gripper
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Bouncy Gripper, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3825,7 +4102,8 @@ bouncy-gripper:
 hypno-gripper:
   name: Hypno Gripper
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Hypno Gripper, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3844,7 +4122,8 @@ hypno-gripper:
 emerald-gripper:
   name: Emerald Gripper
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Emerald Gripper, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -3861,7 +4140,8 @@ emerald-gripper:
 fleshrend-gripper:
   name: Fleshrend Gripper
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Fleshrend Gripper, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   tier: 3
@@ -3882,7 +4162,8 @@ fleshrend-gripper:
 til-a-i-pia:
   name: Til-A.I.-pia
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Til A I Pia, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3901,7 +4182,8 @@ til-a-i-pia:
 bigbyte-piranha:
   name: BigByte Piranha
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Bigbyte Piranha, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3916,7 +4198,8 @@ bigbyte-piranha:
 mechaphyra:
   name: Mechaphyra
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Mechaphyra, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -3935,7 +4218,8 @@ mechaphyra:
 troutomobile:
   name: Troutomobile
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Troutomobile, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3951,7 +4235,8 @@ troutomobile:
 moderated-threadfin:
   name: Moderated Threadfin
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Moderated Threadfin, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3966,7 +4251,8 @@ moderated-threadfin:
 old-timey-poppicog:
   name: Old-Timey Poppicog
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Old Timey Poppicog, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3986,7 +4272,8 @@ old-timey-poppicog:
 oled-anglefish:
   name: OLED Anglefish
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Oled Anglefish, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4001,7 +4288,7 @@ oled-anglefish:
 betafish:
   name: BETAfish
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Betafish, with distinctive traits and behaviors.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -4020,7 +4307,8 @@ betafish:
 escargobot:
   name: Escargobot
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Escargobot, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4035,7 +4323,8 @@ escargobot:
 escargomid:
   name: Escargomid
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Escargomid, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -4053,7 +4342,8 @@ escargomid:
 chronotrouter:
   name: Chronotrouter
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Chronotrouter, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -4071,7 +4361,8 @@ chronotrouter:
 initial-tee:
   name: Initial Tee
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Initial Tee, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4086,7 +4377,8 @@ initial-tee:
 snowgrave-rodtail:
   name: Snowgrave Rodtail
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Snowgrave Rodtail, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -4105,7 +4397,7 @@ snowgrave-rodtail:
 eelbow:
   name: Eelbow
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Eelbow, with distinctive traits and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4122,7 +4414,7 @@ eelbow:
 locknplea:
   name: Locknplea
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Locknplea, with distinctive traits and behaviors.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -4140,7 +4432,8 @@ locknplea:
 water-bybass:
   name: Water Bybass
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Water Bybass, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -4159,7 +4452,8 @@ water-bybass:
 chromadine:
   name: Chromadine
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Chromadine, with distinctive traits and
+    behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -4174,7 +4468,8 @@ chromadine:
 broken-wheel:
   name: Broken Wheel
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Broken Wheel, with distinctive traits and
+    behaviors.
   open-water-required: false
   rain-required: false
   tier: 4
@@ -4196,7 +4491,8 @@ broken-wheel:
 dr-octogonapus:
   name: Dr Octogonapus
   rarity: LEGENDARY
-  description: ''
+  description: A unique fish known as the Dr Octogonapus, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   tier: 4
@@ -4213,7 +4509,7 @@ dr-octogonapus:
 cognutive:
   name: CogNUTive
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Cognutive, with distinctive traits and behaviors.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -4230,7 +4526,8 @@ cognutive:
 servo-moray:
   name: Servo-Moray
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Servo Moray, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4245,7 +4542,8 @@ servo-moray:
 escargotop:
   name: Escargotop
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Escargotop, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4261,7 +4559,8 @@ escargotop:
 boopsnoototron:
   name: Boopsnoototron
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Boopsnoototron, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -4280,7 +4579,8 @@ boopsnoototron:
 floundrive:
   name: Floundrive
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Floundrive, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4295,7 +4595,7 @@ floundrive:
 autoboros:
   name: Autoboros
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Autoboros, with distinctive traits and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4308,7 +4608,8 @@ autoboros:
 skulkborn-moray:
   name: Skulkborn Moray
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Skulkborn Moray, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   tier: 4
@@ -4328,7 +4629,8 @@ skulkborn-moray:
 dimensional-basilisk:
   name: Dimensional Basilisk
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Dimensional Basilisk, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -4343,7 +4645,8 @@ dimensional-basilisk:
 ripper-roofin:
   name: Ripper Roofin
   rarity: LEGENDARY
-  description: ''
+  description: A unique fish known as the Ripper Roofin, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4362,7 +4665,8 @@ ripper-roofin:
 chip-skydark:
   name: Chip Skydark
   rarity: LEGENDARY
-  description: ''
+  description: A unique fish known as the Chip Skydark, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4377,7 +4681,8 @@ chip-skydark:
 rafflebones:
   name: Rafflebones
   rarity: LEGENDARY
-  description: ''
+  description: A unique fish known as the Rafflebones, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4396,7 +4701,8 @@ rafflebones:
 goobly-gobbler:
   name: Goobly Gobbler
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Goobly Gobbler, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4413,7 +4719,8 @@ goobly-gobbler:
 yin-dynastii:
   name: Yin Dynastii
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Yin Dynastii, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4427,7 +4734,8 @@ yin-dynastii:
 yang-dynastii:
   name: Yang Dynastii
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Yang Dynastii, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4441,12 +4749,14 @@ yang-dynastii:
 dinkus-the-deep:
   name: Dinkus the Deep
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Dinkus The Deep, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - all-time
+    - deep-saltwater
   tier: 4
   moons:
     LAST_QUARTER: 0.1
@@ -4455,7 +4765,8 @@ dinkus-the-deep:
 worldeater:
   name: Worldeater
   rarity: LEGENDARY
-  description: ''
+  description: A unique fish known as the Worldeater, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4473,7 +4784,8 @@ worldeater:
 the-mindflayer:
   name: The Mindflayer
   rarity: LEGENDARY
-  description: ''
+  description: A unique fish known as the The Mindflayer, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -4494,7 +4806,8 @@ the-mindflayer:
 mr-boombastic:
   name: Mr Boombastic
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Mr Boombastic, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -4513,11 +4826,12 @@ mr-boombastic:
 needlessly-large-rodtail:
   name: Needlessly Large Rodtail
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Needlessly Large Rodtail, with distinctive
+    traits and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
-    - general-saltwater
+    - shallow-saltwater
     - last-half
   tier: 4
   times:
@@ -4528,7 +4842,8 @@ needlessly-large-rodtail:
 rodtail-of-domnion:
   name: Rodtail of Domnion
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Rodtail Of Domnion, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4546,7 +4861,8 @@ rodtail-of-domnion:
 abaia-of-isles:
   name: Abaia of Isles
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Abaia Of Isles, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -4560,7 +4876,7 @@ abaia-of-isles:
 jim:
   name: Jim
   rarity: LEGENDARY
-  description: ''
+  description: A unique fish known as the Jim, with distinctive traits and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4575,7 +4891,8 @@ jim:
 king-jellyjelly:
   name: King Jellyjelly
   rarity: RARE
-  description: ''
+  description: A unique fish known as the King Jellyjelly, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4588,9 +4905,10 @@ king-jellyjelly:
     WAXING_CRESCENT: 0.1
   model: 292
 wither-s-rodtail:
-  name: Wither’s Rodtail
+  name: "Wither\u2019s Rodtail"
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Wither S Rodtail, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -4609,7 +4927,8 @@ wither-s-rodtail:
 shadowmaw-grubshark:
   name: Shadowmaw Grubshark
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Shadowmaw Grubshark, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4625,7 +4944,8 @@ shadowmaw-grubshark:
 astrological-mindwatcher:
   name: Astrological Mindwatcher
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Astrological Mindwatcher, with distinctive
+    traits and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4640,7 +4960,8 @@ astrological-mindwatcher:
 chuchu-pik:
   name: Chuchu Pik
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Chuchu Pik, with distinctive traits and
+    behaviors.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -4659,7 +4980,8 @@ chuchu-pik:
 illithid-maggot:
   name: Illithid Maggot
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Illithid Maggot, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4682,7 +5004,7 @@ illithid-maggot:
 redacted:
   name: '[REDACTED]'
   rarity: LEGENDARY
-  description: ''
+  description: A unique fish known as the Redacted, with distinctive traits and behaviors.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -4710,7 +5032,8 @@ redacted:
 luminous-shulk:
   name: Luminous Shulk
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Luminous Shulk, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -4740,7 +5063,8 @@ luminous-shulk:
 voidborn-moray:
   name: Voidborn Moray
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Voidborn Moray, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4766,7 +5090,8 @@ voidborn-moray:
 stray-seagrass:
   name: Stray Seagrass
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Stray Seagrass, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -4780,7 +5105,7 @@ stray-seagrass:
 old-boot:
   name: Old Boot
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Old Boot, with distinctive traits and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -4795,7 +5120,8 @@ old-boot:
 waterlogged-boot:
   name: Waterlogged Boot
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Waterlogged Boot, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -4810,7 +5136,8 @@ waterlogged-boot:
 message-in-a-bottle:
   name: Message in a Bottle
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Message In A Bottle, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -4822,7 +5149,8 @@ message-in-a-bottle:
 broken-chain:
   name: Broken Chain
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Broken Chain, with distinctive traits and
+    behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -4837,7 +5165,8 @@ broken-chain:
 strange-biomass:
   name: Strange Biomass
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Strange Biomass, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -4854,7 +5183,8 @@ strange-biomass:
 chorus-kelp:
   name: Chorus Kelp
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Chorus Kelp, with distinctive traits and
+    behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -4871,7 +5201,8 @@ chorus-kelp:
 smooth-rock:
   name: Smooth Rock
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Smooth Rock, with distinctive traits and
+    behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -4889,7 +5220,8 @@ smooth-rock:
 small-shell:
   name: Small Shell
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Small Shell, with distinctive traits and
+    behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -4901,7 +5233,8 @@ small-shell:
 large-shell:
   name: Large Shell
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Large Shell, with distinctive traits and
+    behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -4913,7 +5246,8 @@ large-shell:
 coral-shell:
   name: Coral Shell
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Coral Shell, with distinctive traits and
+    behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -4925,7 +5259,8 @@ coral-shell:
 castaway-chest:
   name: Castaway Chest
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Castaway Chest, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4940,7 +5275,8 @@ castaway-chest:
 seafarers-chest:
   name: Seafarers Chest
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Seafarers Chest, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4955,7 +5291,8 @@ seafarers-chest:
 captains-chest:
   name: Captains Chest
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Captains Chest, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4970,7 +5307,8 @@ captains-chest:
 chest-of-ancient-tributes:
   name: Chest of Ancient Tributes
   rarity: LEGENDARY
-  description: ''
+  description: A unique fish known as the Chest Of Ancient Tributes, with distinctive
+    traits and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4985,7 +5323,8 @@ chest-of-ancient-tributes:
 chest-of-wonderous-secrets:
   name: Chest of Wonderous Secrets
   rarity: LEGENDARY
-  description: ''
+  description: A unique fish known as the Chest Of Wonderous Secrets, with distinctive
+    traits and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5000,7 +5339,8 @@ chest-of-wonderous-secrets:
 broken-glasses:
   name: Broken Glasses
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Broken Glasses, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -5017,7 +5357,8 @@ broken-glasses:
 rotting-produce:
   name: Rotting Produce
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Rotting Produce, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -5033,7 +5374,8 @@ rotting-produce:
 floating-kelp:
   name: Floating Kelp
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Floating Kelp, with distinctive traits and
+    behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -5045,7 +5387,8 @@ floating-kelp:
 pristine-pearl:
   name: Pristine Pearl
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Pristine Pearl, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5057,7 +5400,8 @@ pristine-pearl:
 oyster-of-secrets:
   name: Oyster of Secrets
   rarity: RARE
-  description: ''
+  description: A unique fish known as the Oyster Of Secrets, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5069,7 +5413,8 @@ oyster-of-secrets:
 crumpled-bottle:
   name: Crumpled Bottle
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Crumpled Bottle, with distinctive traits
+    and behaviors.
   open-water-required: false
   rain-required: false
   defaults:
@@ -5087,7 +5432,7 @@ crumpled-bottle:
 dead-kelp:
   name: Dead Kelp
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Dead Kelp, with distinctive traits and behaviors.
   open-water-required: false
   rain-required: true
   defaults:
@@ -5102,7 +5447,8 @@ dead-kelp:
 dark-pearl-cluster:
   name: Dark Pearl Cluster
   rarity: UNCOMMON
-  description: ''
+  description: A unique fish known as the Dark Pearl Cluster, with distinctive traits
+    and behaviors.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5120,7 +5466,7 @@ dark-pearl-cluster:
 trash:
   name: Trash
   rarity: COMMON
-  description: ''
+  description: A unique fish known as the Trash, with distinctive traits and behaviors.
   open-water-required: false
   rain-required: false
   defaults:

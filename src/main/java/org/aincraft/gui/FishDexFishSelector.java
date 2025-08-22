@@ -72,6 +72,7 @@ public class FishDexFishSelector {
     private final DistributionLookup distributionLookup;
     private final Supplier<Collection<NamespacedKey>> allFishIds; // enables page-fill
     private final TierLookup tierLookup; // optional
+    private static final String NAV_EMPTY_TEX = "icons/empty";
 
     private static final String NS = "longhardfish";
     private static final int PAGE_SIZE = 35;
@@ -197,6 +198,7 @@ public class FishDexFishSelector {
 
         // Background/offset art
         putIcon(gui, 9, fishId.getKey() + "-offset");
+        hideTooltipTop(gui, 9);
 
         // Resolve data
         FishEnvironment env = (envLookup != null) ? envLookup.get(fishId) : null;
@@ -234,7 +236,9 @@ public class FishDexFishSelector {
                 }
             }
             // Page indicator (uses fish-menu_(pageNumber))
-            putIcon(gui, Math.min(6, pageIndex), "icons/fish-menu_" + (pageIndex + 1));
+            int menuSlot = Math.min(6, pageIndex);
+            putIcon(gui, menuSlot, "icons/fish-menu_" + (pageIndex + 1));
+            hideTooltipTop(gui, menuSlot);
 
         } else {
             // No paging (fallback)
@@ -295,6 +299,7 @@ public class FishDexFishSelector {
             String base = TIME_ICON_SUFFIX.get(t);
             if (slot == null || base == null) continue;
             putIcon(gui, slot, allowed.contains(t) ? base : (base + "_empty"));
+            hideTooltipTop(gui, slot);
         }
     }
 
@@ -313,14 +318,14 @@ public class FishDexFishSelector {
             if (base == null) { i++; continue; }
             String suffix = allowed.contains(moon) ? base : (base + "_empty");
 
-            if      (i == 0) putIcon(gui, 35, suffix);
-            else if (i == 1) putIcon(gui, 44, suffix);
-            else if (i == 2) putIcon(gui, 53, suffix);
-            else if (i == 3) putPlayerIconMain(player, 0, 7, suffix);
-            else if (i == 4) putPlayerIconHotbar(player, 8, suffix);
-            else if (i == 5) putPlayerIconMain(player, 1, 8, suffix);
-            else if (i == 6) putPlayerIconMain(player, 0, 6, suffix);
-            else if (i == 7) putPlayerIconMain(player, 0, 8, suffix);
+            if      (i == 0) { putIcon(gui, 35, suffix);                     hideTooltipTop(gui, 35); }
+            else if (i == 1) { putIcon(gui, 44, suffix);                     hideTooltipTop(gui, 44); }
+            else if (i == 2) { putPlayerIconHotbar(player, 8, suffix);      hideTooltipHotbar(player, 8); }
+            else if (i == 3) { putPlayerIconMain(player, 0, 7, suffix);  hideTooltipMain(player, 0, 7); }
+            else if (i == 4) { putIcon(gui, 53, suffix);                     hideTooltipTop(gui, 53); }
+            else if (i == 5) { putPlayerIconMain(player, 1, 8, suffix);  hideTooltipMain(player, 1, 8); }
+            else if (i == 6) { putPlayerIconMain(player, 0, 6, suffix);  hideTooltipMain(player, 0, 6); }
+            else if (i == 7) { putPlayerIconMain(player, 0, 8, suffix);  hideTooltipMain(player, 0, 8); }
             i++;
         }
     }
@@ -403,6 +408,7 @@ public class FishDexFishSelector {
         Integer tier = (tierLookup != null) ? tierLookup.get(fishId) : null;
         String suffix = iconSuffixForTier(tier);
         putPlayerIconMain(player, 1, 0, suffix);
+        hideTooltipMain(player, 1, 0);
         // Optional tooltip:
         // setMainSlotTooltip(player, 1, 0, "Tier " + ((tier == null) ? 1 : tier), null);
     }
@@ -427,7 +433,7 @@ public class FishDexFishSelector {
         String desc = (model != null && model.getDescription() != null) ? model.getDescription() : "";
 
         // 3 lines, ~35 chars per line (tweak if needed)
-        List<String> wrapped = wrapToMaxLines(desc, 3, 35);
+        List<String> wrapped = wrapToMaxLines(desc, 3, 40);
 
         // Set the display name to the fish name, and the lore to the wrapped description lines
         setMainSlotTooltip(player, 0, 4, name, toComponents(wrapped));
@@ -439,20 +445,18 @@ public class FishDexFishSelector {
         boolean onFirst = pageIndex <= 0;
         boolean onLast  = pageIndex >= pageCount - 1;
 
-        // previous-all (index 1)
-        putPlayerIconHotbar(player, HOTBAR_PREV_ALL, onFirst ? "icons/previous-all_empty" : "icons/previous-all");
+        // We always place the same invisible texture so the ghosted hotbar shows nothing,
+        // but we still set the tooltip text so users get guidance when hovering.
+        putPlayerIconHotbar(player, HOTBAR_PREV_ALL, NAV_EMPTY_TEX);
         setHotbarTooltip(player, HOTBAR_PREV_ALL, "First");
 
-        // previous-1 (index 2)
-        putPlayerIconHotbar(player, HOTBAR_PREV_1, onFirst ? "icons/previous-1_empty" : "icons/previous-1");
+        putPlayerIconHotbar(player, HOTBAR_PREV_1, NAV_EMPTY_TEX);
         setHotbarTooltip(player, HOTBAR_PREV_1, "Previous");
 
-        // next-1 (index 6)
-        putPlayerIconHotbar(player, HOTBAR_NEXT_1, onLast ? "icons/next-1_empty" : "icons/next-1");
+        putPlayerIconHotbar(player, HOTBAR_NEXT_1, NAV_EMPTY_TEX);
         setHotbarTooltip(player, HOTBAR_NEXT_1, "Next");
 
-        // next-all (index 7)
-        putPlayerIconHotbar(player, HOTBAR_NEXT_ALL, onLast ? "icons/next-all_empty" : "icons/next-all");
+        putPlayerIconHotbar(player, HOTBAR_NEXT_ALL, NAV_EMPTY_TEX);
         setHotbarTooltip(player, HOTBAR_NEXT_ALL, "Last");
     }
 
@@ -487,6 +491,7 @@ public class FishDexFishSelector {
     private void placeRarityIcon(Inventory gui, FishDistribution dist) {
         String suffix = iconSuffixForRarity(dist != null ? dist.getRarity() : null);
         putIcon(gui, 45, suffix);
+        hideTooltipTop(gui, 45);
     }
 
     private static String modelNo3(int n) {
@@ -588,5 +593,55 @@ public class FishDexFishSelector {
         p.getInventory().setItem(slot, stack);
     }
 
+    // -- Tooltip hiders -----------------------------------------------------------
+    private static void trySetHideTooltip(ItemMeta meta, boolean hide) {
+        // Paper 1.20.5+/1.21+: meta.setHideTooltip(boolean)
+        try {
+            meta.getClass().getMethod("setHideTooltip", boolean.class).invoke(meta, hide);
+        } catch (Throwable ignored) {
+            // Fallback: blank name + no lore + hide extra lines
+            meta.displayName(Component.empty());
+            meta.lore(null);
+            try { meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES); } catch (Throwable __) {}
+            try { meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE); } catch (Throwable __) {}
+        }
+    }
 
+    private void hideTooltipTop(Inventory gui, int slot) {
+        ItemStack s = gui.getItem(slot);
+        if (s == null) return;
+        ItemMeta m = s.getItemMeta();
+        if (m == null) return;
+        m.setHideTooltip(true);      // <-- real “no tooltip”
+        m.displayName(null);         // ensure no custom name
+        m.lore(null);                // ensure no lore
+        s.setItemMeta(m);
+        gui.setItem(slot, s);
+    }
+
+    private void hideTooltipMain(Player p, int row, int col) {
+        int slot = GuiItemSlot.main(row, col);
+        ItemStack s = p.getInventory().getItem(slot);
+        if (s == null) return;
+        ItemMeta m = s.getItemMeta();
+        if (m == null) return;
+        m.setHideTooltip(true);
+        m.displayName(null);
+        m.lore(null);
+        s.setItemMeta(m);
+        p.getInventory().setItem(slot, s);
+    }
+
+    private void hideTooltipHotbar(Player p, int index) {
+        int slot = GuiItemSlot.hotbar(index);
+        ItemStack s = p.getInventory().getItem(slot);
+        if (s == null) return;
+        ItemMeta m = s.getItemMeta();
+        if (m == null) return;
+        m.setHideTooltip(true);
+        m.displayName(null);
+        m.lore(null);
+        s.setItemMeta(m);
+        p.getInventory().setItem(slot, s);
+    }
 }

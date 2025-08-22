@@ -245,6 +245,10 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
         }
     }
 
+    public java.sql.Connection connection() throws java.sql.SQLException {
+        return ds.getConnection();
+    }
+
     @Override
     public void close() {
         // SQLiteDataSource doesn’t need explicit close; nothing to do here.
