@@ -52,41 +52,32 @@ public final class FishDexGuiListener implements Listener {
         // Click in the player inventory/hotbar while Dex is open: treat hotbar buttons as nav
         if (e.getClickedInventory() != null && e.getClickedInventory().equals(p.getInventory())) {
             int hotbarIndex = e.getSlot(); // 0..8 for hotbar
-            int pageIndex   = holder.pageIndex;
-            int pageCount   = holder.pageCount <= 0 ? 1 : holder.pageCount;
-            List<NamespacedKey> ordered = holder.ordered;
-
-            // guard
-            if (ordered == null || ordered.isEmpty()) return;
+            int current = holder.pageIndex;   // 0-based
+            int max = holder.pageCount - 1;     // 0-based
 
             if (hotbarIndex == FishDexFishSelector.HOTBAR_NEXT_1) {
-                if (pageIndex < pageCount - 1) {
-                    int start = (pageIndex + 1) * 35;
-                    NamespacedKey target = ordered.get(Math.min(start, ordered.size() - 1));
-                    Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.open(p, target));
+                if (current < max) {
+                    int target = current + 1;
+                    Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.openPage(p, target));
                 }
                 return;
             }
             if (hotbarIndex == FishDexFishSelector.HOTBAR_NEXT_ALL) {
-                if (pageIndex < pageCount - 1) {
-                    int start = (pageCount - 1) * 35;
-                    NamespacedKey target = ordered.get(Math.min(start, ordered.size() - 1));
-                    Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.open(p, target));
+                if (current < max) {
+                    Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.openPage(p, max));
                 }
                 return;
             }
             if (hotbarIndex == FishDexFishSelector.HOTBAR_PREV_1) {
-                if (pageIndex > 0) {
-                    int start = (pageIndex - 1) * 35;
-                    NamespacedKey target = ordered.get(Math.min(start, ordered.size() - 1));
-                    Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.open(p, target));
+                if (current > 0) {
+                    int target = current - 1;
+                    Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.openPage(p, target));
                 }
                 return;
             }
             if (hotbarIndex == FishDexFishSelector.HOTBAR_PREV_ALL) {
-                if (pageIndex > 0) {
-                    NamespacedKey target = ordered.get(0);
-                    Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.open(p, target));
+                if (current > 0) {
+                    Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.openPage(p, 0));
                 }
                 return;
             }

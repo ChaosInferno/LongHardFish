@@ -15,6 +15,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -32,22 +33,24 @@ public class FishDexFishSelector {
     public interface EnvLookup { FishEnvironment get(NamespacedKey fishId); }
     public interface ModelLookup { FishModel get(NamespacedKey fishId); }
     public interface DistributionLookup { FishDistribution get(NamespacedKey fishId); }
+    public interface TierLookup { Integer get(NamespacedKey fishId); }
 
-    /** Holder so we can recognize the GUI and keep paging/click mapping. */
+    /** Holder for the GUI so we can recognize it and store page mapping + metadata. */
     public static final class DexHolder implements InventoryHolder {
         private Inventory inv;
-        public final Map<Integer, NamespacedKey> slotToFish = new HashMap<>();
+        public Map<Integer, NamespacedKey> slotToFish = new HashMap<>();
         public NamespacedKey selected;
 
-        // paging state
-        public List<NamespacedKey> ordered = List.of();
-        public int pageIndex = 0;
-        public int pageCount = 1;
+        // Paging state for listener nav
+        public List<NamespacedKey> ordered;
+        public int pageIndex = 0;     // 0-based
+        public int pageCount = 1;     // total pages (>=1)
+        public boolean pagingEnabled = false;
 
         @Override public Inventory getInventory() { return inv; }
     }
 
-    /** Factory with paging (pass e.g. () -> modelMap.keySet()). */
+    /** Create WITH page-fill (tier optional). */
     public static FishDexFishSelector createWithPaging(
             JavaPlugin plugin,
             NamespacedKey immovableKey,
@@ -55,9 +58,10 @@ public class FishDexFishSelector {
             EnvLookup envLookup,
             ModelLookup modelLookup,
             DistributionLookup distributionLookup,
-            Supplier<Collection<NamespacedKey>> allFishIds
+            Supplier<Collection<NamespacedKey>> allFishIds,
+            TierLookup tierLookup
     ) {
-        return new FishDexFishSelector(plugin, immovableKey, maskApplier, envLookup, modelLookup, distributionLookup, allFishIds);
+        return new FishDexFishSelector(plugin, immovableKey, maskApplier, envLookup, modelLookup, distributionLookup, allFishIds, tierLookup);
     }
 
     private final JavaPlugin plugin;
@@ -67,15 +71,16 @@ public class FishDexFishSelector {
     private final ModelLookup modelLookup;
     private final DistributionLookup distributionLookup;
     private final Supplier<Collection<NamespacedKey>> allFishIds; // enables page-fill
+    private final TierLookup tierLookup; // optional
 
     private static final String NS = "longhardfish";
     private static final int PAGE_SIZE = 35;
 
-    // Hotbar nav indices (0..8)
-    public static final int HOTBAR_PREV_ALL = 1;
-    public static final int HOTBAR_PREV_1   = 2;
-    public static final int HOTBAR_NEXT_1   = 6;
-    public static final int HOTBAR_NEXT_ALL = 7;
+    // Expose hotbar indices for listener
+    public static final int HOTBAR_PREV_ALL = 1;  // "previous-all"
+    public static final int HOTBAR_PREV_1   = 2;  // "previous-1"
+    public static final int HOTBAR_NEXT_1   = 6;  // "next-1"
+    public static final int HOTBAR_NEXT_ALL = 7;  // "next-all"
 
     // Time icons
     private static final Map<FishTimeCycle, Integer> TIME_SLOTS = Map.of(
@@ -160,7 +165,8 @@ public class FishDexFishSelector {
             EnvLookup envLookup,
             ModelLookup modelLookup,
             DistributionLookup distributionLookup,
-            Supplier<Collection<NamespacedKey>> allFishIds
+            Supplier<Collection<NamespacedKey>> allFishIds,
+            TierLookup tierLookup
     ) {
         this.plugin = plugin;
         this.IMMOVABLE_KEY = immovableKey;
@@ -169,6 +175,7 @@ public class FishDexFishSelector {
         this.modelLookup = modelLookup;
         this.distributionLookup = distributionLookup;
         this.allFishIds = allFishIds;
+        this.tierLookup = tierLookup;
     }
 
     /** Expose plugin so listener can schedule reopen on click. */
@@ -180,49 +187,45 @@ public class FishDexFishSelector {
         holder.selected = fishId;
 
         Inventory gui = Bukkit.createInventory(
-                holder, // IMPORTANT: use the holder here
+                holder,
                 54,
                 text("\ue001\ua020\ue002\ua021").font(key(NS, "interface")).color(TextColor.color(0xFFFFFF))
         );
-        //noinspection ConstantConditions
         holder.inv = gui;
 
         if (maskApplier != null) maskApplier.accept(player, gui);
 
-        // Background / offset art
+        // Background/offset art
         putIcon(gui, 9, fishId.getKey() + "-offset");
 
         // Resolve data
-        FishEnvironment env = envLookup != null ? envLookup.get(fishId) : null;
-        FishModel model       = modelLookup != null ? modelLookup.get(fishId) : null;
-        FishDistribution dist = distributionLookup != null ? distributionLookup.get(fishId) : null;
+        FishEnvironment env = (envLookup != null) ? envLookup.get(fishId) : null;
+        FishModel model       = (modelLookup != null) ? modelLookup.get(fishId) : null;
+        FishDistribution dist = (distributionLookup != null) ? distributionLookup.get(fishId) : null;
 
-        // ===== Fish grid (with paging) =====
+        // ===== Fish list & paging =====
         holder.slotToFish.clear();
+        List<NamespacedKey> sorted = null;
+        int pageIndex;
 
-        if (allFishIds != null && model != null) {
-            // Build ordered list (by model number)
-            List<NamespacedKey> ordered = new ArrayList<>(allFishIds.get());
-            ordered.sort(Comparator.comparingInt(id -> {
+        if (allFishIds != null) {
+            sorted = new ArrayList<>(allFishIds.get());
+            sorted.sort(Comparator.comparingInt(id -> {
                 FishModel fm = modelLookup.get(id);
                 return (fm != null) ? fm.getModelNumber() : Integer.MAX_VALUE;
             }));
-            holder.ordered = ordered;
+            holder.ordered = sorted;
+            holder.pagingEnabled = true;
 
-            int modelNumber = model.getModelNumber();
-            int pageIndex = Math.max(0, (modelNumber - 1) / PAGE_SIZE);
-            int pageCount = Math.max(1, (int) Math.ceil(ordered.size() / (double) PAGE_SIZE));
-            holder.pageIndex = pageIndex;
-            holder.pageCount = pageCount;
-
+            int modelNumber = (model != null) ? model.getModelNumber() : 1;
+            pageIndex = Math.max(0, (modelNumber - 1) / PAGE_SIZE);
             int start = pageIndex * PAGE_SIZE;
-            for (int i = 0; i < FISH_GRID_SLOTS.length && (start + i) < ordered.size(); i++) {
-                NamespacedKey idOnPage = ordered.get(start + i);
+
+            for (int i = 0; i < FISH_GRID_SLOTS.length && (start + i) < sorted.size(); i++) {
+                NamespacedKey idOnPage = sorted.get(start + i);
                 FishModel fm = modelLookup.get(idOnPage);
 
-                // Your RP mapping: longhardfish:<fish-id> (JSON files in assets/longhardfish/items/<fish-id>.json)
-                String suffix = idOnPage.getKey();
-
+                String suffix = idOnPage.getKey(); // matches your pack
                 if (suffix != null && !suffix.isEmpty()) {
                     int guiSlot = FISH_GRID_SLOTS[i];
                     putIcon(gui, guiSlot, suffix);
@@ -230,12 +233,11 @@ public class FishDexFishSelector {
                     applyFishTooltip(gui, guiSlot, fm);
                 }
             }
-
-            placeMenuIcon(gui, pageIndex);
-            placeNavIcons(player, pageIndex, pageCount);
+            // Page indicator (uses fish-menu_(pageNumber))
+            putIcon(gui, Math.min(6, pageIndex), "icons/fish-menu_" + (pageIndex + 1));
 
         } else {
-            // No paging: show only the selected fish in first slot
+            // No paging (fallback)
             String fishSuffix = fishId.getKey();
             if (fishSuffix != null && !fishSuffix.isEmpty()) {
                 int slot = FISH_GRID_SLOTS[0];
@@ -243,56 +245,39 @@ public class FishDexFishSelector {
                 holder.slotToFish.put(slot, fishId);
                 applyFishTooltip(gui, slot, model);
             }
-            int pageIndex = 0;
-            if (model != null) {
-                pageIndex = Math.max(0, (model.getModelNumber() - 1) / PAGE_SIZE);
-            }
-            placeMenuIcon(gui, pageIndex);
-            holder.ordered = List.of(fishId);
-            holder.pageIndex = 0;
-            holder.pageCount = 1;
-            placeNavIcons(player, 0, 1);
+            pageIndex = (model != null) ? Math.max(0, (model.getModelNumber() - 1) / PAGE_SIZE) : 0;
+            putIcon(gui, Math.min(6, pageIndex), "icons/fish-menu_" + (pageIndex + 1));
         }
+
+        // Compute pageCount if paging
+        int pageCount = 1;
+        if (sorted != null && !sorted.isEmpty()) {
+            pageCount = (sorted.size() + PAGE_SIZE - 1) / PAGE_SIZE;
+        }
+        holder.pageIndex = pageIndex;
+        holder.pageCount = pageCount;
 
         // ===== Time & Moon =====
         placeTimeIconsForFish(gui, env);
         placeMoonIconsForFish(gui, player, env);
 
-        // ===== Environment groups + flags =====
+        // ===== Environment groups + flags (with tooltips) =====
         placeEnvironmentGroupsForFish(player, env);
         placeFlags(player, env);
 
-        // ===== Rarity badge =====
+        // ===== Rarity (slot 45) =====
         placeRarityIcon(gui, dist);
 
-        // Extra chrome
-        putPlayerIconMain(player, 0, 3, "icons/bait-icon-full");
+        // ===== Tier badge (player main(1,0)) =====
+        placeTierIcon(player, fishId);
 
-        placeDescriptionGemWithTooltip(player, model);
+        // ===== Description gem (tooltip with 3 lines) =====
+        placeDescriptionGem(player, model);
+
+        // ===== Nav buttons (textures unchanged; tooltips restored; disable with _empty on edges) =====
+        placeNavButtons(player, pageIndex, pageCount);
 
         Bukkit.getScheduler().runTask(plugin, () -> player.openInventory(gui));
-    }
-
-    // Enable/disable nav buttons by page
-    private void placeNavIcons(Player p, int pageIndex, int pageCount) {
-        boolean atFirst = pageIndex <= 0;
-        boolean atLast  = pageIndex >= pageCount - 1;
-
-        putPlayerIconHotbar(p, HOTBAR_PREV_1,   atFirst ? "icons/previous-1_empty"   : "icons/previous-1");
-        putPlayerIconHotbar(p, HOTBAR_PREV_ALL, atFirst ? "icons/previous-all_empty" : "icons/previous-all");
-        putPlayerIconHotbar(p, HOTBAR_NEXT_1,   atLast  ? "icons/next-1_empty"       : "icons/next-1");
-        putPlayerIconHotbar(p, HOTBAR_NEXT_ALL, atLast  ? "icons/next-all_empty"     : "icons/next-all");
-
-        setHotbarTooltip(p, 6, Component.text("Next"));
-        setHotbarTooltip(p, 7, Component.text("Last"));
-        setHotbarTooltip(p, 2, Component.text("Previous"));
-        setHotbarTooltip(p, 1, Component.text("First"));
-    }
-
-    private void placeMenuIcon(Inventory gui, int pageIndex) {
-        int slot = Math.min(6, pageIndex);        // same slot logic as before
-        String tex = "icons/fish-menu_" + (pageIndex + 1); // 1-based page number
-        putIcon(gui, slot, tex);
     }
 
     // ===== Time & moon =====
@@ -340,26 +325,135 @@ public class FishDexFishSelector {
         }
     }
 
-    // ===== Environment group badges =====
+    // ===== Environment groups (icons + tooltips) =====
     private void placeEnvironmentGroupsForFish(Player player, FishEnvironment env) {
         Set<String> fishBiomes = new HashSet<>();
         if (env != null && env.getEnvironmentBiomes() != null) {
             env.getEnvironmentBiomes().forEach((biome, weight) -> {
                 if (weight != null && weight > 0d && biome != null) {
-                    fishBiomes.add(biome.name());
+                    fishBiomes.add(biome.name()); // UPPER_CASE
                 }
             });
         }
+
         for (EnvGroup g : ENV_GROUPS) {
             boolean found = !Collections.disjoint(fishBiomes, g.biomeNames);
             String suffix = g.iconBase + (found ? "" : "_empty");
             putPlayerIconMain(player, g.row, g.col, suffix);
+
+            if (found) {
+                // Intersect and humanize the biome names for the lore (no dashes, no group title)
+                List<String> lines = g.biomeNames.stream()
+                        .filter(fishBiomes::contains)
+                        .map(this::humanizeBiome)  // "WARM_OCEAN" -> "Warm Ocean"
+                        .toList();
+
+                setMainSlotTooltip(player, g.row, g.col, "Can be found in:", toComponents(lines));
+            } else {
+                // Friendly group name for the "not found" message
+                String groupLabel = friendlyGroupName(g.iconBase); // "env-warm-oceans" -> "warm oceans"
+                setMainSlotTooltip(player, g.row, g.col, "Not found in " + groupLabel, null);
+            }
         }
     }
 
+    private String humanizeBiome(String biomeUpper) {
+        String[] parts = biomeUpper.toLowerCase(Locale.ENGLISH).split("_");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < parts.length; i++) {
+            if (parts[i].isEmpty()) continue;
+            sb.append(Character.toUpperCase(parts[i].charAt(0)))
+                    .append(parts[i].substring(1));
+            if (i + 1 < parts.length) sb.append(' ');
+        }
+        return sb.toString();
+    }
+
+    private String friendlyGroupName(String iconBase) {
+        // iconBase like "icons/env-warm-oceans"
+        String last = iconBase.substring(iconBase.lastIndexOf('/') + 1); // "env-warm-oceans"
+        if (last.startsWith("env-")) last = last.substring(4);
+        return last.replace('-', ' ');
+    }
+
+
+    private static String prettyEnvGroupName(String iconBase) {
+        // iconBase like "icons/env-warm-oceans"
+        String s = iconBase;
+        if (s.startsWith("icons/env-")) s = s.substring("icons/env-".length());
+        return s.replace('-', ' ');
+    }
+
+    // ===== Flags (rain required) + tooltip =====
     private void placeFlags(Player player, FishEnvironment env) {
         boolean rainReq = env != null && Boolean.TRUE.equals(env.getRainRequired());
-        putPlayerIconMain(player, 0, 5, rainReq ? "icons/rainy-icon" : "icons/sunny-icon");
+        String suffix = rainReq ? "icons/rainy-icon" : "icons/sunny-icon";
+        putPlayerIconMain(player, 0, 5, suffix);
+
+        // Tooltip for the flag
+        setMainSlotTooltip(
+                player, 0, 5,
+                rainReq ? "Rain required" : "Can be found without rain",
+                null
+        );
+    }
+
+    // ===== Tier badge =====
+    private void placeTierIcon(Player player, NamespacedKey fishId) {
+        Integer tier = (tierLookup != null) ? tierLookup.get(fishId) : null;
+        String suffix = iconSuffixForTier(tier);
+        putPlayerIconMain(player, 1, 0, suffix);
+        // Optional tooltip:
+        // setMainSlotTooltip(player, 1, 0, "Tier " + ((tier == null) ? 1 : tier), null);
+    }
+    private static String iconSuffixForTier(Integer tier) {
+        if (tier == null) return "icons/1-star";
+        switch (tier) {
+            case 4:  return "icons/4-star";
+            case 3:  return "icons/3-star";
+            case 2:  return "icons/2-star";
+            case 1:
+            default: return "icons/1-star";
+        }
+    }
+
+    // ===== Description gem with 3 wrapped lines =====
+    // ===== Description gem with wrapped description; name as display title =====
+    private void placeDescriptionGem(Player player, FishModel model) {
+        // keep the same icon
+        putPlayerIconMain(player, 0, 4, "icons/description-gem-icon");
+
+        String name = (model != null && model.getName() != null) ? model.getName() : "Unknown Fish";
+        String desc = (model != null && model.getDescription() != null) ? model.getDescription() : "";
+
+        // 3 lines, ~35 chars per line (tweak if needed)
+        List<String> wrapped = wrapToMaxLines(desc, 3, 35);
+
+        // Set the display name to the fish name, and the lore to the wrapped description lines
+        setMainSlotTooltip(player, 0, 4, name, toComponents(wrapped));
+    }
+
+
+    // ===== Nav buttons (set texture + tooltip; disable with _empty on edges) =====
+    private void placeNavButtons(Player player, int pageIndex, int pageCount) {
+        boolean onFirst = pageIndex <= 0;
+        boolean onLast  = pageIndex >= pageCount - 1;
+
+        // previous-all (index 1)
+        putPlayerIconHotbar(player, HOTBAR_PREV_ALL, onFirst ? "icons/previous-all_empty" : "icons/previous-all");
+        setHotbarTooltip(player, HOTBAR_PREV_ALL, "First");
+
+        // previous-1 (index 2)
+        putPlayerIconHotbar(player, HOTBAR_PREV_1, onFirst ? "icons/previous-1_empty" : "icons/previous-1");
+        setHotbarTooltip(player, HOTBAR_PREV_1, "Previous");
+
+        // next-1 (index 6)
+        putPlayerIconHotbar(player, HOTBAR_NEXT_1, onLast ? "icons/next-1_empty" : "icons/next-1");
+        setHotbarTooltip(player, HOTBAR_NEXT_1, "Next");
+
+        // next-all (index 7)
+        putPlayerIconHotbar(player, HOTBAR_NEXT_ALL, onLast ? "icons/next-all_empty" : "icons/next-all");
+        setHotbarTooltip(player, HOTBAR_NEXT_ALL, "Last");
     }
 
     // ===== Utilities =====
@@ -368,29 +462,6 @@ public class FishDexFishSelector {
         return Math.min(6, pageIndex);
     }
 
-    private static String modelNo3(int n) {
-        return String.format("%03d", n);
-    }
-
-    private void applyFishTooltip(Inventory gui, int slot, FishModel fm) {
-        if (fm == null) return;
-        ItemStack stack = gui.getItem(slot);
-        if (stack == null) return;
-        ItemMeta meta = stack.getItemMeta();
-        if (meta == null) return;
-
-        // Unhide tooltip if supported (1.20.5+/1.21+); ignore if not available
-        try { meta.getClass().getMethod("setHideTooltip", boolean.class).invoke(meta, false); }
-        catch (Throwable ignored) {}
-
-        meta.displayName(Component.text(fm.getName()));
-        meta.lore(List.of(Component.text("No. " + modelNo3(fm.getModelNumber()))));
-
-        stack.setItemMeta(meta);
-        gui.setItem(slot, stack);
-    }
-
-    // ===== Icon helpers =====
     private void putIcon(Inventory inv, int slot, String modelSuffix) {
         GuiItemSlot.putImmovableIcon(inv, slot, Material.COD, Key.key(NS, modelSuffix), IMMOVABLE_KEY, false);
     }
@@ -403,7 +474,6 @@ public class FishDexFishSelector {
                 Material.COD, Key.key(NS, modelSuffix), IMMOVABLE_KEY, false);
     }
 
-    // ===== Rarity =====
     private static String iconSuffixForRarity(FishRarity rarity) {
         if (rarity == null) return "icons/rarity-common";
         switch (rarity) {
@@ -419,104 +489,104 @@ public class FishDexFishSelector {
         putIcon(gui, 45, suffix);
     }
 
-    private void placeDescriptionGemWithTooltip(Player player, FishModel model) {
-        // Place the icon first (keeps your RP texture + immovable tag)
-        putPlayerIconMain(player, 0, 4, "icons/description-gem-icon");
+    private static String modelNo3(int n) {
+        return String.format("%03d", n);
+    }
 
-        int slot = GuiItemSlot.main(0, 4);
-        ItemStack stack = player.getInventory().getItem(slot);
+    private void applyFishTooltip(Inventory gui, int slot, FishModel fm) {
+        if (fm == null) return;
+        ItemStack stack = gui.getItem(slot);
         if (stack == null) return;
-
         ItemMeta meta = stack.getItemMeta();
         if (meta == null) return;
 
-        // Unhide tooltip if supported (1.20.5+/1.21+)
-        try { meta.getClass().getMethod("setHideTooltip", boolean.class).invoke(meta, false); }
-        catch (Throwable ignored) {}
-
-        String name = (model != null && model.getName() != null) ? model.getName() : "";
-        String desc = (model != null && model.getDescription() != null) ? model.getDescription() : "";
-
-        meta.displayName(Component.text(name));
-        // Wrap description to up to 3 lines, ~32 chars per line (tweak if you want tighter/looser)
-        meta.lore(wrapLore(desc, 32, 3));
+        meta.displayName(Component.text(fm.getName()));
+        meta.lore(List.of(Component.text("No. " + modelNo3(fm.getModelNumber()))));
 
         stack.setItemMeta(meta);
-        player.getInventory().setItem(slot, stack);
+        gui.setItem(slot, stack);
     }
 
-    private static List<Component> wrapLore(String text, int maxLen, int maxLines) {
-        if (text == null || text.isBlank()) {
-            return List.of(Component.text(""));
-        }
+    private void setHotbarTooltip(Player player, int hotbarIndex, String title) {
+        int idx = GuiItemSlot.hotbar(hotbarIndex);
+        ItemStack stack = player.getInventory().getItem(idx);
+        if (stack == null) return;
+        ItemMeta meta = stack.getItemMeta();
+        if (meta == null) return;
 
-        List<String> lines = new ArrayList<>(maxLines);
-        StringBuilder curr = new StringBuilder();
-        String[] words = text.trim().split("\\s+");
+        meta.displayName(text(title));
+        meta.lore(null);
 
-        for (int i = 0; i < words.length; i++) {
-            String w = words[i];
-
-            // hard-split very long words
-            while (w.length() > maxLen) {
-                if (lines.size() == maxLines - 1) {
-                    lines.add((curr.length() > 0 ? curr + " " : "")
-                            + w.substring(0, Math.max(0, maxLen - 1)) + "…");
-                    return toComponents(lines);
-                }
-                lines.add(w.substring(0, maxLen));
-                w = w.substring(maxLen);
-            }
-
-            if (curr.length() == 0) {
-                curr.append(w);
-            } else if (curr.length() + 1 + w.length() <= maxLen) {
-                curr.append(' ').append(w);
-            } else {
-                lines.add(curr.toString());
-                if (lines.size() == maxLines) {
-                    String last = lines.remove(lines.size() - 1);
-                    if (last.length() >= maxLen - 1) last = last.substring(0, maxLen - 1) + "…";
-                    else last = last + "…";
-                    lines.add(last);
-                    return toComponents(lines);
-                }
-                curr.setLength(0);
-                curr.append(w);
-            }
-        }
-
-        if (curr.length() > 0 && lines.size() < maxLines) {
-            lines.add(curr.toString());
-        }
-
-        return toComponents(lines);
+        stack.setItemMeta(meta);
+        player.getInventory().setItem(idx, stack);
     }
 
     private static List<Component> toComponents(List<String> lines) {
         List<Component> out = new ArrayList<>(lines.size());
-        for (String s : lines) out.add(Component.text(s));
+        for (String s : lines) out.add(text(s));
         return out;
     }
 
-    private void setHotbarTooltip(Player p, int index, Component displayName) {
-        int slot = GuiItemSlot.hotbar(index);
+    /** Very basic wrapper: split on spaces to ~N chars per line, limit to maxLines. */
+    private static List<String> wrapToMaxLines(String s, int maxLines, int approxWidth) {
+        if (s == null || s.isEmpty()) return List.of();
+        String[] words = s.split("\\s+");
+        List<String> lines = new ArrayList<>();
+        StringBuilder cur = new StringBuilder();
+        for (String w : words) {
+            if (cur.length() == 0) {
+                cur.append(w);
+            } else if (cur.length() + 1 + w.length() <= approxWidth) {
+                cur.append(" ").append(w);
+            } else {
+                lines.add(cur.toString());
+                cur.setLength(0);
+                cur.append(w);
+                if (lines.size() >= maxLines - 1) break;
+            }
+        }
+        if (cur.length() > 0 && lines.size() < maxLines) lines.add(cur.toString());
+        return lines;
+    }
+
+    public void openPage(Player player, int targetPageIndex) {
+        if (allFishIds == null) return; // paging not enabled
+
+        // Build sorted list the same way as in open(...)
+        List<NamespacedKey> sorted = new ArrayList<>(allFishIds.get());
+        sorted.sort(Comparator.comparingInt(id -> {
+            FishModel fm = modelLookup.get(id);
+            return (fm != null) ? fm.getModelNumber() : Integer.MAX_VALUE;
+        }));
+
+        if (sorted.isEmpty()) return;
+
+        int pageCount = (sorted.size() + PAGE_SIZE - 1) / PAGE_SIZE;
+        int clamped   = Math.max(0, Math.min(targetPageIndex, pageCount - 1));
+        int start     = clamped * PAGE_SIZE;
+
+        NamespacedKey firstOnPage = sorted.get(Math.min(start, sorted.size() - 1));
+        open(player, firstOnPage);
+    }
+
+    private void setMainSlotTooltip(Player p, int row, int col, String title, List<Component> lines) {
+        int slot = GuiItemSlot.main(row, col);
         ItemStack stack = p.getInventory().getItem(slot);
         if (stack == null) return;
-
         ItemMeta meta = stack.getItemMeta();
         if (meta == null) return;
 
-        // Make sure tooltips aren’t hidden (reflective for 1.20.5+/1.21+; safe no-op otherwise)
-        try {
-            meta.getClass().getMethod("setHideTooltip", boolean.class).invoke(meta, false);
-        } catch (Throwable ignored) {}
+        try { meta.removeItemFlags(ItemFlag.HIDE_ATTRIBUTES); } catch (Throwable ignored) {}
+        try { meta.removeItemFlags(ItemFlag.HIDE_UNBREAKABLE); } catch (Throwable ignored) {}
 
-        meta.displayName(displayName);
-        // optional: clear lore so only the title shows
-        meta.lore(null);
+        if (title != null) {
+            meta.displayName(Component.text(title));
+        }
+        meta.lore((lines != null && !lines.isEmpty()) ? lines : null);
 
         stack.setItemMeta(meta);
         p.getInventory().setItem(slot, stack);
     }
+
+
 }

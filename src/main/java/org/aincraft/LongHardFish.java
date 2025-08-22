@@ -82,6 +82,7 @@ public class LongHardFish extends JavaPlugin {
         Map<NamespacedKey, FishEnvironment> envMap = environmentProvider.parseFishEnvironmentObjects();
         Map<NamespacedKey, FishModel>       modelMap = modelProvider.parseFishModelObjects();
         Map<NamespacedKey, FishDistribution>   distMap  = rarityProvider.parseFishDistributorObjects();
+        Map<NamespacedKey, Integer> tierMap = environmentProvider.parseFishTierMap();
 
         // Key used by GuiItemSlot to lock icons in place
         NamespacedKey immovableKey = new NamespacedKey(this, "immovable");
@@ -97,7 +98,8 @@ public class LongHardFish extends JavaPlugin {
                 envMap::get,     // EnvLookup
                 modelMap::get,   // ModelLookup
                 distMap::get,    // DistributionLookup (rarity)
-                () -> modelMap.keySet()
+                () -> modelMap.keySet(),
+                tierMap::get
         );
 
         getServer().getPluginManager().registerEvents(new org.aincraft.listener.FishDexGuiListener(fishDex), this);

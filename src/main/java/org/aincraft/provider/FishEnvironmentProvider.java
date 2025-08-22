@@ -112,4 +112,27 @@ public class FishEnvironmentProvider {
 
         return fishEnvironments;
     }
+
+    public Map<NamespacedKey, Integer> parseFishTierMap() {
+        FileConfiguration config = holder.getConfig();
+        Set<String> keys = config.getKeys(false);
+        Map<NamespacedKey, Integer> tierMap = new HashMap<>();
+
+        for (String key : keys) {
+            ConfigurationSection section = config.getConfigurationSection(key);
+            if (section == null) continue;
+
+            if (section.contains("tier")) {
+                int raw = section.getInt("tier", 1);
+                int clamped = raw;
+                if (raw < 1 || raw > 4) {
+                    clamped = Math.max(1, Math.min(4, raw));
+                    plugin.getLogger().warning("Tier out of range for fish '" + key + "': " + raw + " (clamped to " + clamped + ")");
+                }
+                tierMap.put(new NamespacedKey(plugin, key), clamped);
+            }
+        }
+
+        return tierMap;
+    }
 }
