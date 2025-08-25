@@ -9,6 +9,7 @@ import org.aincraft.container.FishModel;
 import org.aincraft.container.FishMoonCycle;
 import org.aincraft.container.FishRarity;
 import org.aincraft.container.FishTimeCycle;
+import org.aincraft.sfx.FishDexSFX;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -34,6 +35,8 @@ public class FishDexFishSelector {
     public interface ModelLookup { FishModel get(NamespacedKey fishId); }
     public interface DistributionLookup { FishDistribution get(NamespacedKey fishId); }
     public interface TierLookup { Integer get(NamespacedKey fishId); }
+    public enum Progress { UNSEEN, SEEN, CAUGHT }
+    public interface ProgressLookup { Progress get(java.util.UUID playerId, NamespacedKey fishId); }
 
     /** Holder for the GUI so we can recognize it and store page mapping + metadata. */
     public static final class DexHolder implements InventoryHolder {
@@ -59,9 +62,10 @@ public class FishDexFishSelector {
             ModelLookup modelLookup,
             DistributionLookup distributionLookup,
             Supplier<Collection<NamespacedKey>> allFishIds,
-            TierLookup tierLookup
+            TierLookup tierLookup,
+            ProgressLookup progressLookup
     ) {
-        return new FishDexFishSelector(plugin, immovableKey, maskApplier, envLookup, modelLookup, distributionLookup, allFishIds, tierLookup);
+        return new FishDexFishSelector(plugin, immovableKey, maskApplier, envLookup, modelLookup, distributionLookup, allFishIds, tierLookup, progressLookup);
     }
 
     private final JavaPlugin plugin;
@@ -71,7 +75,8 @@ public class FishDexFishSelector {
     private final ModelLookup modelLookup;
     private final DistributionLookup distributionLookup;
     private final Supplier<Collection<NamespacedKey>> allFishIds; // enables page-fill
-    private final TierLookup tierLookup; // optional
+    private final TierLookup tierLookup;
+    private final ProgressLookup progressLookup;
     private static final String NAV_EMPTY_TEX = "icons/empty";
 
     private static final String NS = "longhardfish";
@@ -167,7 +172,8 @@ public class FishDexFishSelector {
             ModelLookup modelLookup,
             DistributionLookup distributionLookup,
             Supplier<Collection<NamespacedKey>> allFishIds,
-            TierLookup tierLookup
+            TierLookup tierLookup,
+            ProgressLookup progressLookup
     ) {
         this.plugin = plugin;
         this.IMMOVABLE_KEY = immovableKey;
@@ -177,13 +183,14 @@ public class FishDexFishSelector {
         this.distributionLookup = distributionLookup;
         this.allFishIds = allFishIds;
         this.tierLookup = tierLookup;
+        this.progressLookup = progressLookup;
     }
 
     /** Expose plugin so listener can schedule reopen on click. */
     public JavaPlugin plugin() { return plugin; }
 
     /** Open the GUI for a specific fish. */
-    public void open(Player player, NamespacedKey fishId) {
+    public void open(Player player, NamespacedKey fishId, boolean playOpenSound) {
         DexHolder holder = new DexHolder();
         holder.selected = fishId;
 
@@ -227,10 +234,14 @@ public class FishDexFishSelector {
                 NamespacedKey idOnPage = sorted.get(start + i);
                 FishModel fm = modelLookup.get(idOnPage);
 
-                String suffix = idOnPage.getKey(); // matches your pack
-                if (suffix != null && !suffix.isEmpty()) {
+                String baseTex = idOnPage.getKey(); // your per-fish model key
+                if (baseTex != null && !baseTex.isEmpty()) {
                     int guiSlot = FISH_GRID_SLOTS[i];
-                    putIcon(gui, guiSlot, suffix);
+
+                    // NEW: pick texture by progress
+                    String texToUse = textureForProgress(player, idOnPage, baseTex);
+
+                    putIcon(gui, guiSlot, texToUse);
                     holder.slotToFish.put(guiSlot, idOnPage);
                     applyFishTooltip(gui, guiSlot, fm);
                 }
@@ -242,10 +253,14 @@ public class FishDexFishSelector {
 
         } else {
             // No paging (fallback)
-            String fishSuffix = fishId.getKey();
-            if (fishSuffix != null && !fishSuffix.isEmpty()) {
+            String baseTex = fishId.getKey();
+            if (baseTex != null && !baseTex.isEmpty()) {
                 int slot = FISH_GRID_SLOTS[0];
-                putIcon(gui, slot, fishSuffix);
+
+                // NEW: pick texture by progress
+                String texToUse = textureForProgress(player, fishId, baseTex);
+
+                putIcon(gui, slot, texToUse);
                 holder.slotToFish.put(slot, fishId);
                 applyFishTooltip(gui, slot, model);
             }
@@ -281,7 +296,10 @@ public class FishDexFishSelector {
         // ===== Nav buttons (textures unchanged; tooltips restored; disable with _empty on edges) =====
         placeNavButtons(player, pageIndex, pageCount);
 
-        Bukkit.getScheduler().runTask(plugin, () -> player.openInventory(gui));
+        Bukkit.getScheduler().runTask(plugin, () -> {
+            player.openInventory(gui);
+            if (playOpenSound) FishDexSFX.playOpen(player);
+        });
     }
 
     // ===== Time & moon =====
@@ -571,7 +589,7 @@ public class FishDexFishSelector {
         int start     = clamped * PAGE_SIZE;
 
         NamespacedKey firstOnPage = sorted.get(Math.min(start, sorted.size() - 1));
-        open(player, firstOnPage);
+        open(player, firstOnPage, /*playOpenSound=*/false);
     }
 
     private void setMainSlotTooltip(Player p, int row, int col, String title, List<Component> lines) {
@@ -644,4 +662,24 @@ public class FishDexFishSelector {
         s.setItemMeta(m);
         p.getInventory().setItem(slot, s);
     }
+
+    private String textureForProgress(Player player, NamespacedKey fishId, String baseTex) {
+        if (progressLookup == null || player == null || fishId == null) return baseTex;
+
+        Progress prog = progressLookup.get(player.getUniqueId(), fishId);
+        if (prog == null) return baseTex;
+
+        switch (prog) {
+            case UNSEEN:
+                // single generic model named "unknown" in the longhardfish namespace
+                return "unknown";
+            case SEEN:
+                // per-fish “seen but not caught” variant
+                return baseTex + "_UD";
+            case CAUGHT:
+            default:
+                return baseTex;
+        }
+    }
+
 }

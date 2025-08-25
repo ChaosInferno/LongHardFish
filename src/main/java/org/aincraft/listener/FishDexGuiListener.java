@@ -13,6 +13,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
+import org.aincraft.sfx.FishDexSFX;
 
 import java.util.List;
 import java.util.Map;
@@ -67,8 +68,9 @@ public final class FishDexGuiListener implements Listener {
             Map<Integer, NamespacedKey> map = holder.slotToFish;
             if (map != null && map.containsKey(slot)) {
                 NamespacedKey fishId = map.get(slot);
+                FishDexSFX.playSelect(p);
                 backupAndClear(p);
-                Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.open(p, fishId));
+                Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.open(p, fishId, false));
             }
             return;
         }
@@ -81,6 +83,7 @@ public final class FishDexGuiListener implements Listener {
 
             if (hotbarIndex == FishDexFishSelector.HOTBAR_NEXT_1) {
                 if (current < max) {
+                    FishDexSFX.playNext(p);
                     int target = current + 1;
                     backupAndClear(p);
                     Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.openPage(p, target));
@@ -89,6 +92,7 @@ public final class FishDexGuiListener implements Listener {
             }
             if (hotbarIndex == FishDexFishSelector.HOTBAR_NEXT_ALL) {
                 if (current < max) {
+                    FishDexSFX.playNext(p);
                     backupAndClear(p);
                     Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.openPage(p, max));
                 }
@@ -96,6 +100,7 @@ public final class FishDexGuiListener implements Listener {
             }
             if (hotbarIndex == FishDexFishSelector.HOTBAR_PREV_1) {
                 if (current > 0) {
+                    FishDexSFX.playPrevious(p);
                     int target = current - 1;
                     backupAndClear(p);
                     Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.openPage(p, target));
@@ -104,6 +109,7 @@ public final class FishDexGuiListener implements Listener {
             }
             if (hotbarIndex == FishDexFishSelector.HOTBAR_PREV_ALL) {
                 if (current > 0) {
+                    FishDexSFX.playPrevious(p);
                     backupAndClear(p);
                     Bukkit.getScheduler().runTask(selector.plugin(), () -> selector.openPage(p, 0));
                 }
@@ -162,6 +168,7 @@ public final class FishDexGuiListener implements Listener {
             boolean stillDex = curTop != null && curTop.getHolder() instanceof FishDexFishSelector.DexHolder;
             if (!stillDex) {
                 try {
+                    FishDexSFX.playClose(p);
                     backup.restoreIfPresent(p);
                 } catch (Exception ex) {
                     Bukkit.getLogger().log(java.util.logging.Level.SEVERE,

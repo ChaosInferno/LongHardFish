@@ -94,6 +94,13 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
       LIMIT 1
       """;
 
+    private static final String SQL_HAS_CAUGHT = """
+  SELECT 1
+  FROM player_fish_stats
+  WHERE player_uuid = ? AND fish_key = ? AND caught_count > 0
+  LIMIT 1
+  """;
+
     public SQLiteDatabase(Path dbPath) throws SQLException {
         this.dbPath = dbPath;
         // Ensure parent directory exists
@@ -253,6 +260,18 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
     public void close() {
         // SQLiteDataSource doesn’t need explicit close; nothing to do here.
         // If you switch to a pooled DataSource, close it here.
+    }
+
+    @Override
+    public boolean hasCaught(UUID playerId, String fishKey) throws SQLException {
+        try (Connection c = ds.getConnection();
+             PreparedStatement ps = c.prepareStatement(SQL_HAS_CAUGHT)) {
+            ps.setString(1, playerId.toString());
+            ps.setString(2, fishKey);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        }
     }
 }
 

@@ -102,6 +102,21 @@ public class LongHardFish extends JavaPlugin {
         // Key used by GuiItemSlot to lock icons in place
         NamespacedKey immovableKey = new NamespacedKey(this, "immovable");
 
+        FishDexFishSelector.ProgressLookup progressLookup = (playerId, fishKey) -> {
+            try {
+                if (db.hasCaught(playerId, fishKey.getKey())) {
+                    return FishDexFishSelector.Progress.CAUGHT;
+                }
+                if (db.hasDropSeen(playerId, fishKey.getKey())) {
+                    return FishDexFishSelector.Progress.SEEN;
+                }
+                return FishDexFishSelector.Progress.UNSEEN;
+            } catch (Exception e) {
+                getLogger().warning("Progress lookup failed for " + fishKey + ": " + e.getMessage());
+                return FishDexFishSelector.Progress.UNSEEN;
+            }
+        };
+
         // IMPORTANT: make the mask back up the player's inventory *before* we start writing icons to it
         BiConsumer<Player, Inventory> mask = (p, inv) -> {
             try {
@@ -120,7 +135,8 @@ public class LongHardFish extends JavaPlugin {
                 modelMap::get,   // ModelLookup
                 distMap::get,    // DistributionLookup (rarity)
                 () -> modelMap.keySet(), // all fish ids for paging
-                tierMap::get     // tier lookup
+                tierMap::get,     // tier lookup
+                progressLookup
         );
 
         // Register GUI listeners AFTER fishDex exists. Only register ONCE (with invBackup).

@@ -135,7 +135,7 @@ public final class FishDexCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        selector.open(p, target);
+        selector.open(p, target, true);
         return true;
     }
 

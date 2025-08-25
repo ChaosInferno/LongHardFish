@@ -13,6 +13,7 @@ public interface Database extends AutoCloseable {
         void init() throws Exception;                       // create tables
         void recordCatch(UUID playerId, String fishKey, @Nullable String displayName) throws Exception;
         void markDropSeen(UUID playerId, String fishKey, @Nullable String displayName) throws Exception;
+        boolean hasCaught(java.util.UUID playerId, String fishKey) throws java.sql.SQLException;
 
         // (optional helpers)
         Map<String,Integer> topFish(UUID playerId, int limit) throws Exception;
