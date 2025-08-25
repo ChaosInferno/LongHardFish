@@ -3,6 +3,8 @@ package org.aincraft.gui;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.aincraft.container.FishDistribution;
 import org.aincraft.container.FishEnvironment;
 import org.aincraft.container.FishModel;
@@ -37,6 +39,7 @@ public class FishDexFishSelector {
     public interface TierLookup { Integer get(NamespacedKey fishId); }
     public enum Progress { UNSEEN, SEEN, CAUGHT }
     public interface ProgressLookup { Progress get(java.util.UUID playerId, NamespacedKey fishId); }
+    public interface CaughtCountLookup { int get(java.util.UUID playerId, NamespacedKey fishId); }
 
     /** Holder for the GUI so we can recognize it and store page mapping + metadata. */
     public static final class DexHolder implements InventoryHolder {
@@ -63,9 +66,10 @@ public class FishDexFishSelector {
             DistributionLookup distributionLookup,
             Supplier<Collection<NamespacedKey>> allFishIds,
             TierLookup tierLookup,
-            ProgressLookup progressLookup
+            ProgressLookup progressLookup,
+            CaughtCountLookup caughtCountLookup
     ) {
-        return new FishDexFishSelector(plugin, immovableKey, maskApplier, envLookup, modelLookup, distributionLookup, allFishIds, tierLookup, progressLookup);
+        return new FishDexFishSelector(plugin, immovableKey, maskApplier, envLookup, modelLookup, distributionLookup, allFishIds, tierLookup, progressLookup, caughtCountLookup);
     }
 
     private final JavaPlugin plugin;
@@ -77,6 +81,7 @@ public class FishDexFishSelector {
     private final Supplier<Collection<NamespacedKey>> allFishIds; // enables page-fill
     private final TierLookup tierLookup;
     private final ProgressLookup progressLookup;
+    private final CaughtCountLookup caughtCountLookup;
     private static final String NAV_EMPTY_TEX = "icons/empty";
 
     private static final String NS = "longhardfish";
@@ -173,7 +178,8 @@ public class FishDexFishSelector {
             DistributionLookup distributionLookup,
             Supplier<Collection<NamespacedKey>> allFishIds,
             TierLookup tierLookup,
-            ProgressLookup progressLookup
+            ProgressLookup progressLookup,
+            CaughtCountLookup caughtCountLookup
     ) {
         this.plugin = plugin;
         this.IMMOVABLE_KEY = immovableKey;
@@ -184,6 +190,7 @@ public class FishDexFishSelector {
         this.allFishIds = allFishIds;
         this.tierLookup = tierLookup;
         this.progressLookup = progressLookup;
+        this.caughtCountLookup = caughtCountLookup;
     }
 
     /** Expose plugin so listener can schedule reopen on click. */
@@ -204,13 +211,20 @@ public class FishDexFishSelector {
         if (maskApplier != null) maskApplier.accept(player, gui);
 
         // Background/offset art
-        putIcon(gui, 9, fishId.getKey() + "-offset");
+        String baseOffset = fishId.getKey() + "-offset";
+        String offsetTex  = offsetTextureForProgress(player, fishId, baseOffset);
+        putIcon(gui, 9, offsetTex);
         hideTooltipTop(gui, 9);
 
         // Resolve data
         FishEnvironment env = (envLookup != null) ? envLookup.get(fishId) : null;
         FishModel model       = (modelLookup != null) ? modelLookup.get(fishId) : null;
         FishDistribution dist = (distributionLookup != null) ? distributionLookup.get(fishId) : null;
+
+        Progress progress = (progressLookup != null)
+                ? progressLookup.get(player.getUniqueId(), fishId)
+                : Progress.CAUGHT; // default to fully known
+        boolean unseen = (progress == Progress.UNSEEN);
 
         // ===== Fish list & paging =====
         holder.slotToFish.clear();
@@ -233,8 +247,11 @@ public class FishDexFishSelector {
             for (int i = 0; i < FISH_GRID_SLOTS.length && (start + i) < sorted.size(); i++) {
                 NamespacedKey idOnPage = sorted.get(start + i);
                 FishModel fm = modelLookup.get(idOnPage);
+                Progress pgr = (progressLookup != null)
+                        ? progressLookup.get(player.getUniqueId(), idOnPage)
+                        : Progress.CAUGHT;
 
-                String baseTex = idOnPage.getKey(); // your per-fish model key
+                String baseTex = idOnPage.getKey().toLowerCase(Locale.ENGLISH);
                 if (baseTex != null && !baseTex.isEmpty()) {
                     int guiSlot = FISH_GRID_SLOTS[i];
 
@@ -243,7 +260,7 @@ public class FishDexFishSelector {
 
                     putIcon(gui, guiSlot, texToUse);
                     holder.slotToFish.put(guiSlot, idOnPage);
-                    applyFishTooltip(gui, guiSlot, fm);
+                    applyFishTooltip(gui, guiSlot, fm, pgr);
                 }
             }
             // Page indicator (uses fish-menu_(pageNumber))
@@ -253,16 +270,18 @@ public class FishDexFishSelector {
 
         } else {
             // No paging (fallback)
-            String baseTex = fishId.getKey();
+            String baseTex = fishId.getKey().toLowerCase(Locale.ENGLISH);
             if (baseTex != null && !baseTex.isEmpty()) {
                 int slot = FISH_GRID_SLOTS[0];
 
                 // NEW: pick texture by progress
                 String texToUse = textureForProgress(player, fishId, baseTex);
 
+                FishModel fm = model;
+                Progress pgr = progress;
                 putIcon(gui, slot, texToUse);
                 holder.slotToFish.put(slot, fishId);
-                applyFishTooltip(gui, slot, model);
+                applyFishTooltip(gui, slot, model, pgr);
             }
             pageIndex = (model != null) ? Math.max(0, (model.getModelNumber() - 1) / PAGE_SIZE) : 0;
             putIcon(gui, Math.min(6, pageIndex), "icons/fish-menu_" + (pageIndex + 1));
@@ -277,21 +296,21 @@ public class FishDexFishSelector {
         holder.pageCount = pageCount;
 
         // ===== Time & Moon =====
-        placeTimeIconsForFish(gui, env);
-        placeMoonIconsForFish(gui, player, env);
+        placeTimeIconsForFish(gui, env, unseen);
+        placeMoonIconsForFish(gui, player, env, unseen);
 
         // ===== Environment groups + flags (with tooltips) =====
-        placeEnvironmentGroupsForFish(player, env);
-        placeFlags(player, env);
+        placeEnvironmentGroupsForFish(player, env, unseen);
+        placeFlags(player, env, unseen);
 
         // ===== Rarity (slot 45) =====
-        placeRarityIcon(gui, dist);
+        placeRarityIcon(gui, dist, unseen);
 
         // ===== Tier badge (player main(1,0)) =====
-        placeTierIcon(player, fishId);
+        placeTierIcon(player, fishId, progress);
 
         // ===== Description gem (tooltip with 3 lines) =====
-        placeDescriptionGem(player, model);
+        placeDescriptionGem(player, fishId, model, progress);
 
         // ===== Nav buttons (textures unchanged; tooltips restored; disable with _empty on edges) =====
         placeNavButtons(player, pageIndex, pageCount);
@@ -303,53 +322,73 @@ public class FishDexFishSelector {
     }
 
     // ===== Time & moon =====
-    private void placeTimeIconsForFish(Inventory gui, FishEnvironment env) {
-        Set<FishTimeCycle> allowed = EnumSet.noneOf(FishTimeCycle.class);
-        if (env == null || env.getEnvironmentTimes() == null || env.getEnvironmentTimes().isEmpty()) {
-            allowed.addAll(EnumSet.allOf(FishTimeCycle.class));
-        } else {
-            env.getEnvironmentTimes().forEach((t, weight) -> {
-                if (weight != null && weight > 0d) allowed.add(t);
-            });
-        }
+    private void placeTimeIconsForFish(Inventory gui, FishEnvironment env, boolean unseen) {
         for (FishTimeCycle t : List.of(FishTimeCycle.DAWN, FishTimeCycle.DAY, FishTimeCycle.EVENING, FishTimeCycle.NIGHT)) {
             Integer slot = TIME_SLOTS.get(t);
             String base = TIME_ICON_SUFFIX.get(t);
             if (slot == null || base == null) continue;
-            putIcon(gui, slot, allowed.contains(t) ? base : (base + "_empty"));
+
+            String tex;
+            if (unseen) {
+                tex = base + "_empty"; // 1) unseen => always empty
+            } else {
+                // existing logic
+                boolean allowed;
+                if (env == null || env.getEnvironmentTimes() == null || env.getEnvironmentTimes().isEmpty()) {
+                    allowed = true;
+                } else {
+                    Double w = env.getEnvironmentTimes().get(t);
+                    allowed = (w != null && w > 0d);
+                }
+                tex = allowed ? base : (base + "_empty");
+            }
+            putIcon(gui, slot, tex);
             hideTooltipTop(gui, slot);
         }
     }
 
-    private void placeMoonIconsForFish(Inventory gui, Player player, FishEnvironment env) {
+    private void placeMoonIconsForFish(Inventory gui, Player player, FishEnvironment env, boolean unseen) {
         Set<FishMoonCycle> allowed = EnumSet.noneOf(FishMoonCycle.class);
-        if (env == null || env.getEnvironmentMoons() == null || env.getEnvironmentMoons().isEmpty()) {
-            allowed.addAll(EnumSet.allOf(FishMoonCycle.class));
-        } else {
-            env.getEnvironmentMoons().forEach((m, weight) -> {
-                if (weight != null && weight > 0d) allowed.add(m);
-            });
+        if (!unseen) {
+            if (env == null || env.getEnvironmentMoons() == null || env.getEnvironmentMoons().isEmpty()) {
+                allowed.addAll(EnumSet.allOf(FishMoonCycle.class));
+            } else {
+                env.getEnvironmentMoons().forEach((m, weight) -> {
+                    if (weight != null && weight > 0d) allowed.add(m);
+                });
+            }
         }
         int i = 0;
         for (FishMoonCycle moon : MOON_ORDER) {
             String base = MOON_ICON_SUFFIX.get(moon);
             if (base == null) { i++; continue; }
-            String suffix = allowed.contains(moon) ? base : (base + "_empty");
+
+            String suffix = unseen ? (base + "_empty")
+                    : (allowed.contains(moon) ? base : (base + "_empty"));
 
             if      (i == 0) { putIcon(gui, 35, suffix);                     hideTooltipTop(gui, 35); }
             else if (i == 1) { putIcon(gui, 44, suffix);                     hideTooltipTop(gui, 44); }
-            else if (i == 2) { putPlayerIconHotbar(player, 8, suffix);      hideTooltipHotbar(player, 8); }
-            else if (i == 3) { putPlayerIconMain(player, 0, 7, suffix);  hideTooltipMain(player, 0, 7); }
+            else if (i == 2) { putPlayerIconHotbar(player, 8, suffix);       hideTooltipHotbar(player, 8); }
+            else if (i == 3) { putPlayerIconMain(player, 0, 7, suffix);      hideTooltipMain(player, 0, 7); }
             else if (i == 4) { putIcon(gui, 53, suffix);                     hideTooltipTop(gui, 53); }
-            else if (i == 5) { putPlayerIconMain(player, 1, 8, suffix);  hideTooltipMain(player, 1, 8); }
-            else if (i == 6) { putPlayerIconMain(player, 0, 6, suffix);  hideTooltipMain(player, 0, 6); }
-            else if (i == 7) { putPlayerIconMain(player, 0, 8, suffix);  hideTooltipMain(player, 0, 8); }
+            else if (i == 5) { putPlayerIconMain(player, 1, 8, suffix);      hideTooltipMain(player, 1, 8); }
+            else if (i == 6) { putPlayerIconMain(player, 0, 6, suffix);      hideTooltipMain(player, 0, 6); }
+            else if (i == 7) { putPlayerIconMain(player, 0, 8, suffix);      hideTooltipMain(player, 0, 8); }
             i++;
         }
     }
 
     // ===== Environment groups (icons + tooltips) =====
-    private void placeEnvironmentGroupsForFish(Player player, FishEnvironment env) {
+    private void placeEnvironmentGroupsForFish(Player player, FishEnvironment env, boolean unseen) {
+        if (unseen) {
+            for (EnvGroup g : ENV_GROUPS) {
+                putPlayerIconMain(player, g.row, g.col, g.iconBase + "_empty");
+                setMainSlotTooltip(player, g.row, g.col, "Location unknown", null); // 2)
+            }
+            return;
+        }
+
+        // existing (seen/caught) logic
         Set<String> fishBiomes = new HashSet<>();
         if (env != null && env.getEnvironmentBiomes() != null) {
             env.getEnvironmentBiomes().forEach((biome, weight) -> {
@@ -365,16 +404,13 @@ public class FishDexFishSelector {
             putPlayerIconMain(player, g.row, g.col, suffix);
 
             if (found) {
-                // Intersect and humanize the biome names for the lore (no dashes, no group title)
                 List<String> lines = g.biomeNames.stream()
                         .filter(fishBiomes::contains)
-                        .map(this::humanizeBiome)  // "WARM_OCEAN" -> "Warm Ocean"
+                        .map(this::humanizeBiome)
                         .toList();
-
                 setMainSlotTooltip(player, g.row, g.col, "Can be found in:", toComponents(lines));
             } else {
-                // Friendly group name for the "not found" message
-                String groupLabel = friendlyGroupName(g.iconBase); // "env-warm-oceans" -> "warm oceans"
+                String groupLabel = friendlyGroupName(g.iconBase);
                 setMainSlotTooltip(player, g.row, g.col, "Not found in " + groupLabel, null);
             }
         }
@@ -408,12 +444,15 @@ public class FishDexFishSelector {
     }
 
     // ===== Flags (rain required) + tooltip =====
-    private void placeFlags(Player player, FishEnvironment env) {
+    private void placeFlags(Player player, FishEnvironment env, boolean unseen) {
+        if (unseen) {
+            putPlayerIconMain(player, 0, 5, "unknown");
+            setMainSlotTooltip(player, 0, 5, "Unknown", null);
+            return;
+        }
         boolean rainReq = env != null && Boolean.TRUE.equals(env.getRainRequired());
         String suffix = rainReq ? "icons/rainy-icon" : "icons/sunny-icon";
         putPlayerIconMain(player, 0, 5, suffix);
-
-        // Tooltip for the flag
         setMainSlotTooltip(
                 player, 0, 5,
                 rainReq ? "Rain required" : "Can be found without rain",
@@ -422,14 +461,18 @@ public class FishDexFishSelector {
     }
 
     // ===== Tier badge =====
-    private void placeTierIcon(Player player, NamespacedKey fishId) {
-        Integer tier = (tierLookup != null) ? tierLookup.get(fishId) : null;
-        String suffix = iconSuffixForTier(tier);
+    private void placeTierIcon(Player player, NamespacedKey fishId, Progress progress) {
+        String suffix;
+        if (progress == Progress.UNSEEN) {
+            suffix = "icons/unknown-star"; // 3)
+        } else {
+            Integer tier = (tierLookup != null) ? tierLookup.get(fishId) : null;
+            suffix = iconSuffixForTier(tier);
+        }
         putPlayerIconMain(player, 1, 0, suffix);
         hideTooltipMain(player, 1, 0);
-        // Optional tooltip:
-        // setMainSlotTooltip(player, 1, 0, "Tier " + ((tier == null) ? 1 : tier), null);
     }
+
     private static String iconSuffixForTier(Integer tier) {
         if (tier == null) return "icons/1-star";
         switch (tier) {
@@ -441,20 +484,42 @@ public class FishDexFishSelector {
         }
     }
 
-    // ===== Description gem with 3 wrapped lines =====
-    // ===== Description gem with wrapped description; name as display title =====
-    private void placeDescriptionGem(Player player, FishModel model) {
-        // keep the same icon
+    private void placeDescriptionGem(Player player, NamespacedKey fishId, FishModel model, Progress progress) {
+        if (progress != Progress.CAUGHT) {
+            // Not caught: dead gem + short message
+            putPlayerIconMain(player, 0, 4, "icons/description-gem-icon_dead");
+            String title = (progress == Progress.UNSEEN)
+                    ? "Unknown"
+                    : "Catch this fish to get more info";
+            setMainSlotTooltip(player, 0, 4, title, null);
+            return;
+        }
+
+        // Caught: normal gem + name + "Total Caught: X" (green, not italic) + description
         putPlayerIconMain(player, 0, 4, "icons/description-gem-icon");
 
         String name = (model != null && model.getName() != null) ? model.getName() : "Unknown Fish";
         String desc = (model != null && model.getDescription() != null) ? model.getDescription() : "";
 
-        // 3 lines, ~35 chars per line (tweak if needed)
-        List<String> wrapped = wrapToMaxLines(desc, 3, 40);
+        int total = 0;
+        if (caughtCountLookup != null && player != null && fishId != null) {
+            try {
+                total = caughtCountLookup.get(player.getUniqueId(), fishId);
+            } catch (Exception ignored) {}
+        }
 
-        // Set the display name to the fish name, and the lore to the wrapped description lines
-        setMainSlotTooltip(player, 0, 4, name, toComponents(wrapped));
+        // Build lore as Components
+        java.util.List<Component> lore = new java.util.ArrayList<>();
+        lore.add(Component.text("Total Caught: " + total)
+                .color(NamedTextColor.GREEN)
+                .decoration(TextDecoration.ITALIC, false)); // <- not italic
+
+        for (String line : wrapToMaxLines(desc, 3, 40)) {
+            lore.add(Component.text(line)); // keep default styling for description
+            // (If you also want description non-italic, add .decoration(TextDecoration.ITALIC, false) here too)
+        }
+
+        setMainSlotTooltip(player, 0, 4, name, lore);
     }
 
 
@@ -506,7 +571,12 @@ public class FishDexFishSelector {
             default:        return "icons/rarity-common";
         }
     }
-    private void placeRarityIcon(Inventory gui, FishDistribution dist) {
+
+    private void placeRarityIcon(Inventory gui, FishDistribution dist, boolean unseen) {
+        if (unseen) {
+            gui.setItem(45, null); // 4) disappear entirely
+            return;
+        }
         String suffix = iconSuffixForRarity(dist != null ? dist.getRarity() : null);
         putIcon(gui, 45, suffix);
         hideTooltipTop(gui, 45);
@@ -516,16 +586,23 @@ public class FishDexFishSelector {
         return String.format("%03d", n);
     }
 
-    private void applyFishTooltip(Inventory gui, int slot, FishModel fm) {
-        if (fm == null) return;
+    private void applyFishTooltip(Inventory gui, int slot, FishModel fm, Progress pgr) {
         ItemStack stack = gui.getItem(slot);
         if (stack == null) return;
         ItemMeta meta = stack.getItemMeta();
         if (meta == null) return;
 
-        meta.displayName(Component.text(fm.getName()));
-        meta.lore(List.of(Component.text("No. " + modelNo3(fm.getModelNumber()))));
+        String title = (pgr == Progress.CAUGHT && fm != null && fm.getName() != null)
+                ? fm.getName()
+                : "???";
 
+        List<Component> lore = null;
+        if (fm != null) {
+            lore = List.of(Component.text("No. " + modelNo3(fm.getModelNumber())));
+        }
+
+        meta.displayName(Component.text(title));
+        meta.lore(lore);
         stack.setItemMeta(meta);
         gui.setItem(slot, stack);
     }
@@ -675,11 +752,27 @@ public class FishDexFishSelector {
                 return "unknown";
             case SEEN:
                 // per-fish “seen but not caught” variant
-                return baseTex + "_UD";
+                return baseTex + "_ud";
             case CAUGHT:
             default:
                 return baseTex;
         }
     }
 
+    private String offsetTextureForProgress(Player player, NamespacedKey fishId, String baseOffsetTex) {
+        if (progressLookup == null) return baseOffsetTex;
+        Progress p = progressLookup.get(player.getUniqueId(), fishId);
+        if (p == null) return baseOffsetTex;
+        switch (p) {
+            case UNSEEN: return "unknown-offset";
+            case SEEN:   return baseOffsetTex + "_ud"; // ensure this file exists in the pack
+            case CAUGHT:
+            default:     return baseOffsetTex;
+        }
+    }
+
+    private static Key texKey(String path) {
+        String safe = (path == null ? "" : path).toLowerCase(java.util.Locale.ROOT).replace(' ', '_');
+        return Key.key(NS, safe);
+    }
 }

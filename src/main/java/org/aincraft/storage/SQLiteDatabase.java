@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
+
 import org.sqlite.SQLiteDataSource;
 
 public final class SQLiteDatabase implements Database, AutoCloseable {
@@ -16,24 +17,24 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
     // --- SQL DDL ---
     private static final String DDL_PLAYERS = """
       CREATE TABLE IF NOT EXISTS players (
-        player_uuid TEXT PRIMARY KEY,
+        player_uuid   TEXT PRIMARY KEY,
         first_seen_at INTEGER NOT NULL DEFAULT (unixepoch())
       )
       """;
 
     private static final String DDL_FISH = """
       CREATE TABLE IF NOT EXISTS fish (
-        fish_key TEXT PRIMARY KEY,
+        fish_key     TEXT PRIMARY KEY,
         display_name TEXT
       )
       """;
 
     private static final String DDL_STATS = """
       CREATE TABLE IF NOT EXISTS player_fish_stats (
-        player_uuid   TEXT NOT NULL,
-        fish_key      TEXT NOT NULL,
-        caught_count  INTEGER NOT NULL DEFAULT 0,
-        drop_seen     INTEGER NOT NULL DEFAULT 0,
+        player_uuid    TEXT NOT NULL,
+        fish_key       TEXT NOT NULL,
+        caught_count   INTEGER NOT NULL DEFAULT 0,
+        drop_seen      INTEGER NOT NULL DEFAULT 0,
         last_caught_at INTEGER,
         last_drop_at   INTEGER,
         PRIMARY KEY (player_uuid, fish_key),
@@ -42,41 +43,45 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
       )
       """;
 
-    private static final String IDX_STATS_PLAYER = "CREATE INDEX IF NOT EXISTS idx_stats_player ON player_fish_stats(player_uuid)";
-    private static final String IDX_STATS_FISH   = "CREATE INDEX IF NOT EXISTS idx_stats_fish   ON player_fish_stats(fish_key)";
+    private static final String IDX_STATS_PLAYER = """
+      CREATE INDEX IF NOT EXISTS idx_stats_player ON player_fish_stats(player_uuid)
+      """;
+
+    private static final String IDX_STATS_FISH = """
+      CREATE INDEX IF NOT EXISTS idx_stats_fish ON player_fish_stats(fish_key)
+      """;
 
     // --- SQL UPSERTS / QUERIES ---
     private static final String SQL_INSERT_PLAYER_IF_NEEDED =
             "INSERT OR IGNORE INTO players(player_uuid) VALUES (?)";
 
-    // Keep fish display name fresh if we get a non-null name later
     private static final String SQL_UPSERT_FISH = """
-    INSERT INTO fish (fish_key, display_name) VALUES (?, ?)
-    ON CONFLICT(fish_key) DO UPDATE SET
-      display_name = COALESCE(excluded.display_name, display_name)
-    """;
+      INSERT INTO fish (fish_key, display_name) VALUES (?, ?)
+      ON CONFLICT(fish_key) DO UPDATE SET
+        display_name = COALESCE(excluded.display_name, display_name)
+      """;
 
     private static final String SQL_UPSERT_FISH_NAME = """
-     INSERT INTO fish (fish_key, display_name) VALUES (?, ?)
-     ON CONFLICT(fish_key) DO UPDATE SET
-     display_name = excluded.display_name
-  """;
+      INSERT INTO fish (fish_key, display_name) VALUES (?, ?)
+      ON CONFLICT(fish_key) DO UPDATE SET
+        display_name = excluded.display_name
+      """;
 
     private static final String SQL_UPSERT_CATCH = """
-  INSERT INTO player_fish_stats (player_uuid, fish_key, caught_count, last_caught_at)
-  VALUES (?, ?, 1, unixepoch())
-  ON CONFLICT(player_uuid, fish_key) DO UPDATE SET
-    caught_count   = caught_count + 1,
-    last_caught_at = unixepoch()
-  """;
+      INSERT INTO player_fish_stats (player_uuid, fish_key, caught_count, last_caught_at)
+      VALUES (?, ?, 1, unixepoch())
+      ON CONFLICT(player_uuid, fish_key) DO UPDATE SET
+        caught_count   = caught_count + 1,
+        last_caught_at = unixepoch()
+      """;
 
     private static final String SQL_UPSERT_DROP_SEEN = """
-  INSERT INTO player_fish_stats (player_uuid, fish_key, drop_seen, last_drop_at)
-  VALUES (?, ?, 1, unixepoch())
-  ON CONFLICT(player_uuid, fish_key) DO UPDATE SET
-    drop_seen   = 1,
-    last_drop_at = unixepoch()
-  """;
+      INSERT INTO player_fish_stats (player_uuid, fish_key, drop_seen, last_drop_at)
+      VALUES (?, ?, 1, unixepoch())
+      ON CONFLICT(player_uuid, fish_key) DO UPDATE SET
+        drop_seen   = 1,
+        last_drop_at = unixepoch()
+      """;
 
     private static final String SQL_TOP_FISH = """
       SELECT COALESCE(f.display_name, p.fish_key) AS name, p.caught_count
@@ -95,23 +100,27 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
       """;
 
     private static final String SQL_HAS_CAUGHT = """
-  SELECT 1
-  FROM player_fish_stats
-  WHERE player_uuid = ? AND fish_key = ? AND caught_count > 0
-  LIMIT 1
-  """;
+      SELECT 1
+      FROM player_fish_stats
+      WHERE player_uuid = ? AND fish_key = ? AND caught_count > 0
+      LIMIT 1
+      """;
+
+    private static final String SQL_SELECT_CAUGHT_COUNT = """
+      SELECT caught_count
+      FROM player_fish_stats
+      WHERE player_uuid = ? AND fish_key = ?
+      LIMIT 1
+      """;
 
     public SQLiteDatabase(Path dbPath) throws SQLException {
         this.dbPath = dbPath;
-        // Ensure parent directory exists
         try {
             Files.createDirectories(dbPath.getParent());
         } catch (Exception e) {
             throw new SQLException("Failed to create data folder: " + e.getMessage(), e);
         }
-
         SQLiteDataSource s = new SQLiteDataSource();
-        // You can also add ?busy_timeout=5000 in the URL; we set PRAGMAs in init()
         s.setUrl("jdbc:sqlite:" + dbPath.toAbsolutePath());
         this.ds = s;
     }
@@ -119,7 +128,6 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
     @Override
     public void init() throws SQLException {
         try (Connection c = ds.getConnection(); Statement st = c.createStatement()) {
-            // Reasonable defaults for plugins
             st.execute("PRAGMA foreign_keys = ON");
             st.execute("PRAGMA journal_mode = WAL");
             st.execute("PRAGMA synchronous = NORMAL");
@@ -203,7 +211,6 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
 
     @Override
     public Map<String, Integer> topFish(UUID playerId, int limit) throws SQLException {
-
         try (Connection c = ds.getConnection();
              PreparedStatement ps = c.prepareStatement(SQL_TOP_FISH)) {
             ps.setString(1, playerId.toString());
@@ -231,6 +238,31 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
     }
 
     @Override
+    public boolean hasCaught(UUID playerId, String fishKey) throws SQLException {
+        try (Connection c = ds.getConnection();
+             PreparedStatement ps = c.prepareStatement(SQL_HAS_CAUGHT)) {
+            ps.setString(1, playerId.toString());
+            ps.setString(2, fishKey);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
+
+    @Override
+    public int caughtCount(UUID playerId, String fishKey) throws SQLException {
+        try (Connection c = ds.getConnection();
+             PreparedStatement ps = c.prepareStatement(SQL_SELECT_CAUGHT_COUNT)) {
+            ps.setString(1, playerId.toString());
+            ps.setString(2, fishKey);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) return rs.getInt("caught_count");
+                return 0;
+            }
+        }
+    }
+
+    @Override
     public void refreshFishNames(Map<String, String> keyToName) throws SQLException {
         try (Connection c = ds.getConnection()) {
             c.setAutoCommit(false);
@@ -252,26 +284,12 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
         }
     }
 
-    public java.sql.Connection connection() throws java.sql.SQLException {
+    public Connection connection() throws SQLException {
         return ds.getConnection();
     }
 
     @Override
     public void close() {
-        // SQLiteDataSource doesn’t need explicit close; nothing to do here.
-        // If you switch to a pooled DataSource, close it here.
-    }
-
-    @Override
-    public boolean hasCaught(UUID playerId, String fishKey) throws SQLException {
-        try (Connection c = ds.getConnection();
-             PreparedStatement ps = c.prepareStatement(SQL_HAS_CAUGHT)) {
-            ps.setString(1, playerId.toString());
-            ps.setString(2, fishKey);
-            try (ResultSet rs = ps.executeQuery()) {
-                return rs.next();
-            }
-        }
+        // SQLiteDataSource doesn’t need explicit close.
     }
 }
-

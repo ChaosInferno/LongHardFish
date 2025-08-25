@@ -103,17 +103,34 @@ public class LongHardFish extends JavaPlugin {
         NamespacedKey immovableKey = new NamespacedKey(this, "immovable");
 
         FishDexFishSelector.ProgressLookup progressLookup = (playerId, fishKey) -> {
+            String keyOnly    = fishKey.getKey();      // "clownfish"
+            String namespaced = fishKey.toString();    // "longhardfish:clownfish"
             try {
-                if (db.hasCaught(playerId, fishKey.getKey())) {
-                    return FishDexFishSelector.Progress.CAUGHT;
-                }
-                if (db.hasDropSeen(playerId, fishKey.getKey())) {
-                    return FishDexFishSelector.Progress.SEEN;
-                }
-                return FishDexFishSelector.Progress.UNSEEN;
+                // If your Database interface exposes these, use db directly:
+                boolean caught =
+                        db.hasCaught(playerId, namespaced) || db.hasCaught(playerId, keyOnly);
+                if (caught) return FishDexFishSelector.Progress.CAUGHT;
+
+                boolean seen =
+                        db.hasDropSeen(playerId, namespaced) || db.hasDropSeen(playerId, keyOnly);
+                return seen ? FishDexFishSelector.Progress.SEEN : FishDexFishSelector.Progress.UNSEEN;
+
             } catch (Exception e) {
-                getLogger().warning("Progress lookup failed for " + fishKey + ": " + e.getMessage());
+                getLogger().warning("Progress lookup failed for " + namespaced + ": " + e.getMessage());
                 return FishDexFishSelector.Progress.UNSEEN;
+            }
+        };
+
+        FishDexFishSelector.CaughtCountLookup countLookup = (playerId, fishKey) -> {
+            String keyOnly    = fishKey.getKey();    // e.g. "clownfish"
+            String namespaced = fishKey.toString();  // e.g. "longhardfish:clownfish"
+            try {
+                int n = db.caughtCount(playerId, namespaced);
+                if (n == 0) n = db.caughtCount(playerId, keyOnly);
+                return n;
+            } catch (Exception e) {
+                getLogger().warning("Count lookup failed for " + namespaced + ": " + e.getMessage());
+                return 0;
             }
         };
 
@@ -136,7 +153,8 @@ public class LongHardFish extends JavaPlugin {
                 distMap::get,    // DistributionLookup (rarity)
                 () -> modelMap.keySet(), // all fish ids for paging
                 tierMap::get,     // tier lookup
-                progressLookup
+                progressLookup,
+                countLookup
         );
 
         // Register GUI listeners AFTER fishDex exists. Only register ONCE (with invBackup).
