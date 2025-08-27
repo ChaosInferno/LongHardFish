@@ -16,6 +16,10 @@ commands:
     usage: /lhfgive <item-id> [player] [amount]
     permission: longhardfish.give
     aliases: [ lhf-give, lhfitem, lhf-item ]
+  tacklebox:
+    description: Open the Tackle Box GUI
+    usage: /tacklebox
+    permission: longhardfish.tacklebox
 
 permissions:
   longhardfish.stats:
@@ -23,3 +27,5 @@ permissions:
     default: true
   longhardfish.give:
     default: op
+  longhardfish.tacklebox:
+    default: true
