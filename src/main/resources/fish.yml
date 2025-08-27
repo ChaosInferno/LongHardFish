@@ -1,5 +1,5 @@
 glider-bananafish:
-  name: Glider Bananafish
+  display-name: Glider Bananafish
   rarity: COMMON
   description: Airy yellow glider that skims current crests.
   open-water-required: true
@@ -13,7 +13,7 @@ glider-bananafish:
     RIVER: 0.1
   model: 1
 glider-sturgeon:
-  name: Glider Sturgeon
+  display-name: Glider Sturgeon
   rarity: COMMON
   description: Armored river glider coasting just above silt.
   open-water-required: true
@@ -27,7 +27,7 @@ glider-sturgeon:
     RIVER: 0.1
   model: 2
 glider-chungus:
-  name: Glider Chungus
+  display-display-name: Glider Chungus
   rarity: COMMON
   description: Big-bellied drifter surprisingly light on fins.
   open-water-required: true
@@ -41,7 +41,7 @@ glider-chungus:
     RIVER: 0.1
   model: 3
 glider-gudgeon:
-  name: Glider Gudgeon
+  display-name: Glider Gudgeon
   rarity: COMMON
   description: Tiny dartfish that hitchhikes on ripples.
   open-water-required: true
@@ -55,7 +55,7 @@ glider-gudgeon:
     RIVER: 0.1
   model: 4
 rose-fili:
-  name: Rose Fili
+  display-name: Rose Fili
   rarity: COMMON
   description: Blush-pink sprinter with petal-soft fins.
   open-water-required: true
@@ -72,7 +72,7 @@ rose-fili:
     EVENING: 0.1
   model: 5
 chonkler-pip:
-  name: Chonkler Pip
+  display-name: Chonkler Pip
   rarity: COMMON
   description: A unique fish known as the Chonkler Pip, with distinctive traits and
     behaviors.
@@ -85,7 +85,7 @@ chonkler-pip:
   tier: 1
   model: 6
 mountain-bananafish:
-  name: Mountain Bananafish
+  display-name: Mountain Bananafish
   rarity: COMMON
   description: A unique fish known as the Mountain Bananafish, with distinctive traits
     and behaviors.
@@ -100,7 +100,7 @@ mountain-bananafish:
   tier: 1
   model: 7
 muddy-salmon:
-  name: Muddy Salmon
+  display-name: Muddy Salmon
   rarity: COMMON
   description: A unique fish known as the Muddy Salmon, with distinctive traits and
     behaviors.
@@ -114,7 +114,7 @@ muddy-salmon:
   tier: 1
   model: 8
 tiger-carp:
-  name: Tiger Carp
+  display-name: Tiger Carp
   rarity: COMMON
   description: A unique fish known as the Tiger Carp, with distinctive traits and
     behaviors.
@@ -128,7 +128,7 @@ tiger-carp:
     JUNGLE: 0.1
   model: 9
 tiger-trout:
-  name: Tiger Trout
+  display-name: Tiger Trout
   rarity: COMMON
   description: A unique fish known as the Tiger Trout, with distinctive traits and
     behaviors.
@@ -143,7 +143,7 @@ tiger-trout:
     RIVER: 0.1
   model: 10
 glider-mystelune:
-  name: Glider Mystelune
+  display-name: Glider Mystelune
   rarity: COMMON
   description: A unique fish known as the Glider Mystelune, with distinctive traits
     and behaviors.
@@ -162,7 +162,7 @@ glider-mystelune:
     RIVER: 0.1
   model: 11
 red-tailed-dart:
-  name: Red-tailed Dart
+  display-name: Red-tailed Dart
   rarity: COMMON
   description: A unique fish known as the Red Tailed Dart, with distinctive traits
     and behaviors.
@@ -181,7 +181,7 @@ red-tailed-dart:
     NIGHT: 0.1
   model: 12
 muddy-brugis:
-  name: Muddy Brugis
+  display-name: Muddy Brugis
   rarity: COMMON
   description: A unique fish known as the Muddy Brugis, with distinctive traits and
     behaviors.
@@ -200,7 +200,7 @@ muddy-brugis:
     WAXING_GIBBOUS: 0.1
   model: 13
 mossy-mudskip:
-  name: Mossy Mudskip
+  display-name: Mossy Mudskip
   rarity: COMMON
   description: A unique fish known as the Mossy Mudskip, with distinctive traits and
     behaviors.
@@ -216,7 +216,7 @@ mossy-mudskip:
   tier: 1
   model: 14
 sandy-carp:
-  name: Sandy Carp
+  display-name: Sandy Carp
   rarity: COMMON
   description: A unique fish known as the Sandy Carp, with distinctive traits and
     behaviors.
@@ -229,7 +229,7 @@ sandy-carp:
   tier: 1
   model: 15
 muddy-estuary:
-  name: Muddy Estuary
+  display-name: Muddy Estuary
   rarity: COMMON
   description: A unique fish known as the Muddy Estuary, with distinctive traits and
     behaviors.
@@ -245,7 +245,7 @@ muddy-estuary:
     DAY: 0.1
   model: 16
 muddy-bass:
-  name: Muddy Bass
+  display-name: Muddy Bass
   rarity: COMMON
   description: A unique fish known as the Muddy Bass, with distinctive traits and
     behaviors.
@@ -261,7 +261,7 @@ muddy-bass:
     RIVER: 0.1
   model: 17
 bloodfin-phyra:
-  name: Bloodfin Phyra
+  display-name: Bloodfin Phyra
   rarity: COMMON
   description: A unique fish known as the Bloodfin Phyra, with distinctive traits
     and behaviors.
@@ -281,7 +281,7 @@ bloodfin-phyra:
     NIGHT: 0.1
   model: 18
 owhmiewemoa-shin:
-  name: Owhmiewemoa Shin
+  display-name: Owhmiewemoa Shin
   rarity: UNCOMMON
   description: A unique fish known as the Owhmiewemoa Shin, with distinctive traits
     and behaviors.
@@ -296,7 +296,7 @@ owhmiewemoa-shin:
     RIVER: 0.1
   model: 19
 wandering-ptidiwhiskir:
-  name: Wandering Ptidiwhiskir
+  display-name: Wandering Ptidiwhiskir
   rarity: UNCOMMON
   description: A unique fish known as the Wandering Ptidiwhiskir, with distinctive
     traits and behaviors.
@@ -313,7 +313,7 @@ wandering-ptidiwhiskir:
     NIGHT: 0.1
   model: 20
 ancient-boopsnoot:
-  name: Ancient Boopsnoot
+  display-name: Ancient Boopsnoot
   rarity: COMMON
   description: A unique fish known as the Ancient Boopsnoot, with distinctive traits
     and behaviors.
@@ -327,7 +327,7 @@ ancient-boopsnoot:
   tier: 1
   model: 21
 ancient-dorado:
-  name: Ancient Dorado
+  display-name: Ancient Dorado
   rarity: COMMON
   description: A unique fish known as the Ancient Dorado, with distinctive traits
     and behaviors.
@@ -341,7 +341,7 @@ ancient-dorado:
   tier: 1
   model: 22
 ancient-elara:
-  name: Ancient Elara
+  display-name: Ancient Elara
   rarity: COMMON
   description: A unique fish known as the Ancient Elara, with distinctive traits and
     behaviors.
@@ -355,7 +355,7 @@ ancient-elara:
   tier: 1
   model: 23
 largemouth-bass:
-  name: Largemouth Bass
+  display-name: Largemouth Bass
   rarity: UNCOMMON
   description: A unique fish known as the Largemouth Bass, with distinctive traits
     and behaviors.
@@ -371,7 +371,7 @@ largemouth-bass:
     EVENING: 0.1
   model: 24
 mossy-goby:
-  name: Mossy Goby
+  display-name: Mossy Goby
   rarity: COMMON
   description: A unique fish known as the Mossy Goby, with distinctive traits and
     behaviors.
@@ -385,7 +385,7 @@ mossy-goby:
   tier: 1
   model: 25
 rising-dancefin:
-  name: Rising Dancefin
+  display-name: Rising Dancefin
   rarity: COMMON
   description: A unique fish known as the Rising Dancefin, with distinctive traits
     and behaviors.
@@ -407,7 +407,7 @@ rising-dancefin:
     WAXING_GIBBOUS: 0.1
   model: 26
 jade-bananafish:
-  name: Jade Bananafish
+  display-name: Jade Bananafish
   rarity: COMMON
   description: A unique fish known as the Jade Bananafish, with distinctive traits
     and behaviors.
@@ -421,7 +421,7 @@ jade-bananafish:
     RIVER: 0.1
   model: 27
 honeykelp-flowfin:
-  name: Honeykelp Flowfin
+  display-name: Honeykelp Flowfin
   rarity: UNCOMMON
   description: A unique fish known as the Honeykelp Flowfin, with distinctive traits
     and behaviors.
@@ -437,7 +437,7 @@ honeykelp-flowfin:
     DAY: 0.1
   model: 28
 broseph-hookfin:
-  name: Broseph Hookfin
+  display-name: Broseph Hookfin
   rarity: COMMON
   description: A unique fish known as the Broseph Hookfin, with distinctive traits
     and behaviors.
@@ -457,7 +457,7 @@ broseph-hookfin:
     WAXING_GIBBOUS: 0.1
   model: 29
 emerald-estuary:
-  name: Emerald Estuary
+  display-name: Emerald Estuary
   rarity: COMMON
   description: A unique fish known as the Emerald Estuary, with distinctive traits
     and behaviors.
@@ -472,7 +472,7 @@ emerald-estuary:
     RIVER: 0.1
   model: 30
 poison-soaked-sensei:
-  name: Poison-soaked Sensei
+  display-name: Poison-soaked Sensei
   rarity: COMMON
   description: A unique fish known as the Poison Soaked Sensei, with distinctive traits
     and behaviors.
@@ -487,7 +487,7 @@ poison-soaked-sensei:
     EVENING: 0.1
   model: 31
 coral-bylowin:
-  name: Coral Bylowin
+  display-name: Coral Bylowin
   rarity: COMMON
   description: A unique fish known as the Coral Bylowin, with distinctive traits and
     behaviors.
@@ -502,7 +502,7 @@ coral-bylowin:
     RIVER: 0.1
   model: 32
 coral-seraphine:
-  name: Coral Seraphine
+  display-name: Coral Seraphine
   rarity: COMMON
   description: A unique fish known as the Coral Seraphine, with distinctive traits
     and behaviors.
@@ -523,7 +523,7 @@ coral-seraphine:
     WAXING_GIBBOUS: 0.1
   model: 33
 loving-gutpike:
-  name: Loving Gutpike
+  display-name: Loving Gutpike
   rarity: COMMON
   description: A unique fish known as the Loving Gutpike, with distinctive traits
     and behaviors.
@@ -538,7 +538,7 @@ loving-gutpike:
     NIGHT: 0.1
   model: 34
 glimmering-bananafish:
-  name: Glimmering Bananafish
+  display-name: Glimmering Bananafish
   rarity: COMMON
   description: A unique fish known as the Glimmering Bananafish, with distinctive
     traits and behaviors.
@@ -552,7 +552,7 @@ glimmering-bananafish:
   tier: 1
   model: 35
 spotted-rhyb:
-  name: Spotted Rhyb
+  display-name: Spotted Rhyb
   rarity: COMMON
   description: A unique fish known as the Spotted Rhyb, with distinctive traits and
     behaviors.
@@ -569,7 +569,7 @@ spotted-rhyb:
     WAXING_CRESCENT: 0.1
   model: 36
 amethyst-riptideon:
-  name: Amethyst Riptideon
+  display-name: Amethyst Riptideon
   rarity: COMMON
   description: A unique fish known as the Amethyst Riptideon, with distinctive traits
     and behaviors.
@@ -584,7 +584,7 @@ amethyst-riptideon:
     DRIPSTONE_CAVES: 0.1
   model: 37
 emerald-crytalanth:
-  name: Emerald Crytalanth
+  display-name: Emerald Crytalanth
   rarity: COMMON
   description: A unique fish known as the Emerald Crytalanth, with distinctive traits
     and behaviors.
@@ -599,7 +599,7 @@ emerald-crytalanth:
     LUSH_CAVES: 0.1
   model: 38
 rainbow-piranha:
-  name: Rainbow Piranha
+  display-name: Rainbow Piranha
   rarity: UNCOMMON
   description: A unique fish known as the Rainbow Piranha, with distinctive traits
     and behaviors.
@@ -614,7 +614,7 @@ rainbow-piranha:
     RIVER: 0.1
   model: 39
 obsidian-bussernut:
-  name: Obsidian Bussernut
+  display-name: Obsidian Bussernut
   rarity: UNCOMMON
   description: A unique fish known as the Obsidian Bussernut, with distinctive traits
     and behaviors.
@@ -630,7 +630,7 @@ obsidian-bussernut:
     NEW_MOON: 0.1
   model: 40
 radiated-klauknbals:
-  name: Radiated Klauknbals
+  display-name: Radiated Klauknbals
   rarity: UNCOMMON
   description: A unique fish known as the Radiated Klauknbals, with distinctive traits
     and behaviors.
@@ -652,7 +652,7 @@ radiated-klauknbals:
     WAXING_GIBBOUS: 0.1
   model: 41
 moonlit-schnozzer:
-  name: Moonlit Schnozzer
+  display-name: Moonlit Schnozzer
   rarity: COMMON
   description: A unique fish known as the Moonlit Schnozzer, with distinctive traits
     and behaviors.
@@ -671,7 +671,7 @@ moonlit-schnozzer:
     NIGHT: 0.1
   model: 42
 prismarine-gutpike:
-  name: Prismarine Gutpike
+  display-name: Prismarine Gutpike
   rarity: COMMON
   description: A unique fish known as the Prismarine Gutpike, with distinctive traits
     and behaviors.
@@ -687,7 +687,7 @@ prismarine-gutpike:
     RIVER: 0.1
   model: 43
 prismarine-kelvorn:
-  name: Prismarine Kelvorn
+  display-name: Prismarine Kelvorn
   rarity: COMMON
   description: A unique fish known as the Prismarine Kelvorn, with distinctive traits
     and behaviors.
@@ -703,7 +703,7 @@ prismarine-kelvorn:
     RIVER: 0.1
   model: 44
 pearlestra:
-  name: Pearlestra
+  display-name: Pearlestra
   rarity: UNCOMMON
   description: A unique fish known as the Pearlestra, with distinctive traits and
     behaviors.
@@ -724,7 +724,7 @@ pearlestra:
     WAXING_CRESCENT: 0.1
   model: 45
 moonlit-boopsnoot:
-  name: Moonlit Boopsnoot
+  display-name: Moonlit Boopsnoot
   rarity: COMMON
   description: A unique fish known as the Moonlit Boopsnoot, with distinctive traits
     and behaviors.
@@ -742,7 +742,7 @@ moonlit-boopsnoot:
     NIGHT: 0.1
   model: 46
 cerulean-riptideon:
-  name: Cerulean Riptideon
+  display-name: Cerulean Riptideon
   rarity: COMMON
   description: A unique fish known as the Cerulean Riptideon, with distinctive traits
     and behaviors.
@@ -765,7 +765,7 @@ cerulean-riptideon:
     WAXING_GIBBOUS: 0.1
   model: 47
 oxidized-copper-sturgeon:
-  name: Oxidized-copper Sturgeon
+  display-name: Oxidized-copper Sturgeon
   rarity: UNCOMMON
   description: A unique fish known as the Oxidized Copper Sturgeon, with distinctive
     traits and behaviors.
@@ -781,7 +781,7 @@ oxidized-copper-sturgeon:
     NIGHT: 0.1
   model: 48
 berserker-doomageddon:
-  name: Berserker Doomageddon
+  display-name: Berserker Doomageddon
   rarity: UNCOMMON
   description: A unique fish known as the Berserker Doomageddon, with distinctive
     traits and behaviors.
@@ -799,7 +799,7 @@ berserker-doomageddon:
     RIVER: 0.1
   model: 49
 ecstatic-minsk:
-  name: Ecstatic Minsk
+  display-name: Ecstatic Minsk
   rarity: COMMON
   description: A unique fish known as the Ecstatic Minsk, with distinctive traits
     and behaviors.
@@ -815,7 +815,7 @@ ecstatic-minsk:
     EVENING: 0.1
   model: 50
 tiger-mudjack:
-  name: Tiger Mudjack
+  display-name: Tiger Mudjack
   rarity: COMMON
   description: A unique fish known as the Tiger Mudjack, with distinctive traits and
     behaviors.
@@ -830,7 +830,7 @@ tiger-mudjack:
   tier: 1
   model: 51
 heidifish:
-  name: Heidifish
+  display-name: Heidifish
   rarity: UNCOMMON
   description: A unique fish known as the Heidifish, with distinctive traits and behaviors.
   open-water-required: true
@@ -846,7 +846,7 @@ heidifish:
     WANING_GIBBOUS: 0.1
   model: 52
 sandy-woodskip:
-  name: Sandy Woodskip
+  display-name: Sandy Woodskip
   rarity: COMMON
   description: A unique fish known as the Sandy Woodskip, with distinctive traits
     and behaviors.
@@ -859,7 +859,7 @@ sandy-woodskip:
   tier: 1
   model: 53
 glider-lingcod:
-  name: Glider Lingcod
+  display-name: Glider Lingcod
   rarity: COMMON
   description: A unique fish known as the Glider Lingcod, with distinctive traits
     and behaviors.
@@ -878,7 +878,7 @@ glider-lingcod:
     RIVER: 0.1
   model: 54
 charging-pepet:
-  name: Charging Pepet
+  display-name: Charging Pepet
   rarity: UNCOMMON
   description: A unique fish known as the Charging Pepet, with distinctive traits
     and behaviors.
@@ -900,7 +900,7 @@ charging-pepet:
     WAXING_GIBBOUS: 0.1
   model: 55
 muddy-bream:
-  name: Muddy Bream
+  display-name: Muddy Bream
   rarity: COMMON
   description: A unique fish known as the Muddy Bream, with distinctive traits and
     behaviors.
@@ -914,7 +914,7 @@ muddy-bream:
   tier: 1
   model: 56
 muddy-boopsnoot:
-  name: Muddy Boopsnoot
+  display-name: Muddy Boopsnoot
   rarity: COMMON
   description: A unique fish known as the Muddy Boopsnoot, with distinctive traits
     and behaviors.
@@ -929,7 +929,7 @@ muddy-boopsnoot:
   tier: 1
   model: 57
 arctic-grayling:
-  name: Arctic Grayling
+  display-name: Arctic Grayling
   rarity: COMMON
   description: A unique fish known as the Arctic Grayling, with distinctive traits
     and behaviors.
@@ -943,7 +943,7 @@ arctic-grayling:
   tier: 1
   model: 58
 dark-heidifish:
-  name: Dark Heidifish
+  display-name: Dark Heidifish
   rarity: UNCOMMON
   description: A unique fish known as the Dark Heidifish, with distinctive traits
     and behaviors.
@@ -964,7 +964,7 @@ dark-heidifish:
     WAXING_GIBBOUS: 0.1
   model: 59
 relic-canth:
-  name: Relic Canth
+  display-name: Relic Canth
   rarity: COMMON
   description: A unique fish known as the Relic Canth, with distinctive traits and
     behaviors.
@@ -978,7 +978,7 @@ relic-canth:
   tier: 1
   model: 60
 wavering-puckerfish:
-  name: Wavering Puckerfish
+  display-name: Wavering Puckerfish
   rarity: COMMON
   description: A unique fish known as the Wavering Puckerfish, with distinctive traits
     and behaviors.
@@ -991,7 +991,7 @@ wavering-puckerfish:
   tier: 1
   model: 61
 glider-poppicok:
-  name: Glider Poppicok
+  display-name: Glider Poppicok
   rarity: COMMON
   description: A unique fish known as the Glider Poppicok, with distinctive traits
     and behaviors.
@@ -1010,7 +1010,7 @@ glider-poppicok:
     RIVER: 0.1
   model: 62
 arctic-minnoe:
-  name: Arctic Minnoe
+  display-name: Arctic Minnoe
   rarity: COMMON
   description: A unique fish known as the Arctic Minnoe, with distinctive traits and
     behaviors.
@@ -1023,7 +1023,7 @@ arctic-minnoe:
   tier: 1
   model: 63
 polar-bananafish:
-  name: Polar Bananafish
+  display-name: Polar Bananafish
   rarity: COMMON
   description: A unique fish known as the Polar Bananafish, with distinctive traits
     and behaviors.
@@ -1038,7 +1038,7 @@ polar-bananafish:
   tier: 1
   model: 64
 lonely-minsk:
-  name: Lonely Minsk
+  display-name: Lonely Minsk
   rarity: COMMON
   description: A unique fish known as the Lonely Minsk, with distinctive traits and
     behaviors.
@@ -1053,7 +1053,7 @@ lonely-minsk:
     RIVER: 0.1
   model: 65
 polar-fili:
-  name: Polar Fili
+  display-name: Polar Fili
   rarity: COMMON
   description: A unique fish known as the Polar Fili, with distinctive traits and
     behaviors.
@@ -1073,7 +1073,7 @@ polar-fili:
     WAXING_CRESCENT: 0.1
   model: 66
 arctic-tuna:
-  name: Arctic Tuna
+  display-name: Arctic Tuna
   rarity: COMMON
   description: A unique fish known as the Arctic Tuna, with distinctive traits and
     behaviors.
@@ -1087,7 +1087,7 @@ arctic-tuna:
   tier: 1
   model: 67
 grubshark:
-  name: Grubshark
+  display-name: Grubshark
   rarity: UNCOMMON
   description: A unique fish known as the Grubshark, with distinctive traits and behaviors.
   open-water-required: true
@@ -1104,7 +1104,7 @@ grubshark:
     NIGHT: 0.1
   model: 68
 arctic-horizonfin:
-  name: Arctic Horizonfin
+  display-name: Arctic Horizonfin
   rarity: COMMON
   description: A unique fish known as the Arctic Horizonfin, with distinctive traits
     and behaviors.
@@ -1122,7 +1122,7 @@ arctic-horizonfin:
     RIVER: 0.1
   model: 69
 arctic-mystelune:
-  name: Arctic Mystelune
+  display-name: Arctic Mystelune
   rarity: COMMON
   description: A unique fish known as the Arctic Mystelune, with distinctive traits
     and behaviors.
@@ -1141,7 +1141,7 @@ arctic-mystelune:
     WAXING_CRESCENT: 0.1
   model: 70
 arctic-bylowin:
-  name: Arctic Bylowin
+  display-name: Arctic Bylowin
   rarity: COMMON
   description: A unique fish known as the Arctic Bylowin, with distinctive traits
     and behaviors.
@@ -1159,7 +1159,7 @@ arctic-bylowin:
     EVENING: 0.1
   model: 71
 sand-minnoe:
-  name: Sand Minnoe
+  display-name: Sand Minnoe
   rarity: COMMON
   description: A unique fish known as the Sand Minnoe, with distinctive traits and
     behaviors.
@@ -1172,7 +1172,7 @@ sand-minnoe:
   tier: 1
   model: 72
 frozen-nautivora:
-  name: Frozen Nautivora
+  display-name: Frozen Nautivora
   rarity: UNCOMMON
   description: A unique fish known as the Frozen Nautivora, with distinctive traits
     and behaviors.
@@ -1189,7 +1189,7 @@ frozen-nautivora:
     WAXING_CRESCENT: 0.1
   model: 73
 abraisive-traavelpin:
-  name: Abraisive Traavelpin
+  display-name: Abraisive Traavelpin
   rarity: COMMON
   description: A unique fish known as the Abraisive Traavelpin, with distinctive traits
     and behaviors.
@@ -1208,7 +1208,7 @@ abraisive-traavelpin:
     NIGHT: 0.1
   model: 74
 sahara-poppicok:
-  name: Sahara Poppicok
+  display-name: Sahara Poppicok
   rarity: COMMON
   description: A unique fish known as the Sahara Poppicok, with distinctive traits
     and behaviors.
@@ -1221,7 +1221,7 @@ sahara-poppicok:
   tier: 1
   model: 75
 sky-tilapia:
-  name: Sky Tilapia
+  display-name: Sky Tilapia
   rarity: COMMON
   description: A unique fish known as the Sky Tilapia, with distinctive traits and
     behaviors.
@@ -1236,7 +1236,7 @@ sky-tilapia:
   tier: 1
   model: 76
 glacial-albacore:
-  name: Glacial Albacore
+  display-name: Glacial Albacore
   rarity: COMMON
   description: A unique fish known as the Glacial Albacore, with distinctive traits
     and behaviors.
@@ -1249,7 +1249,7 @@ glacial-albacore:
   tier: 1
   model: 77
 frostbite-fili:
-  name: Frostbite Fili
+  display-name: Frostbite Fili
   rarity: COMMON
   description: A unique fish known as the Frostbite Fili, with distinctive traits
     and behaviors.
@@ -1262,7 +1262,7 @@ frostbite-fili:
   tier: 1
   model: 78
 runic-menhaden:
-  name: Runic Menhaden
+  display-name: Runic Menhaden
   rarity: UNCOMMON
   description: A unique fish known as the Runic Menhaden, with distinctive traits
     and behaviors.
@@ -1283,7 +1283,7 @@ runic-menhaden:
     WAXING_GIBBOUS: 0.1
   model: 79
 moonlit-aruana:
-  name: Moonlit Aruana
+  display-name: Moonlit Aruana
   rarity: COMMON
   description: A unique fish known as the Moonlit Aruana, with distinctive traits
     and behaviors.
@@ -1305,7 +1305,7 @@ moonlit-aruana:
     WAXING_GIBBOUS: 0.1
   model: 80
 glacial-boopsnoot:
-  name: Glacial Boopsnoot
+  display-name: Glacial Boopsnoot
   rarity: COMMON
   description: A unique fish known as the Glacial Boopsnoot, with distinctive traits
     and behaviors.
@@ -1318,7 +1318,7 @@ glacial-boopsnoot:
   tier: 1
   model: 81
 depressed-minsk:
-  name: Depressed Minsk
+  display-name: Depressed Minsk
   rarity: COMMON
   description: A unique fish known as the Depressed Minsk, with distinctive traits
     and behaviors.
@@ -1336,7 +1336,7 @@ depressed-minsk:
     NIGHT: 0.1
   model: 82
 enlightened-albacore:
-  name: Enlightened Albacore
+  display-name: Enlightened Albacore
   rarity: COMMON
   description: A unique fish known as the Enlightened Albacore, with distinctive traits
     and behaviors.
@@ -1351,7 +1351,7 @@ enlightened-albacore:
     DAY: 0.1
   model: 83
 glacial-bananafish:
-  name: Glacial Bananafish
+  display-name: Glacial Bananafish
   rarity: COMMON
   description: A unique fish known as the Glacial Bananafish, with distinctive traits
     and behaviors.
@@ -1366,7 +1366,7 @@ glacial-bananafish:
   tier: 1
   model: 84
 retreating-pepet:
-  name: Retreating Pepet
+  display-name: Retreating Pepet
   rarity: UNCOMMON
   description: A unique fish known as the Retreating Pepet, with distinctive traits
     and behaviors.
@@ -1386,7 +1386,7 @@ retreating-pepet:
     WAXING_GIBBOUS: 0.1
   model: 85
 dormant-doomageddon:
-  name: Dormant Doomageddon
+  display-name: Dormant Doomageddon
   rarity: UNCOMMON
   description: A unique fish known as the Dormant Doomageddon, with distinctive traits
     and behaviors.
@@ -1399,7 +1399,7 @@ dormant-doomageddon:
   tier: 1
   model: 86
 primal-halibut:
-  name: Primal Halibut
+  display-name: Primal Halibut
   rarity: COMMON
   description: A unique fish known as the Primal Halibut, with distinctive traits
     and behaviors.
@@ -1418,7 +1418,7 @@ primal-halibut:
     WAXING_GIBBOUS: 0.1
   model: 87
 blue-jellyjelly:
-  name: Blue Jellyjelly
+  display-name: Blue Jellyjelly
   rarity: COMMON
   description: A unique fish known as the Blue Jellyjelly, with distinctive traits
     and behaviors.
@@ -1433,7 +1433,7 @@ blue-jellyjelly:
   tier: 1
   model: 88
 boreal-tetra:
-  name: Boreal Tetra
+  display-name: Boreal Tetra
   rarity: COMMON
   description: A unique fish known as the Boreal Tetra, with distinctive traits and
     behaviors.
@@ -1449,7 +1449,7 @@ boreal-tetra:
     NIGHT: 0.1
   model: 89
 boreal-squid:
-  name: Boreal Squid
+  display-name: Boreal Squid
   rarity: UNCOMMON
   description: A unique fish known as the Boreal Squid, with distinctive traits and
     behaviors.
@@ -1466,7 +1466,7 @@ boreal-squid:
     NIGHT: 0.1
   model: 90
 voidborn-boopsnoot:
-  name: Voidborn Boopsnoot
+  display-name: Voidborn Boopsnoot
   rarity: COMMON
   description: A unique fish known as the Voidborn Boopsnoot, with distinctive traits
     and behaviors.
@@ -1480,7 +1480,7 @@ voidborn-boopsnoot:
   tier: 1
   model: 91
 boreal-coralspine:
-  name: Boreal Coralspine
+  display-name: Boreal Coralspine
   rarity: COMMON
   description: A unique fish known as the Boreal Coralspine, with distinctive traits
     and behaviors.
@@ -1501,7 +1501,7 @@ boreal-coralspine:
     WAXING_CRESCENT: 0.1
   model: 92
 primal-glydefin:
-  name: Primal Glydefin
+  display-name: Primal Glydefin
   rarity: COMMON
   description: A unique fish known as the Primal Glydefin, with distinctive traits
     and behaviors.
@@ -1519,7 +1519,7 @@ primal-glydefin:
     WAXING_CRESCENT: 0.1
   model: 93
 voidborn-goldberg:
-  name: Voidborn Goldberg
+  display-name: Voidborn Goldberg
   rarity: COMMON
   description: A unique fish known as the Voidborn Goldberg, with distinctive traits
     and behaviors.
@@ -1533,7 +1533,7 @@ voidborn-goldberg:
   tier: 1
   model: 94
 boreal-albacore:
-  name: Boreal Albacore
+  display-name: Boreal Albacore
   rarity: COMMON
   description: A unique fish known as the Boreal Albacore, with distinctive traits
     and behaviors.
@@ -1555,7 +1555,7 @@ boreal-albacore:
     WAXING_GIBBOUS: 0.1
   model: 95
 voidborn-seaglider:
-  name: Voidborn Seaglider
+  display-name: Voidborn Seaglider
   rarity: COMMON
   description: A unique fish known as the Voidborn Seaglider, with distinctive traits
     and behaviors.
@@ -1571,7 +1571,7 @@ voidborn-seaglider:
   tier: 1
   model: 96
 fading-dancefin:
-  name: Fading Dancefin
+  display-name: Fading Dancefin
   rarity: COMMON
   description: A unique fish known as the Fading Dancefin, with distinctive traits
     and behaviors.
@@ -1589,7 +1589,7 @@ fading-dancefin:
     NIGHT: 0.1
   model: 97
 ruined-poppicok:
-  name: Ruined Poppicok
+  display-name: Ruined Poppicok
   rarity: COMMON
   description: A unique fish known as the Ruined Poppicok, with distinctive traits
     and behaviors.
@@ -1603,7 +1603,7 @@ ruined-poppicok:
   tier: 1
   model: 98
 voidborn-minnoe:
-  name: Voidborn Minnoe
+  display-name: Voidborn Minnoe
   rarity: COMMON
   description: A unique fish known as the Voidborn Minnoe, with distinctive traits
     and behaviors.
@@ -1617,7 +1617,7 @@ voidborn-minnoe:
   tier: 1
   model: 99
 primal-mullet:
-  name: Primal Mullet
+  display-name: Primal Mullet
   rarity: UNCOMMON
   description: A unique fish known as the Primal Mullet, with distinctive traits and
     behaviors.
@@ -1631,7 +1631,7 @@ primal-mullet:
   tier: 1
   model: 100
 read-herring:
-  name: Read Herring
+  display-name: Read Herring
   rarity: COMMON
   description: A unique fish known as the Read Herring, with distinctive traits and
     behaviors.
@@ -1646,7 +1646,7 @@ read-herring:
   tier: 1
   model: 101
 rhodonite-estuary:
-  name: Rhodonite Estuary
+  display-name: Rhodonite Estuary
   rarity: COMMON
   description: A unique fish known as the Rhodonite Estuary, with distinctive traits
     and behaviors.
@@ -1659,7 +1659,7 @@ rhodonite-estuary:
   tier: 1
   model: 102
 golden-albacore:
-  name: Golden Albacore
+  display-name: Golden Albacore
   rarity: UNCOMMON
   description: A unique fish known as the Golden Albacore, with distinctive traits
     and behaviors.
@@ -1673,7 +1673,7 @@ golden-albacore:
     DAY: 0.1
   model: 103
 sunny-woodskip:
-  name: Sunny Woodskip
+  display-name: Sunny Woodskip
   rarity: COMMON
   description: A unique fish known as the Sunny Woodskip, with distinctive traits
     and behaviors.
@@ -1687,7 +1687,7 @@ sunny-woodskip:
   tier: 1
   model: 104
 dawnglider-riptideon:
-  name: Dawnglider Riptideon
+  display-name: Dawnglider Riptideon
   rarity: COMMON
   description: A unique fish known as the Dawnglider Riptideon, with distinctive traits
     and behaviors.
@@ -1703,7 +1703,7 @@ dawnglider-riptideon:
     DAWN: 0.1
   model: 105
 crimson-flounder:
-  name: Crimson Flounder
+  display-name: Crimson Flounder
   rarity: COMMON
   description: A unique fish known as the Crimson Flounder, with distinctive traits
     and behaviors.
@@ -1716,7 +1716,7 @@ crimson-flounder:
   tier: 1
   model: 106
 sunset-lionfish:
-  name: Sunset Lionfish
+  display-name: Sunset Lionfish
   rarity: COMMON
   description: A unique fish known as the Sunset Lionfish, with distinctive traits
     and behaviors.
@@ -1731,7 +1731,7 @@ sunset-lionfish:
     EVENING: 0.1
   model: 107
 sunset-goldberg:
-  name: Sunset Goldberg
+  display-name: Sunset Goldberg
   rarity: COMMON
   description: A unique fish known as the Sunset Goldberg, with distinctive traits
     and behaviors.
@@ -1745,7 +1745,7 @@ sunset-goldberg:
     EVENING: 0.1
   model: 108
 dawnglider-poppicok:
-  name: Dawnglider Poppicok
+  display-name: Dawnglider Poppicok
   rarity: COMMON
   description: A unique fish known as the Dawnglider Poppicok, with distinctive traits
     and behaviors.
@@ -1761,7 +1761,7 @@ dawnglider-poppicok:
     DAWN: 0.1
   model: 109
 dawnglider-herring:
-  name: Dawnglider Herring
+  display-name: Dawnglider Herring
   rarity: COMMON
   description: A unique fish known as the Dawnglider Herring, with distinctive traits
     and behaviors.
@@ -1778,7 +1778,7 @@ dawnglider-herring:
     DAY: 0.1
   model: 110
 lucid-puckerfish:
-  name: Lucid Puckerfish
+  display-name: Lucid Puckerfish
   rarity: COMMON
   description: A unique fish known as the Lucid Puckerfish, with distinctive traits
     and behaviors.
@@ -1792,7 +1792,7 @@ lucid-puckerfish:
   tier: 1
   model: 111
 soulless-puckerfish:
-  name: Soulless Puckerfish
+  display-name: Soulless Puckerfish
   rarity: COMMON
   description: A unique fish known as the Soulless Puckerfish, with distinctive traits
     and behaviors.
@@ -1815,7 +1815,7 @@ soulless-puckerfish:
     WAXING_GIBBOUS: 0.1
   model: 112
 sunrise-boopsnoot:
-  name: Sunrise Boopsnoot
+  display-name: Sunrise Boopsnoot
   rarity: COMMON
   description: A unique fish known as the Sunrise Boopsnoot, with distinctive traits
     and behaviors.
@@ -1830,7 +1830,7 @@ sunrise-boopsnoot:
     DAY: 0.1
   model: 113
 albino-grayling:
-  name: Albino Grayling
+  display-name: Albino Grayling
   rarity: COMMON
   description: A unique fish known as the Albino Grayling, with distinctive traits
     and behaviors.
@@ -1844,7 +1844,7 @@ albino-grayling:
   tier: 1
   model: 114
 ascended-puckerfish:
-  name: Ascended Puckerfish
+  display-name: Ascended Puckerfish
   rarity: COMMON
   description: A unique fish known as the Ascended Puckerfish, with distinctive traits
     and behaviors.
@@ -1859,7 +1859,7 @@ ascended-puckerfish:
     WANING_GIBBOUS: 0.1
   model: 115
 crumbling-klauknbals:
-  name: Crumbling Klauknbals
+  display-name: Crumbling Klauknbals
   rarity: COMMON
   description: A unique fish known as the Crumbling Klauknbals, with distinctive traits
     and behaviors.
@@ -1873,7 +1873,7 @@ crumbling-klauknbals:
     MUSHROOM_FIELDS: 0.1
   model: 116
 bottom-angelfish:
-  name: Bottom Angelfish
+  display-name: Bottom Angelfish
   rarity: COMMON
   description: A unique fish known as the Bottom Angelfish, with distinctive traits
     and behaviors.
@@ -1886,7 +1886,7 @@ bottom-angelfish:
   tier: 1
   model: 117
 tiger-goby:
-  name: Tiger Goby
+  display-name: Tiger Goby
   rarity: UNCOMMON
   description: A unique fish known as the Tiger Goby, with distinctive traits and
     behaviors.
@@ -1899,7 +1899,7 @@ tiger-goby:
   tier: 1
   model: 118
 gravel-finfin:
-  name: Gravel Finfin
+  display-name: Gravel Finfin
   rarity: COMMON
   description: A unique fish known as the Gravel Finfin, with distinctive traits and
     behaviors.
@@ -1914,7 +1914,7 @@ gravel-finfin:
   tier: 1
   model: 119
 chonkler-finfin:
-  name: Chonkler Finfin
+  display-name: Chonkler Finfin
   rarity: UNCOMMON
   description: A unique fish known as the Chonkler Finfin, with distinctive traits
     and behaviors.
@@ -1928,7 +1928,7 @@ chonkler-finfin:
   tier: 1
   model: 120
 nanides-shin:
-  name: Nanides Shin
+  display-name: Nanides Shin
   rarity: UNCOMMON
   description: A unique fish known as the Nanides Shin, with distinctive traits and
     behaviors.
@@ -1943,7 +1943,7 @@ nanides-shin:
   tier: 1
   model: 121
 primal-bananafish:
-  name: Primal Bananafish
+  display-name: Primal Bananafish
   rarity: COMMON
   description: A unique fish known as the Primal Bananafish, with distinctive traits
     and behaviors.
@@ -1957,7 +1957,7 @@ primal-bananafish:
   tier: 1
   model: 122
 dry-aged-rhyb:
-  name: Dry-aged Rhyb
+  display-name: Dry-aged Rhyb
   rarity: COMMON
   description: A unique fish known as the Dry Aged Rhyb, with distinctive traits and
     behaviors.
@@ -1972,7 +1972,7 @@ dry-aged-rhyb:
     NIGHT: 0.1
   model: 123
 saltwater-bass:
-  name: Saltwater Bass
+  display-name: Saltwater Bass
   rarity: COMMON
   description: A unique fish known as the Saltwater Bass, with distinctive traits
     and behaviors.
@@ -1985,7 +1985,7 @@ saltwater-bass:
   tier: 1
   model: 124
 dark-boopsnoot:
-  name: Dark Boopsnoot
+  display-name: Dark Boopsnoot
   rarity: COMMON
   description: A unique fish known as the Dark Boopsnoot, with distinctive traits
     and behaviors.
@@ -2003,7 +2003,7 @@ dark-boopsnoot:
     WAXING_CRESCENT: 0.1
   model: 125
 tropical-takoki:
-  name: Tropical Takoki
+  display-name: Tropical Takoki
   rarity: COMMON
   description: A unique fish known as the Tropical Takoki, with distinctive traits
     and behaviors.
@@ -2017,7 +2017,7 @@ tropical-takoki:
   tier: 1
   model: 126
 royal-gramma:
-  name: Royal Gramma
+  display-name: Royal Gramma
   rarity: UNCOMMON
   description: A unique fish known as the Royal Gramma, with distinctive traits and
     behaviors.
@@ -2031,7 +2031,7 @@ royal-gramma:
   tier: 1
   model: 127
 waning-threadfin:
-  name: Waning Threadfin
+  display-name: Waning Threadfin
   rarity: COMMON
   description: A unique fish known as the Waning Threadfin, with distinctive traits
     and behaviors.
@@ -2044,7 +2044,7 @@ waning-threadfin:
   tier: 1
   model: 128
 forgetful-tang:
-  name: Forgetful Tang
+  display-name: Forgetful Tang
   rarity: UNCOMMON
   description: A unique fish known as the Forgetful Tang, with distinctive traits
     and behaviors.
@@ -2062,7 +2062,7 @@ forgetful-tang:
     EVENING: 0.1
   model: 129
 fatherly-clownfish:
-  name: Fatherly Clownfish
+  display-name: Fatherly Clownfish
   rarity: UNCOMMON
   description: A unique fish known as the Fatherly Clownfish, with distinctive traits
     and behaviors.
@@ -2080,7 +2080,7 @@ fatherly-clownfish:
     EVENING: 0.1
   model: 130
 sunrise-threadfin:
-  name: Sunrise Threadfin
+  display-name: Sunrise Threadfin
   rarity: COMMON
   description: A unique fish known as the Sunrise Threadfin, with distinctive traits
     and behaviors.
@@ -2094,7 +2094,7 @@ sunrise-threadfin:
   tier: 1
   model: 131
 masked-blenny:
-  name: Masked Blenny
+  display-name: Masked Blenny
   rarity: COMMON
   description: A unique fish known as the Masked Blenny, with distinctive traits and
     behaviors.
@@ -2110,7 +2110,7 @@ masked-blenny:
     NIGHT: 0.1
   model: 132
 tropical-wobbletail:
-  name: Tropical Wobbletail
+  display-name: Tropical Wobbletail
   rarity: COMMON
   description: A unique fish known as the Tropical Wobbletail, with distinctive traits
     and behaviors.
@@ -2124,7 +2124,7 @@ tropical-wobbletail:
   tier: 1
   model: 133
 sunstreak-butterflyfish:
-  name: Sunstreak Butterflyfish
+  display-name: Sunstreak Butterflyfish
   rarity: COMMON
   description: A unique fish known as the Sunstreak Butterflyfish, with distinctive
     traits and behaviors.
@@ -2140,7 +2140,7 @@ sunstreak-butterflyfish:
     EVENING: 0.1
   model: 134
 amethyst-cichilid:
-  name: Amethyst Cichilid
+  display-name: Amethyst Cichilid
   rarity: COMMON
   description: A unique fish known as the Amethyst Cichilid, with distinctive traits
     and behaviors.
@@ -2158,7 +2158,7 @@ amethyst-cichilid:
     NIGHT: 0.1
   model: 135
 full-moon-threadfin:
-  name: Full-Moon Threadfin
+  display-name: Full-Moon Threadfin
   rarity: COMMON
   description: A unique fish known as the Full Moon Threadfin, with distinctive traits
     and behaviors.
@@ -2176,7 +2176,7 @@ full-moon-threadfin:
     WANING_GIBBOUS: 0.1
   model: 136
 cerulean-razorback:
-  name: Cerulean Razorback
+  display-name: Cerulean Razorback
   rarity: COMMON
   description: A unique fish known as the Cerulean Razorback, with distinctive traits
     and behaviors.
@@ -2195,7 +2195,7 @@ cerulean-razorback:
     WAXING_GIBBOUS: 0.1
   model: 137
 moonlit-butterflyfish:
-  name: Moonlit Butterflyfish
+  display-name: Moonlit Butterflyfish
   rarity: COMMON
   description: A unique fish known as the Moonlit Butterflyfish, with distinctive
     traits and behaviors.
@@ -2210,7 +2210,7 @@ moonlit-butterflyfish:
     NIGHT: 0.1
   model: 138
 sunstreak-elara:
-  name: Sunstreak Elara
+  display-name: Sunstreak Elara
   rarity: UNCOMMON
   description: A unique fish known as the Sunstreak Elara, with distinctive traits
     and behaviors.
@@ -2227,7 +2227,7 @@ sunstreak-elara:
     DAY: 0.1
   model: 139
 seafoam-waverunner:
-  name: Seafoam Waverunner
+  display-name: Seafoam Waverunner
   rarity: COMMON
   description: A unique fish known as the Seafoam Waverunner, with distinctive traits
     and behaviors.
@@ -2242,7 +2242,7 @@ seafoam-waverunner:
   tier: 1
   model: 140
 rainbow-bananafish:
-  name: Rainbow Bananafish
+  display-name: Rainbow Bananafish
   rarity: COMMON
   description: A unique fish known as the Rainbow Bananafish, with distinctive traits
     and behaviors.
@@ -2260,7 +2260,7 @@ rainbow-bananafish:
     WAXING_GIBBOUS: 0.1
   model: 141
 candy-drillcod:
-  name: Candy Drillcod
+  display-name: Candy Drillcod
   rarity: COMMON
   description: A unique fish known as the Candy Drillcod, with distinctive traits
     and behaviors.
@@ -2279,7 +2279,7 @@ candy-drillcod:
     WAXING_CRESCENT: 0.1
   model: 142
 courting-klauknbals:
-  name: Courting Klauknbals
+  display-name: Courting Klauknbals
   rarity: UNCOMMON
   description: A unique fish known as the Courting Klauknbals, with distinctive traits
     and behaviors.
@@ -2301,7 +2301,7 @@ courting-klauknbals:
     WAXING_GIBBOUS: 0.1
   model: 143
 rosegold-flowfin:
-  name: Rosegold Flowfin
+  display-name: Rosegold Flowfin
   rarity: COMMON
   description: A unique fish known as the Rosegold Flowfin, with distinctive traits
     and behaviors.
@@ -2314,7 +2314,7 @@ rosegold-flowfin:
   tier: 1
   model: 144
 prismarine-betta:
-  name: Prismarine Betta
+  display-name: Prismarine Betta
   rarity: COMMON
   description: A unique fish known as the Prismarine Betta, with distinctive traits
     and behaviors.
@@ -2329,7 +2329,7 @@ prismarine-betta:
   tier: 1
   model: 145
 aquamarine-estuary:
-  name: Aquamarine Estuary
+  display-name: Aquamarine Estuary
   rarity: COMMON
   description: A unique fish known as the Aquamarine Estuary, with distinctive traits
     and behaviors.
@@ -2342,7 +2342,7 @@ aquamarine-estuary:
   tier: 1
   model: 146
 fruity-albacore:
-  name: Fruity Albacore
+  display-name: Fruity Albacore
   rarity: COMMON
   description: A unique fish known as the Fruity Albacore, with distinctive traits
     and behaviors.
@@ -2359,7 +2359,7 @@ fruity-albacore:
     WAXING_GIBBOUS: 0.1
   model: 147
 eroti-dancefin:
-  name: Eroti Dancefin
+  display-name: Eroti Dancefin
   rarity: COMMON
   description: A unique fish known as the Eroti Dancefin, with distinctive traits
     and behaviors.
@@ -2377,7 +2377,7 @@ eroti-dancefin:
     WAXING_CRESCENT: 0.1
   model: 148
 tropical-zing:
-  name: Tropical Zing
+  display-name: Tropical Zing
   rarity: COMMON
   description: A unique fish known as the Tropical Zing, with distinctive traits and
     behaviors.
@@ -2390,7 +2390,7 @@ tropical-zing:
   tier: 1
   model: 149
 bismuth-estuary:
-  name: Bismuth Estuary
+  display-name: Bismuth Estuary
   rarity: UNCOMMON
   description: A unique fish known as the Bismuth Estuary, with distinctive traits
     and behaviors.
@@ -2408,7 +2408,7 @@ bismuth-estuary:
     WAXING_GIBBOUS: 0.1
   model: 150
 nightfall-threadfin:
-  name: Nightfall Threadfin
+  display-name: Nightfall Threadfin
   rarity: UNCOMMON
   description: A unique fish known as the Nightfall Threadfin, with distinctive traits
     and behaviors.
@@ -2423,7 +2423,7 @@ nightfall-threadfin:
     NIGHT: 0.1
   model: 151
 heavenly-jetfin:
-  name: Heavenly Jetfin
+  display-name: Heavenly Jetfin
   rarity: UNCOMMON
   description: A unique fish known as the Heavenly Jetfin, with distinctive traits
     and behaviors.
@@ -2440,7 +2440,7 @@ heavenly-jetfin:
     WAXING_CRESCENT: 0.1
   model: 152
 treasured-luminae:
-  name: Treasured Luminae
+  display-name: Treasured Luminae
   rarity: RARE
   description: A unique fish known as the Treasured Luminae, with distinctive traits
     and behaviors.
@@ -2453,7 +2453,7 @@ treasured-luminae:
   tier: 2
   model: 153
 glorious-dancefin:
-  name: Glorious Dancefin
+  display-name: Glorious Dancefin
   rarity: UNCOMMON
   description: A unique fish known as the Glorious Dancefin, with distinctive traits
     and behaviors.
@@ -2472,7 +2472,7 @@ glorious-dancefin:
     WAXING_CRESCENT: 0.1
   model: 154
 elusive-eel:
-  name: Elusive Eel
+  display-name: Elusive Eel
   rarity: RARE
   description: A unique fish known as the Elusive Eel, with distinctive traits and
     behaviors.
@@ -2492,7 +2492,7 @@ elusive-eel:
     WAXING_GIBBOUS: 0.1
   model: 155
 treasured-ptidiwhiskir:
-  name: Treasured Ptidiwhiskir
+  display-name: Treasured Ptidiwhiskir
   rarity: RARE
   description: A unique fish known as the Treasured Ptidiwhiskir, with distinctive
     traits and behaviors.
@@ -2512,7 +2512,7 @@ treasured-ptidiwhiskir:
     WAXING_GIBBOUS: 0.1
   model: 156
 ethereal-mindwatcher:
-  name: Ethereal Mindwatcher
+  display-name: Ethereal Mindwatcher
   rarity: LEGENDARY
   description: A unique fish known as the Ethereal Mindwatcher, with distinctive traits
     and behaviors.
@@ -2532,7 +2532,7 @@ ethereal-mindwatcher:
     WAXING_CRESCENT: 0.1
   model: 157
 dream-threadfin:
-  name: Dream Threadfin
+  display-name: Dream Threadfin
   rarity: RARE
   description: A unique fish known as the Dream Threadfin, with distinctive traits
     and behaviors.
@@ -2548,7 +2548,7 @@ dream-threadfin:
     WANING_GIBBOUS: 0.1
   model: 158
 albino-dragling:
-  name: Albino Dragling
+  display-name: Albino Dragling
   rarity: UNCOMMON
   description: A unique fish known as the Albino Dragling, with distinctive traits
     and behaviors.
@@ -2564,7 +2564,7 @@ albino-dragling:
     WANING_CRESCENT: 0.1
   model: 159
 top-angelfish:
-  name: Top Angelfish
+  display-name: Top Angelfish
   rarity: UNCOMMON
   description: A unique fish known as the Top Angelfish, with distinctive traits and
     behaviors.
@@ -2585,7 +2585,7 @@ top-angelfish:
     WAXING_GIBBOUS: 0.1
   model: 160
 dream-squid:
-  name: Dream Squid
+  display-name: Dream Squid
   rarity: UNCOMMON
   description: A unique fish known as the Dream Squid, with distinctive traits and
     behaviors.
@@ -2606,7 +2606,7 @@ dream-squid:
     WAXING_GIBBOUS: 0.1
   model: 161
 treasured-minnoe:
-  name: Treasured Minnoe
+  display-name: Treasured Minnoe
   rarity: RARE
   description: A unique fish known as the Treasured Minnoe, with distinctive traits
     and behaviors.
@@ -2624,7 +2624,7 @@ treasured-minnoe:
     WAXING_GIBBOUS: 0.1
   model: 162
 fulfilled-minsk:
-  name: Fulfilled Minsk
+  display-name: Fulfilled Minsk
   rarity: UNCOMMON
   description: A unique fish known as the Fulfilled Minsk, with distinctive traits
     and behaviors.
@@ -2641,7 +2641,7 @@ fulfilled-minsk:
     WAXING_GIBBOUS: 0.1
   model: 163
 brosephina-hookfin:
-  name: Brosephina Hookfin
+  display-name: Brosephina Hookfin
   rarity: RARE
   description: A unique fish known as the Brosephina Hookfin, with distinctive traits
     and behaviors.
@@ -2661,7 +2661,7 @@ brosephina-hookfin:
     WAXING_GIBBOUS: 0.1
   model: 164
 sunset-threadfin:
-  name: Sunset Threadfin
+  display-name: Sunset Threadfin
   rarity: UNCOMMON
   description: A unique fish known as the Sunset Threadfin, with distinctive traits
     and behaviors.
@@ -2681,7 +2681,7 @@ sunset-threadfin:
     WAXING_CRESCENT: 0.1
   model: 165
 commanding-pepet:
-  name: Commanding Pepet
+  display-name: Commanding Pepet
   rarity: RARE
   description: A unique fish known as the Commanding Pepet, with distinctive traits
     and behaviors.
@@ -2694,7 +2694,7 @@ commanding-pepet:
   tier: 2
   model: 166
 luminous-lionfish:
-  name: Luminous Lionfish
+  display-name: Luminous Lionfish
   rarity: UNCOMMON
   description: A unique fish known as the Luminous Lionfish, with distinctive traits
     and behaviors.
@@ -2715,7 +2715,7 @@ luminous-lionfish:
     WAXING_GIBBOUS: 0.1
   model: 167
 golden-dart:
-  name: Golden Dart
+  display-name: Golden Dart
   rarity: UNCOMMON
   description: A unique fish known as the Golden Dart, with distinctive traits and
     behaviors.
@@ -2729,7 +2729,7 @@ golden-dart:
   tier: 2
   model: 168
 full-moon-poppicok:
-  name: Full-Moon Poppicok
+  display-name: Full-Moon Poppicok
   rarity: UNCOMMON
   description: A unique fish known as the Full Moon Poppicok, with distinctive traits
     and behaviors.
@@ -2745,7 +2745,7 @@ full-moon-poppicok:
     WANING_GIBBOUS: 0.1
   model: 169
 shrouded-ghostly-grubshark:
-  name: Shrouded-Ghostly Grubshark
+  display-name: Shrouded-Ghostly Grubshark
   rarity: LEGENDARY
   description: A unique fish known as the Shrouded Ghostly Grubshark, with distinctive
     traits and behaviors.
@@ -2767,7 +2767,7 @@ shrouded-ghostly-grubshark:
     WAXING_GIBBOUS: 0.1
   model: 170
 prime-rhyb:
-  name: Prime Rhyb
+  display-name: Prime Rhyb
   rarity: RARE
   description: A unique fish known as the Prime Rhyb, with distinctive traits and
     behaviors.
@@ -2784,7 +2784,7 @@ prime-rhyb:
     WANING_GIBBOUS: 0.1
   model: 171
 ghostly-puckerfish:
-  name: Ghostly Puckerfish
+  display-name: Ghostly Puckerfish
   rarity: UNCOMMON
   description: A unique fish known as the Ghostly Puckerfish, with distinctive traits
     and behaviors.
@@ -2804,7 +2804,7 @@ ghostly-puckerfish:
     WAXING_GIBBOUS: 0.1
   model: 172
 rose-goldfish:
-  name: Rose Goldfish
+  display-name: Rose Goldfish
   rarity: RARE
   description: A unique fish known as the Rose Goldfish, with distinctive traits and
     behaviors.
@@ -2817,7 +2817,7 @@ rose-goldfish:
   tier: 2
   model: 173
 isle-takoki:
-  name: Isle Takoki
+  display-name: Isle Takoki
   rarity: UNCOMMON
   description: A unique fish known as the Isle Takoki, with distinctive traits and
     behaviors.
@@ -2831,7 +2831,7 @@ isle-takoki:
     MUSHROOM_FIELDS: 0.1
   model: 174
 luminous-whelk:
-  name: Luminous Whelk
+  display-name: Luminous Whelk
   rarity: UNCOMMON
   description: A unique fish known as the Luminous Whelk, with distinctive traits
     and behaviors.
@@ -2852,7 +2852,7 @@ luminous-whelk:
     WAXING_GIBBOUS: 0.1
   model: 175
 beeper-sneepihr:
-  name: Beeper Sneepihr
+  display-name: Beeper Sneepihr
   rarity: UNCOMMON
   description: A unique fish known as the Beeper Sneepihr, with distinctive traits
     and behaviors.
@@ -2866,7 +2866,7 @@ beeper-sneepihr:
     OLD_GROWTH_BIRCH_FOREST: 0.1
   model: 176
 yeeper-sneepihr:
-  name: Yeeper Sneepihr
+  display-name: Yeeper Sneepihr
   rarity: UNCOMMON
   description: A unique fish known as the Yeeper Sneepihr, with distinctive traits
     and behaviors.
@@ -2880,7 +2880,7 @@ yeeper-sneepihr:
     OLD_GROWTH_SPRUCE_TAIGA: 0.1
   model: 177
 bola-claymore:
-  name: Bola & Claymore
+  display-name: Bola & Claymore
   rarity: LEGENDARY
   description: A unique fish known as the Bola Claymore, with distinctive traits and
     behaviors.
@@ -2896,7 +2896,7 @@ bola-claymore:
     NIGHT: 0.1
   model: 178
 pure-goldfish:
-  name: Pure Goldfish
+  display-name: Pure Goldfish
   rarity: RARE
   description: A unique fish known as the Pure Goldfish, with distinctive traits and
     behaviors.
@@ -2915,7 +2915,7 @@ pure-goldfish:
     WAXING_GIBBOUS: 0.1
   model: 179
 green-apple-goomi:
-  name: Green-apple Goomi
+  display-name: Green-apple Goomi
   rarity: UNCOMMON
   description: A unique fish known as the Green Apple Goomi, with distinctive traits
     and behaviors.
@@ -2929,7 +2929,7 @@ green-apple-goomi:
     MEADOW: 0.1
   model: 180
 weeh-shee-wooshi:
-  name: Weeh, Shee & Wooshi
+  display-name: Weeh, Shee & Wooshi
   rarity: RARE
   description: A unique fish known as the Weeh Shee Wooshi, with distinctive traits
     and behaviors.
@@ -2949,7 +2949,7 @@ weeh-shee-wooshi:
     WAXING_CRESCENT: 0.1
   model: 181
 cerulean-merfish:
-  name: Cerulean Merfish
+  display-name: Cerulean Merfish
   rarity: UNCOMMON
   description: A unique fish known as the Cerulean Merfish, with distinctive traits
     and behaviors.
@@ -2963,7 +2963,7 @@ cerulean-merfish:
     NIGHT: 0.1
   model: 182
 travelling-belogna:
-  name: Travelling Belogna
+  display-name: Travelling Belogna
   rarity: RARE
   description: A unique fish known as the Travelling Belogna, with distinctive traits
     and behaviors.
@@ -2985,7 +2985,7 @@ travelling-belogna:
     WAXING_GIBBOUS: 0.1
   model: 183
 raging-boomfish:
-  name: Raging Boomfish
+  display-name: Raging Boomfish
   rarity: UNCOMMON
   description: A unique fish known as the Raging Boomfish, with distinctive traits
     and behaviors.
@@ -3006,7 +3006,7 @@ raging-boomfish:
     WAXING_GIBBOUS: 0.1
   model: 184
 whoopee-anamalo:
-  name: Whoopee Anamalo
+  display-name: Whoopee Anamalo
   rarity: UNCOMMON
   description: A unique fish known as the Whoopee Anamalo, with distinctive traits
     and behaviors.
@@ -3022,7 +3022,7 @@ whoopee-anamalo:
     WAXING_CRESCENT: 0.1
   model: 185
 bronze-skrub:
-  name: Bronze Skrub
+  display-name: Bronze Skrub
   rarity: UNCOMMON
   description: A unique fish known as the Bronze Skrub, with distinctive traits and
     behaviors.
@@ -3044,7 +3044,7 @@ bronze-skrub:
     WAXING_GIBBOUS: 0.1
   model: 186
 ethereal-chungus:
-  name: Ethereal Chungus
+  display-name: Ethereal Chungus
   rarity: RARE
   description: A unique fish known as the Ethereal Chungus, with distinctive traits
     and behaviors.
@@ -3064,7 +3064,7 @@ ethereal-chungus:
     WAXING_GIBBOUS: 0.1
   model: 187
 nightfall-puffer:
-  name: Nightfall Puffer
+  display-name: Nightfall Puffer
   rarity: UNCOMMON
   description: A unique fish known as the Nightfall Puffer, with distinctive traits
     and behaviors.
@@ -3079,7 +3079,7 @@ nightfall-puffer:
     NIGHT: 0.1
   model: 188
 sunrise-puffer:
-  name: Sunrise Puffer
+  display-name: Sunrise Puffer
   rarity: UNCOMMON
   description: A unique fish known as the Sunrise Puffer, with distinctive traits
     and behaviors.
@@ -3094,7 +3094,7 @@ sunrise-puffer:
     DAY: 0.1
   model: 189
 common-snail:
-  name: Common Snail
+  display-name: Common Snail
   rarity: RARE
   description: A unique fish known as the Common Snail, with distinctive traits and
     behaviors.
@@ -3115,7 +3115,7 @@ common-snail:
     WANING_GIBBOUS: 0.1
   model: 190
 alto-falloshimp:
-  name: Alto Falloshimp
+  display-name: Alto Falloshimp
   rarity: UNCOMMON
   description: A unique fish known as the Alto Falloshimp, with distinctive traits
     and behaviors.
@@ -3137,7 +3137,7 @@ alto-falloshimp:
     WAXING_GIBBOUS: 0.1
   model: 191
 jaques-clenshimp:
-  name: Jaques Clenshimp
+  display-name: Jaques Clenshimp
   rarity: RARE
   description: A unique fish known as the Jaques Clenshimp, with distinctive traits
     and behaviors.
@@ -3152,7 +3152,7 @@ jaques-clenshimp:
     DAY: 0.1
   model: 192
 common-gripper:
-  name: Common Gripper
+  display-name: Common Gripper
   rarity: UNCOMMON
   description: A unique fish known as the Common Gripper, with distinctive traits
     and behaviors.
@@ -3168,7 +3168,7 @@ common-gripper:
     EVENING: 0.1
   model: 193
 nightmare-squid:
-  name: Nightmare Squid
+  display-name: Nightmare Squid
   rarity: RARE
   description: A unique fish known as the Nightmare Squid, with distinctive traits
     and behaviors.
@@ -3184,7 +3184,7 @@ nightmare-squid:
     WAXING_CRESCENT: 0.1
   model: 194
 albino-kreken:
-  name: Albino Kreken
+  display-name: Albino Kreken
   rarity: RARE
   description: A unique fish known as the Albino Kreken, with distinctive traits and
     behaviors.
@@ -3201,7 +3201,7 @@ albino-kreken:
     WAXING_CRESCENT: 0.1
   model: 195
 pink-jellyjelly:
-  name: Pink Jellyjelly
+  display-name: Pink Jellyjelly
   rarity: UNCOMMON
   description: A unique fish known as the Pink Jellyjelly, with distinctive traits
     and behaviors.
@@ -3218,7 +3218,7 @@ pink-jellyjelly:
     WANING_GIBBOUS: 0.1
   model: 196
 haunted-fishbones:
-  name: Haunted Fishbones
+  display-name: Haunted Fishbones
   rarity: COMMON
   description: A unique fish known as the Haunted Fishbones, with distinctive traits
     and behaviors.
@@ -3234,7 +3234,7 @@ haunted-fishbones:
     WANING_GIBBOUS: 0.1
   model: 197
 abyssal-jetfin:
-  name: Abyssal Jetfin
+  display-name: Abyssal Jetfin
   rarity: UNCOMMON
   description: A unique fish known as the Abyssal Jetfin, with distinctive traits
     and behaviors.
@@ -3253,7 +3253,7 @@ abyssal-jetfin:
     WAXING_GIBBOUS: 0.1
   model: 198
 primal-canth:
-  name: Primal Canth
+  display-name: Primal Canth
   rarity: RARE
   description: A unique fish known as the Primal Canth, with distinctive traits and
     behaviors.
@@ -3269,7 +3269,7 @@ primal-canth:
     WAXING_GIBBOUS: 0.1
   model: 199
 concealed-eel:
-  name: Concealed Eel
+  display-name: Concealed Eel
   rarity: UNCOMMON
   description: A unique fish known as the Concealed Eel, with distinctive traits and
     behaviors.
@@ -3290,7 +3290,7 @@ concealed-eel:
     WAXING_GIBBOUS: 0.1
   model: 200
 diamonite-bananafish:
-  name: Diamonite Bananafish
+  display-name: Diamonite Bananafish
   rarity: COMMON
   description: A unique fish known as the Diamonite Bananafish, with distinctive traits
     and behaviors.
@@ -3306,7 +3306,7 @@ diamonite-bananafish:
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
 rubinite-salmon:
-  name: Rubinite Salmon
+  display-name: Rubinite Salmon
   rarity: COMMON
   description: A unique fish known as the Rubinite Salmon, with distinctive traits
     and behaviors.
@@ -3321,7 +3321,7 @@ rubinite-salmon:
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
 quartzenite-gutpike:
-  name: Quartzenite Gutpike
+  display-name: Quartzenite Gutpike
   rarity: COMMON
   description: A unique fish known as the Quartzenite Gutpike, with distinctive traits
     and behaviors.
@@ -3343,7 +3343,7 @@ quartzenite-gutpike:
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
 charged-quartzenite-gutpike:
-  name: Charged Quartzenite Gutpike
+  display-name: Charged Quartzenite Gutpike
   rarity: UNCOMMON
   description: A unique fish known as the Charged Quartzenite Gutpike, with distinctive
     traits and behaviors.
@@ -3360,7 +3360,7 @@ charged-quartzenite-gutpike:
     DEEP_DARK: 0.1
     DRIPSTONE_CAVES: 0.1
 prismarinite-minnoe:
-  name: Prismarinite Minnoe
+  display-name: Prismarinite Minnoe
   rarity: COMMON
   description: A unique fish known as the Prismarinite Minnoe, with distinctive traits
     and behaviors.
@@ -3374,7 +3374,7 @@ prismarinite-minnoe:
   biomes:
     LUSH_CAVES: 0.1
 amethysite-minnoe:
-  name: Amethysite Minnoe
+  display-name: Amethysite Minnoe
   rarity: COMMON
   description: A unique fish known as the Amethysite Minnoe, with distinctive traits
     and behaviors.
@@ -3388,7 +3388,7 @@ amethysite-minnoe:
   biomes:
     DRIPSTONE_CAVES: 0.1
 emerald-schmeckle:
-  name: Emerald Schmeckle
+  display-name: Emerald Schmeckle
   rarity: COMMON
   description: A unique fish known as the Emerald Schmeckle, with distinctive traits
     and behaviors.
@@ -3402,7 +3402,7 @@ emerald-schmeckle:
   biomes:
     DEEP_DARK: 0.1
 crystalline-back-rhyb:
-  name: Crystalline Back Rhyb
+  display-name: Crystalline Back Rhyb
   rarity: UNCOMMON
   description: A unique fish known as the Crystalline Back Rhyb, with distinctive
     traits and behaviors.
@@ -3422,7 +3422,7 @@ crystalline-back-rhyb:
   biomes:
     DEEP_DARK: 0.1
 anchor-mimook:
-  name: Anchor Mimook
+  display-name: Anchor Mimook
   rarity: COMMON
   description: A unique fish known as the Anchor Mimook, with distinctive traits and
     behaviors.
@@ -3438,7 +3438,7 @@ anchor-mimook:
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
 fishhook-mimook:
-  name: Fishhook Mimook
+  display-name: Fishhook Mimook
   rarity: COMMON
   description: A unique fish known as the Fishhook Mimook, with distinctive traits
     and behaviors.
@@ -3454,7 +3454,7 @@ fishhook-mimook:
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
 azalea-grubshark:
-  name: Azalea Grubshark
+  display-name: Azalea Grubshark
   rarity: UNCOMMON
   description: A unique fish known as the Azalea Grubshark, with distinctive traits
     and behaviors.
@@ -3475,7 +3475,7 @@ azalea-grubshark:
   biomes:
     LUSH_CAVES: 0.1
 emeraldite-discus:
-  name: Emeraldite Discus
+  display-name: Emeraldite Discus
   rarity: COMMON
   description: A unique fish known as the Emeraldite Discus, with distinctive traits
     and behaviors.
@@ -3489,7 +3489,7 @@ emeraldite-discus:
   biomes:
     LUSH_CAVES: 0.1
 primal-eel:
-  name: Primal Eel
+  display-name: Primal Eel
   rarity: COMMON
   description: A unique fish known as the Primal Eel, with distinctive traits and
     behaviors.
@@ -3509,7 +3509,7 @@ primal-eel:
   biomes:
     DRIPSTONE_CAVES: 0.1
 ruling-turok:
-  name: Ruling Turok
+  display-name: Ruling Turok
   rarity: UNCOMMON
   description: A unique fish known as the Ruling Turok, with distinctive traits and
     behaviors.
@@ -3524,7 +3524,7 @@ ruling-turok:
   biomes:
     LUSH_CAVES: 0.1
 jasper-gripper:
-  name: Jasper Gripper
+  display-name: Jasper Gripper
   rarity: COMMON
   description: A unique fish known as the Jasper Gripper, with distinctive traits
     and behaviors.
@@ -3538,7 +3538,7 @@ jasper-gripper:
   biomes:
     DRIPSTONE_CAVES: 0.1
 lush-slimswimer:
-  name: Lush Slimswimer
+  display-name: Lush Slimswimer
   rarity: COMMON
   description: A unique fish known as the Lush Slimswimer, with distinctive traits
     and behaviors.
@@ -3552,7 +3552,7 @@ lush-slimswimer:
   biomes:
     LUSH_CAVES: 0.1
 reborn-puckerfish:
-  name: Reborn Puckerfish
+  display-name: Reborn Puckerfish
   rarity: COMMON
   description: A unique fish known as the Reborn Puckerfish, with distinctive traits
     and behaviors.
@@ -3569,7 +3569,7 @@ reborn-puckerfish:
   biomes:
     DEEP_DARK: 0.1
 reborn-razorback:
-  name: Reborn Razorback
+  display-name: Reborn Razorback
   rarity: COMMON
   description: A unique fish known as the Reborn Razorback, with distinctive traits
     and behaviors.
@@ -3586,7 +3586,7 @@ reborn-razorback:
   biomes:
     DEEP_DARK: 0.1
 amethyst-sculblade:
-  name: Amethyst Sculblade
+  display-name: Amethyst Sculblade
   rarity: COMMON
   description: A unique fish known as the Amethyst Sculblade, with distinctive traits
     and behaviors.
@@ -3604,7 +3604,7 @@ amethyst-sculblade:
   biomes:
     DRIPSTONE_CAVES: 0.1
 crystal-jellyjelly:
-  name: Crystal Jellyjelly
+  display-name: Crystal Jellyjelly
   rarity: RARE
   description: A unique fish known as the Crystal Jellyjelly, with distinctive traits
     and behaviors.
@@ -3622,7 +3622,7 @@ crystal-jellyjelly:
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
 crystal-jetfin:
-  name: Crystal Jetfin
+  display-name: Crystal Jetfin
   rarity: COMMON
   description: A unique fish known as the Crystal Jetfin, with distinctive traits
     and behaviors.
@@ -3643,7 +3643,7 @@ crystal-jetfin:
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
 docile-doomageddon:
-  name: Docile Doomageddon
+  display-name: Docile Doomageddon
   rarity: COMMON
   description: A unique fish known as the Docile Doomageddon, with distinctive traits
     and behaviors.
@@ -3657,7 +3657,7 @@ docile-doomageddon:
   biomes:
     DRIPSTONE_CAVES: 0.1
 emeraldite-teetle:
-  name: Emeraldite Teetle
+  display-name: Emeraldite Teetle
   rarity: UNCOMMON
   description: A unique fish known as the Emeraldite Teetle, with distinctive traits
     and behaviors.
@@ -3674,7 +3674,7 @@ emeraldite-teetle:
   biomes:
     LUSH_CAVES: 0.1
 loving-scrubber:
-  name: Loving Scrubber
+  display-name: Loving Scrubber
   rarity: UNCOMMON
   description: A unique fish known as the Loving Scrubber, with distinctive traits
     and behaviors.
@@ -3697,7 +3697,7 @@ loving-scrubber:
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
 seafoam-zing:
-  name: Seafoam Zing
+  display-name: Seafoam Zing
   rarity: COMMON
   description: A unique fish known as the Seafoam Zing, with distinctive traits and
     behaviors.
@@ -3711,7 +3711,7 @@ seafoam-zing:
   biomes:
     LUSH_CAVES: 0.1
 crimson-gripper:
-  name: Crimson Gripper
+  display-name: Crimson Gripper
   rarity: COMMON
   description: A unique fish known as the Crimson Gripper, with distinctive traits
     and behaviors.
@@ -3727,7 +3727,7 @@ crimson-gripper:
     EVENING: 0.1
   model: 226
 dune-gripper:
-  name: Dune Gripper
+  display-name: Dune Gripper
   rarity: COMMON
   description: A unique fish known as the Dune Gripper, with distinctive traits and
     behaviors.
@@ -3743,7 +3743,7 @@ dune-gripper:
     EVENING: 0.1
   model: 227
 obsidian-gripper:
-  name: Obsidian Gripper
+  display-name: Obsidian Gripper
   rarity: UNCOMMON
   description: A unique fish known as the Obsidian Gripper, with distinctive traits
     and behaviors.
@@ -3761,7 +3761,7 @@ obsidian-gripper:
     WAXING_CRESCENT: 0.1
   model: 228
 bone-gripper:
-  name: Bone Gripper
+  display-name: Bone Gripper
   rarity: UNCOMMON
   description: A unique fish known as the Bone Gripper, with distinctive traits and
     behaviors.
@@ -3778,7 +3778,7 @@ bone-gripper:
     WAXING_GIBBOUS: 0.1
   model: 229
 sunset-gripper:
-  name: Sunset Gripper
+  display-name: Sunset Gripper
   rarity: COMMON
   description: A unique fish known as the Sunset Gripper, with distinctive traits
     and behaviors.
@@ -3796,7 +3796,7 @@ sunset-gripper:
     WAXING_CRESCENT: 0.1
   model: 230
 jade-gripper:
-  name: Jade Gripper
+  display-name: Jade Gripper
   rarity: UNCOMMON
   description: A unique fish known as the Jade Gripper, with distinctive traits and
     behaviors.
@@ -3811,7 +3811,7 @@ jade-gripper:
     WANING_CRESCENT: 0.1
   model: 231
 amethyst-gripper:
-  name: Amethyst Gripper
+  display-name: Amethyst Gripper
   rarity: UNCOMMON
   description: A unique fish known as the Amethyst Gripper, with distinctive traits
     and behaviors.
@@ -3827,7 +3827,7 @@ amethyst-gripper:
   biomes:
     DRIPSTONE_CAVES: 0.1
 twinhorn-gripper:
-  name: Twinhorn Gripper
+  display-name: Twinhorn Gripper
   rarity: RARE
   description: A unique fish known as the Twinhorn Gripper, with distinctive traits
     and behaviors.
@@ -3843,7 +3843,7 @@ twinhorn-gripper:
   biomes:
     LUSH_CAVES: 0.1
 wellfed-gripper:
-  name: Wellfed Gripper
+  display-name: Wellfed Gripper
   rarity: UNCOMMON
   description: A unique fish known as the Wellfed Gripper, with distinctive traits
     and behaviors.
@@ -3864,7 +3864,7 @@ wellfed-gripper:
     WAXING_GIBBOUS: 0.1
   model: 234
 sunshine-gripper:
-  name: Sunshine Gripper
+  display-name: Sunshine Gripper
   rarity: UNCOMMON
   description: A unique fish known as the Sunshine Gripper, with distinctive traits
     and behaviors.
@@ -3880,7 +3880,7 @@ sunshine-gripper:
     WANING_GIBBOUS: 0.1
   model: 235
 surface-gripper:
-  name: Surface Gripper
+  display-name: Surface Gripper
   rarity: COMMON
   description: A unique fish known as the Surface Gripper, with distinctive traits
     and behaviors.
@@ -3895,7 +3895,7 @@ surface-gripper:
     NIGHT: 0.1
   model: 236
 radiated-gripper:
-  name: Radiated Gripper
+  display-name: Radiated Gripper
   rarity: UNCOMMON
   description: A unique fish known as the Radiated Gripper, with distinctive traits
     and behaviors.
@@ -3915,7 +3915,7 @@ radiated-gripper:
   biomes:
     DEEP_DARK: 0.1
 mr-gripper:
-  name: Mr. Gripper
+  display-name: Mr. Gripper
   rarity: LEGENDARY
   description: A unique fish known as the Mr Gripper, with distinctive traits and
     behaviors.
@@ -3932,7 +3932,7 @@ mr-gripper:
     EVENING: 0.1
   model: 238
 concealed-gripper:
-  name: Concealed Gripper
+  display-name: Concealed Gripper
   rarity: UNCOMMON
   description: A unique fish known as the Concealed Gripper, with distinctive traits
     and behaviors.
@@ -3947,7 +3947,7 @@ concealed-gripper:
     NIGHT: 0.1
   model: 239
 crawling-gripper:
-  name: Crawling Gripper
+  display-name: Crawling Gripper
   rarity: UNCOMMON
   description: A unique fish known as the Crawling Gripper, with distinctive traits
     and behaviors.
@@ -3962,7 +3962,7 @@ crawling-gripper:
     NIGHT: 0.1
   model: 240
 sonic-gripper:
-  name: Sonic Gripper
+  display-name: Sonic Gripper
   rarity: RARE
   description: A unique fish known as the Sonic Gripper, with distinctive traits and
     behaviors.
@@ -3981,7 +3981,7 @@ sonic-gripper:
     WAXING_CRESCENT: 0.1
   model: 241
 pivot-gripper:
-  name: Pivot Gripper
+  display-name: Pivot Gripper
   rarity: UNCOMMON
   description: A unique fish known as the Pivot Gripper, with distinctive traits and
     behaviors.
@@ -4003,7 +4003,7 @@ pivot-gripper:
   biomes:
     LUSH_CAVES: 0.1
 rhudon-gripper:
-  name: Rhudon Gripper
+  display-name: Rhudon Gripper
   rarity: COMMON
   description: A unique fish known as the Rhudon Gripper, with distinctive traits
     and behaviors.
@@ -4024,7 +4024,7 @@ rhudon-gripper:
     WAXING_GIBBOUS: 0.1
   model: 243
 rockbash-gripper:
-  name: Rockbash Gripper
+  display-name: Rockbash Gripper
   rarity: UNCOMMON
   description: A unique fish known as the Rockbash Gripper, with distinctive traits
     and behaviors.
@@ -4045,7 +4045,7 @@ rockbash-gripper:
     WAXING_GIBBOUS: 0.1
   model: 244
 headhunt-gripper:
-  name: Headhunt Gripper
+  display-name: Headhunt Gripper
   rarity: COMMON
   description: A unique fish known as the Headhunt Gripper, with distinctive traits
     and behaviors.
@@ -4065,7 +4065,7 @@ headhunt-gripper:
     WAXING_GIBBOUS: 0.1
   model: 245
 bean-gripper:
-  name: Bean Gripper
+  display-name: Bean Gripper
   rarity: UNCOMMON
   description: A unique fish known as the Bean Gripper, with distinctive traits and
     behaviors.
@@ -4084,7 +4084,7 @@ bean-gripper:
     WAXING_CRESCENT: 0.1
   model: 246
 bouncy-gripper:
-  name: Bouncy Gripper
+  display-name: Bouncy Gripper
   rarity: RARE
   description: A unique fish known as the Bouncy Gripper, with distinctive traits
     and behaviors.
@@ -4100,7 +4100,7 @@ bouncy-gripper:
     WAXING_GIBBOUS: 0.1
   model: 247
 hypno-gripper:
-  name: Hypno Gripper
+  display-name: Hypno Gripper
   rarity: COMMON
   description: A unique fish known as the Hypno Gripper, with distinctive traits and
     behaviors.
@@ -4120,7 +4120,7 @@ hypno-gripper:
     WAXING_CRESCENT: 0.1
   model: 248
 emerald-gripper:
-  name: Emerald Gripper
+  display-name: Emerald Gripper
   rarity: COMMON
   description: A unique fish known as the Emerald Gripper, with distinctive traits
     and behaviors.
@@ -4138,7 +4138,7 @@ emerald-gripper:
   biomes:
     DRIPSTONE_CAVES: 0.1
 fleshrend-gripper:
-  name: Fleshrend Gripper
+  display-name: Fleshrend Gripper
   rarity: UNCOMMON
   description: A unique fish known as the Fleshrend Gripper, with distinctive traits
     and behaviors.
@@ -4160,7 +4160,7 @@ fleshrend-gripper:
     WAXING_GIBBOUS: 0.1
   model: 250
 til-a-i-pia:
-  name: Til-A.I.-pia
+  display-name: Til-A.I.-pia
   rarity: COMMON
   description: A unique fish known as the Til A I Pia, with distinctive traits and
     behaviors.
@@ -4180,7 +4180,7 @@ til-a-i-pia:
     WAXING_GIBBOUS: 0.1
   model: 251
 bigbyte-piranha:
-  name: BigByte Piranha
+  display-name: BigByte Piranha
   rarity: COMMON
   description: A unique fish known as the Bigbyte Piranha, with distinctive traits
     and behaviors.
@@ -4196,7 +4196,7 @@ bigbyte-piranha:
     NIGHT: 0.1
   model: 252
 mechaphyra:
-  name: Mechaphyra
+  display-name: Mechaphyra
   rarity: UNCOMMON
   description: A unique fish known as the Mechaphyra, with distinctive traits and
     behaviors.
@@ -4216,7 +4216,7 @@ mechaphyra:
     WAXING_CRESCENT: 0.1
   model: 253
 troutomobile:
-  name: Troutomobile
+  display-name: Troutomobile
   rarity: UNCOMMON
   description: A unique fish known as the Troutomobile, with distinctive traits and
     behaviors.
@@ -4233,7 +4233,7 @@ troutomobile:
     EVENING: 0.1
   model: 254
 moderated-threadfin:
-  name: Moderated Threadfin
+  display-name: Moderated Threadfin
   rarity: COMMON
   description: A unique fish known as the Moderated Threadfin, with distinctive traits
     and behaviors.
@@ -4249,7 +4249,7 @@ moderated-threadfin:
     DAY: 0.1
   model: 255
 old-timey-poppicog:
-  name: Old-Timey Poppicog
+  display-name: Old-Timey Poppicog
   rarity: UNCOMMON
   description: A unique fish known as the Old Timey Poppicog, with distinctive traits
     and behaviors.
@@ -4270,7 +4270,7 @@ old-timey-poppicog:
     WAXING_GIBBOUS: 0.1
   model: 256
 oled-anglefish:
-  name: OLED Anglefish
+  display-name: OLED Anglefish
   rarity: UNCOMMON
   description: A unique fish known as the Oled Anglefish, with distinctive traits
     and behaviors.
@@ -4286,7 +4286,7 @@ oled-anglefish:
     NIGHT: 0.1
   model: 257
 betafish:
-  name: BETAfish
+  display-name: BETAfish
   rarity: RARE
   description: A unique fish known as the Betafish, with distinctive traits and behaviors.
   open-water-required: true
@@ -4305,7 +4305,7 @@ betafish:
     WAXING_CRESCENT: 0.1
   model: 258
 escargobot:
-  name: Escargobot
+  display-name: Escargobot
   rarity: COMMON
   description: A unique fish known as the Escargobot, with distinctive traits and
     behaviors.
@@ -4321,7 +4321,7 @@ escargobot:
     NIGHT: 0.1
   model: 259
 escargomid:
-  name: Escargomid
+  display-name: Escargomid
   rarity: UNCOMMON
   description: A unique fish known as the Escargomid, with distinctive traits and
     behaviors.
@@ -4340,7 +4340,7 @@ escargomid:
     WAXING_CRESCENT: 0.1
   model: 260
 chronotrouter:
-  name: Chronotrouter
+  display-name: Chronotrouter
   rarity: RARE
   description: A unique fish known as the Chronotrouter, with distinctive traits and
     behaviors.
@@ -4359,7 +4359,7 @@ chronotrouter:
     WAXING_GIBBOUS: 0.1
   model: 261
 initial-tee:
-  name: Initial Tee
+  display-name: Initial Tee
   rarity: UNCOMMON
   description: A unique fish known as the Initial Tee, with distinctive traits and
     behaviors.
@@ -4375,7 +4375,7 @@ initial-tee:
     NIGHT: 0.1
   model: 262
 snowgrave-rodtail:
-  name: Snowgrave Rodtail
+  display-name: Snowgrave Rodtail
   rarity: COMMON
   description: A unique fish known as the Snowgrave Rodtail, with distinctive traits
     and behaviors.
@@ -4395,7 +4395,7 @@ snowgrave-rodtail:
     WAXING_CRESCENT: 0.1
   model: 263
 eelbow:
-  name: Eelbow
+  display-name: Eelbow
   rarity: UNCOMMON
   description: A unique fish known as the Eelbow, with distinctive traits and behaviors.
   open-water-required: true
@@ -4412,7 +4412,7 @@ eelbow:
     WAXING_GIBBOUS: 0.1
   model: 264
 locknplea:
-  name: Locknplea
+  display-name: Locknplea
   rarity: RARE
   description: A unique fish known as the Locknplea, with distinctive traits and behaviors.
   open-water-required: true
@@ -4430,7 +4430,7 @@ locknplea:
     WAXING_GIBBOUS: 0.1
   model: 265
 water-bybass:
-  name: Water Bybass
+  display-name: Water Bybass
   rarity: UNCOMMON
   description: A unique fish known as the Water Bybass, with distinctive traits and
     behaviors.
@@ -4450,7 +4450,7 @@ water-bybass:
     WAXING_GIBBOUS: 0.1
   model: 266
 chromadine:
-  name: Chromadine
+  display-name: Chromadine
   rarity: COMMON
   description: A unique fish known as the Chromadine, with distinctive traits and
     behaviors.
@@ -4466,7 +4466,7 @@ chromadine:
   biomes:
     DRIPSTONE_CAVES: 0.1
 broken-wheel:
-  name: Broken Wheel
+  display-name: Broken Wheel
   rarity: UNCOMMON
   description: A unique fish known as the Broken Wheel, with distinctive traits and
     behaviors.
@@ -4489,7 +4489,7 @@ broken-wheel:
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
 dr-octogonapus:
-  name: Dr Octogonapus
+  display-name: Dr Octogonapus
   rarity: LEGENDARY
   description: A unique fish known as the Dr Octogonapus, with distinctive traits
     and behaviors.
@@ -4507,7 +4507,7 @@ dr-octogonapus:
   biomes:
     DEEP_DARK: 0.1
 cognutive:
-  name: CogNUTive
+  display-name: CogNUTive
   rarity: UNCOMMON
   description: A unique fish known as the Cognutive, with distinctive traits and behaviors.
   open-water-required: true
@@ -4524,7 +4524,7 @@ cognutive:
     WAXING_GIBBOUS: 0.1
   model: 270
 servo-moray:
-  name: Servo-Moray
+  display-name: Servo-Moray
   rarity: COMMON
   description: A unique fish known as the Servo Moray, with distinctive traits and
     behaviors.
@@ -4540,7 +4540,7 @@ servo-moray:
     EVENING: 0.1
   model: 271
 escargotop:
-  name: Escargotop
+  display-name: Escargotop
   rarity: RARE
   description: A unique fish known as the Escargotop, with distinctive traits and
     behaviors.
@@ -4557,7 +4557,7 @@ escargotop:
     NIGHT: 0.1
   model: 272
 boopsnoototron:
-  name: Boopsnoototron
+  display-name: Boopsnoototron
   rarity: COMMON
   description: A unique fish known as the Boopsnoototron, with distinctive traits
     and behaviors.
@@ -4577,7 +4577,7 @@ boopsnoototron:
     WAXING_CRESCENT: 0.1
   model: 273
 floundrive:
-  name: Floundrive
+  display-name: Floundrive
   rarity: COMMON
   description: A unique fish known as the Floundrive, with distinctive traits and
     behaviors.
@@ -4593,7 +4593,7 @@ floundrive:
     NIGHT: 0.1
   model: 274
 autoboros:
-  name: Autoboros
+  display-name: Autoboros
   rarity: RARE
   description: A unique fish known as the Autoboros, with distinctive traits and behaviors.
   open-water-required: true
@@ -4606,7 +4606,7 @@ autoboros:
     CHERRY_GROVE: 0.1
   model: 275
 skulkborn-moray:
-  name: Skulkborn Moray
+  display-name: Skulkborn Moray
   rarity: RARE
   description: A unique fish known as the Skulkborn Moray, with distinctive traits
     and behaviors.
@@ -4627,7 +4627,7 @@ skulkborn-moray:
   biomes:
     DEEP_DARK: 0.1
 dimensional-basilisk:
-  name: Dimensional Basilisk
+  display-name: Dimensional Basilisk
   rarity: RARE
   description: A unique fish known as the Dimensional Basilisk, with distinctive traits
     and behaviors.
@@ -4643,7 +4643,7 @@ dimensional-basilisk:
   biomes:
     LUSH_CAVES: 0.1
 ripper-roofin:
-  name: Ripper Roofin
+  display-name: Ripper Roofin
   rarity: LEGENDARY
   description: A unique fish known as the Ripper Roofin, with distinctive traits and
     behaviors.
@@ -4663,7 +4663,7 @@ ripper-roofin:
     WAXING_CRESCENT: 0.1
   model: 278
 chip-skydark:
-  name: Chip Skydark
+  display-name: Chip Skydark
   rarity: LEGENDARY
   description: A unique fish known as the Chip Skydark, with distinctive traits and
     behaviors.
@@ -4679,7 +4679,7 @@ chip-skydark:
     NIGHT: 0.1
   model: 279
 rafflebones:
-  name: Rafflebones
+  display-name: Rafflebones
   rarity: LEGENDARY
   description: A unique fish known as the Rafflebones, with distinctive traits and
     behaviors.
@@ -4699,7 +4699,7 @@ rafflebones:
     WAXING_CRESCENT: 0.1
   model: 280
 goobly-gobbler:
-  name: Goobly Gobbler
+  display-name: Goobly Gobbler
   rarity: RARE
   description: A unique fish known as the Goobly Gobbler, with distinctive traits
     and behaviors.
@@ -4717,7 +4717,7 @@ goobly-gobbler:
     WANING_GIBBOUS: 0.1
   model: 281
 yin-dynastii:
-  name: Yin Dynastii
+  display-name: Yin Dynastii
   rarity: RARE
   description: A unique fish known as the Yin Dynastii, with distinctive traits and
     behaviors.
@@ -4732,7 +4732,7 @@ yin-dynastii:
     DAY: 0.1
   model: 282
 yang-dynastii:
-  name: Yang Dynastii
+  display-name: Yang Dynastii
   rarity: RARE
   description: A unique fish known as the Yang Dynastii, with distinctive traits and
     behaviors.
@@ -4747,7 +4747,7 @@ yang-dynastii:
     NIGHT: 0.1
   model: 283
 dinkus-the-deep:
-  name: Dinkus the Deep
+  display-name: Dinkus the Deep
   rarity: RARE
   description: A unique fish known as the Dinkus The Deep, with distinctive traits
     and behaviors.
@@ -4763,7 +4763,7 @@ dinkus-the-deep:
     WANING_CRESCENT: 0.1
   model: 284
 worldeater:
-  name: Worldeater
+  display-name: Worldeater
   rarity: LEGENDARY
   description: A unique fish known as the Worldeater, with distinctive traits and
     behaviors.
@@ -4782,7 +4782,7 @@ worldeater:
     WAXING_GIBBOUS: 0.1
   model: 285
 the-mindflayer:
-  name: The Mindflayer
+  display-name: The Mindflayer
   rarity: LEGENDARY
   description: A unique fish known as the The Mindflayer, with distinctive traits
     and behaviors.
@@ -4804,7 +4804,7 @@ the-mindflayer:
     WAXING_GIBBOUS: 0.1
   model: 286
 mr-boombastic:
-  name: Mr Boombastic
+  display-name: Mr Boombastic
   rarity: RARE
   description: A unique fish known as the Mr Boombastic, with distinctive traits and
     behaviors.
@@ -4824,7 +4824,7 @@ mr-boombastic:
     WAXING_CRESCENT: 0.1
   model: 287
 needlessly-large-rodtail:
-  name: Needlessly Large Rodtail
+  display-name: Needlessly Large Rodtail
   rarity: UNCOMMON
   description: A unique fish known as the Needlessly Large Rodtail, with distinctive
     traits and behaviors.
@@ -4840,7 +4840,7 @@ needlessly-large-rodtail:
     EVENING: 0.1
   model: 288
 rodtail-of-domnion:
-  name: Rodtail of Domnion
+  display-name: Rodtail of Domnion
   rarity: RARE
   description: A unique fish known as the Rodtail Of Domnion, with distinctive traits
     and behaviors.
@@ -4859,7 +4859,7 @@ rodtail-of-domnion:
     WAXING_CRESCENT: 0.1
   model: 289
 abaia-of-isles:
-  name: Abaia of Isles
+  display-name: Abaia of Isles
   rarity: RARE
   description: A unique fish known as the Abaia Of Isles, with distinctive traits
     and behaviors.
@@ -4874,7 +4874,7 @@ abaia-of-isles:
   biomes:
     DRIPSTONE_CAVES: 0.1
 jim:
-  name: Jim
+  display-name: Jim
   rarity: LEGENDARY
   description: A unique fish known as the Jim, with distinctive traits and behaviors.
   open-water-required: true
@@ -4889,7 +4889,7 @@ jim:
     DAY: 0.1
   model: 291
 king-jellyjelly:
-  name: King Jellyjelly
+  display-name: King Jellyjelly
   rarity: RARE
   description: A unique fish known as the King Jellyjelly, with distinctive traits
     and behaviors.
@@ -4905,7 +4905,7 @@ king-jellyjelly:
     WAXING_CRESCENT: 0.1
   model: 292
 wither-s-rodtail:
-  name: "Wither\u2019s Rodtail"
+  display-name: "Wither\u2019s Rodtail"
   rarity: RARE
   description: A unique fish known as the Wither S Rodtail, with distinctive traits
     and behaviors.
@@ -4925,7 +4925,7 @@ wither-s-rodtail:
     WAXING_CRESCENT: 0.1
   model: 293
 shadowmaw-grubshark:
-  name: Shadowmaw Grubshark
+  display-name: Shadowmaw Grubshark
   rarity: RARE
   description: A unique fish known as the Shadowmaw Grubshark, with distinctive traits
     and behaviors.
@@ -4942,7 +4942,7 @@ shadowmaw-grubshark:
     WAXING_GIBBOUS: 0.1
   model: 294
 astrological-mindwatcher:
-  name: Astrological Mindwatcher
+  display-name: Astrological Mindwatcher
   rarity: RARE
   description: A unique fish known as the Astrological Mindwatcher, with distinctive
     traits and behaviors.
@@ -4958,7 +4958,7 @@ astrological-mindwatcher:
     WANING_GIBBOUS: 0.1
   model: 295
 chuchu-pik:
-  name: Chuchu Pik
+  display-name: Chuchu Pik
   rarity: RARE
   description: A unique fish known as the Chuchu Pik, with distinctive traits and
     behaviors.
@@ -4978,7 +4978,7 @@ chuchu-pik:
     WAXING_GIBBOUS: 0.1
   model: 296
 illithid-maggot:
-  name: Illithid Maggot
+  display-name: Illithid Maggot
   rarity: COMMON
   description: A unique fish known as the Illithid Maggot, with distinctive traits
     and behaviors.
@@ -5002,7 +5002,7 @@ illithid-maggot:
     THE_VOID: 0.1
   model: 297
 redacted:
-  name: '[REDACTED]'
+  display-name: '[REDACTED]'
   rarity: LEGENDARY
   description: A unique fish known as the Redacted, with distinctive traits and behaviors.
   open-water-required: true
@@ -5030,7 +5030,7 @@ redacted:
     WAXING_CRESCENT: 0.1
   model: 298
 luminous-shulk:
-  name: Luminous Shulk
+  display-name: Luminous Shulk
   rarity: RARE
   description: A unique fish known as the Luminous Shulk, with distinctive traits
     and behaviors.
@@ -5061,7 +5061,7 @@ luminous-shulk:
     WAXING_GIBBOUS: 0.1
   model: 299
 voidborn-moray:
-  name: Voidborn Moray
+  display-name: Voidborn Moray
   rarity: UNCOMMON
   description: A unique fish known as the Voidborn Moray, with distinctive traits
     and behaviors.
@@ -5088,7 +5088,7 @@ voidborn-moray:
     NIGHT: 0.1
   model: 300
 stray-seagrass:
-  name: Stray Seagrass
+  display-name: Stray Seagrass
   rarity: COMMON
   description: A unique fish known as the Stray Seagrass, with distinctive traits
     and behaviors.
@@ -5103,7 +5103,7 @@ stray-seagrass:
     RIVER: 0.1
   model: 301
 old-boot:
-  name: Old Boot
+  display-name: Old Boot
   rarity: COMMON
   description: A unique fish known as the Old Boot, with distinctive traits and behaviors.
   open-water-required: false
@@ -5118,7 +5118,7 @@ old-boot:
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
 waterlogged-boot:
-  name: Waterlogged Boot
+  display-name: Waterlogged Boot
   rarity: COMMON
   description: A unique fish known as the Waterlogged Boot, with distinctive traits
     and behaviors.
@@ -5134,7 +5134,7 @@ waterlogged-boot:
     RIVER: 0.1
   model: 303
 message-in-a-bottle:
-  name: Message in a Bottle
+  display-name: Message in a Bottle
   rarity: COMMON
   description: A unique fish known as the Message In A Bottle, with distinctive traits
     and behaviors.
@@ -5147,7 +5147,7 @@ message-in-a-bottle:
   tier: 1
   model: 304
 broken-chain:
-  name: Broken Chain
+  display-name: Broken Chain
   rarity: COMMON
   description: A unique fish known as the Broken Chain, with distinctive traits and
     behaviors.
@@ -5163,7 +5163,7 @@ broken-chain:
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
 strange-biomass:
-  name: Strange Biomass
+  display-name: Strange Biomass
   rarity: COMMON
   description: A unique fish known as the Strange Biomass, with distinctive traits
     and behaviors.
@@ -5181,7 +5181,7 @@ strange-biomass:
     END_BARRENS: 0.1
   model: 306
 chorus-kelp:
-  name: Chorus Kelp
+  display-name: Chorus Kelp
   rarity: COMMON
   description: A unique fish known as the Chorus Kelp, with distinctive traits and
     behaviors.
@@ -5199,7 +5199,7 @@ chorus-kelp:
     END_BARRENS: 0.1
   model: 307
 smooth-rock:
-  name: Smooth Rock
+  display-name: Smooth Rock
   rarity: COMMON
   description: A unique fish known as the Smooth Rock, with distinctive traits and
     behaviors.
@@ -5218,7 +5218,7 @@ smooth-rock:
     LUSH_CAVES: 0.1
   model: 308
 small-shell:
-  name: Small Shell
+  display-name: Small Shell
   rarity: COMMON
   description: A unique fish known as the Small Shell, with distinctive traits and
     behaviors.
@@ -5231,7 +5231,7 @@ small-shell:
   tier: 1
   model: 309
 large-shell:
-  name: Large Shell
+  display-name: Large Shell
   rarity: COMMON
   description: A unique fish known as the Large Shell, with distinctive traits and
     behaviors.
@@ -5244,7 +5244,7 @@ large-shell:
   tier: 1
   model: 310
 coral-shell:
-  name: Coral Shell
+  display-name: Coral Shell
   rarity: UNCOMMON
   description: A unique fish known as the Coral Shell, with distinctive traits and
     behaviors.
@@ -5257,7 +5257,7 @@ coral-shell:
   tier: 1
   model: 311
 castaway-chest:
-  name: Castaway Chest
+  display-name: Castaway Chest
   rarity: COMMON
   description: A unique fish known as the Castaway Chest, with distinctive traits
     and behaviors.
@@ -5273,7 +5273,7 @@ castaway-chest:
     RIVER: 0.1
   model: 312
 seafarers-chest:
-  name: Seafarers Chest
+  display-name: Seafarers Chest
   rarity: UNCOMMON
   description: A unique fish known as the Seafarers Chest, with distinctive traits
     and behaviors.
@@ -5289,7 +5289,7 @@ seafarers-chest:
     RIVER: 0.1
   model: 313
 captains-chest:
-  name: Captains Chest
+  display-name: Captains Chest
   rarity: RARE
   description: A unique fish known as the Captains Chest, with distinctive traits
     and behaviors.
@@ -5305,7 +5305,7 @@ captains-chest:
     RIVER: 0.1
   model: 314
 chest-of-ancient-tributes:
-  name: Chest of Ancient Tributes
+  display-name: Chest of Ancient Tributes
   rarity: LEGENDARY
   description: A unique fish known as the Chest Of Ancient Tributes, with distinctive
     traits and behaviors.
@@ -5321,7 +5321,7 @@ chest-of-ancient-tributes:
     RIVER: 0.1
   model: 315
 chest-of-wonderous-secrets:
-  name: Chest of Wonderous Secrets
+  display-name: Chest of Wonderous Secrets
   rarity: LEGENDARY
   description: A unique fish known as the Chest Of Wonderous Secrets, with distinctive
     traits and behaviors.
@@ -5337,7 +5337,7 @@ chest-of-wonderous-secrets:
     RIVER: 0.1
   model: 316
 broken-glasses:
-  name: Broken Glasses
+  display-name: Broken Glasses
   rarity: COMMON
   description: A unique fish known as the Broken Glasses, with distinctive traits
     and behaviors.
@@ -5355,7 +5355,7 @@ broken-glasses:
     LUSH_CAVES: 0.1
   model: 317
 rotting-produce:
-  name: Rotting Produce
+  display-name: Rotting Produce
   rarity: COMMON
   description: A unique fish known as the Rotting Produce, with distinctive traits
     and behaviors.
@@ -5372,7 +5372,7 @@ rotting-produce:
     LUSH_CAVES: 0.1
   model: 318
 floating-kelp:
-  name: Floating Kelp
+  display-name: Floating Kelp
   rarity: COMMON
   description: A unique fish known as the Floating Kelp, with distinctive traits and
     behaviors.
@@ -5385,7 +5385,7 @@ floating-kelp:
   tier: 0
   model: 319
 pristine-pearl:
-  name: Pristine Pearl
+  display-name: Pristine Pearl
   rarity: UNCOMMON
   description: A unique fish known as the Pristine Pearl, with distinctive traits
     and behaviors.
@@ -5398,7 +5398,7 @@ pristine-pearl:
   tier: 1
   model: 320
 oyster-of-secrets:
-  name: Oyster of Secrets
+  display-name: Oyster of Secrets
   rarity: RARE
   description: A unique fish known as the Oyster Of Secrets, with distinctive traits
     and behaviors.
@@ -5411,7 +5411,7 @@ oyster-of-secrets:
   tier: 1
   model: 321
 crumpled-bottle:
-  name: Crumpled Bottle
+  display-name: Crumpled Bottle
   rarity: COMMON
   description: A unique fish known as the Crumpled Bottle, with distinctive traits
     and behaviors.
@@ -5430,7 +5430,7 @@ crumpled-bottle:
     LUSH_CAVES: 0.1
   model: 322
 dead-kelp:
-  name: Dead Kelp
+  display-name: Dead Kelp
   rarity: COMMON
   description: A unique fish known as the Dead Kelp, with distinctive traits and behaviors.
   open-water-required: false
@@ -5445,7 +5445,7 @@ dead-kelp:
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
 dark-pearl-cluster:
-  name: Dark Pearl Cluster
+  display-name: Dark Pearl Cluster
   rarity: UNCOMMON
   description: A unique fish known as the Dark Pearl Cluster, with distinctive traits
     and behaviors.
@@ -5464,7 +5464,7 @@ dark-pearl-cluster:
     DEEP_DARK: 0.1
     DRIPSTONE_CAVES: 0.1
 trash:
-  name: Trash
+  display-name: Trash
   rarity: COMMON
   description: A unique fish known as the Trash, with distinctive traits and behaviors.
   open-water-required: false

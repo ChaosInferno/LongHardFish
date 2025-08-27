@@ -5,10 +5,8 @@ import io.papermc.paper.registry.RegistryAccess;
 import io.papermc.paper.registry.RegistryKey;
 import io.papermc.paper.world.MoonPhase;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.function.Function;
 import net.kyori.adventure.key.Key;
 import org.aincraft.container.TimeCycle;
 import org.aincraft.domain.record.FishEnvironmentRecord;
@@ -42,7 +40,7 @@ final class FishEnvironmentRecordMapperImpl implements
       biomeWeights.put(biome.key(), entry.getValue());
     }
     Map<Key, Double> timeWeights = new HashMap<>();
-    for (Entry<String, Double> entry : record.timeCycleWeights().entrySet()) {
+    for (Entry<String, Double> entry : record.timeWeights().entrySet()) {
       Key key = NamespacedKey.fromString(entry.getKey());
       if (!timeCycleRegistry.isRegistered(key)) {
         throw new IllegalArgumentException("failed to find a time cycle");
