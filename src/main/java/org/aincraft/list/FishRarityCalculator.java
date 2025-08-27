@@ -1,8 +1,5 @@
 package org.aincraft.list;
 
-import org.aincraft.container.FishEnvironment;
-import org.aincraft.container.FishMoonCycle;
-import org.aincraft.container.FishRarity;
 import org.aincraft.container.FishTimeCycle;
 import org.bukkit.block.Biome;
 

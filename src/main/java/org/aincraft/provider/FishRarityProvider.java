@@ -1,8 +1,6 @@
 package org.aincraft.provider;
 
 import org.aincraft.config.FishConfig;
-import org.aincraft.container.FishDistribution;
-import org.aincraft.container.FishRarity;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;

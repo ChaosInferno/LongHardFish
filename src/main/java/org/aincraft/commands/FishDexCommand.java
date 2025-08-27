@@ -1,7 +1,7 @@
 package org.aincraft.commands;
 
 import org.aincraft.gui.FishDexFishSelector;
-import org.aincraft.container.FishModel;
+import org.aincraft.domain.record.FishRecord;
 import org.aincraft.service.InventoryBackupService;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
@@ -49,7 +49,7 @@ public final class FishDexCommand implements CommandExecutor, TabCompleter {
                 // Fallback: the lowest model number we can find (just in case 1 is missing)
                 target = allFishIds.stream()
                         .min(Comparator.comparingInt(id -> {
-                            FishModel fm = modelLookup.get(id);
+                            FishRecord fm = modelLookup.get(id);
                             return fm != null ? fm.getModelNumber() : Integer.MAX_VALUE;
                         }))
                         .orElse(null);
@@ -73,7 +73,7 @@ public final class FishDexCommand implements CommandExecutor, TabCompleter {
 
     private NamespacedKey findModelNumberOne() {
         for (NamespacedKey id : allFishIds) {
-            FishModel fm = modelLookup.get(id);
+            FishRecord fm = modelLookup.get(id);
             if (fm != null && fm.getModelNumber() == 1) {
                 return id;
             }

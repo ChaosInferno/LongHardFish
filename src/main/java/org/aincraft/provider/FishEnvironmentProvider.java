@@ -106,7 +106,7 @@ public class FishEnvironmentProvider {
 
             fishEnvironments.put(
                     new NamespacedKey(plugin, key),
-                    new FishEnvironment(biomeWeights, timeWeights, moonWeights, model, openWaterRequired, rainRequired)
+                    new FishEnvironment(biomeWeights, timeWeights, moonWeights, openWaterRequired, rainRequired)
             );
         }
 

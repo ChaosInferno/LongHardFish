@@ -1,7 +1,7 @@
 package org.aincraft.provider;
 
 import org.aincraft.config.FishConfig;
-import org.aincraft.container.FishModel;
+import org.aincraft.domain.record.FishRecord;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -20,10 +20,10 @@ public class FishModelProvider {
         this.plugin = plugin;
     }
 
-    public Map<NamespacedKey, FishModel> parseFishModelObjects() {
+    public Map<NamespacedKey, FishRecord> parseFishModelObjects() {
         FileConfiguration config = holder.getConfig();
         Set<String> fishKeys = config.getKeys(false);
-        Map<NamespacedKey, FishModel> modelMap = new HashMap<>();
+        Map<NamespacedKey, FishRecord> modelMap = new HashMap<>();
 
         for (String fishKey : fishKeys) {
             ConfigurationSection section = config.getConfigurationSection(fishKey);
@@ -47,7 +47,7 @@ public class FishModelProvider {
             }
 
             NamespacedKey key = new NamespacedKey(plugin, fishKey);
-            modelMap.put(key, new FishModel(name, description, modelNumber));
+            modelMap.put(key, new FishRecord(name, description, modelNumber));
         }
 
         return modelMap;

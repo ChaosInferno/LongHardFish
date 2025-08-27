@@ -6,9 +6,7 @@ import org.aincraft.commands.FishDexCommand;
 import org.aincraft.commands.GiveFishItemsCommand;
 import org.aincraft.commands.TestCommand;
 import org.aincraft.config.FishConfig;
-import org.aincraft.container.FishDistribution;
-import org.aincraft.container.FishEnvironment;
-import org.aincraft.container.FishModel;
+import org.aincraft.domain.record.FishRecord;
 import org.aincraft.gui.FishDexFishSelector;
 import org.aincraft.ingame_items.*;
 import org.aincraft.items.CustomFishItems;
@@ -24,7 +22,6 @@ import org.aincraft.storage.Database;
 import org.aincraft.storage.SQLiteDatabase;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
-import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -105,7 +102,7 @@ public class LongHardFish extends JavaPlugin {
 
     // --- Build lookups for the selector ---
     Map<NamespacedKey, FishEnvironment> envMap = environmentProvider.parseFishEnvironmentObjects();
-    Map<NamespacedKey, FishModel> modelMap = modelProvider.parseFishModelObjects();
+    Map<NamespacedKey, FishRecord> modelMap = modelProvider.parseFishModelObjects();
     Map<NamespacedKey, FishDistribution> distMap = rarityProvider.parseFishDistributorObjects();
     Map<NamespacedKey, Integer> tierMap = environmentProvider.parseFishTierMap();
 

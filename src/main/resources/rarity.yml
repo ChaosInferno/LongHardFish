@@ -1,0 +1,15 @@
+common:
+  color: #aaaaaa
+  weight: 0.7
+uncommon:
+  color: #55ff55
+  weight: 0.2
+rare:
+  color: #55ffff
+  weight: 0.0985
+legendary:
+  color: #ffaa00
+  weight: 0.0015
+event:
+  color: #ff55ff
+  weight: 0

@@ -2,14 +2,13 @@ package org.aincraft.listener;
 
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import org.aincraft.calculator.FishCalculator;
-import org.aincraft.container.FishDistribution;
-import org.aincraft.container.FishRarity;
-import org.aincraft.list.FishCreator;
+import org.aincraft.container.Rarity;
 import org.aincraft.list.FishFilter;
 import org.aincraft.list.FishPercentCalculator;
 import org.aincraft.provider.FishEnvironmentProvider;
 import org.aincraft.provider.FishModelProvider;
 import org.aincraft.provider.FishRarityProvider;
+import org.aincraft.registry.Registry;
 import org.aincraft.service.StatsService;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -33,7 +32,7 @@ public class FishCatchListener implements Listener {
 
     private final JavaPlugin plugin;
     private final StatsService stats;
-
+    private final Registry<Rarity> rarityRegistry;
     private final FishEnvironmentProvider environmentProvider;
     private final FishRarityProvider rarityProvider;
     private final FishCreator fishCreator;
@@ -43,12 +42,13 @@ public class FishCatchListener implements Listener {
                              FishEnvironmentProvider environmentProvider,
                              FishRarityProvider rarityProvider,
                              FishModelProvider modelProvider,
-                             StatsService stats) {
+                             StatsService stats, Registry<Rarity> rarityRegistry) {
         this.plugin = Objects.requireNonNull(plugin, "plugin");
         this.stats = Objects.requireNonNull(stats, "StatsService is null");
         this.environmentProvider = environmentProvider;
         this.rarityProvider = rarityProvider;
-        this.fishCreator = new FishCreator(plugin, modelProvider.parseFishModelObjects());
+      this.rarityRegistry = rarityRegistry;
+      this.fishCreator = new FishCreator(plugin, modelProvider.parseFishModelObjects());
         this.filter = new FishFilter();
     }
 

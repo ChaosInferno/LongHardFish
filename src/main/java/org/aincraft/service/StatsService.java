@@ -1,6 +1,6 @@
 package org.aincraft.service;
 
-import org.aincraft.container.FishModel;
+import org.aincraft.domain.record.FishRecord;
 import org.aincraft.storage.Database;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
@@ -52,10 +52,10 @@ public final class StatsService {
         });
     }
 
-    public void refreshFishNamesAsync(Map<NamespacedKey, FishModel> models) {
+    public void refreshFishNamesAsync(Map<NamespacedKey, FishRecord> models) {
         Map<String, String> map = new HashMap<>();
         for (var e : models.entrySet()) {
-            map.put(e.getKey().toString(), e.getValue().getName());
+            map.put(e.getKey().toString(), e.getValue().displayName());
         }
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             try { db.refreshFishNames(map); }

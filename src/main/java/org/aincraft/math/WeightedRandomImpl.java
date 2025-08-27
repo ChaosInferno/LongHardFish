@@ -32,7 +32,7 @@ final class WeightedRandomImpl<T> implements WeightedRandom<T> {
 
   @Override
   public void addItem(T item, double weight) {
-    Preconditions.checkArgument(!Double.isNaN(weight) && weight > 0.0);
+    Preconditions.checkArgument(!Double.isNaN(weight) && weight >= 0.0);
     items.add(item);
     prefixWeights.add(cumulative += weight);
   }

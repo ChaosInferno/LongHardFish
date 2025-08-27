@@ -5,11 +5,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
-import org.aincraft.container.FishDistribution;
-import org.aincraft.container.FishEnvironment;
-import org.aincraft.container.FishModel;
-import org.aincraft.container.FishMoonCycle;
-import org.aincraft.container.FishRarity;
+import org.aincraft.domain.record.FishRecord;
 import org.aincraft.container.FishTimeCycle;
 import org.aincraft.sfx.FishSounds;
 import org.bukkit.Bukkit;
@@ -34,7 +30,7 @@ public class FishDexFishSelector {
 
     // ===== Lookups =====
     public interface EnvLookup { FishEnvironment get(NamespacedKey fishId); }
-    public interface ModelLookup { FishModel get(NamespacedKey fishId); }
+    public interface ModelLookup { FishRecord get(NamespacedKey fishId); }
     public interface DistributionLookup { FishDistribution get(NamespacedKey fishId); }
     public interface TierLookup { Integer get(NamespacedKey fishId); }
     public enum Progress { UNSEEN, SEEN, CAUGHT }
@@ -218,7 +214,7 @@ public class FishDexFishSelector {
 
         // Resolve data
         FishEnvironment env = (envLookup != null) ? envLookup.get(fishId) : null;
-        FishModel model       = (modelLookup != null) ? modelLookup.get(fishId) : null;
+        FishRecord model       = (modelLookup != null) ? modelLookup.get(fishId) : null;
         FishDistribution dist = (distributionLookup != null) ? distributionLookup.get(fishId) : null;
 
         Progress progress = (progressLookup != null)
@@ -234,7 +230,7 @@ public class FishDexFishSelector {
         if (allFishIds != null) {
             sorted = new ArrayList<>(allFishIds.get());
             sorted.sort(Comparator.comparingInt(id -> {
-                FishModel fm = modelLookup.get(id);
+                FishRecord fm = modelLookup.get(id);
                 return (fm != null) ? fm.getModelNumber() : Integer.MAX_VALUE;
             }));
             holder.ordered = sorted;
@@ -246,7 +242,7 @@ public class FishDexFishSelector {
 
             for (int i = 0; i < FISH_GRID_SLOTS.length && (start + i) < sorted.size(); i++) {
                 NamespacedKey idOnPage = sorted.get(start + i);
-                FishModel fm = modelLookup.get(idOnPage);
+                FishRecord fm = modelLookup.get(idOnPage);
                 Progress pgr = (progressLookup != null)
                         ? progressLookup.get(player.getUniqueId(), idOnPage)
                         : Progress.CAUGHT;
@@ -277,7 +273,7 @@ public class FishDexFishSelector {
                 // NEW: pick texture by progress
                 String texToUse = textureForProgress(player, fishId, baseTex);
 
-                FishModel fm = model;
+                FishRecord fm = model;
                 Progress pgr = progress;
                 putIcon(gui, slot, texToUse);
                 holder.slotToFish.put(slot, fishId);
@@ -486,7 +482,7 @@ public class FishDexFishSelector {
         }
     }
 
-    private void placeDescriptionGem(Player player, NamespacedKey fishId, FishModel model, Progress progress) {
+    private void placeDescriptionGem(Player player, NamespacedKey fishId, FishRecord model, Progress progress) {
         if (progress != Progress.CAUGHT) {
             // Not caught: dead gem + short message
             putPlayerIconMain(player, 0, 4, "icons/description-gem-icon_dead");
@@ -588,7 +584,7 @@ public class FishDexFishSelector {
         return String.format("%03d", n);
     }
 
-    private void applyFishTooltip(Inventory gui, int slot, FishModel fm, Progress pgr) {
+    private void applyFishTooltip(Inventory gui, int slot, FishRecord fm, Progress pgr) {
         ItemStack stack = gui.getItem(slot);
         if (stack == null) return;
         ItemMeta meta = stack.getItemMeta();
@@ -657,7 +653,7 @@ public class FishDexFishSelector {
         // Build sorted list the same way as in open(...)
         List<NamespacedKey> sorted = new ArrayList<>(allFishIds.get());
         sorted.sort(Comparator.comparingInt(id -> {
-            FishModel fm = modelLookup.get(id);
+            FishRecord fm = modelLookup.get(id);
             return (fm != null) ? fm.getModelNumber() : Integer.MAX_VALUE;
         }));
 

@@ -1,20 +1,14 @@
 package org.aincraft.list;
 
-import org.aincraft.container.FishEnvironment;
-import org.aincraft.container.FishMoonCycle;
-import org.aincraft.container.FishRarity;
 import org.aincraft.container.FishTimeCycle;
 import org.aincraft.provider.FishEnvironmentProvider;
 import org.aincraft.provider.MinecraftTimeParser;
-import org.aincraft.service.StatsService;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.FishHook;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerFishEvent;
 
 import java.util.*;
 

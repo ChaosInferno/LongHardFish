@@ -1,0 +1,20 @@
+package org.aincraft.domain;
+
+import com.google.inject.PrivateModule;
+import com.google.inject.Singleton;
+import com.google.inject.TypeLiteral;
+import org.aincraft.api.FishObject;
+import org.aincraft.domain.record.FishRecord;
+import org.aincraft.registry.RegistryModule;
+
+public final class DomainModule extends PrivateModule {
+
+  @Override
+  protected void configure() {
+    install(new RegistryModule());
+    bind(new TypeLiteral<DomainMapper<FishObject, FishRecord>>() {
+    })
+        .to(FishRecordMapperImpl.class)
+        .in(Singleton.class);
+  }
+}
