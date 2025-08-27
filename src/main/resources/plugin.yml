@@ -4,10 +4,6 @@ main: org.aincraft.LongHardFish
 api-version: 1.20
 
 commands:
-  piratechest:
-    description: Configure the Pirate Chest
-    usage: /piratechest set|clear
-    permission: piratechest.admin
   fishstats:
     description: Show top caught fish
     usage: "/fishstats [player] [limit]"
@@ -15,10 +11,15 @@ commands:
   fishdex:
     description: Open the FishDex for a specific fish id
     usage: /fishdex <fish-id>
+  lhfgive:
+    description: Give a registered LongHardFish custom item
+    usage: /lhfgive <item-id> [player] [amount]
+    permission: longhardfish.give
+    aliases: [ lhf-give, lhfitem, lhf-item ]
 
 permissions:
-  piratechest.admin:
-    default: op
   longhardfish.stats:
     description: Use /fishstats to view stats
     default: true
+  longhardfish.give:
+    default: op

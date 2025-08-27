@@ -1,13 +1,15 @@
 package org.aincraft;
 
 import org.aincraft.commands.FishDexCommand;
+import org.aincraft.commands.GiveFishItemsCommand;
 import org.aincraft.config.FishConfig;
 import org.aincraft.container.FishDistribution;
 import org.aincraft.container.FishEnvironment;
 import org.aincraft.container.FishModel;
 import org.aincraft.gui.FishDexFishSelector;
-import org.aincraft.listener.FishCatchListener;
-import org.aincraft.listener.PirateChestListener;
+import org.aincraft.ingame_items.*;
+import org.aincraft.items.CustomFishItems;
+import org.aincraft.listener.*;
 import org.aincraft.provider.FishEnvironmentDefaultsProvider;
 import org.aincraft.provider.FishEnvironmentProvider;
 import org.aincraft.provider.FishModelProvider;
@@ -33,12 +35,16 @@ import java.util.Objects;
 import java.util.function.BiConsumer;
 
 public class LongHardFish extends JavaPlugin {
-    private PirateChestListener guiListener;
     private Database db;          // NEW
     private StatsService stats;
     private FishCatchListener catchListener;
     private FishDexFishSelector fishDex;
     private InventoryBackupService invBackup;
+    private FishDexItem fishDexItem;
+    private SextantItem sextantItem;
+    private WeatherRadioItem weatherRadioItem;
+    private WatchItem watchItem;
+    private FishFinderItem fishFinderItem;
 
     @Override
     public void onEnable() {
@@ -78,17 +84,11 @@ public class LongHardFish extends JavaPlugin {
 
         stats.refreshFishNamesAsync(modelProvider.parseFishModelObjects());
 
-        // Usual listeners
-        guiListener = new PirateChestListener(this);
-        getServer().getPluginManager().registerEvents(guiListener, this);
-
         // Catch listener
         FishCatchListener catchListener = new FishCatchListener(this, environmentProvider, rarityProvider, modelProvider, stats);
         getServer().getPluginManager().registerEvents(catchListener, this);
 
         // Commands
-        PluginCommand chestCmd = getCommand("piratechest");
-        if (chestCmd != null) chestCmd.setExecutor(guiListener);
         FishStatsCommand statsCmd = new FishStatsCommand(this, stats);
         Objects.requireNonNull(getCommand("fishstats")).setExecutor(statsCmd);
         Objects.requireNonNull(getCommand("fishstats")).setTabCompleter(statsCmd);
@@ -137,9 +137,16 @@ public class LongHardFish extends JavaPlugin {
         // IMPORTANT: make the mask back up the player's inventory *before* we start writing icons to it
         BiConsumer<Player, Inventory> mask = (p, inv) -> {
             try {
-                invBackup.backupIfNeeded(p);  // persists current player inv + marks as "masked"
+                invBackup.backupIfNeeded(p);  // snapshot once per open
+                // Clear main/hotbar/offhand/cursor so the ghosted hotbar is blank
+                p.getInventory().clear();
+                p.getInventory().setExtraContents(null);
+                p.getInventory().setItemInOffHand(null);
+                p.setItemOnCursor(null);
+                // If you also want to hide armor while the Dex is open, uncomment:
+                // p.getInventory().setArmorContents(null);
             } catch (Exception ex) {
-                getLogger().warning("Failed to backup inventory for " + p.getName() + ": " + ex.getMessage());
+                getLogger().warning("Failed to backup+clear inventory for " + p.getName() + ": " + ex.getMessage());
             }
         };
 
@@ -161,7 +168,7 @@ public class LongHardFish extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new org.aincraft.listener.FishDexGuiListener(fishDex, invBackup), this);
 
         // FishDex command
-        var fishDexCmd = new FishDexCommand(this, fishDex, modelMap.keySet(), invBackup);
+        var fishDexCmd = new FishDexCommand(this, fishDex, modelMap.keySet(),modelMap::get, invBackup);
         Objects.requireNonNull(getCommand("fishdex")).setExecutor(fishDexCmd);
         Objects.requireNonNull(getCommand("fishdex")).setTabCompleter(fishDexCmd);
 
@@ -174,6 +181,27 @@ public class LongHardFish extends JavaPlugin {
             Bukkit.getLogger().info("  Times: " + entry.getValue().getEnvironmentTimes());
             Bukkit.getLogger().info("  Moons: " + entry.getValue().getEnvironmentMoons());
         }
+
+        this.fishDexItem = new FishDexItem(this);
+        this.sextantItem = new SextantItem(this);
+        this.weatherRadioItem = new WeatherRadioItem(this);
+        this.watchItem = new WatchItem(this);
+        this.fishFinderItem = new FishFinderItem(this);
+
+        // Register current and future items here:
+        CustomFishItems.register("fishdex", fishDexItem::create);
+        CustomFishItems.register("sextant", sextantItem::create);
+        CustomFishItems.register("weather_radio", weatherRadioItem::create);
+        CustomFishItems.register("watch", watchItem::create);
+        CustomFishItems.register("fish_finder", fishFinderItem::create);
+
+        getServer().getPluginManager().registerEvents(new FishDexListener(this, fishDexItem), this);
+        getServer().getPluginManager().registerEvents(new SextantListener(sextantItem), this);
+        getServer().getPluginManager().registerEvents(new WeatherRadioListener(weatherRadioItem), this);
+        getServer().getPluginManager().registerEvents(new WatchListener(watchItem), this);
+        getServer().getPluginManager().registerEvents(new FishFinderListener(fishFinderItem), this);
+
+        getCommand("lhfgive").setExecutor(new GiveFishItemsCommand(this));
     }
 
     @Override
@@ -187,14 +215,6 @@ public class LongHardFish extends JavaPlugin {
                     getLogger().warning("Failed to restore inventory for " + p.getName() + ": " + ex.getMessage());
                 }
             }
-        }
-
-        if (guiListener != null) {
-            guiListener.restoreAllMasks();
-        }
-        try {
-            if (db != null) db.close();
-        } catch (Exception ignored) {
         }
     }
 }

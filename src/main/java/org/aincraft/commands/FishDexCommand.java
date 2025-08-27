@@ -1,6 +1,7 @@
 package org.aincraft.commands;
 
 import org.aincraft.gui.FishDexFishSelector;
+import org.aincraft.container.FishModel;
 import org.aincraft.service.InventoryBackupService;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
@@ -8,149 +9,102 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.*;
-import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public final class FishDexCommand implements CommandExecutor, TabCompleter {
-    private final Plugin plugin;
+    private final JavaPlugin plugin;
     private final FishDexFishSelector selector;
+    private final Set<NamespacedKey> allFishIds;
+    private final FishDexFishSelector.ModelLookup modelLookup;
     private final InventoryBackupService backup;
 
-    private final Map<String, NamespacedKey> byPath; // path -> key (e.g. "glider-bananafish")
-    private final Map<String, NamespacedKey> byFull; // "ns:path" -> key
-
-    public FishDexCommand(Plugin plugin,
+    public FishDexCommand(JavaPlugin plugin,
                           FishDexFishSelector selector,
-                          Collection<NamespacedKey> fishKeys,
+                          Set<NamespacedKey> allFishIds,
+                          FishDexFishSelector.ModelLookup modelLookup,
                           InventoryBackupService backup) {
         this.plugin = plugin;
         this.selector = selector;
+        this.allFishIds = allFishIds;
+        this.modelLookup = modelLookup;
         this.backup = backup;
-
-        Map<String, NamespacedKey> p = new HashMap<>();
-        Map<String, NamespacedKey> f = new HashMap<>();
-        for (NamespacedKey k : fishKeys) {
-            p.put(k.getKey().toLowerCase(Locale.ENGLISH), k);
-            f.put(k.getNamespace().toLowerCase(Locale.ENGLISH) + ":" + k.getKey().toLowerCase(Locale.ENGLISH), k);
-        }
-        this.byPath = p;
-        this.byFull = f;
-    }
-
-    private static String normalizePath(String s) {
-        if (s == null) return "";
-        String t = s.trim().toLowerCase(Locale.ENGLISH);
-        return t.replace(' ', '-').replace('_', '-');
-    }
-
-    private NamespacedKey resolveKey(String userArg) {
-        if (userArg == null || userArg.isBlank()) return null;
-        String raw = userArg.trim().toLowerCase(Locale.ENGLISH);
-
-        // exact ns:path
-        if (raw.contains(":")) {
-            NamespacedKey k = byFull.get(raw);
-            if (k != null) return k;
-        }
-
-        // path-only
-        String path = normalizePath(raw);
-        NamespacedKey exact = byPath.get(path);
-        if (exact != null) return exact;
-
-        // startsWith fallback
-        List<NamespacedKey> candidates = byPath.entrySet().stream()
-                .filter(e -> e.getKey().startsWith(path))
-                .sorted(Map.Entry.comparingByKey())
-                .map(Map.Entry::getValue)
-                .collect(Collectors.toList());
-        if (!candidates.isEmpty()) return candidates.get(0);
-
-        return null;
-    }
-
-    /** Backs up the inventory once per session and clears it for the GUI. */
-    private boolean ensureBackupAndClear(Player p) {
-        if (backup == null) return true; // nothing to do
-        try {
-            if (!backup.hasBackup(p.getUniqueId())) {
-                backup.backupIfNeeded(p); // your service should save *and* clear safely
-            } else {
-                // already backed up (user reopened the GUI) — just ensure it’s clear
-                p.getInventory().clear();
-                p.getInventory().setArmorContents(null);
-                p.getInventory().setExtraContents(null);
-                p.getInventory().setItemInOffHand(null);
-                p.setItemOnCursor(null);
-            }
-            return true;
-        } catch (Exception ex) {
-            plugin.getLogger().log(Level.SEVERE, "Failed to backup inventory for " + p.getName(), ex);
-            p.sendMessage("§cCouldn't open the FishDex safely (inventory backup failed).");
-            return false;
-        }
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player p)) {
             sender.sendMessage("Players only.");
             return true;
         }
 
-        // Choose target fish
         NamespacedKey target;
+
         if (args.length == 0) {
-            target = byPath.entrySet().stream()
-                    .sorted(Map.Entry.comparingByKey())
-                    .map(Map.Entry::getValue)
-                    .findFirst().orElse(null);
+            // Default: fish with modelNumber == 1
+            target = findModelNumberOne();
             if (target == null) {
-                p.sendMessage("No fish registered.");
-                return true;
+                // Fallback: the lowest model number we can find (just in case 1 is missing)
+                target = allFishIds.stream()
+                        .min(Comparator.comparingInt(id -> {
+                            FishModel fm = modelLookup.get(id);
+                            return fm != null ? fm.getModelNumber() : Integer.MAX_VALUE;
+                        }))
+                        .orElse(null);
             }
         } else {
-            String joined = String.join(" ", args);
-            target = resolveKey(joined);
-            if (target == null) {
-                p.sendMessage("Unknown fish id: " + joined);
-                return true;
-            }
+            // Try resolve by full key or by key-only (e.g., "clownfish")
+            target = resolveArgToKey(args[0]);
         }
 
-        try {
-            if (!backup.hasBackup(p.getUniqueId())) {
-                backup.backupIfNeeded(p);
-            }
-            p.getInventory().clear();
-            p.getInventory().setExtraContents(null);
-            p.getInventory().setItemInOffHand(null);
-            p.setItemOnCursor(null);
-            // p.getInventory().setArmorContents(null); // optional
-        } catch (Exception ex) {
-            p.sendMessage("§cCouldn't open the FishDex safely (inventory backup failed).");
+        if (target == null) {
+            p.sendMessage("§cCouldn't find that fish.");
             return true;
         }
 
-        selector.open(p, target, true);
+        // optional: snapshot inventory before we paint hotbar/main with GUI icons
+        try { backup.backupIfNeeded(p); } catch (Exception ignored) {}
+
+        selector.open(p, target, /*playOpenSound=*/true);
         return true;
     }
 
-    @Override
-    public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
-        String prefix = (args.length > 0 ? String.join(" ", args) : "")
-                .toLowerCase(Locale.ENGLISH)
-                .replace(' ', '-')
-                .replace('_', '-');
-
-        List<String> out = new ArrayList<>();
-        for (String path : byPath.keySet()) {
-            if (path.startsWith(prefix)) out.add(path);
+    private NamespacedKey findModelNumberOne() {
+        for (NamespacedKey id : allFishIds) {
+            FishModel fm = modelLookup.get(id);
+            if (fm != null && fm.getModelNumber() == 1) {
+                return id;
+            }
         }
-        Collections.sort(out);
-        return out;
+        return null;
+    }
+
+    private NamespacedKey resolveArgToKey(String raw) {
+        // 1) Try NamespacedKey string first (defaults namespace to this plugin if omitted)
+        NamespacedKey k = NamespacedKey.fromString(raw, plugin);
+        if (k != null && allFishIds.contains(k)) return k;
+
+        // 2) Try match by key-only (case-insensitive)
+        String keyOnly = raw.toLowerCase(Locale.ENGLISH);
+        for (NamespacedKey id : allFishIds) {
+            if (id.getKey().equalsIgnoreCase(keyOnly)) return id;
+        }
+        return null;
+    }
+
+    // Simple tab-complete of keys
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        if (args.length == 1) {
+            String prefix = args[0].toLowerCase(Locale.ENGLISH);
+            return allFishIds.stream()
+                    .map(NamespacedKey::getKey)
+                    .filter(k -> k.startsWith(prefix))
+                    .sorted()
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
     }
 }
