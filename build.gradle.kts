@@ -2,6 +2,7 @@ plugins {
     id("java")
     id("java-library")
     id("xyz.jpenilla.run-paper") version "2.3.1"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "org.aincraft"
@@ -27,6 +28,7 @@ tasks.withType<JavaCompile>().configureEach {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.7-R0.1-SNAPSHOT")
+    implementation("com.google.inject:guice:7.0.0")
     compileOnly("org.jetbrains:annotations:24.1.0")
     implementation("com.github.ben-manes.caffeine:caffeine:3.2.2")
     implementation("com.zaxxer:HikariCP:7.0.1")
@@ -34,6 +36,10 @@ dependencies {
 }
 
 tasks {
+
+    build {
+        dependsOn(shadowJar)
+    }
 
     named<xyz.jpenilla.runpaper.task.RunServer>("runServer") {
         val toolchains = project.extensions.getByType<JavaToolchainService>()

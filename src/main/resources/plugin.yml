@@ -16,6 +16,8 @@ commands:
     usage: /lhfgive <item-id> [player] [amount]
     permission: longhardfish.give
     aliases: [ lhf-give, lhfitem, lhf-item ]
+  test:
+    description: a test command
 
 permissions:
   longhardfish.stats:
