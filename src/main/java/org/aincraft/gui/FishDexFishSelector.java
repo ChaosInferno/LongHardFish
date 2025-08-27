@@ -11,7 +11,7 @@ import org.aincraft.container.FishModel;
 import org.aincraft.container.FishMoonCycle;
 import org.aincraft.container.FishRarity;
 import org.aincraft.container.FishTimeCycle;
-import org.aincraft.sfx.FishDexSFX;
+import org.aincraft.sfx.FishSounds;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -317,7 +317,9 @@ public class FishDexFishSelector {
 
         Bukkit.getScheduler().runTask(plugin, () -> {
             player.openInventory(gui);
-            if (playOpenSound) FishDexSFX.playOpen(player);
+            if (playOpenSound) {
+                FishSounds.FISH_DEX_OPEN.play(player);
+            }
         });
     }
 
