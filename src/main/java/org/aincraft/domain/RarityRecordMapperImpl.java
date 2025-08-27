@@ -9,6 +9,7 @@ import org.aincraft.container.Rarity;
 import org.aincraft.domain.record.RarityRecord;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 final class RarityRecordMapperImpl implements DomainMapper<Rarity, RarityRecord> {
 
@@ -20,19 +21,15 @@ final class RarityRecordMapperImpl implements DomainMapper<Rarity, RarityRecord>
   }
 
   @Override
-  public Rarity toDomain(RarityRecord record) throws IllegalArgumentException {
+  public @NotNull Rarity toDomain(@NotNull RarityRecord record) throws IllegalArgumentException {
     TextColor color = TextColor.fromHexString(record.color());
     Key key = new NamespacedKey(plugin, record.label().toLowerCase(Locale.ENGLISH));
     return new RarityImpl(record.baseWeight(), Component.text(record.label(), color), color, key);
   }
 
   @Override
-  public RarityRecord toRecord(Rarity domain) throws IllegalArgumentException {
+  public @NotNull RarityRecord toRecord(@NotNull Rarity domain) throws IllegalArgumentException {
     return null;
   }
 
-  private record RarityImpl(double baseWeight, Component label, TextColor color, Key key) implements
-      Rarity {
-
-  }
 }

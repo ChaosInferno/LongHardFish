@@ -4,7 +4,7 @@ import java.util.List;
 import org.aincraft.domain.record.FishRecord;
 import org.bukkit.configuration.ConfigurationSection;
 
-public class FishRepositoryImpl implements FishRepository {
+final class FishRepositoryImpl implements FishRepository {
 
   private final ConfigurationSection configurationSection;
 

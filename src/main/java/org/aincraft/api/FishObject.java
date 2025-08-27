@@ -5,6 +5,7 @@ import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import org.aincraft.container.Rarity;
 import org.aincraft.container.TimeCycle;
+import org.aincraft.domain.FishEnvironment;
 import org.bukkit.block.Biome;
 import org.bukkit.inventory.ItemStack;
 
@@ -25,6 +26,8 @@ public interface FishObject {
   boolean openWaterRequired();
 
   boolean rainRequired();
+
+  FishEnvironment environment();
 
   Double getWeight(Biome biome);
 

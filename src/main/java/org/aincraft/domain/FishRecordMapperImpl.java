@@ -10,6 +10,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.aincraft.api.FishObject;
 import org.aincraft.container.Rarity;
+import org.aincraft.domain.record.FishEnvironmentRecord;
 import org.aincraft.domain.record.FishRecord;
 import org.aincraft.registry.Registry;
 import org.bukkit.Material;
@@ -25,16 +26,20 @@ final class FishRecordMapperImpl implements DomainMapper<FishObject, FishRecord>
   private static final String FISH_KEY_IDENTIFIER = "fish_id";
   private final Plugin plugin;
   private NamespacedKey fishKey = null;
+  private final DomainMapper<FishEnvironment, FishEnvironmentRecord> fishEnvironmentMapper;
   private final Registry<Rarity> rarityRegistry;
 
   @Inject
-  FishRecordMapperImpl(Plugin plugin, Registry<Rarity> rarityRegistry) {
+  FishRecordMapperImpl(Plugin plugin,
+      DomainMapper<FishEnvironment, FishEnvironmentRecord> fishEnvironmentMapper,
+      Registry<Rarity> rarityRegistry) {
     this.plugin = plugin;
+    this.fishEnvironmentMapper = fishEnvironmentMapper;
     this.rarityRegistry = rarityRegistry;
   }
 
   @Override
-  public FishObject toDomain(FishRecord record) throws IllegalArgumentException {
+  public @NotNull FishObject toDomain(@NotNull FishRecord record) throws IllegalArgumentException {
     NamespacedKey rarityKey = NamespacedKey.fromString(record.rarityKey());
     Preconditions.checkArgument(rarityRegistry.isRegistered(rarityKey));
     ItemStack itemStack = new ItemStack(DEFAULT_FISH_MATERIAL);
@@ -42,6 +47,7 @@ final class FishRecordMapperImpl implements DomainMapper<FishObject, FishRecord>
     Component description = MiniMessage.miniMessage().deserialize(record.description());
     NamespacedKey fishKey = NamespacedKey.fromString(record.fishKey());
     Rarity rarity = rarityRegistry.getOrThrow(rarityKey);
+    FishEnvironment environment = fishEnvironmentMapper.toDomain(record.environmentRecord());
     itemStack.setData(DataComponentTypes.ITEM_MODEL, fishKey);
     itemStack.setData(DataComponentTypes.ITEM_NAME, displayName);
     itemStack.setData(DataComponentTypes.LORE,
@@ -50,17 +56,19 @@ final class FishRecordMapperImpl implements DomainMapper<FishObject, FishRecord>
       pdc.set(fishKey(), PersistentDataType.STRING, record.fishKey());
     });
     return new FishObjectImpl(itemStack, fishKey(), displayName, description,
-        record.identificationNumber(), rarity);
+        record.identificationNumber(), rarity, environment, record.openWaterRequired(),
+        record.rainRequired());
   }
 
   @Override
-  public FishRecord toRecord(FishObject domain) {
+  public @NotNull FishRecord toRecord(@NotNull FishObject domain) {
     String fishKey = domain.fishkey().toString();
     String displayName = PlainTextComponentSerializer.plainText().serialize(domain.displayName());
     String description = PlainTextComponentSerializer.plainText().serialize(domain.description());
     String rarityKey = domain.rarity().key().toString();
     return new FishRecord(fishKey, displayName, description, domain.identificationNumber(),
-        rarityKey);
+        rarityKey, fishEnvironmentMapper.toRecord(domain.environment()), domain.openWaterRequired(),
+        domain.rainRequired());
   }
 
   @NotNull

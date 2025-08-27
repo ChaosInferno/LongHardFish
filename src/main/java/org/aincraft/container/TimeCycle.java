@@ -1,7 +1,12 @@
 package org.aincraft.container;
 
-public interface TimeCycle {
+import net.kyori.adventure.key.Keyed;
+
+public interface TimeCycle extends Keyed {
+
   String label();
+
   int startTime();
+
   int endTime();
 }

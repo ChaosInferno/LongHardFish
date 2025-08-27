@@ -1,8 +1,12 @@
 package org.aincraft.domain;
 
+import org.jetbrains.annotations.NotNull;
+
 public interface DomainMapper<D, R> {
 
-  D toDomain(R record) throws IllegalArgumentException;
+  @NotNull
+  D toDomain(@NotNull R record) throws IllegalArgumentException;
 
-  R toRecord(D domain) throws IllegalArgumentException;
+  @NotNull
+  R toRecord(@NotNull D domain) throws IllegalArgumentException;
 }
