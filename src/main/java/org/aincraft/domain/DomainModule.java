@@ -12,7 +12,8 @@ public final class DomainModule extends PrivateModule {
 
   @Override
   protected void configure() {
-    install(new RegistryModule());
+    install(new FishModule());
+    install(new RarityModule());
     bind(new TypeLiteral<DomainMapper<FishObject, FishRecord>>() {
     })
         .to(FishRecordMapperImpl.class)

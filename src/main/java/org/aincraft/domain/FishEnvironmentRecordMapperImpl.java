@@ -13,22 +13,19 @@ import org.aincraft.domain.record.FishEnvironmentRecord;
 import org.aincraft.registry.Registry;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Biome;
-import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 final class FishEnvironmentRecordMapperImpl implements
     DomainMapper<FishEnvironment, FishEnvironmentRecord> {
 
-  private static final org.bukkit.Registry<Biome> BIOMES = RegistryAccess.registryAccess()
+  private static final org.bukkit.Registry<@NotNull Biome> BIOMES = RegistryAccess.registryAccess()
       .getRegistry(RegistryKey.BIOME);
 
   private final Registry<TimeCycle> timeCycleRegistry;
-  private final Plugin plugin;
 
   @Inject
-  FishEnvironmentRecordMapperImpl(Registry<TimeCycle> timeCycleRegistry, Plugin plugin) {
+  FishEnvironmentRecordMapperImpl(Registry<TimeCycle> timeCycleRegistry) {
     this.timeCycleRegistry = timeCycleRegistry;
-    this.plugin = plugin;
   }
 
   @Override

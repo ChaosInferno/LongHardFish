@@ -8,11 +8,12 @@ import org.aincraft.container.Rarity;
 import org.aincraft.container.TimeCycle;
 import org.bukkit.block.Biome;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
-record FishObjectImpl(ItemStack itemStack, Key fishkey, Component displayName,
+record FishObjectImpl(ItemStack itemStack, Component displayName,
                       Component description, int identificationNumber, Rarity rarity,
                       FishEnvironment fishEnvironment, boolean openWaterRequired,
-                      boolean rainRequired) implements
+                      boolean rainRequired, Key key) implements
     FishObject {
 
   @Override
@@ -28,5 +29,10 @@ record FishObjectImpl(ItemStack itemStack, Key fishkey, Component displayName,
   @Override
   public Double getWeight(MoonPhase phase) {
     return fishEnvironment.getWeight(phase);
+  }
+
+  @Override
+  public @NotNull Key key() {
+    return key;
   }
 }

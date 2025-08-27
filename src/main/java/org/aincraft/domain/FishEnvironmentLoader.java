@@ -5,11 +5,11 @@ import java.util.Map;
 import org.aincraft.domain.record.FishEnvironmentRecord;
 import org.bukkit.configuration.ConfigurationSection;
 
-public final class FishEnvironmentLoaderImpl {
+final class FishEnvironmentLoader {
 
   private final ConfigurationSection configuration;
 
-  public FishEnvironmentLoaderImpl(ConfigurationSection configuration) {
+  FishEnvironmentLoader(ConfigurationSection configuration) {
     this.configuration = configuration;
   }
 

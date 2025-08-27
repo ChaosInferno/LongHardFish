@@ -5,6 +5,7 @@ import com.google.inject.Inject;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.ItemLore;
 import java.util.List;
+import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.aincraft.api.FishObject;
@@ -44,19 +45,19 @@ final class FishRecordMapperImpl implements DomainMapper<FishObject, FishRecord>
     ItemStack itemStack = new ItemStack(DEFAULT_FISH_MATERIAL);
     Component displayName = MiniMessage.miniMessage().deserialize(record.displayName());
     Component description = MiniMessage.miniMessage().deserialize(record.description());
-    NamespacedKey fishKey = new NamespacedKey(plugin, record.fishKey());
+    Key key = new NamespacedKey(plugin, record.fishKey());
     Rarity rarity = rarityRegistry.getOrThrow(rarityKey);
     FishEnvironment environment = fishEnvironmentMapper.toDomain(record.environmentRecord());
-    itemStack.setData(DataComponentTypes.ITEM_MODEL, fishKey);
+    itemStack.setData(DataComponentTypes.ITEM_MODEL, key);
     itemStack.setData(DataComponentTypes.ITEM_NAME, displayName);
     itemStack.setData(DataComponentTypes.LORE,
         ItemLore.lore(List.of(rarity)));
     itemStack.editPersistentDataContainer(pdc -> {
       pdc.set(fishIdentifierKey(), PersistentDataType.STRING, record.fishKey());
     });
-    return new FishObjectImpl(itemStack, fishKey, displayName, description,
+    return new FishObjectImpl(itemStack, displayName, description,
         record.identificationNumber(), rarity, environment, record.openWaterRequired(),
-        record.rainRequired());
+        record.rainRequired(), key);
   }
 
   @NotNull
