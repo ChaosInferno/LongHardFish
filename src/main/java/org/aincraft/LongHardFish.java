@@ -11,10 +11,6 @@ import org.aincraft.gui.FishDexFishSelector;
 import org.aincraft.ingame_items.*;
 import org.aincraft.items.CustomFishItems;
 import org.aincraft.listener.*;
-import org.aincraft.provider.FishEnvironmentDefaultsProvider;
-import org.aincraft.provider.FishEnvironmentProvider;
-import org.aincraft.provider.FishModelProvider;
-import org.aincraft.provider.FishRarityProvider;
 import org.aincraft.commands.FishStatsCommand;
 import org.aincraft.service.InventoryBackupService;
 import org.aincraft.service.StatsService;
@@ -101,9 +97,7 @@ public class LongHardFish extends JavaPlugin {
     Objects.requireNonNull(getCommand("fishstats")).setTabCompleter(statsCmd);
 
     // --- Build lookups for the selector ---
-    Map<NamespacedKey, FishEnvironment> envMap = environmentProvider.parseFishEnvironmentObjects();
     Map<NamespacedKey, FishRecord> modelMap = modelProvider.parseFishModelObjects();
-    Map<NamespacedKey, FishDistribution> distMap = rarityProvider.parseFishDistributorObjects();
     Map<NamespacedKey, Integer> tierMap = environmentProvider.parseFishTierMap();
 
     // Key used by GuiItemSlot to lock icons in place

@@ -1,7 +1,6 @@
 package org.aincraft.list;
 
 import org.aincraft.container.FishTimeCycle;
-import org.aincraft.provider.FishEnvironmentProvider;
 import org.aincraft.provider.MinecraftTimeParser;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;

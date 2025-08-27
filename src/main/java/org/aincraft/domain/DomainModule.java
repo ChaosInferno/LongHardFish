@@ -4,6 +4,7 @@ import com.google.inject.PrivateModule;
 import com.google.inject.Singleton;
 import com.google.inject.TypeLiteral;
 import org.aincraft.api.FishObject;
+import org.aincraft.domain.record.FishEnvironmentRecord;
 import org.aincraft.domain.record.FishRecord;
 import org.aincraft.registry.RegistryModule;
 
@@ -15,6 +16,10 @@ public final class DomainModule extends PrivateModule {
     bind(new TypeLiteral<DomainMapper<FishObject, FishRecord>>() {
     })
         .to(FishRecordMapperImpl.class)
+        .in(Singleton.class);
+    bind(new TypeLiteral<DomainMapper<FishEnvironment, FishEnvironmentRecord>>() {
+    })
+        .to(FishEnvironmentRecordMapperImpl.class)
         .in(Singleton.class);
   }
 }

@@ -60,17 +60,6 @@ final class FishRecordMapperImpl implements DomainMapper<FishObject, FishRecord>
         record.rainRequired());
   }
 
-  @Override
-  public @NotNull FishRecord toRecord(@NotNull FishObject domain) {
-    String fishKey = domain.fishkey().toString();
-    String displayName = PlainTextComponentSerializer.plainText().serialize(domain.displayName());
-    String description = PlainTextComponentSerializer.plainText().serialize(domain.description());
-    String rarityKey = domain.rarity().key().toString();
-    return new FishRecord(fishKey, displayName, description, domain.identificationNumber(),
-        rarityKey, fishEnvironmentMapper.toRecord(domain.environment()), domain.openWaterRequired(),
-        domain.rainRequired());
-  }
-
   @NotNull
   private NamespacedKey fishKey() {
     if (fishKey == null) {

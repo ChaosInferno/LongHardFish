@@ -27,7 +27,7 @@ public interface FishObject {
 
   boolean rainRequired();
 
-  FishEnvironment environment();
+  FishEnvironment fishEnvironment();
 
   Double getWeight(Biome biome);
 

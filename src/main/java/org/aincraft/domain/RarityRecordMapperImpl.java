@@ -26,10 +26,4 @@ final class RarityRecordMapperImpl implements DomainMapper<Rarity, RarityRecord>
     Key key = new NamespacedKey(plugin, record.label().toLowerCase(Locale.ENGLISH));
     return new RarityImpl(record.baseWeight(), Component.text(record.label(), color), color, key);
   }
-
-  @Override
-  public @NotNull RarityRecord toRecord(@NotNull Rarity domain) throws IllegalArgumentException {
-    return null;
-  }
-
 }
