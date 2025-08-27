@@ -2,6 +2,7 @@ package org.aincraft;
 
 import org.aincraft.commands.FishDexCommand;
 import org.aincraft.commands.GiveFishItemsCommand;
+import org.aincraft.commands.TackleBoxCommand;
 import org.aincraft.config.FishConfig;
 import org.aincraft.container.FishDistribution;
 import org.aincraft.container.FishEnvironment;
@@ -45,6 +46,7 @@ public class LongHardFish extends JavaPlugin {
     private WeatherRadioItem weatherRadioItem;
     private WatchItem watchItem;
     private FishFinderItem fishFinderItem;
+    private TackleBoxItem tackleBoxItem;
 
     @Override
     public void onEnable() {
@@ -92,6 +94,7 @@ public class LongHardFish extends JavaPlugin {
         FishStatsCommand statsCmd = new FishStatsCommand(this, stats);
         Objects.requireNonNull(getCommand("fishstats")).setExecutor(statsCmd);
         Objects.requireNonNull(getCommand("fishstats")).setTabCompleter(statsCmd);
+        getCommand("tacklebox").setExecutor(new TackleBoxCommand(this));
 
         // --- Build lookups for the selector ---
         Map<NamespacedKey, FishEnvironment> envMap = environmentProvider.parseFishEnvironmentObjects();
@@ -187,6 +190,7 @@ public class LongHardFish extends JavaPlugin {
         this.weatherRadioItem = new WeatherRadioItem(this);
         this.watchItem = new WatchItem(this);
         this.fishFinderItem = new FishFinderItem(this);
+        this.tackleBoxItem = new TackleBoxItem(this);
 
         // Register current and future items here:
         CustomFishItems.register("fishdex", fishDexItem::create);
@@ -194,12 +198,14 @@ public class LongHardFish extends JavaPlugin {
         CustomFishItems.register("weather_radio", weatherRadioItem::create);
         CustomFishItems.register("watch", watchItem::create);
         CustomFishItems.register("fish_finder", fishFinderItem::create);
+        CustomFishItems.register("tacklebox", tackleBoxItem::create);
 
         getServer().getPluginManager().registerEvents(new FishDexListener(this, fishDexItem), this);
         getServer().getPluginManager().registerEvents(new SextantListener(sextantItem), this);
         getServer().getPluginManager().registerEvents(new WeatherRadioListener(weatherRadioItem), this);
         getServer().getPluginManager().registerEvents(new WatchListener(watchItem), this);
         getServer().getPluginManager().registerEvents(new FishFinderListener(fishFinderItem), this);
+        getServer().getPluginManager().registerEvents(new TackleBoxListener(tackleBoxItem), this);
 
         getCommand("lhfgive").setExecutor(new GiveFishItemsCommand(this));
     }
