@@ -1,0 +1,200 @@
+# Sets defaults for all fish that call these groups. Defaults will be overwritten by biomes, times and moons written in fish.yml.
+# Modifiers must be added to allow fish to spawn in those conditions, if modifiers listed but set to 0 fish will not spawn in those conditions.
+# Modifiers are additions based on percent, eg 0.50 will increase likelihood of spawn by 50% of default rarity. If rarity set to COMMON (0.60) weight
+# then new rarity would be 0.60 + (0.5 * 0.60) = 0.90 as new weight.
+
+# Group name
+#  biomes:
+#   BIOME: Decimal [Available biomes as per bukkit enum]
+#  times:
+#   Time: Decimal [Available times as follows: DAWN(22000-1000), DAY(1000-11700), EVENING(11700-14500), NIGHT(14500-22000)]
+#  moons:
+#   Moon Phase: Decimal [Available moon phases as per default minecraft, moon phases unaffected by time of day but rather day number in intervals of 8]
+
+#  --- GENERAL BIOME DEFAULTS ---
+saltwater:
+  biomes:
+    OCEAN: 0.01
+    DEEP_OCEAN: 0.01
+    WARM_OCEAN: 0.01
+    LUKEWARM_OCEAN: 0.01
+    DEEP_LUKEWARM_OCEAN: 0.01
+    COLD_OCEAN: 0.01
+    DEEP_COLD_OCEAN: 0.01
+    FROZEN_OCEAN: 0.01
+    DEEP_FROZEN_OCEAN: 0.01
+    MUSHROOM_FIELDS: 0.01
+    BEACH: 0.01
+    SNOWY_BEACH: 0.01
+    STONY_SHORE: 0.01
+freshwater:
+  biomes:
+    RIVER: 0.01
+    FROZEN_RIVER: 0.01
+    SWAMP: 0.01
+    MANGROVE_SWAMP: 0.01
+    FOREST: 0.01
+    FLOWER_FOREST: 0.01
+    TAIGA: 0.01
+    BIRCH_FOREST: 0.01
+    SNOWY_TAIGA: 0.01
+    OLD_GROWTH_BIRCH_FOREST: 0.01
+    OLD_GROWTH_PINE_TAIGA: 0.01
+    OLD_GROWTH_SPRUCE_TAIGA: 0.01
+    DARK_FOREST: 0.01
+    PALE_GARDEN: 0.01
+    JUNGLE: 0.01
+    SPARSE_JUNGLE: 0.01
+    BAMBOO_JUNGLE: 0.01
+    PLAINS: 0.01
+    SUNFLOWER_PLAINS: 0.01
+    SNOWY_PLAINS: 0.01
+    ICE_SPIKES: 0.01
+    DESERT: 0.01
+    SAVANNA: 0.01
+    SAVANNA_PLATEAU: 0.01
+    WINDSWEPT_SAVANNA: 0.01
+    BADLANDS: 0.01
+    WOODED_BADLANDS: 0.01
+    ERODED_BADLANDS: 0.01
+    JAGGED_PEAKS: 0.01
+    FROZEN_PEAKS: 0.01
+    STONY_PEAKS: 0.01
+    MEADOW: 0.01
+    CHERRY_GROVE: 0.01
+    GROVE: 0.01
+    SNOWY_SLOPES: 0.01
+    WINDSWEPT_HILLS: 0.01
+    WINDSWEPT_GRAVELLY_HILLS: 0.01
+    WINDSWEPT_FOREST: 0.01
+cave:
+  biomes:
+    DEEP_DARK: 0.01
+    DRIPSTONE_CAVES: 0.01
+    LUSH_CAVES: 0.01
+weird:
+  biomes:
+    NETHER_WASTES: 1
+    SOUL_SAND_VALLEY: 1
+    CRIMSON_FOREST: 1
+    WARPED_FOREST: 1
+    BASALT_DELTAS: 1
+    THE_END: 1
+    SMALL_END_ISLANDS: 1
+    END_MIDLANDS: 1
+    END_HIGHLANDS: 1
+    END_BARRENS: 1
+    THE_VOID: 1
+
+# --- GROUPED BIOMES DEFAULTS ---
+deep-saltwater:
+  biomes:
+    OCEAN: 0.1
+    DEEP_OCEAN: 0.1
+shallow-saltwater:
+  biomes:
+    MUSHROOM_FIELDS: 0.1
+    BEACH: 0.1
+    STONY_SHORE: 0.1
+cold-saltwater:
+  biomes:
+    COLD_OCEAN: 0.1
+    DEEP_COLD_OCEAN: 0.1
+    FROZEN_OCEAN: 0.1
+    DEEP_FROZEN_OCEAN: 0.1
+    SNOWY_BEACH: 0.1
+warm-saltwater:
+  biomes:
+    WARM_OCEAN: 0.1
+    LUKEWARM_OCEAN: 0.1
+    DEEP_LUKEWARM_OCEAN: 0.1
+mountains:
+  biomes:
+    JAGGED_PEAKS: 0.5
+    FROZEN_PEAKS: 0.5
+    STONY_PEAKS: 0.5
+    CHERRY_GROVE: 0.5
+    GROVE: 0.5
+    SNOWY_SLOPES: 0.5
+    WOODED_BADLANDS: 0.5
+hot-places:
+  biomes:
+    DESERT: 0.5
+    SAVANNA: 0.5
+    SAVANNA_PLATEAU: 0.5
+    WINDSWEPT_SAVANNA: 0.5
+    BADLANDS: 0.5
+    ERODED_BADLANDS: 0.5
+cold-places:
+  biomes:
+    FROZEN_RIVER: 0.5
+    SNOWY_TAIGA: 0.5
+    JAGGED_PEAKS: 0.5
+    FROZEN_PEAKS: 0.5
+    GROVE: 0.5
+    SNOWY_SLOPES: 0.5
+    SNOWY_PLAINS: 0.5
+    ICE_SPIKES: 0.5
+woodlands:
+  biomes:
+    FOREST: 0.5
+    FLOWER_FOREST: 0.5
+    TAIGA: 0.5
+    OLD_GROWTH_PINE_TAIGA: 0.5
+    OLD_GROWTH_SPRUCE_TAIGA: 0.5
+    BIRCH_FOREST: 0.5
+    OLD_GROWTH_BIRCH_FOREST: 0.5
+    DARK_FOREST: 0.5
+    PALE_GARDEN: 0.5
+rain-forest:
+  biomes:
+    JUNGLE: 0.5
+    SPARSE_JUNGLE: 0.5
+    BAMBOO_JUNGLE: 0.5
+flat-lands:
+  biomes:
+    MEADOW: 0.5
+    WINDSWEPT_HILLS: 0.5
+    WINDSWEPT_GRAVELLY_HILLS: 0.5
+    WINDSWEPT_FOREST: 0.5
+    PLAINS: 0.5
+    SUNFLOWER_PLAINS: 0.5
+wet-lands:
+  biomes:
+    SWAMP: 0.5
+    MANGROVE_SWAMP: 0.5
+rivers:
+  biomes:
+    RIVER: 0.5
+
+# --- GENERAL TIME DEFAULTS ---
+all-time:
+  times:
+    DAWN: 0.01
+    DAY: 0.01
+    EVENING: 0.01
+    NIGHT: 0.01
+
+# --- GENERAL MOON DEFAULTS ---
+all-week:
+  moons:
+    FULL_MOON: 0.01
+    WANING_GIBBOUS: 0.01
+    LAST_QUARTER: 0.01
+    WANING_CRESCENT: 0.01
+    NEW_MOON: 0.01
+    WAXING_CRESCENT: 0.01
+    FIRST_QUARTER: 0.01
+    WAXING_GIBBOUS: 0.01
+first-half:
+  moons:
+    FULL_MOON: 0.1
+    WANING_GIBBOUS: 0.1
+    LAST_QUARTER: 0.1
+    WANING_CRESCENT: 0.1
+last-half:
+  moons:
+    NEW_MOON: 0.1
+    WAXING_CRESCENT: 0.1
+    FIRST_QUARTER: 0.1
+    WAXING_GIBBOUS: 0.1
