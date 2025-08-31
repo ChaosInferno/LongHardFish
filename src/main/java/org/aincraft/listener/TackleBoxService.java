@@ -19,6 +19,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.event.player.PlayerDropItemEvent;
 
 import java.util.Map;
 import java.util.Set;
@@ -185,6 +186,21 @@ public final class TackleBoxService implements Listener {
             return;
         }
 
+        switch (e.getAction()) {
+            case DROP_ONE_CURSOR, DROP_ALL_CURSOR, DROP_ONE_SLOT, DROP_ALL_SLOT -> {
+                // If the thing being dropped is a tacklebox, cancel
+                ItemStack dropSrc = switch (e.getAction()) {
+                    case DROP_ONE_CURSOR, DROP_ALL_CURSOR -> cursor;
+                    default -> current;
+                };
+                if (dropSrc != null && tackleBoxItem.isTackleBox(dropSrc)) {
+                    e.setCancelled(true);
+                    return;
+                }
+            }
+            default -> { /* continue normal handling below */ }
+        }
+
         // ---------- TOP inventory rules ----------
         if (e.getClickedInventory() == e.getView().getTopInventory()) {
             int slot = e.getSlot();
@@ -298,6 +314,19 @@ public final class TackleBoxService implements Listener {
                 Sound.sound(Key.key("longhardfish:tacklebox.close"), Sound.Source.PLAYER, 1.0f, 1.0f)
         );
         open.remove(p.getUniqueId());
+    }
+
+    @EventHandler(ignoreCancelled = false, priority = EventPriority.HIGHEST)
+    public void onPlayerDrop(PlayerDropItemEvent e) {
+        // If this player has a TackleBox session open, block dropping TackleBoxes
+        Session s = open.get(e.getPlayer().getUniqueId());
+        if (s == null) return;
+
+        ItemStack dropped = e.getItemDrop().getItemStack();
+        if (dropped != null && tackleBoxItem.isTackleBox(dropped)) {
+            e.setCancelled(true);
+            e.getPlayer().setCooldown(dropped.getType(), 5);
+        }
     }
 
     private java.util.List<Integer> allowedSlotsFor(ItemStack item) {
