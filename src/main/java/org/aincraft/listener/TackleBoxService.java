@@ -1,10 +1,14 @@
 package org.aincraft.listener;
 
 import net.kyori.adventure.key.Key;
+import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.aincraft.gui.TackleBoxGui;
 import org.aincraft.ingame_items.TackleBoxItem;
+import org.aincraft.items.BaitKeys;
 import org.aincraft.items.FishKeys;
 import org.aincraft.items.TackleBoxStorage;
 import org.bukkit.Bukkit;
@@ -13,13 +17,12 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.*;
 import org.bukkit.event.inventory.*;
-import org.bukkit.event.inventory.InventoryAction;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.event.player.PlayerDropItemEvent;
 
 import java.util.Map;
 import java.util.Set;
@@ -30,14 +33,13 @@ import java.util.stream.IntStream;
 
 import static net.kyori.adventure.key.Key.key;
 import static net.kyori.adventure.text.Component.text;
-import net.kyori.adventure.sound.Sound;
 
 public final class TackleBoxService implements Listener {
     private static final String NS = "longhardfish";
     private static final Component TITLE =
             text("\ue003\ua030").font(key(NS, "interface")).color(TextColor.color(0xFFFFFF));
 
-    // Top-inventory slots to block in a 54-slot chest (0..53)
+    // Decorative blocked slots in a 54-slot chest (0..53)
     private static final Set<Integer> BLOCKED_SLOTS = new java.util.LinkedHashSet<>();
     static {
         BLOCKED_SLOTS.addAll(java.util.List.of(7, 8, 16, 25, 26, 34));
@@ -47,19 +49,20 @@ public final class TackleBoxService implements Listener {
     // Fish-only: 9–15, 18–24, 27–33
     private static final java.util.Set<Integer> FISH_SLOTS = new java.util.LinkedHashSet<>();
     static {
-        FISH_SLOTS.addAll(java.util.stream.IntStream.rangeClosed(9, 15).boxed().toList());
-        FISH_SLOTS.addAll(java.util.stream.IntStream.rangeClosed(18, 24).boxed().toList());
-        FISH_SLOTS.addAll(java.util.stream.IntStream.rangeClosed(27, 33).boxed().toList());
+        FISH_SLOTS.addAll(IntStream.rangeClosed(9, 15).boxed().toList());
+        FISH_SLOTS.addAll(IntStream.rangeClosed(18, 24).boxed().toList());
+        FISH_SLOTS.addAll(IntStream.rangeClosed(27, 33).boxed().toList());
     }
 
-    // Rod-only: 17
-    private static final int ROD_SLOT = 17;
+    // Rod-only + Bait bin
+    private static final int ROD_SLOT  = 17;
+    private static final int BAIT_SLOT = 35;
 
-    // Redstone-only: 0–6, 35
+    // Redstone-only: 0–6, 35 (35 is also our bait bin)
     private static final java.util.Set<Integer> REDSTONE_SLOTS = new java.util.LinkedHashSet<>();
     static {
-        REDSTONE_SLOTS.addAll(java.util.stream.IntStream.rangeClosed(0, 6).boxed().toList());
-        REDSTONE_SLOTS.add(35);
+        REDSTONE_SLOTS.addAll(IntStream.rangeClosed(0, 6).boxed().toList());
+        REDSTONE_SLOTS.add(BAIT_SLOT);
     }
 
     private final JavaPlugin plugin;
@@ -69,7 +72,6 @@ public final class TackleBoxService implements Listener {
 
     private final NamespacedKey immovableKey;
 
-    // Track which player has which TackleBox open and where that item lives (slot)
     private static final class Session {
         final UUID playerId;
         final Inventory inv;       // the TOP inventory we created
@@ -93,14 +95,12 @@ public final class TackleBoxService implements Listener {
     }
 
     private ItemStack makeBlockedIcon() {
-        ItemStack it = new ItemStack(Material.PAPER); // base is irrelevant; model hides it
+        ItemStack it = new ItemStack(Material.PAPER);
         ItemMeta meta = it.getItemMeta();
-        // No tooltip/name/lore
         meta.displayName(null);
         meta.lore(null);
-        meta.setHideTooltip(true); // Paper 1.21+
+        meta.setHideTooltip(true);
         meta.setItemModel(NamespacedKey.fromString("longhardfish:icons/empty"));
-        // Mark with PDC so we can detect immovable items (if needed later)
         meta.getPersistentDataContainer().set(immovableKey, org.bukkit.persistence.PersistentDataType.BYTE, (byte) 1);
         it.setItemMeta(meta);
         return it;
@@ -109,11 +109,9 @@ public final class TackleBoxService implements Listener {
     private boolean isFishItem(ItemStack it) {
         return FishKeys.getFishKey(plugin, it) != null;
     }
-
     private boolean isFishingRod(ItemStack it) {
         return it != null && it.getType() == Material.FISHING_ROD;
     }
-
     private boolean isRedstoneDust(ItemStack it) {
         return it != null && it.getType() == Material.REDSTONE;
     }
@@ -123,8 +121,8 @@ public final class TackleBoxService implements Listener {
         if (BLOCKED_SLOTS.contains(slot)) return false;                 // decorative
         if (FISH_SLOTS.contains(slot))   return isFishItem(item);       // fish-only
         if (slot == ROD_SLOT)            return isFishingRod(item);     // rod-only
-        if (REDSTONE_SLOTS.contains(slot)) return isRedstoneDust(item); // redstone-only
-        return true; // other top slots accept anything (still block TackleBox elsewhere)
+        if (REDSTONE_SLOTS.contains(slot)) return isRedstoneDust(item); // redstone-only (bait bin is redstone-based bait)
+        return true;
     }
 
     /** Open the TackleBox GUI for the player using the TackleBox currently in-hand. */
@@ -134,14 +132,14 @@ public final class TackleBoxService implements Listener {
                 : p.getInventory().getItemInOffHand();
         if (tb == null || !tackleBoxItem.isTackleBox(tb)) return;
 
-        // Create GUI
         Inventory gui = Bukkit.createInventory(new TackleBoxGui.Holder(), size, TITLE);
-        p.playSound(
-                Sound.sound(Key.key("longhardfish:tacklebox.open"), Sound.Source.PLAYER, 1.0f, 1.0f)
-        );
 
-        // Load saved items into GUI
+        // Sound: open
+        p.playSound(Sound.sound(Key.key("longhardfish:tacklebox.open"), Sound.Source.PLAYER, 1.0f, 1.0f));
+
         storage.loadIntoInventory(tb, gui);
+
+        // Clean any item in invalid slots back to player
         for (int i = 0; i < gui.getSize(); i++) {
             ItemStack it = gui.getItem(i);
             if (it == null || it.getType().isAir()) continue;
@@ -154,7 +152,7 @@ public final class TackleBoxService implements Listener {
             }
         }
 
-        // Fill blocked slots with invisible, locked icons
+        // Fill decorative blocked slots
         ItemStack blocker = makeBlockedIcon();
         for (int slot : BLOCKED_SLOTS) {
             if (slot >= 0 && slot < gui.getSize()) {
@@ -162,12 +160,140 @@ public final class TackleBoxService implements Listener {
             }
         }
 
-        // Remember where the TackleBox is so we can save back
-        int slotIndex = (hand == EquipmentSlot.HAND) ? p.getInventory().getHeldItemSlot() : 40; // 40 = offhand
+        int slotIndex = (hand == EquipmentSlot.HAND) ? p.getInventory().getHeldItemSlot() : 40;
         open.put(p.getUniqueId(), new Session(p.getUniqueId(), gui, hand, slotIndex));
 
-        // Open next tick (safe)
         Bukkit.getScheduler().runTask(plugin, () -> p.openInventory(gui));
+    }
+
+    // -------------------- Bait helpers --------------------
+
+    private void updateRodLore(ItemStack rod) {
+        if (rod == null || !rod.hasItemMeta()) return;
+        String id = BaitKeys.getRodBait(plugin, rod);
+        int count = BaitKeys.getRodBaitCount(plugin, rod);
+
+        ItemMeta meta = rod.getItemMeta();
+        java.util.List<Component> lore = new java.util.ArrayList<>();
+        if (meta.lore() != null) lore.addAll(meta.lore());
+
+        // remove any previous "Bait:" lines
+        PlainTextComponentSerializer plain = PlainTextComponentSerializer.plainText();
+        lore.removeIf(c -> {
+            String s = plain.serialize(c).toLowerCase();
+            return s.startsWith("bait: ");
+        });
+
+        if (id != null && count > 0) {
+            lore.add(Component.text("Bait: " + id + " (x" + count + ")", NamedTextColor.GOLD));
+        }
+        meta.lore(lore);
+        rod.setItemMeta(meta);
+    }
+
+    /** Attach from slot 35 into the rod in slot 17, only when the rod is being picked up. */
+    private void attachFromBinToRod(Inventory top) {
+        if (top.getSize() <= Math.max(ROD_SLOT, BAIT_SLOT)) return;
+
+        ItemStack rod = top.getItem(ROD_SLOT);
+        if (rod == null || rod.getType() != Material.FISHING_ROD) return;
+
+        ItemStack bin = top.getItem(BAIT_SLOT);
+        if (bin == null || bin.getType().isAir()) return;
+
+        String feedId = BaitKeys.getBaitId(plugin, bin);
+        if (feedId == null) return;
+
+        String rodId = BaitKeys.getRodBait(plugin, rod);
+        int rodCount = BaitKeys.getRodBaitCount(plugin, rod);
+
+        if (rodId == null || rodCount <= 0) rodId = feedId;
+        if (!rodId.equals(feedId)) return; // different bait type—do nothing
+
+        int cap = Math.min(64, bin.getMaxStackSize());
+        int canAdd = cap - rodCount;
+        if (canAdd <= 0) return;
+
+        int add = Math.min(canAdd, bin.getAmount());
+        rodCount += add;
+        bin.setAmount(bin.getAmount() - add);
+        if (bin.getAmount() <= 0) top.setItem(BAIT_SLOT, null);
+
+        BaitKeys.setRodBait(plugin, rod, rodId, rodCount);
+        updateRodLore(rod);
+        top.setItem(ROD_SLOT, rod);
+    }
+
+    /** Unload all bait from an incoming rod *before* it lands in slot 17, stacking into slot 35 if possible. */
+    private void unloadIncomingRodToBin(ItemStack incomingRod, Inventory top) {
+        if (incomingRod == null || incomingRod.getType() != Material.FISHING_ROD) return;
+
+        String rodId = BaitKeys.getRodBait(plugin, incomingRod);
+        int rodCount = BaitKeys.getRodBaitCount(plugin, incomingRod);
+        if (rodId == null || rodCount <= 0) return;
+
+        ItemStack bin = top.getItem(BAIT_SLOT);
+        if (bin == null || bin.getType().isAir()) {
+            ItemStack made = org.aincraft.items.BaitRegistry.create(rodId, Math.min(rodCount, 64));
+            if (made == null) { // fallback if that bait got deregistered
+                made = new ItemStack(Material.REDSTONE, Math.min(rodCount, 64));
+                BaitKeys.setBaitId(plugin, made, rodId);
+            }
+            top.setItem(BAIT_SLOT, made);
+            rodCount -= made.getAmount();
+        } else {
+            String binId = BaitKeys.getBaitId(plugin, bin);
+            if (binId != null && binId.equals(rodId)) {
+                int max = Math.min(bin.getMaxStackSize(), 64);
+                int canAdd = max - bin.getAmount();
+                if (canAdd > 0) {
+                    int add = Math.min(canAdd, rodCount);
+                    bin.setAmount(bin.getAmount() + add);
+                    rodCount -= add;
+                    top.setItem(BAIT_SLOT, bin);
+                }
+            }
+            // else: different bait already in bin — leave rod's bait as-is
+        }
+
+        if (rodCount <= 0) {
+            BaitKeys.clearRodBait(plugin, incomingRod);
+        } else {
+            BaitKeys.setRodBait(plugin, incomingRod, rodId, rodCount);
+        }
+        updateRodLore(incomingRod);
+    }
+
+    /** Move all bait from rod into slot 35 if 35 is empty. */
+    private void unloadRodBaitToSlot35(Inventory top) {
+        if (top.getSize() <= Math.max(ROD_SLOT, BAIT_SLOT)) return;
+        ItemStack rod = top.getItem(ROD_SLOT);
+        if (rod == null || rod.getType() != Material.FISHING_ROD) return;
+
+        String rodId = BaitKeys.getRodBait(plugin, rod);
+        int rodCount = BaitKeys.getRodBaitCount(plugin, rod);
+        if (rodId == null || rodCount <= 0) return;
+
+        ItemStack slot35 = top.getItem(BAIT_SLOT);
+        if (slot35 != null && !slot35.getType().isAir()) return; // require empty
+
+        ItemStack bait = org.aincraft.items.BaitRegistry.create(rodId, Math.min(rodCount, 64));
+        if (bait == null) {
+            // fallback if someone removed the bait definition
+            bait = new ItemStack(Material.REDSTONE, Math.min(rodCount, 64));
+            BaitKeys.setBaitId(plugin, bait, rodId);
+        }
+
+        top.setItem(BAIT_SLOT, bait);
+
+        rodCount -= bait.getAmount(); // move all (up to 64)
+        if (rodCount <= 0) {
+            BaitKeys.clearRodBait(plugin, rod);
+        } else {
+            BaitKeys.setRodBait(plugin, rod, rodId, rodCount);
+        }
+        updateRodLore(rod);
+        top.setItem(ROD_SLOT, rod);
     }
 
     // -------------------- Listeners --------------------
@@ -186,9 +312,9 @@ public final class TackleBoxService implements Listener {
             return;
         }
 
+        // Block dropping the tacklebox while open (Q / Ctrl+Q)
         switch (e.getAction()) {
             case DROP_ONE_CURSOR, DROP_ALL_CURSOR, DROP_ONE_SLOT, DROP_ALL_SLOT -> {
-                // If the thing being dropped is a tacklebox, cancel
                 ItemStack dropSrc = switch (e.getAction()) {
                     case DROP_ONE_CURSOR, DROP_ALL_CURSOR -> cursor;
                     default -> current;
@@ -198,64 +324,95 @@ public final class TackleBoxService implements Listener {
                     return;
                 }
             }
-            default -> { /* continue normal handling below */ }
+            default -> {}
         }
 
-        // ---------- TOP inventory rules ----------
+        // ---------- TOP inventory (GUI) ----------
         if (e.getClickedInventory() == e.getView().getTopInventory()) {
             int slot = e.getSlot();
 
             // Decorative blocked slots
             if (BLOCKED_SLOTS.contains(slot)) { e.setCancelled(true); return; }
 
-            // Determine the incoming item (what would be placed into the slot)
+            // (Optional) Right-click rod with empty cursor → manual unload to bin (if empty)
+            if (slot == ROD_SLOT
+                    && e.getClick() == ClickType.RIGHT
+                    && (e.getCursor() == null || e.getCursor().getType().isAir())) {
+                unloadRodBaitToSlot35(s.inv);
+                e.setCancelled(true);
+                return;
+            }
+
+            // Validate incoming item for whitelists
             ItemStack incoming = null;
             switch (e.getAction()) {
-                case PLACE_ALL, PLACE_SOME, PLACE_ONE, SWAP_WITH_CURSOR, COLLECT_TO_CURSOR -> incoming = cursor;
+                case PLACE_ALL, PLACE_SOME, PLACE_ONE, SWAP_WITH_CURSOR, COLLECT_TO_CURSOR -> incoming = e.getCursor();
                 case HOTBAR_SWAP, HOTBAR_MOVE_AND_READD -> {
                     int btn = e.getHotbarButton();
                     if (btn >= 0) incoming = ((Player)e.getWhoClicked()).getInventory().getItem(btn);
                 }
-                // NOTE: do NOT handle MOVE_TO_OTHER_INVENTORY (shift) here; we route it in the bottom branch.
                 default -> { /* pickups/drops without placing are fine */ }
             }
-
             if (incoming != null && !slotAllowsItem(slot, incoming)) {
                 e.setCancelled(true);
                 return;
             }
+
+            // ====== Deferred bait logic ======
+
+            // A) If placing a rod INTO slot 17: unload bait to bin first
+            if (slot == ROD_SLOT && incoming != null && incoming.getType() == Material.FISHING_ROD) {
+                unloadIncomingRodToBin(incoming, s.inv);
+                // don't cancel; let Bukkit place the (possibly updated) rod
+                return;
+            }
+
+            // B) If TAKING the rod OUT of slot 17: attach from bin now
+            if (slot == ROD_SLOT) {
+                switch (e.getAction()) {
+                    case PICKUP_ALL, PICKUP_HALF, PICKUP_ONE, PICKUP_SOME,
+                         MOVE_TO_OTHER_INVENTORY, HOTBAR_SWAP, HOTBAR_MOVE_AND_READD -> {
+                        attachFromBinToRod(s.inv);
+                        // let the pickup proceed
+                    }
+                    default -> { /* nothing special */ }
+                }
+            }
+
+            if (slot == ROD_SLOT && e.getAction() == InventoryAction.PICKUP_ALL) {
+                ItemStack rod = e.getCurrentItem();
+                if (rod != null && isFishingRod(rod)) {
+                    String baitId = BaitKeys.getRodBait(plugin, rod);
+                    int count = BaitKeys.getRodBaitCount(plugin, rod);
+                    if (baitId != null && count > 0) {
+                        ((Player)e.getWhoClicked()).playSound(
+                                Sound.sound(Key.key("longhardfish:bait.attach"), Sound.Source.PLAYER, 1.0f, 1.0f)
+                        );
+                    }
+                }
+            }
         }
 
-        // ---------- BOTTOM inventory protections + smart shift routing ----------
+        // ---------- Player inventory (BOTTOM) ----------
         if (e.getClickedInventory() == e.getView().getBottomInventory()) {
             int held = ((Player) e.getWhoClicked()).getInventory().getHeldItemSlot();
 
             // Protect held slot / offhand swap
             if (e.getSlotType() == InventoryType.SlotType.QUICKBAR && e.getSlot() == held) { e.setCancelled(true); return; }
             if (e.getHotbarButton() == held) { e.setCancelled(true); return; }
-            if (e.getAction() == InventoryAction.HOTBAR_SWAP && e.getHotbarButton() == -1) { // offhand swap
-                e.setCancelled(true); return;
-            }
+            if (e.getAction() == InventoryAction.HOTBAR_SWAP && e.getHotbarButton() == -1) { e.setCancelled(true); return; }
 
-            // Smart SHIFT-CLICK: bottom -> top
+            // Smart SHIFT-CLICK: bottom -> top (keeps your sorter)
             if (e.isShiftClick() && e.getAction() == InventoryAction.MOVE_TO_OTHER_INVENTORY) {
                 ItemStack source = e.getCurrentItem();
                 if (source == null || source.getType().isAir()) return;
 
-                // Cancel vanilla routing; do our own
                 e.setCancelled(true);
-
-                int before = source.getAmount();
                 int moved = routeShiftFromBottomToTop(source, s.inv);
 
-                // If we moved items, the same 'source' reference was decremented already.
-                // Update the source slot (clear if 0)
-                if (moved > 0) {
-                    if (source.getAmount() <= 0) {
-                        e.getClickedInventory().setItem(e.getSlot(), null);
-                    }
+                if (moved > 0 && (source.getAmount() <= 0)) {
+                    e.getClickedInventory().setItem(e.getSlot(), null);
                 }
-                // If moved == 0, do nothing (per your requirement)
                 return;
             }
         }
@@ -282,17 +439,15 @@ public final class TackleBoxService implements Listener {
         Session s = open.get(e.getPlayer().getUniqueId());
         if (s == null) return;
 
-        // Only save if the closed TOP inventory is our GUI
         if (e.getView().getTopInventory() != s.inv) return;
 
         final Player p = (Player) e.getPlayer();
 
-        // Re-fetch the tacklebox item (prefer the hand we opened from)
+        // Save (skip decorative blocked slots)
         ItemStack tackleBox = (s.hand == EquipmentSlot.HAND)
                 ? p.getInventory().getItemInMainHand()
                 : p.getInventory().getItemInOffHand();
 
-        // If swapped out, find any tacklebox in the player inventory
         if (tackleBox == null || !tackleBoxItem.isTackleBox(tackleBox)) {
             for (ItemStack it : p.getInventory().getContents()) {
                 if (it != null && tackleBoxItem.isTackleBox(it)) { tackleBox = it; break; }
@@ -300,7 +455,6 @@ public final class TackleBoxService implements Listener {
         }
 
         if (tackleBox != null && tackleBoxItem.isTackleBox(tackleBox)) {
-            // Build a filtered copy of the top inventory without decorative blockers
             Inventory filtered = Bukkit.createInventory(null, s.inv.getSize());
             for (int i = 0; i < s.inv.getSize(); i++) {
                 if (!BLOCKED_SLOTS.contains(i)) {
@@ -310,15 +464,14 @@ public final class TackleBoxService implements Listener {
             storage.saveFromInventory(tackleBox, filtered);
         }
 
-        p.playSound(
-                Sound.sound(Key.key("longhardfish:tacklebox.close"), Sound.Source.PLAYER, 1.0f, 1.0f)
-        );
+        // Sound: close
+        p.playSound(Sound.sound(Key.key("longhardfish:tacklebox.close"), Sound.Source.PLAYER, 1.0f, 1.0f));
+
         open.remove(p.getUniqueId());
     }
 
     @EventHandler(ignoreCancelled = false, priority = EventPriority.HIGHEST)
     public void onPlayerDrop(PlayerDropItemEvent e) {
-        // If this player has a TackleBox session open, block dropping TackleBoxes
         Session s = open.get(e.getPlayer().getUniqueId());
         if (s == null) return;
 
@@ -329,18 +482,14 @@ public final class TackleBoxService implements Listener {
         }
     }
 
+    // -------------------- Sorting helpers (unchanged) --------------------
+
     private java.util.List<Integer> allowedSlotsFor(ItemStack item) {
         if (item == null || item.getType().isAir()) return java.util.List.of();
-        if (isFishItem(item)) {
-            return FISH_SLOTS.stream().filter(i -> i < size).toList();
-        }
-        if (isFishingRod(item)) {
-            return (ROD_SLOT < size) ? java.util.List.of(ROD_SLOT) : java.util.List.of();
-        }
-        if (isRedstoneDust(item)) {
-            return REDSTONE_SLOTS.stream().filter(i -> i < size).toList();
-        }
-        return java.util.List.of(); // other items are not auto-sorted
+        if (isFishItem(item))        return FISH_SLOTS.stream().filter(i -> i < size).toList();
+        if (isFishingRod(item))      return (ROD_SLOT < size) ? java.util.List.of(ROD_SLOT) : java.util.List.of();
+        if (isRedstoneDust(item))    return REDSTONE_SLOTS.stream().filter(i -> i < size).toList();
+        return java.util.List.of();
     }
 
     private int packIntoExisting(ItemStack moving, Inventory top, java.util.List<Integer> dest) {

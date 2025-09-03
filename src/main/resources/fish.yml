@@ -12,6 +12,12 @@ glider-bananafish:
   biomes:
     RIVER: 0.1
   model: 1
+  bait:
+    rhino_beetle: 0.1
+    tick: 0.1
+    scarab: 0.1
+    dragonfly: 0.1
+    spiderling: 0.1
 glider-sturgeon:
   name: Glider Sturgeon
   rarity: COMMON
@@ -26,6 +32,11 @@ glider-sturgeon:
   biomes:
     RIVER: 0.1
   model: 2
+  bait:
+    spiderling: 0.1
+    wasp: 0.1
+    rhino_beetle: 0.1
+    grubb: 0.1
 glider-chungus:
   name: Glider Chungus
   rarity: COMMON
@@ -40,6 +51,11 @@ glider-chungus:
   biomes:
     RIVER: 0.1
   model: 3
+  bait:
+    scarab: 0.1
+    wasp: 0.1
+    tick: 0.1
+    grubb: 0.1
 glider-gudgeon:
   name: Glider Gudgeon
   rarity: COMMON
@@ -54,6 +70,13 @@ glider-gudgeon:
   biomes:
     RIVER: 0.1
   model: 4
+  bait:
+    dragonfly: 0.1
+    scarab: 0.1
+    rhino_beetle: 0.1
+    grubb: 0.1
+    wasp: 0.1
+    spiderling: 0.1
 rose-fili:
   name: Rose Fili
   rarity: COMMON
@@ -71,6 +94,11 @@ rose-fili:
     DAY: 0.1
     EVENING: 0.1
   model: 5
+  bait:
+    scarab: 0.1
+    tick: 0.1
+    rhino_beetle: 0.1
+    wasp: 0.1
 chonkler-pip:
   name: Chonkler Pip
   rarity: COMMON
@@ -84,6 +112,11 @@ chonkler-pip:
     - all-week
   tier: 1
   model: 6
+  bait:
+    spiderling: 0.1
+    scarab: 0.1
+    rhino_beetle: 0.1
+    wasp: 0.1
 mountain-bananafish:
   name: Mountain Bananafish
   rarity: COMMON
@@ -99,6 +132,12 @@ mountain-bananafish:
     - all-week
   tier: 1
   model: 7
+  bait:
+    tick: 0.1
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    wasp: 0.1
+    scarab: 0.1
 muddy-salmon:
   name: Muddy Salmon
   rarity: COMMON
@@ -113,6 +152,11 @@ muddy-salmon:
     - all-week
   tier: 1
   model: 8
+  bait:
+    scarab: 0.1
+    rhino_beetle: 0.1
+    grubb: 0.1
+    dragonfly: 0.1
 tiger-carp:
   name: Tiger Carp
   rarity: COMMON
@@ -127,6 +171,11 @@ tiger-carp:
   biomes:
     JUNGLE: 0.1
   model: 9
+  bait:
+    rhino_beetle: 0.1
+    scarab: 0.1
+    grubb: 0.1
+    dragonfly: 0.1
 tiger-trout:
   name: Tiger Trout
   rarity: COMMON
@@ -142,6 +191,13 @@ tiger-trout:
   biomes:
     RIVER: 0.1
   model: 10
+  bait:
+    scarab: 0.1
+    dragonfly: 0.1
+    wasp: 0.1
+    tick: 0.1
+    spiderling: 0.1
+    rhino_beetle: 0.1
 glider-mystelune:
   name: Glider Mystelune
   rarity: COMMON
@@ -161,6 +217,13 @@ glider-mystelune:
   biomes:
     RIVER: 0.1
   model: 11
+  bait:
+    tick: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    grubb: 0.1
+    scarab: 0.1
+    spiderling: 0.1
 red-tailed-dart:
   name: Red-tailed Dart
   rarity: COMMON
@@ -180,6 +243,11 @@ red-tailed-dart:
     EVENING: 0.1
     NIGHT: 0.1
   model: 12
+  bait:
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    tick: 0.1
+    wasp: 0.1
 muddy-brugis:
   name: Muddy Brugis
   rarity: COMMON
@@ -199,6 +267,12 @@ muddy-brugis:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 13
+  bait:
+    spiderling: 0.1
+    wasp: 0.1
+    dragonfly: 0.1
+    scarab: 0.1
+    tick: 0.1
 mossy-mudskip:
   name: Mossy Mudskip
   rarity: COMMON
@@ -215,6 +289,11 @@ mossy-mudskip:
     - all-week
   tier: 1
   model: 14
+  bait:
+    tick: 0.1
+    wasp: 0.1
+    dragonfly: 0.1
+    rhino_beetle: 0.1
 sandy-carp:
   name: Sandy Carp
   rarity: COMMON
@@ -228,6 +307,13 @@ sandy-carp:
     - all-week
   tier: 1
   model: 15
+  bait:
+    grubb: 0.1
+    tick: 0.1
+    wasp: 0.1
+    spiderling: 0.1
+    dragonfly: 0.1
+    rhino_beetle: 0.1
 muddy-estuary:
   name: Muddy Estuary
   rarity: COMMON
@@ -244,6 +330,12 @@ muddy-estuary:
     DAWN: 0.1
     DAY: 0.1
   model: 16
+  bait:
+    tick: 0.1
+    wasp: 0.1
+    dragonfly: 0.1
+    grubb: 0.1
+    spiderling: 0.1
 muddy-bass:
   name: Muddy Bass
   rarity: COMMON
@@ -260,6 +352,12 @@ muddy-bass:
   biomes:
     RIVER: 0.1
   model: 17
+  bait:
+    grubb: 0.1
+    wasp: 0.1
+    scarab: 0.1
+    dragonfly: 0.1
+    rhino_beetle: 0.1
 bloodfin-phyra:
   name: Bloodfin Phyra
   rarity: COMMON
@@ -280,6 +378,13 @@ bloodfin-phyra:
     EVENING: 0.1
     NIGHT: 0.1
   model: 18
+  bait:
+    scarab: 0.1
+    dragonfly: 0.1
+    wasp: 0.1
+    spiderling: 0.1
+    tick: 0.1
+    rhino_beetle: 0.1
 owhmiewemoa-shin:
   name: Owhmiewemoa Shin
   rarity: UNCOMMON
@@ -295,6 +400,9 @@ owhmiewemoa-shin:
   biomes:
     RIVER: 0.1
   model: 19
+  bait:
+    rhino_beetle: 0.1
+    grubb: 0.1
 wandering-ptidiwhiskir:
   name: Wandering Ptidiwhiskir
   rarity: UNCOMMON
@@ -312,6 +420,9 @@ wandering-ptidiwhiskir:
     EVENING: 0.1
     NIGHT: 0.1
   model: 20
+  bait:
+    spiderling: 0.1
+    grubb: 0.1
 ancient-boopsnoot:
   name: Ancient Boopsnoot
   rarity: COMMON
@@ -326,6 +437,13 @@ ancient-boopsnoot:
     - first-half
   tier: 1
   model: 21
+  bait:
+    rhino_beetle: 0.1
+    wasp: 0.1
+    scarab: 0.1
+    tick: 0.1
+    grubb: 0.1
+    dragonfly: 0.1
 ancient-dorado:
   name: Ancient Dorado
   rarity: COMMON
@@ -340,6 +458,12 @@ ancient-dorado:
     - first-half
   tier: 1
   model: 22
+  bait:
+    dragonfly: 0.1
+    grubb: 0.1
+    tick: 0.1
+    spiderling: 0.1
+    scarab: 0.1
 ancient-elara:
   name: Ancient Elara
   rarity: COMMON
@@ -354,6 +478,12 @@ ancient-elara:
     - last-half
   tier: 1
   model: 23
+  bait:
+    dragonfly: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
+    spiderling: 0.1
+    tick: 0.1
 largemouth-bass:
   name: Largemouth Bass
   rarity: UNCOMMON
@@ -370,6 +500,10 @@ largemouth-bass:
     DAY: 0.1
     EVENING: 0.1
   model: 24
+  bait:
+    wasp: 0.1
+    scarab: 0.1
+    grubb: 0.1
 mossy-goby:
   name: Mossy Goby
   rarity: COMMON
@@ -384,6 +518,12 @@ mossy-goby:
     - all-week
   tier: 1
   model: 25
+  bait:
+    spiderling: 0.1
+    wasp: 0.1
+    dragonfly: 0.1
+    grubb: 0.1
+    scarab: 0.1
 rising-dancefin:
   name: Rising Dancefin
   rarity: COMMON
@@ -406,6 +546,13 @@ rising-dancefin:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 26
+  bait:
+    dragonfly: 0.1
+    tick: 0.1
+    spiderling: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
+    wasp: 0.1
 jade-bananafish:
   name: Jade Bananafish
   rarity: COMMON
@@ -420,6 +567,11 @@ jade-bananafish:
   biomes:
     RIVER: 0.1
   model: 27
+  bait:
+    grubb: 0.1
+    tick: 0.1
+    dragonfly: 0.1
+    wasp: 0.1
 honeykelp-flowfin:
   name: Honeykelp Flowfin
   rarity: UNCOMMON
@@ -436,6 +588,11 @@ honeykelp-flowfin:
     DAWN: 0.1
     DAY: 0.1
   model: 28
+  bait:
+    rhino_beetle: 0.1
+    wasp: 0.1
+    tick: 0.1
+    scarab: 0.1
 broseph-hookfin:
   name: Broseph Hookfin
   rarity: COMMON
@@ -456,6 +613,12 @@ broseph-hookfin:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 29
+  bait:
+    scarab: 0.1
+    spiderling: 0.1
+    tick: 0.1
+    dragonfly: 0.1
+    rhino_beetle: 0.1
 emerald-estuary:
   name: Emerald Estuary
   rarity: COMMON
@@ -471,6 +634,12 @@ emerald-estuary:
   biomes:
     RIVER: 0.1
   model: 30
+  bait:
+    wasp: 0.1
+    rhino_beetle: 0.1
+    scarab: 0.1
+    tick: 0.1
+    grubb: 0.1
 poison-soaked-sensei:
   name: Poison-soaked Sensei
   rarity: COMMON
@@ -486,6 +655,12 @@ poison-soaked-sensei:
   times:
     EVENING: 0.1
   model: 31
+  bait:
+    tick: 0.1
+    scarab: 0.1
+    spiderling: 0.1
+    grubb: 0.1
+    wasp: 0.1
 coral-bylowin:
   name: Coral Bylowin
   rarity: COMMON
@@ -501,6 +676,11 @@ coral-bylowin:
   biomes:
     RIVER: 0.1
   model: 32
+  bait:
+    dragonfly: 0.1
+    spiderling: 0.1
+    scarab: 0.1
+    tick: 0.1
 coral-seraphine:
   name: Coral Seraphine
   rarity: COMMON
@@ -522,6 +702,12 @@ coral-seraphine:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 33
+  bait:
+    rhino_beetle: 0.1
+    grubb: 0.1
+    spiderling: 0.1
+    tick: 0.1
+    scarab: 0.1
 loving-gutpike:
   name: Loving Gutpike
   rarity: COMMON
@@ -537,6 +723,11 @@ loving-gutpike:
   times:
     NIGHT: 0.1
   model: 34
+  bait:
+    wasp: 0.1
+    dragonfly: 0.1
+    tick: 0.1
+    grubb: 0.1
 glimmering-bananafish:
   name: Glimmering Bananafish
   rarity: COMMON
@@ -551,6 +742,12 @@ glimmering-bananafish:
     - all-week
   tier: 1
   model: 35
+  bait:
+    scarab: 0.1
+    spiderling: 0.1
+    tick: 0.1
+    dragonfly: 0.1
+    grubb: 0.1
 spotted-rhyb:
   name: Spotted Rhyb
   rarity: COMMON
@@ -568,6 +765,12 @@ spotted-rhyb:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 36
+  bait:
+    spiderling: 0.1
+    dragonfly: 0.1
+    wasp: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
 amethyst-riptideon:
   name: Amethyst Riptideon
   rarity: COMMON
@@ -583,6 +786,13 @@ amethyst-riptideon:
     RIVER: 0.1
     DRIPSTONE_CAVES: 0.1
   model: 37
+  bait:
+    scarab: 0.1
+    wasp: 0.1
+    tick: 0.1
+    grubb: 0.1
+    spiderling: 0.1
+    dragonfly: 0.1
 emerald-crytalanth:
   name: Emerald Crytalanth
   rarity: COMMON
@@ -598,6 +808,13 @@ emerald-crytalanth:
     RIVER: 0.1
     LUSH_CAVES: 0.1
   model: 38
+  bait:
+    spiderling: 0.1
+    dragonfly: 0.1
+    grubb: 0.1
+    tick: 0.1
+    scarab: 0.1
+    wasp: 0.1
 rainbow-piranha:
   name: Rainbow Piranha
   rarity: UNCOMMON
@@ -613,6 +830,9 @@ rainbow-piranha:
   biomes:
     RIVER: 0.1
   model: 39
+  bait:
+    rhino_beetle: 0.1
+    spiderling: 0.1
 obsidian-bussernut:
   name: Obsidian Bussernut
   rarity: UNCOMMON
@@ -629,6 +849,11 @@ obsidian-bussernut:
   moons:
     NEW_MOON: 0.1
   model: 40
+  bait:
+    scarab: 0.1
+    spiderling: 0.1
+    grubb: 0.1
+    tick: 0.1
 radiated-klauknbals:
   name: Radiated Klauknbals
   rarity: UNCOMMON
@@ -651,6 +876,10 @@ radiated-klauknbals:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 41
+  bait:
+    wasp: 0.1
+    grubb: 0.1
+    tick: 0.1
 moonlit-schnozzer:
   name: Moonlit Schnozzer
   rarity: COMMON
@@ -670,6 +899,13 @@ moonlit-schnozzer:
   times:
     NIGHT: 0.1
   model: 42
+  bait:
+    spiderling: 0.1
+    wasp: 0.1
+    scarab: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
 prismarine-gutpike:
   name: Prismarine Gutpike
   rarity: COMMON
@@ -686,6 +922,13 @@ prismarine-gutpike:
   biomes:
     RIVER: 0.1
   model: 43
+  bait:
+    tick: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    spiderling: 0.1
+    grubb: 0.1
+    wasp: 0.1
 prismarine-kelvorn:
   name: Prismarine Kelvorn
   rarity: COMMON
@@ -702,6 +945,13 @@ prismarine-kelvorn:
   biomes:
     RIVER: 0.1
   model: 44
+  bait:
+    scarab: 0.1
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    tick: 0.1
+    grubb: 0.1
 pearlestra:
   name: Pearlestra
   rarity: UNCOMMON
@@ -723,6 +973,10 @@ pearlestra:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 45
+  bait:
+    scarab: 0.1
+    dragonfly: 0.1
+    spiderling: 0.1
 moonlit-boopsnoot:
   name: Moonlit Boopsnoot
   rarity: COMMON
@@ -741,6 +995,11 @@ moonlit-boopsnoot:
   times:
     NIGHT: 0.1
   model: 46
+  bait:
+    spiderling: 0.1
+    wasp: 0.1
+    scarab: 0.1
+    rhino_beetle: 0.1
 cerulean-riptideon:
   name: Cerulean Riptideon
   rarity: COMMON
@@ -764,6 +1023,11 @@ cerulean-riptideon:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 47
+  bait:
+    wasp: 0.1
+    grubb: 0.1
+    spiderling: 0.1
+    dragonfly: 0.1
 oxidized-copper-sturgeon:
   name: Oxidized-copper Sturgeon
   rarity: UNCOMMON
@@ -780,6 +1044,9 @@ oxidized-copper-sturgeon:
     EVENING: 0.1
     NIGHT: 0.1
   model: 48
+  bait:
+    rhino_beetle: 0.1
+    tick: 0.1
 berserker-doomageddon:
   name: Berserker Doomageddon
   rarity: UNCOMMON
@@ -798,6 +1065,9 @@ berserker-doomageddon:
   biomes:
     RIVER: 0.1
   model: 49
+  bait:
+    rhino_beetle: 0.1
+    spiderling: 0.1
 ecstatic-minsk:
   name: Ecstatic Minsk
   rarity: COMMON
@@ -814,6 +1084,11 @@ ecstatic-minsk:
     DAY: 0.1
     EVENING: 0.1
   model: 50
+  bait:
+    spiderling: 0.1
+    wasp: 0.1
+    grubb: 0.1
+    dragonfly: 0.1
 tiger-mudjack:
   name: Tiger Mudjack
   rarity: COMMON
@@ -829,6 +1104,13 @@ tiger-mudjack:
     - all-week
   tier: 1
   model: 51
+  bait:
+    spiderling: 0.1
+    tick: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    scarab: 0.1
 heidifish:
   name: Heidifish
   rarity: UNCOMMON
@@ -845,6 +1127,10 @@ heidifish:
     FULL_MOON: 0.1
     WANING_GIBBOUS: 0.1
   model: 52
+  bait:
+    rhino_beetle: 0.1
+    scarab: 0.1
+    wasp: 0.1
 sandy-woodskip:
   name: Sandy Woodskip
   rarity: COMMON
@@ -858,6 +1144,13 @@ sandy-woodskip:
     - all-week
   tier: 1
   model: 53
+  bait:
+    rhino_beetle: 0.1
+    tick: 0.1
+    wasp: 0.1
+    scarab: 0.1
+    dragonfly: 0.1
+    grubb: 0.1
 glider-lingcod:
   name: Glider Lingcod
   rarity: COMMON
@@ -877,6 +1170,13 @@ glider-lingcod:
   biomes:
     RIVER: 0.1
   model: 54
+  bait:
+    grubb: 0.1
+    wasp: 0.1
+    dragonfly: 0.1
+    scarab: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
 charging-pepet:
   name: Charging Pepet
   rarity: UNCOMMON
@@ -899,6 +1199,10 @@ charging-pepet:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 55
+  bait:
+    tick: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
 muddy-bream:
   name: Muddy Bream
   rarity: COMMON
@@ -913,6 +1217,13 @@ muddy-bream:
     - all-week
   tier: 1
   model: 56
+  bait:
+    tick: 0.1
+    dragonfly: 0.1
+    rhino_beetle: 0.1
+    scarab: 0.1
+    wasp: 0.1
+    spiderling: 0.1
 muddy-boopsnoot:
   name: Muddy Boopsnoot
   rarity: COMMON
@@ -928,6 +1239,11 @@ muddy-boopsnoot:
     - all-week
   tier: 1
   model: 57
+  bait:
+    scarab: 0.1
+    tick: 0.1
+    grubb: 0.1
+    dragonfly: 0.1
 arctic-grayling:
   name: Arctic Grayling
   rarity: COMMON
@@ -942,6 +1258,12 @@ arctic-grayling:
     - all-week
   tier: 1
   model: 58
+  bait:
+    scarab: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    spiderling: 0.1
+    wasp: 0.1
 dark-heidifish:
   name: Dark Heidifish
   rarity: UNCOMMON
@@ -963,6 +1285,9 @@ dark-heidifish:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 59
+  bait:
+    wasp: 0.1
+    rhino_beetle: 0.1
 relic-canth:
   name: Relic Canth
   rarity: COMMON
@@ -977,6 +1302,12 @@ relic-canth:
     - all-week
   tier: 1
   model: 60
+  bait:
+    dragonfly: 0.1
+    tick: 0.1
+    spiderling: 0.1
+    wasp: 0.1
+    scarab: 0.1
 wavering-puckerfish:
   name: Wavering Puckerfish
   rarity: COMMON
@@ -990,6 +1321,13 @@ wavering-puckerfish:
     - all-week
   tier: 1
   model: 61
+  bait:
+    spiderling: 0.1
+    dragonfly: 0.1
+    grubb: 0.1
+    scarab: 0.1
+    tick: 0.1
+    rhino_beetle: 0.1
 glider-poppicok:
   name: Glider Poppicok
   rarity: COMMON
@@ -1009,6 +1347,12 @@ glider-poppicok:
   biomes:
     RIVER: 0.1
   model: 62
+  bait:
+    scarab: 0.1
+    tick: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    grubb: 0.1
 arctic-minnoe:
   name: Arctic Minnoe
   rarity: COMMON
@@ -1022,6 +1366,13 @@ arctic-minnoe:
     - all-week
   tier: 1
   model: 63
+  bait:
+    dragonfly: 0.1
+    tick: 0.1
+    scarab: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
+    wasp: 0.1
 polar-bananafish:
   name: Polar Bananafish
   rarity: COMMON
@@ -1037,6 +1388,11 @@ polar-bananafish:
     - all-week
   tier: 1
   model: 64
+  bait:
+    scarab: 0.1
+    grubb: 0.1
+    wasp: 0.1
+    spiderling: 0.1
 lonely-minsk:
   name: Lonely Minsk
   rarity: COMMON
@@ -1052,6 +1408,13 @@ lonely-minsk:
   biomes:
     RIVER: 0.1
   model: 65
+  bait:
+    scarab: 0.1
+    spiderling: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
+    dragonfly: 0.1
 polar-fili:
   name: Polar Fili
   rarity: COMMON
@@ -1072,6 +1435,12 @@ polar-fili:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 66
+  bait:
+    dragonfly: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
+    wasp: 0.1
+    spiderling: 0.1
 arctic-tuna:
   name: Arctic Tuna
   rarity: COMMON
@@ -1086,6 +1455,11 @@ arctic-tuna:
     - all-week
   tier: 1
   model: 67
+  bait:
+    spiderling: 0.1
+    scarab: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
 grubshark:
   name: Grubshark
   rarity: UNCOMMON
@@ -1103,6 +1477,9 @@ grubshark:
     EVENING: 0.1
     NIGHT: 0.1
   model: 68
+  bait:
+    tick: 0.1
+    dragonfly: 0.1
 arctic-horizonfin:
   name: Arctic Horizonfin
   rarity: COMMON
@@ -1121,6 +1498,13 @@ arctic-horizonfin:
   biomes:
     RIVER: 0.1
   model: 69
+  bait:
+    wasp: 0.1
+    tick: 0.1
+    dragonfly: 0.1
+    rhino_beetle: 0.1
+    spiderling: 0.1
+    grubb: 0.1
 arctic-mystelune:
   name: Arctic Mystelune
   rarity: COMMON
@@ -1140,6 +1524,11 @@ arctic-mystelune:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 70
+  bait:
+    grubb: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    scarab: 0.1
 arctic-bylowin:
   name: Arctic Bylowin
   rarity: COMMON
@@ -1158,6 +1547,13 @@ arctic-bylowin:
     DAY: 0.1
     EVENING: 0.1
   model: 71
+  bait:
+    dragonfly: 0.1
+    wasp: 0.1
+    spiderling: 0.1
+    grubb: 0.1
+    tick: 0.1
+    scarab: 0.1
 sand-minnoe:
   name: Sand Minnoe
   rarity: COMMON
@@ -1171,6 +1567,11 @@ sand-minnoe:
     - all-week
   tier: 1
   model: 72
+  bait:
+    rhino_beetle: 0.1
+    grubb: 0.1
+    spiderling: 0.1
+    scarab: 0.1
 frozen-nautivora:
   name: Frozen Nautivora
   rarity: UNCOMMON
@@ -1188,6 +1589,11 @@ frozen-nautivora:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 73
+  bait:
+    dragonfly: 0.1
+    scarab: 0.1
+    spiderling: 0.1
+    wasp: 0.1
 abraisive-traavelpin:
   name: Abraisive Traavelpin
   rarity: COMMON
@@ -1207,6 +1613,12 @@ abraisive-traavelpin:
     EVENING: 0.1
     NIGHT: 0.1
   model: 74
+  bait:
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
+    dragonfly: 0.1
+    grubb: 0.1
 sahara-poppicok:
   name: Sahara Poppicok
   rarity: COMMON
@@ -1220,6 +1632,11 @@ sahara-poppicok:
     - all-week
   tier: 1
   model: 75
+  bait:
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
+    dragonfly: 0.1
 sky-tilapia:
   name: Sky Tilapia
   rarity: COMMON
@@ -1235,6 +1652,12 @@ sky-tilapia:
     - deep-saltwater
   tier: 1
   model: 76
+  bait:
+    wasp: 0.1
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
+    dragonfly: 0.1
 glacial-albacore:
   name: Glacial Albacore
   rarity: COMMON
@@ -1248,6 +1671,11 @@ glacial-albacore:
     - all-week
   tier: 1
   model: 77
+  bait:
+    scarab: 0.1
+    dragonfly: 0.1
+    spiderling: 0.1
+    tick: 0.1
 frostbite-fili:
   name: Frostbite Fili
   rarity: COMMON
@@ -1261,6 +1689,13 @@ frostbite-fili:
     - all-week
   tier: 1
   model: 78
+  bait:
+    dragonfly: 0.1
+    wasp: 0.1
+    tick: 0.1
+    rhino_beetle: 0.1
+    spiderling: 0.1
+    scarab: 0.1
 runic-menhaden:
   name: Runic Menhaden
   rarity: UNCOMMON
@@ -1282,6 +1717,9 @@ runic-menhaden:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 79
+  bait:
+    dragonfly: 0.1
+    grubb: 0.1
 moonlit-aruana:
   name: Moonlit Aruana
   rarity: COMMON
@@ -1304,6 +1742,11 @@ moonlit-aruana:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 80
+  bait:
+    spiderling: 0.1
+    grubb: 0.1
+    wasp: 0.1
+    rhino_beetle: 0.1
 glacial-boopsnoot:
   name: Glacial Boopsnoot
   rarity: COMMON
@@ -1317,6 +1760,12 @@ glacial-boopsnoot:
     - all-week
   tier: 1
   model: 81
+  bait:
+    dragonfly: 0.1
+    grubb: 0.1
+    wasp: 0.1
+    spiderling: 0.1
+    tick: 0.1
 depressed-minsk:
   name: Depressed Minsk
   rarity: COMMON
@@ -1335,6 +1784,13 @@ depressed-minsk:
     EVENING: 0.1
     NIGHT: 0.1
   model: 82
+  bait:
+    wasp: 0.1
+    rhino_beetle: 0.1
+    scarab: 0.1
+    tick: 0.1
+    grubb: 0.1
+    dragonfly: 0.1
 enlightened-albacore:
   name: Enlightened Albacore
   rarity: COMMON
@@ -1350,6 +1806,13 @@ enlightened-albacore:
     DAWN: 0.1
     DAY: 0.1
   model: 83
+  bait:
+    dragonfly: 0.1
+    wasp: 0.1
+    spiderling: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
+    scarab: 0.1
 glacial-bananafish:
   name: Glacial Bananafish
   rarity: COMMON
@@ -1365,6 +1828,13 @@ glacial-bananafish:
     - deep-saltwater
   tier: 1
   model: 84
+  bait:
+    wasp: 0.1
+    dragonfly: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
+    scarab: 0.1
+    spiderling: 0.1
 retreating-pepet:
   name: Retreating Pepet
   rarity: UNCOMMON
@@ -1385,6 +1855,11 @@ retreating-pepet:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 85
+  bait:
+    scarab: 0.1
+    wasp: 0.1
+    tick: 0.1
+    rhino_beetle: 0.1
 dormant-doomageddon:
   name: Dormant Doomageddon
   rarity: UNCOMMON
@@ -1398,6 +1873,11 @@ dormant-doomageddon:
     - all-week
   tier: 1
   model: 86
+  bait:
+    spiderling: 0.1
+    scarab: 0.1
+    grubb: 0.1
+    wasp: 0.1
 primal-halibut:
   name: Primal Halibut
   rarity: COMMON
@@ -1417,6 +1897,11 @@ primal-halibut:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 87
+  bait:
+    spiderling: 0.1
+    wasp: 0.1
+    scarab: 0.1
+    grubb: 0.1
 blue-jellyjelly:
   name: Blue Jellyjelly
   rarity: COMMON
@@ -1432,6 +1917,13 @@ blue-jellyjelly:
     - deep-saltwater
   tier: 1
   model: 88
+  bait:
+    spiderling: 0.1
+    scarab: 0.1
+    wasp: 0.1
+    rhino_beetle: 0.1
+    grubb: 0.1
+    tick: 0.1
 boreal-tetra:
   name: Boreal Tetra
   rarity: COMMON
@@ -1448,6 +1940,11 @@ boreal-tetra:
     EVENING: 0.1
     NIGHT: 0.1
   model: 89
+  bait:
+    wasp: 0.1
+    scarab: 0.1
+    tick: 0.1
+    spiderling: 0.1
 boreal-squid:
   name: Boreal Squid
   rarity: UNCOMMON
@@ -1465,6 +1962,11 @@ boreal-squid:
     EVENING: 0.1
     NIGHT: 0.1
   model: 90
+  bait:
+    spiderling: 0.1
+    scarab: 0.1
+    tick: 0.1
+    wasp: 0.1
 voidborn-boopsnoot:
   name: Voidborn Boopsnoot
   rarity: COMMON
@@ -1479,6 +1981,11 @@ voidborn-boopsnoot:
     - deep-saltwater
   tier: 1
   model: 91
+  bait:
+    grubb: 0.1
+    spiderling: 0.1
+    dragonfly: 0.1
+    tick: 0.1
 boreal-coralspine:
   name: Boreal Coralspine
   rarity: COMMON
@@ -1500,6 +2007,13 @@ boreal-coralspine:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 92
+  bait:
+    rhino_beetle: 0.1
+    wasp: 0.1
+    scarab: 0.1
+    grubb: 0.1
+    tick: 0.1
+    dragonfly: 0.1
 primal-glydefin:
   name: Primal Glydefin
   rarity: COMMON
@@ -1518,6 +2032,13 @@ primal-glydefin:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 93
+  bait:
+    wasp: 0.1
+    tick: 0.1
+    dragonfly: 0.1
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    grubb: 0.1
 voidborn-goldberg:
   name: Voidborn Goldberg
   rarity: COMMON
@@ -1532,6 +2053,13 @@ voidborn-goldberg:
     - deep-saltwater
   tier: 1
   model: 94
+  bait:
+    grubb: 0.1
+    rhino_beetle: 0.1
+    wasp: 0.1
+    tick: 0.1
+    scarab: 0.1
+    dragonfly: 0.1
 boreal-albacore:
   name: Boreal Albacore
   rarity: COMMON
@@ -1554,6 +2082,13 @@ boreal-albacore:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 95
+  bait:
+    spiderling: 0.1
+    grubb: 0.1
+    scarab: 0.1
+    wasp: 0.1
+    tick: 0.1
+    dragonfly: 0.1
 voidborn-seaglider:
   name: Voidborn Seaglider
   rarity: COMMON
@@ -1570,6 +2105,13 @@ voidborn-seaglider:
     - deep-saltwater
   tier: 1
   model: 96
+  bait:
+    spiderling: 0.1
+    scarab: 0.1
+    grubb: 0.1
+    dragonfly: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
 fading-dancefin:
   name: Fading Dancefin
   rarity: COMMON
@@ -1588,6 +2130,12 @@ fading-dancefin:
     EVENING: 0.1
     NIGHT: 0.1
   model: 97
+  bait:
+    tick: 0.1
+    rhino_beetle: 0.1
+    spiderling: 0.1
+    dragonfly: 0.1
+    wasp: 0.1
 ruined-poppicok:
   name: Ruined Poppicok
   rarity: COMMON
@@ -1602,6 +2150,11 @@ ruined-poppicok:
     - deep-saltwater
   tier: 1
   model: 98
+  bait:
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    tick: 0.1
 voidborn-minnoe:
   name: Voidborn Minnoe
   rarity: COMMON
@@ -1616,6 +2169,13 @@ voidborn-minnoe:
     - deep-saltwater
   tier: 1
   model: 99
+  bait:
+    tick: 0.1
+    dragonfly: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
+    scarab: 0.1
+    spiderling: 0.1
 primal-mullet:
   name: Primal Mullet
   rarity: UNCOMMON
@@ -1630,6 +2190,9 @@ primal-mullet:
     - deep-saltwater
   tier: 1
   model: 100
+  bait:
+    tick: 0.1
+    grubb: 0.1
 read-herring:
   name: Read Herring
   rarity: COMMON
@@ -1645,6 +2208,13 @@ read-herring:
     - deep-saltwater
   tier: 1
   model: 101
+  bait:
+    tick: 0.1
+    rhino_beetle: 0.1
+    spiderling: 0.1
+    dragonfly: 0.1
+    wasp: 0.1
+    grubb: 0.1
 rhodonite-estuary:
   name: Rhodonite Estuary
   rarity: COMMON
@@ -1658,6 +2228,11 @@ rhodonite-estuary:
     - all-week
   tier: 1
   model: 102
+  bait:
+    rhino_beetle: 0.1
+    wasp: 0.1
+    grubb: 0.1
+    dragonfly: 0.1
 golden-albacore:
   name: Golden Albacore
   rarity: UNCOMMON
@@ -1672,6 +2247,9 @@ golden-albacore:
   times:
     DAY: 0.1
   model: 103
+  bait:
+    spiderling: 0.1
+    tick: 0.1
 sunny-woodskip:
   name: Sunny Woodskip
   rarity: COMMON
@@ -1686,6 +2264,11 @@ sunny-woodskip:
     - all-week
   tier: 1
   model: 104
+  bait:
+    scarab: 0.1
+    tick: 0.1
+    spiderling: 0.1
+    dragonfly: 0.1
 dawnglider-riptideon:
   name: Dawnglider Riptideon
   rarity: COMMON
@@ -1702,6 +2285,12 @@ dawnglider-riptideon:
   times:
     DAWN: 0.1
   model: 105
+  bait:
+    spiderling: 0.1
+    tick: 0.1
+    grubb: 0.1
+    wasp: 0.1
+    dragonfly: 0.1
 crimson-flounder:
   name: Crimson Flounder
   rarity: COMMON
@@ -1715,6 +2304,13 @@ crimson-flounder:
     - all-week
   tier: 1
   model: 106
+  bait:
+    rhino_beetle: 0.1
+    wasp: 0.1
+    dragonfly: 0.1
+    spiderling: 0.1
+    grubb: 0.1
+    tick: 0.1
 sunset-lionfish:
   name: Sunset Lionfish
   rarity: COMMON
@@ -1730,6 +2326,11 @@ sunset-lionfish:
   times:
     EVENING: 0.1
   model: 107
+  bait:
+    tick: 0.1
+    grubb: 0.1
+    dragonfly: 0.1
+    spiderling: 0.1
 sunset-goldberg:
   name: Sunset Goldberg
   rarity: COMMON
@@ -1744,6 +2345,11 @@ sunset-goldberg:
   times:
     EVENING: 0.1
   model: 108
+  bait:
+    rhino_beetle: 0.1
+    wasp: 0.1
+    tick: 0.1
+    scarab: 0.1
 dawnglider-poppicok:
   name: Dawnglider Poppicok
   rarity: COMMON
@@ -1760,6 +2366,11 @@ dawnglider-poppicok:
   times:
     DAWN: 0.1
   model: 109
+  bait:
+    scarab: 0.1
+    dragonfly: 0.1
+    rhino_beetle: 0.1
+    grubb: 0.1
 dawnglider-herring:
   name: Dawnglider Herring
   rarity: COMMON
@@ -1777,6 +2388,12 @@ dawnglider-herring:
     DAWN: 0.1
     DAY: 0.1
   model: 110
+  bait:
+    rhino_beetle: 0.1
+    scarab: 0.1
+    tick: 0.1
+    dragonfly: 0.1
+    spiderling: 0.1
 lucid-puckerfish:
   name: Lucid Puckerfish
   rarity: COMMON
@@ -1791,6 +2408,13 @@ lucid-puckerfish:
     - deep-saltwater
   tier: 1
   model: 111
+  bait:
+    wasp: 0.1
+    grubb: 0.1
+    scarab: 0.1
+    spiderling: 0.1
+    tick: 0.1
+    dragonfly: 0.1
 soulless-puckerfish:
   name: Soulless Puckerfish
   rarity: COMMON
@@ -1814,6 +2438,11 @@ soulless-puckerfish:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 112
+  bait:
+    tick: 0.1
+    spiderling: 0.1
+    wasp: 0.1
+    dragonfly: 0.1
 sunrise-boopsnoot:
   name: Sunrise Boopsnoot
   rarity: COMMON
@@ -1829,6 +2458,12 @@ sunrise-boopsnoot:
     DAWN: 0.1
     DAY: 0.1
   model: 113
+  bait:
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    scarab: 0.1
+    tick: 0.1
+    wasp: 0.1
 albino-grayling:
   name: Albino Grayling
   rarity: COMMON
@@ -1843,6 +2478,12 @@ albino-grayling:
     - last-half
   tier: 1
   model: 114
+  bait:
+    scarab: 0.1
+    grubb: 0.1
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    wasp: 0.1
 ascended-puckerfish:
   name: Ascended Puckerfish
   rarity: COMMON
@@ -1858,6 +2499,13 @@ ascended-puckerfish:
     FULL_MOON: 0.1
     WANING_GIBBOUS: 0.1
   model: 115
+  bait:
+    spiderling: 0.1
+    grubb: 0.1
+    wasp: 0.1
+    tick: 0.1
+    scarab: 0.1
+    rhino_beetle: 0.1
 crumbling-klauknbals:
   name: Crumbling Klauknbals
   rarity: COMMON
@@ -1872,6 +2520,12 @@ crumbling-klauknbals:
   biomes:
     MUSHROOM_FIELDS: 0.1
   model: 116
+  bait:
+    dragonfly: 0.1
+    scarab: 0.1
+    rhino_beetle: 0.1
+    grubb: 0.1
+    tick: 0.1
 bottom-angelfish:
   name: Bottom Angelfish
   rarity: COMMON
@@ -1885,6 +2539,11 @@ bottom-angelfish:
     - saltwater
   tier: 1
   model: 117
+  bait:
+    dragonfly: 0.1
+    grubb: 0.1
+    tick: 0.1
+    spiderling: 0.1
 tiger-goby:
   name: Tiger Goby
   rarity: UNCOMMON
@@ -1898,6 +2557,9 @@ tiger-goby:
     - all-week
   tier: 1
   model: 118
+  bait:
+    dragonfly: 0.1
+    tick: 0.1
 gravel-finfin:
   name: Gravel Finfin
   rarity: COMMON
@@ -1913,6 +2575,13 @@ gravel-finfin:
     - deep-saltwater
   tier: 1
   model: 119
+  bait:
+    rhino_beetle: 0.1
+    tick: 0.1
+    scarab: 0.1
+    wasp: 0.1
+    grubb: 0.1
+    spiderling: 0.1
 chonkler-finfin:
   name: Chonkler Finfin
   rarity: UNCOMMON
@@ -1927,6 +2596,11 @@ chonkler-finfin:
     - deep-saltwater
   tier: 1
   model: 120
+  bait:
+    grubb: 0.1
+    wasp: 0.1
+    tick: 0.1
+    dragonfly: 0.1
 nanides-shin:
   name: Nanides Shin
   rarity: UNCOMMON
@@ -1942,6 +2616,9 @@ nanides-shin:
     - deep-saltwater
   tier: 1
   model: 121
+  bait:
+    grubb: 0.1
+    spiderling: 0.1
 primal-bananafish:
   name: Primal Bananafish
   rarity: COMMON
@@ -1956,6 +2633,13 @@ primal-bananafish:
     - deep-saltwater
   tier: 1
   model: 122
+  bait:
+    spiderling: 0.1
+    grubb: 0.1
+    wasp: 0.1
+    tick: 0.1
+    scarab: 0.1
+    dragonfly: 0.1
 dry-aged-rhyb:
   name: Dry-aged Rhyb
   rarity: COMMON
@@ -1971,6 +2655,13 @@ dry-aged-rhyb:
     EVENING: 0.1
     NIGHT: 0.1
   model: 123
+  bait:
+    spiderling: 0.1
+    dragonfly: 0.1
+    tick: 0.1
+    wasp: 0.1
+    rhino_beetle: 0.1
+    scarab: 0.1
 saltwater-bass:
   name: Saltwater Bass
   rarity: COMMON
@@ -1984,6 +2675,12 @@ saltwater-bass:
     - saltwater
   tier: 1
   model: 124
+  bait:
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
+    scarab: 0.1
+    dragonfly: 0.1
 dark-boopsnoot:
   name: Dark Boopsnoot
   rarity: COMMON
@@ -2002,6 +2699,12 @@ dark-boopsnoot:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 125
+  bait:
+    spiderling: 0.1
+    dragonfly: 0.1
+    wasp: 0.1
+    scarab: 0.1
+    rhino_beetle: 0.1
 tropical-takoki:
   name: Tropical Takoki
   rarity: COMMON
@@ -2016,6 +2719,13 @@ tropical-takoki:
     - all-week
   tier: 1
   model: 126
+  bait:
+    scarab: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    wasp: 0.1
+    tick: 0.1
 royal-gramma:
   name: Royal Gramma
   rarity: UNCOMMON
@@ -2030,6 +2740,9 @@ royal-gramma:
     - all-week
   tier: 1
   model: 127
+  bait:
+    spiderling: 0.1
+    wasp: 0.1
 waning-threadfin:
   name: Waning Threadfin
   rarity: COMMON
@@ -2043,6 +2756,11 @@ waning-threadfin:
     - all-week
   tier: 1
   model: 128
+  bait:
+    scarab: 0.1
+    dragonfly: 0.1
+    wasp: 0.1
+    spiderling: 0.1
 forgetful-tang:
   name: Forgetful Tang
   rarity: UNCOMMON
@@ -2061,6 +2779,9 @@ forgetful-tang:
     DAY: 0.1
     EVENING: 0.1
   model: 129
+  bait:
+    dragonfly: 0.1
+    rhino_beetle: 0.1
 fatherly-clownfish:
   name: Fatherly Clownfish
   rarity: UNCOMMON
@@ -2079,6 +2800,10 @@ fatherly-clownfish:
     DAY: 0.1
     EVENING: 0.1
   model: 130
+  bait:
+    rhino_beetle: 0.1
+    tick: 0.1
+    wasp: 0.1
 sunrise-threadfin:
   name: Sunrise Threadfin
   rarity: COMMON
@@ -2093,6 +2818,13 @@ sunrise-threadfin:
     - all-week
   tier: 1
   model: 131
+  bait:
+    wasp: 0.1
+    scarab: 0.1
+    dragonfly: 0.1
+    spiderling: 0.1
+    grubb: 0.1
+    tick: 0.1
 masked-blenny:
   name: Masked Blenny
   rarity: COMMON
@@ -2109,6 +2841,12 @@ masked-blenny:
     EVENING: 0.1
     NIGHT: 0.1
   model: 132
+  bait:
+    wasp: 0.1
+    rhino_beetle: 0.1
+    scarab: 0.1
+    dragonfly: 0.1
+    grubb: 0.1
 tropical-wobbletail:
   name: Tropical Wobbletail
   rarity: COMMON
@@ -2123,6 +2861,12 @@ tropical-wobbletail:
     - all-week
   tier: 1
   model: 133
+  bait:
+    tick: 0.1
+    dragonfly: 0.1
+    scarab: 0.1
+    grubb: 0.1
+    spiderling: 0.1
 sunstreak-butterflyfish:
   name: Sunstreak Butterflyfish
   rarity: COMMON
@@ -2139,6 +2883,13 @@ sunstreak-butterflyfish:
     DAY: 0.1
     EVENING: 0.1
   model: 134
+  bait:
+    dragonfly: 0.1
+    scarab: 0.1
+    tick: 0.1
+    grubb: 0.1
+    spiderling: 0.1
+    wasp: 0.1
 amethyst-cichilid:
   name: Amethyst Cichilid
   rarity: COMMON
@@ -2157,6 +2908,13 @@ amethyst-cichilid:
     EVENING: 0.1
     NIGHT: 0.1
   model: 135
+  bait:
+    spiderling: 0.1
+    wasp: 0.1
+    scarab: 0.1
+    grubb: 0.1
+    dragonfly: 0.1
+    tick: 0.1
 full-moon-threadfin:
   name: Full-Moon Threadfin
   rarity: COMMON
@@ -2175,6 +2933,11 @@ full-moon-threadfin:
     FULL_MOON: 0.1
     WANING_GIBBOUS: 0.1
   model: 136
+  bait:
+    rhino_beetle: 0.1
+    grubb: 0.1
+    tick: 0.1
+    scarab: 0.1
 cerulean-razorback:
   name: Cerulean Razorback
   rarity: COMMON
@@ -2194,6 +2957,12 @@ cerulean-razorback:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 137
+  bait:
+    dragonfly: 0.1
+    scarab: 0.1
+    spiderling: 0.1
+    tick: 0.1
+    rhino_beetle: 0.1
 moonlit-butterflyfish:
   name: Moonlit Butterflyfish
   rarity: COMMON
@@ -2209,6 +2978,11 @@ moonlit-butterflyfish:
     EVENING: 0.1
     NIGHT: 0.1
   model: 138
+  bait:
+    grubb: 0.1
+    dragonfly: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
 sunstreak-elara:
   name: Sunstreak Elara
   rarity: UNCOMMON
@@ -2226,6 +3000,10 @@ sunstreak-elara:
     DAWN: 0.1
     DAY: 0.1
   model: 139
+  bait:
+    grubb: 0.1
+    scarab: 0.1
+    dragonfly: 0.1
 seafoam-waverunner:
   name: Seafoam Waverunner
   rarity: COMMON
@@ -2241,6 +3019,13 @@ seafoam-waverunner:
     - deep-saltwater
   tier: 1
   model: 140
+  bait:
+    tick: 0.1
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    scarab: 0.1
+    dragonfly: 0.1
+    wasp: 0.1
 rainbow-bananafish:
   name: Rainbow Bananafish
   rarity: COMMON
@@ -2259,6 +3044,11 @@ rainbow-bananafish:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 141
+  bait:
+    tick: 0.1
+    wasp: 0.1
+    grubb: 0.1
+    scarab: 0.1
 candy-drillcod:
   name: Candy Drillcod
   rarity: COMMON
@@ -2278,6 +3068,11 @@ candy-drillcod:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 142
+  bait:
+    scarab: 0.1
+    grubb: 0.1
+    tick: 0.1
+    rhino_beetle: 0.1
 courting-klauknbals:
   name: Courting Klauknbals
   rarity: UNCOMMON
@@ -2300,6 +3095,9 @@ courting-klauknbals:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 143
+  bait:
+    wasp: 0.1
+    scarab: 0.1
 rosegold-flowfin:
   name: Rosegold Flowfin
   rarity: COMMON
@@ -2313,6 +3111,12 @@ rosegold-flowfin:
     - all-week
   tier: 1
   model: 144
+  bait:
+    scarab: 0.1
+    wasp: 0.1
+    dragonfly: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
 prismarine-betta:
   name: Prismarine Betta
   rarity: COMMON
@@ -2328,6 +3132,13 @@ prismarine-betta:
     - deep-saltwater
   tier: 1
   model: 145
+  bait:
+    wasp: 0.1
+    spiderling: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    tick: 0.1
 aquamarine-estuary:
   name: Aquamarine Estuary
   rarity: COMMON
@@ -2341,6 +3152,13 @@ aquamarine-estuary:
     - all-week
   tier: 1
   model: 146
+  bait:
+    spiderling: 0.1
+    tick: 0.1
+    rhino_beetle: 0.1
+    grubb: 0.1
+    wasp: 0.1
+    scarab: 0.1
 fruity-albacore:
   name: Fruity Albacore
   rarity: COMMON
@@ -2358,6 +3176,11 @@ fruity-albacore:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 147
+  bait:
+    wasp: 0.1
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
 eroti-dancefin:
   name: Eroti Dancefin
   rarity: COMMON
@@ -2376,6 +3199,12 @@ eroti-dancefin:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 148
+  bait:
+    spiderling: 0.1
+    scarab: 0.1
+    wasp: 0.1
+    tick: 0.1
+    rhino_beetle: 0.1
 tropical-zing:
   name: Tropical Zing
   rarity: COMMON
@@ -2389,6 +3218,13 @@ tropical-zing:
     - first-half
   tier: 1
   model: 149
+  bait:
+    dragonfly: 0.1
+    scarab: 0.1
+    grubb: 0.1
+    tick: 0.1
+    spiderling: 0.1
+    wasp: 0.1
 bismuth-estuary:
   name: Bismuth Estuary
   rarity: UNCOMMON
@@ -2407,6 +3243,11 @@ bismuth-estuary:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 150
+  bait:
+    rhino_beetle: 0.1
+    wasp: 0.1
+    spiderling: 0.1
+    tick: 0.1
 nightfall-threadfin:
   name: Nightfall Threadfin
   rarity: UNCOMMON
@@ -2422,6 +3263,9 @@ nightfall-threadfin:
     EVENING: 0.1
     NIGHT: 0.1
   model: 151
+  bait:
+    grubb: 0.1
+    rhino_beetle: 0.1
 heavenly-jetfin:
   name: Heavenly Jetfin
   rarity: UNCOMMON
@@ -2439,6 +3283,10 @@ heavenly-jetfin:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 152
+  bait:
+    grubb: 0.1
+    wasp: 0.1
+    spiderling: 0.1
 treasured-luminae:
   name: Treasured Luminae
   rarity: RARE
@@ -2452,6 +3300,9 @@ treasured-luminae:
     - last-half
   tier: 2
   model: 153
+  bait:
+    wasp: 0.1
+    rhino_beetle: 0.1
 glorious-dancefin:
   name: Glorious Dancefin
   rarity: UNCOMMON
@@ -2471,6 +3322,11 @@ glorious-dancefin:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 154
+  bait:
+    rhino_beetle: 0.1
+    wasp: 0.1
+    scarab: 0.1
+    grubb: 0.1
 elusive-eel:
   name: Elusive Eel
   rarity: RARE
@@ -2491,6 +3347,8 @@ elusive-eel:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 155
+  bait:
+    scarab: 0.1
 treasured-ptidiwhiskir:
   name: Treasured Ptidiwhiskir
   rarity: RARE
@@ -2511,6 +3369,9 @@ treasured-ptidiwhiskir:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 156
+  bait:
+    dragonfly: 0.1
+    spiderling: 0.1
 ethereal-mindwatcher:
   name: Ethereal Mindwatcher
   rarity: LEGENDARY
@@ -2531,6 +3392,8 @@ ethereal-mindwatcher:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 157
+  bait:
+    grubb: 0.1
 dream-threadfin:
   name: Dream Threadfin
   rarity: RARE
@@ -2547,6 +3410,8 @@ dream-threadfin:
     FULL_MOON: 0.1
     WANING_GIBBOUS: 0.1
   model: 158
+  bait:
+    rhino_beetle: 0.1
 albino-dragling:
   name: Albino Dragling
   rarity: UNCOMMON
@@ -2563,6 +3428,10 @@ albino-dragling:
     LAST_QUARTER: 0.1
     WANING_CRESCENT: 0.1
   model: 159
+  bait:
+    spiderling: 0.1
+    grubb: 0.1
+    wasp: 0.1
 top-angelfish:
   name: Top Angelfish
   rarity: UNCOMMON
@@ -2584,6 +3453,11 @@ top-angelfish:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 160
+  bait:
+    dragonfly: 0.1
+    scarab: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
 dream-squid:
   name: Dream Squid
   rarity: UNCOMMON
@@ -2605,6 +3479,9 @@ dream-squid:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 161
+  bait:
+    scarab: 0.1
+    dragonfly: 0.1
 treasured-minnoe:
   name: Treasured Minnoe
   rarity: RARE
@@ -2623,6 +3500,8 @@ treasured-minnoe:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 162
+  bait:
+    spiderling: 0.1
 fulfilled-minsk:
   name: Fulfilled Minsk
   rarity: UNCOMMON
@@ -2640,6 +3519,11 @@ fulfilled-minsk:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 163
+  bait:
+    rhino_beetle: 0.1
+    wasp: 0.1
+    dragonfly: 0.1
+    scarab: 0.1
 brosephina-hookfin:
   name: Brosephina Hookfin
   rarity: RARE
@@ -2660,6 +3544,9 @@ brosephina-hookfin:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 164
+  bait:
+    dragonfly: 0.1
+    rhino_beetle: 0.1
 sunset-threadfin:
   name: Sunset Threadfin
   rarity: UNCOMMON
@@ -2680,6 +3567,10 @@ sunset-threadfin:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 165
+  bait:
+    rhino_beetle: 0.1
+    scarab: 0.1
+    grubb: 0.1
 commanding-pepet:
   name: Commanding Pepet
   rarity: RARE
@@ -2693,6 +3584,8 @@ commanding-pepet:
     - saltwater
   tier: 2
   model: 166
+  bait:
+    spiderling: 0.1
 luminous-lionfish:
   name: Luminous Lionfish
   rarity: UNCOMMON
@@ -2714,6 +3607,11 @@ luminous-lionfish:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 167
+  bait:
+    tick: 0.1
+    scarab: 0.1
+    wasp: 0.1
+    spiderling: 0.1
 golden-dart:
   name: Golden Dart
   rarity: UNCOMMON
@@ -2728,6 +3626,11 @@ golden-dart:
     - deep-saltwater
   tier: 2
   model: 168
+  bait:
+    scarab: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
+    spiderling: 0.1
 full-moon-poppicok:
   name: Full-Moon Poppicok
   rarity: UNCOMMON
@@ -2744,6 +3647,10 @@ full-moon-poppicok:
     FULL_MOON: 0.1
     WANING_GIBBOUS: 0.1
   model: 169
+  bait:
+    wasp: 0.1
+    spiderling: 0.1
+    grubb: 0.1
 shrouded-ghostly-grubshark:
   name: Shrouded-Ghostly Grubshark
   rarity: LEGENDARY
@@ -2766,6 +3673,8 @@ shrouded-ghostly-grubshark:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 170
+  bait:
+    dragonfly: 0.1
 prime-rhyb:
   name: Prime Rhyb
   rarity: RARE
@@ -2783,6 +3692,8 @@ prime-rhyb:
     FULL_MOON: 0.1
     WANING_GIBBOUS: 0.1
   model: 171
+  bait:
+    tick: 0.1
 ghostly-puckerfish:
   name: Ghostly Puckerfish
   rarity: UNCOMMON
@@ -2803,6 +3714,10 @@ ghostly-puckerfish:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 172
+  bait:
+    wasp: 0.1
+    tick: 0.1
+    spiderling: 0.1
 rose-goldfish:
   name: Rose Goldfish
   rarity: RARE
@@ -2816,6 +3731,9 @@ rose-goldfish:
     - all-week
   tier: 2
   model: 173
+  bait:
+    grubb: 0.1
+    dragonfly: 0.1
 isle-takoki:
   name: Isle Takoki
   rarity: UNCOMMON
@@ -2830,6 +3748,10 @@ isle-takoki:
   biomes:
     MUSHROOM_FIELDS: 0.1
   model: 174
+  bait:
+    grubb: 0.1
+    rhino_beetle: 0.1
+    spiderling: 0.1
 luminous-whelk:
   name: Luminous Whelk
   rarity: UNCOMMON
@@ -2851,6 +3773,9 @@ luminous-whelk:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 175
+  bait:
+    dragonfly: 0.1
+    tick: 0.1
 beeper-sneepihr:
   name: Beeper Sneepihr
   rarity: UNCOMMON
@@ -2865,6 +3790,11 @@ beeper-sneepihr:
   biomes:
     OLD_GROWTH_BIRCH_FOREST: 0.1
   model: 176
+  bait:
+    wasp: 0.1
+    scarab: 0.1
+    rhino_beetle: 0.1
+    grubb: 0.1
 yeeper-sneepihr:
   name: Yeeper Sneepihr
   rarity: UNCOMMON
@@ -2879,6 +3809,9 @@ yeeper-sneepihr:
   biomes:
     OLD_GROWTH_SPRUCE_TAIGA: 0.1
   model: 177
+  bait:
+    scarab: 0.1
+    wasp: 0.1
 bola-claymore:
   name: Bola & Claymore
   rarity: LEGENDARY
@@ -2895,6 +3828,8 @@ bola-claymore:
     EVENING: 0.1
     NIGHT: 0.1
   model: 178
+  bait:
+    wasp: 0.1
 pure-goldfish:
   name: Pure Goldfish
   rarity: RARE
@@ -2914,6 +3849,8 @@ pure-goldfish:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 179
+  bait:
+    spiderling: 0.1
 green-apple-goomi:
   name: Green-apple Goomi
   rarity: UNCOMMON
@@ -2928,6 +3865,11 @@ green-apple-goomi:
   biomes:
     MEADOW: 0.1
   model: 180
+  bait:
+    grubb: 0.1
+    scarab: 0.1
+    spiderling: 0.1
+    tick: 0.1
 weeh-shee-wooshi:
   name: Weeh, Shee & Wooshi
   rarity: RARE
@@ -2948,6 +3890,9 @@ weeh-shee-wooshi:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 181
+  bait:
+    tick: 0.1
+    scarab: 0.1
 cerulean-merfish:
   name: Cerulean Merfish
   rarity: UNCOMMON
@@ -2962,6 +3907,9 @@ cerulean-merfish:
   times:
     NIGHT: 0.1
   model: 182
+  bait:
+    rhino_beetle: 0.1
+    wasp: 0.1
 travelling-belogna:
   name: Travelling Belogna
   rarity: RARE
@@ -2984,6 +3932,9 @@ travelling-belogna:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 183
+  bait:
+    wasp: 0.1
+    rhino_beetle: 0.1
 raging-boomfish:
   name: Raging Boomfish
   rarity: UNCOMMON
@@ -3005,6 +3956,9 @@ raging-boomfish:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 184
+  bait:
+    tick: 0.1
+    wasp: 0.1
 whoopee-anamalo:
   name: Whoopee Anamalo
   rarity: UNCOMMON
@@ -3021,6 +3975,9 @@ whoopee-anamalo:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 185
+  bait:
+    dragonfly: 0.1
+    tick: 0.1
 bronze-skrub:
   name: Bronze Skrub
   rarity: UNCOMMON
@@ -3043,6 +4000,11 @@ bronze-skrub:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 186
+  bait:
+    wasp: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    scarab: 0.1
 ethereal-chungus:
   name: Ethereal Chungus
   rarity: RARE
@@ -3063,6 +4025,8 @@ ethereal-chungus:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 187
+  bait:
+    scarab: 0.1
 nightfall-puffer:
   name: Nightfall Puffer
   rarity: UNCOMMON
@@ -3078,6 +4042,11 @@ nightfall-puffer:
     EVENING: 0.1
     NIGHT: 0.1
   model: 188
+  bait:
+    tick: 0.1
+    dragonfly: 0.1
+    spiderling: 0.1
+    scarab: 0.1
 sunrise-puffer:
   name: Sunrise Puffer
   rarity: UNCOMMON
@@ -3093,6 +4062,9 @@ sunrise-puffer:
     DAWN: 0.1
     DAY: 0.1
   model: 189
+  bait:
+    tick: 0.1
+    wasp: 0.1
 common-snail:
   name: Common Snail
   rarity: RARE
@@ -3114,6 +4086,9 @@ common-snail:
     FULL_MOON: 0.1
     WANING_GIBBOUS: 0.1
   model: 190
+  bait:
+    rhino_beetle: 0.1
+    tick: 0.1
 alto-falloshimp:
   name: Alto Falloshimp
   rarity: UNCOMMON
@@ -3136,6 +4111,11 @@ alto-falloshimp:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 191
+  bait:
+    dragonfly: 0.1
+    tick: 0.1
+    grubb: 0.1
+    scarab: 0.1
 jaques-clenshimp:
   name: Jaques Clenshimp
   rarity: RARE
@@ -3151,6 +4131,9 @@ jaques-clenshimp:
     DAWN: 0.1
     DAY: 0.1
   model: 192
+  bait:
+    tick: 0.1
+    scarab: 0.1
 common-gripper:
   name: Common Gripper
   rarity: UNCOMMON
@@ -3167,6 +4150,9 @@ common-gripper:
     DAY: 0.1
     EVENING: 0.1
   model: 193
+  bait:
+    tick: 0.1
+    scarab: 0.1
 nightmare-squid:
   name: Nightmare Squid
   rarity: RARE
@@ -3183,6 +4169,8 @@ nightmare-squid:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 194
+  bait:
+    wasp: 0.1
 albino-kreken:
   name: Albino Kreken
   rarity: RARE
@@ -3200,6 +4188,8 @@ albino-kreken:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 195
+  bait:
+    tick: 0.1
 pink-jellyjelly:
   name: Pink Jellyjelly
   rarity: UNCOMMON
@@ -3217,6 +4207,11 @@ pink-jellyjelly:
     FULL_MOON: 0.1
     WANING_GIBBOUS: 0.1
   model: 196
+  bait:
+    grubb: 0.1
+    spiderling: 0.1
+    wasp: 0.1
+    rhino_beetle: 0.1
 haunted-fishbones:
   name: Haunted Fishbones
   rarity: COMMON
@@ -3233,6 +4228,11 @@ haunted-fishbones:
     FULL_MOON: 0.1
     WANING_GIBBOUS: 0.1
   model: 197
+  bait:
+    rhino_beetle: 0.1
+    tick: 0.1
+    scarab: 0.1
+    dragonfly: 0.1
 abyssal-jetfin:
   name: Abyssal Jetfin
   rarity: UNCOMMON
@@ -3252,6 +4252,9 @@ abyssal-jetfin:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 198
+  bait:
+    dragonfly: 0.1
+    rhino_beetle: 0.1
 primal-canth:
   name: Primal Canth
   rarity: RARE
@@ -3268,6 +4271,9 @@ primal-canth:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 199
+  bait:
+    tick: 0.1
+    spiderling: 0.1
 concealed-eel:
   name: Concealed Eel
   rarity: UNCOMMON
@@ -3289,6 +4295,9 @@ concealed-eel:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 200
+  bait:
+    dragonfly: 0.1
+    rhino_beetle: 0.1
 diamonite-bananafish:
   name: Diamonite Bananafish
   rarity: COMMON
@@ -3305,6 +4314,13 @@ diamonite-bananafish:
     DEEP_DARK: 0.1
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
+  bait:
+    scarab: 0.1
+    dragonfly: 0.1
+    tick: 0.1
+    rhino_beetle: 0.1
+    wasp: 0.1
+    spiderling: 0.1
 rubinite-salmon:
   name: Rubinite Salmon
   rarity: COMMON
@@ -3320,6 +4336,12 @@ rubinite-salmon:
   biomes:
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
+  bait:
+    dragonfly: 0.1
+    wasp: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
+    grubb: 0.1
 quartzenite-gutpike:
   name: Quartzenite Gutpike
   rarity: COMMON
@@ -3342,6 +4364,11 @@ quartzenite-gutpike:
     DEEP_DARK: 0.1
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
+  bait:
+    spiderling: 0.1
+    grubb: 0.1
+    tick: 0.1
+    wasp: 0.1
 charged-quartzenite-gutpike:
   name: Charged Quartzenite Gutpike
   rarity: UNCOMMON
@@ -3359,6 +4386,10 @@ charged-quartzenite-gutpike:
   biomes:
     DEEP_DARK: 0.1
     DRIPSTONE_CAVES: 0.1
+  bait:
+    dragonfly: 0.1
+    rhino_beetle: 0.1
+    wasp: 0.1
 prismarinite-minnoe:
   name: Prismarinite Minnoe
   rarity: COMMON
@@ -3373,6 +4404,11 @@ prismarinite-minnoe:
   model: 205
   biomes:
     LUSH_CAVES: 0.1
+  bait:
+    wasp: 0.1
+    tick: 0.1
+    spiderling: 0.1
+    grubb: 0.1
 amethysite-minnoe:
   name: Amethysite Minnoe
   rarity: COMMON
@@ -3387,6 +4423,12 @@ amethysite-minnoe:
   model: 206
   biomes:
     DRIPSTONE_CAVES: 0.1
+  bait:
+    rhino_beetle: 0.1
+    tick: 0.1
+    scarab: 0.1
+    spiderling: 0.1
+    dragonfly: 0.1
 emerald-schmeckle:
   name: Emerald Schmeckle
   rarity: COMMON
@@ -3401,6 +4443,12 @@ emerald-schmeckle:
   model: 207
   biomes:
     DEEP_DARK: 0.1
+  bait:
+    spiderling: 0.1
+    tick: 0.1
+    wasp: 0.1
+    scarab: 0.1
+    rhino_beetle: 0.1
 crystalline-back-rhyb:
   name: Crystalline Back Rhyb
   rarity: UNCOMMON
@@ -3421,6 +4469,10 @@ crystalline-back-rhyb:
   model: 208
   biomes:
     DEEP_DARK: 0.1
+  bait:
+    tick: 0.1
+    scarab: 0.1
+    rhino_beetle: 0.1
 anchor-mimook:
   name: Anchor Mimook
   rarity: COMMON
@@ -3437,6 +4489,13 @@ anchor-mimook:
     DEEP_DARK: 0.1
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
+  bait:
+    tick: 0.1
+    grubb: 0.1
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    wasp: 0.1
+    dragonfly: 0.1
 fishhook-mimook:
   name: Fishhook Mimook
   rarity: COMMON
@@ -3453,6 +4512,13 @@ fishhook-mimook:
     DEEP_DARK: 0.1
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
+  bait:
+    wasp: 0.1
+    dragonfly: 0.1
+    spiderling: 0.1
+    scarab: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
 azalea-grubshark:
   name: Azalea Grubshark
   rarity: UNCOMMON
@@ -3474,6 +4540,11 @@ azalea-grubshark:
   model: 211
   biomes:
     LUSH_CAVES: 0.1
+  bait:
+    dragonfly: 0.1
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    scarab: 0.1
 emeraldite-discus:
   name: Emeraldite Discus
   rarity: COMMON
@@ -3488,6 +4559,11 @@ emeraldite-discus:
   model: 212
   biomes:
     LUSH_CAVES: 0.1
+  bait:
+    grubb: 0.1
+    spiderling: 0.1
+    tick: 0.1
+    scarab: 0.1
 primal-eel:
   name: Primal Eel
   rarity: COMMON
@@ -3508,6 +4584,13 @@ primal-eel:
   model: 213
   biomes:
     DRIPSTONE_CAVES: 0.1
+  bait:
+    dragonfly: 0.1
+    grubb: 0.1
+    tick: 0.1
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    wasp: 0.1
 ruling-turok:
   name: Ruling Turok
   rarity: UNCOMMON
@@ -3523,6 +4606,11 @@ ruling-turok:
   model: 214
   biomes:
     LUSH_CAVES: 0.1
+  bait:
+    rhino_beetle: 0.1
+    grubb: 0.1
+    spiderling: 0.1
+    dragonfly: 0.1
 jasper-gripper:
   name: Jasper Gripper
   rarity: COMMON
@@ -3537,6 +4625,13 @@ jasper-gripper:
   model: 215
   biomes:
     DRIPSTONE_CAVES: 0.1
+  bait:
+    grubb: 0.1
+    tick: 0.1
+    wasp: 0.1
+    scarab: 0.1
+    dragonfly: 0.1
+    rhino_beetle: 0.1
 lush-slimswimer:
   name: Lush Slimswimer
   rarity: COMMON
@@ -3551,6 +4646,13 @@ lush-slimswimer:
   model: 216
   biomes:
     LUSH_CAVES: 0.1
+  bait:
+    scarab: 0.1
+    spiderling: 0.1
+    wasp: 0.1
+    tick: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
 reborn-puckerfish:
   name: Reborn Puckerfish
   rarity: COMMON
@@ -3568,6 +4670,11 @@ reborn-puckerfish:
   model: 217
   biomes:
     DEEP_DARK: 0.1
+  bait:
+    grubb: 0.1
+    tick: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
 reborn-razorback:
   name: Reborn Razorback
   rarity: COMMON
@@ -3585,6 +4692,13 @@ reborn-razorback:
   model: 218
   biomes:
     DEEP_DARK: 0.1
+  bait:
+    wasp: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
+    scarab: 0.1
+    dragonfly: 0.1
+    spiderling: 0.1
 amethyst-sculblade:
   name: Amethyst Sculblade
   rarity: COMMON
@@ -3603,6 +4717,12 @@ amethyst-sculblade:
   model: 219
   biomes:
     DRIPSTONE_CAVES: 0.1
+  bait:
+    tick: 0.1
+    wasp: 0.1
+    scarab: 0.1
+    dragonfly: 0.1
+    rhino_beetle: 0.1
 crystal-jellyjelly:
   name: Crystal Jellyjelly
   rarity: RARE
@@ -3621,6 +4741,9 @@ crystal-jellyjelly:
   biomes:
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
+  bait:
+    tick: 0.1
+    spiderling: 0.1
 crystal-jetfin:
   name: Crystal Jetfin
   rarity: COMMON
@@ -3642,6 +4765,11 @@ crystal-jetfin:
   biomes:
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
+  bait:
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    wasp: 0.1
+    grubb: 0.1
 docile-doomageddon:
   name: Docile Doomageddon
   rarity: COMMON
@@ -3656,6 +4784,11 @@ docile-doomageddon:
   model: 222
   biomes:
     DRIPSTONE_CAVES: 0.1
+  bait:
+    tick: 0.1
+    scarab: 0.1
+    spiderling: 0.1
+    grubb: 0.1
 emeraldite-teetle:
   name: Emeraldite Teetle
   rarity: UNCOMMON
@@ -3673,6 +4806,10 @@ emeraldite-teetle:
   model: 223
   biomes:
     LUSH_CAVES: 0.1
+  bait:
+    dragonfly: 0.1
+    tick: 0.1
+    scarab: 0.1
 loving-scrubber:
   name: Loving Scrubber
   rarity: UNCOMMON
@@ -3696,6 +4833,9 @@ loving-scrubber:
     DEEP_DARK: 0.1
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
+  bait:
+    rhino_beetle: 0.1
+    tick: 0.1
 seafoam-zing:
   name: Seafoam Zing
   rarity: COMMON
@@ -3710,6 +4850,13 @@ seafoam-zing:
   model: 225
   biomes:
     LUSH_CAVES: 0.1
+  bait:
+    dragonfly: 0.1
+    rhino_beetle: 0.1
+    scarab: 0.1
+    grubb: 0.1
+    wasp: 0.1
+    tick: 0.1
 crimson-gripper:
   name: Crimson Gripper
   rarity: COMMON
@@ -3726,6 +4873,11 @@ crimson-gripper:
     DAY: 0.1
     EVENING: 0.1
   model: 226
+  bait:
+    dragonfly: 0.1
+    wasp: 0.1
+    tick: 0.1
+    grubb: 0.1
 dune-gripper:
   name: Dune Gripper
   rarity: COMMON
@@ -3742,6 +4894,11 @@ dune-gripper:
     DAY: 0.1
     EVENING: 0.1
   model: 227
+  bait:
+    spiderling: 0.1
+    tick: 0.1
+    dragonfly: 0.1
+    grubb: 0.1
 obsidian-gripper:
   name: Obsidian Gripper
   rarity: UNCOMMON
@@ -3760,6 +4917,10 @@ obsidian-gripper:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 228
+  bait:
+    wasp: 0.1
+    grubb: 0.1
+    tick: 0.1
 bone-gripper:
   name: Bone Gripper
   rarity: UNCOMMON
@@ -3777,6 +4938,11 @@ bone-gripper:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 229
+  bait:
+    grubb: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
+    scarab: 0.1
 sunset-gripper:
   name: Sunset Gripper
   rarity: COMMON
@@ -3795,6 +4961,13 @@ sunset-gripper:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 230
+  bait:
+    scarab: 0.1
+    wasp: 0.1
+    grubb: 0.1
+    dragonfly: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
 jade-gripper:
   name: Jade Gripper
   rarity: UNCOMMON
@@ -3810,6 +4983,11 @@ jade-gripper:
     LAST_QUARTER: 0.1
     WANING_CRESCENT: 0.1
   model: 231
+  bait:
+    wasp: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
+    spiderling: 0.1
 amethyst-gripper:
   name: Amethyst Gripper
   rarity: UNCOMMON
@@ -3826,6 +5004,11 @@ amethyst-gripper:
   model: 232
   biomes:
     DRIPSTONE_CAVES: 0.1
+  bait:
+    scarab: 0.1
+    dragonfly: 0.1
+    rhino_beetle: 0.1
+    wasp: 0.1
 twinhorn-gripper:
   name: Twinhorn Gripper
   rarity: RARE
@@ -3842,6 +5025,9 @@ twinhorn-gripper:
   model: 233
   biomes:
     LUSH_CAVES: 0.1
+  bait:
+    grubb: 0.1
+    spiderling: 0.1
 wellfed-gripper:
   name: Wellfed Gripper
   rarity: UNCOMMON
@@ -3863,6 +5049,10 @@ wellfed-gripper:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 234
+  bait:
+    spiderling: 0.1
+    grubb: 0.1
+    rhino_beetle: 0.1
 sunshine-gripper:
   name: Sunshine Gripper
   rarity: UNCOMMON
@@ -3879,6 +5069,11 @@ sunshine-gripper:
     FULL_MOON: 0.1
     WANING_GIBBOUS: 0.1
   model: 235
+  bait:
+    rhino_beetle: 0.1
+    wasp: 0.1
+    dragonfly: 0.1
+    grubb: 0.1
 surface-gripper:
   name: Surface Gripper
   rarity: COMMON
@@ -3894,6 +5089,12 @@ surface-gripper:
     DAWN: 0.1
     NIGHT: 0.1
   model: 236
+  bait:
+    tick: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    wasp: 0.1
+    grubb: 0.1
 radiated-gripper:
   name: Radiated Gripper
   rarity: UNCOMMON
@@ -3914,6 +5115,10 @@ radiated-gripper:
   model: 237
   biomes:
     DEEP_DARK: 0.1
+  bait:
+    dragonfly: 0.1
+    rhino_beetle: 0.1
+    grubb: 0.1
 mr-gripper:
   name: Mr. Gripper
   rarity: LEGENDARY
@@ -3931,6 +5136,8 @@ mr-gripper:
     DAY: 0.1
     EVENING: 0.1
   model: 238
+  bait:
+    scarab: 0.1
 concealed-gripper:
   name: Concealed Gripper
   rarity: UNCOMMON
@@ -3946,6 +5153,11 @@ concealed-gripper:
     EVENING: 0.1
     NIGHT: 0.1
   model: 239
+  bait:
+    wasp: 0.1
+    scarab: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
 crawling-gripper:
   name: Crawling Gripper
   rarity: UNCOMMON
@@ -3961,6 +5173,10 @@ crawling-gripper:
     DAWN: 0.1
     NIGHT: 0.1
   model: 240
+  bait:
+    rhino_beetle: 0.1
+    grubb: 0.1
+    scarab: 0.1
 sonic-gripper:
   name: Sonic Gripper
   rarity: RARE
@@ -3980,6 +5196,8 @@ sonic-gripper:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 241
+  bait:
+    rhino_beetle: 0.1
 pivot-gripper:
   name: Pivot Gripper
   rarity: UNCOMMON
@@ -4002,6 +5220,9 @@ pivot-gripper:
   model: 242
   biomes:
     LUSH_CAVES: 0.1
+  bait:
+    dragonfly: 0.1
+    rhino_beetle: 0.1
 rhudon-gripper:
   name: Rhudon Gripper
   rarity: COMMON
@@ -4023,6 +5244,13 @@ rhudon-gripper:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 243
+  bait:
+    scarab: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
+    grubb: 0.1
+    dragonfly: 0.1
+    wasp: 0.1
 rockbash-gripper:
   name: Rockbash Gripper
   rarity: UNCOMMON
@@ -4044,6 +5272,10 @@ rockbash-gripper:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 244
+  bait:
+    dragonfly: 0.1
+    grubb: 0.1
+    scarab: 0.1
 headhunt-gripper:
   name: Headhunt Gripper
   rarity: COMMON
@@ -4064,6 +5296,11 @@ headhunt-gripper:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 245
+  bait:
+    rhino_beetle: 0.1
+    scarab: 0.1
+    tick: 0.1
+    spiderling: 0.1
 bean-gripper:
   name: Bean Gripper
   rarity: UNCOMMON
@@ -4083,6 +5320,9 @@ bean-gripper:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 246
+  bait:
+    grubb: 0.1
+    tick: 0.1
 bouncy-gripper:
   name: Bouncy Gripper
   rarity: RARE
@@ -4099,6 +5339,8 @@ bouncy-gripper:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 247
+  bait:
+    scarab: 0.1
 hypno-gripper:
   name: Hypno Gripper
   rarity: COMMON
@@ -4119,6 +5361,12 @@ hypno-gripper:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 248
+  bait:
+    dragonfly: 0.1
+    rhino_beetle: 0.1
+    wasp: 0.1
+    scarab: 0.1
+    grubb: 0.1
 emerald-gripper:
   name: Emerald Gripper
   rarity: COMMON
@@ -4137,6 +5385,13 @@ emerald-gripper:
   model: 249
   biomes:
     DRIPSTONE_CAVES: 0.1
+  bait:
+    dragonfly: 0.1
+    scarab: 0.1
+    tick: 0.1
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    wasp: 0.1
 fleshrend-gripper:
   name: Fleshrend Gripper
   rarity: UNCOMMON
@@ -4159,6 +5414,11 @@ fleshrend-gripper:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 250
+  bait:
+    scarab: 0.1
+    spiderling: 0.1
+    grubb: 0.1
+    tick: 0.1
 til-a-i-pia:
   name: Til-A.I.-pia
   rarity: COMMON
@@ -4179,6 +5439,11 @@ til-a-i-pia:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 251
+  bait:
+    tick: 0.1
+    spiderling: 0.1
+    scarab: 0.1
+    rhino_beetle: 0.1
 bigbyte-piranha:
   name: BigByte Piranha
   rarity: COMMON
@@ -4195,6 +5460,12 @@ bigbyte-piranha:
     EVENING: 0.1
     NIGHT: 0.1
   model: 252
+  bait:
+    scarab: 0.1
+    wasp: 0.1
+    grubb: 0.1
+    dragonfly: 0.1
+    rhino_beetle: 0.1
 mechaphyra:
   name: Mechaphyra
   rarity: UNCOMMON
@@ -4215,6 +5486,10 @@ mechaphyra:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 253
+  bait:
+    tick: 0.1
+    dragonfly: 0.1
+    grubb: 0.1
 troutomobile:
   name: Troutomobile
   rarity: UNCOMMON
@@ -4232,6 +5507,10 @@ troutomobile:
     DAY: 0.1
     EVENING: 0.1
   model: 254
+  bait:
+    rhino_beetle: 0.1
+    tick: 0.1
+    dragonfly: 0.1
 moderated-threadfin:
   name: Moderated Threadfin
   rarity: COMMON
@@ -4248,6 +5527,13 @@ moderated-threadfin:
     DAWN: 0.1
     DAY: 0.1
   model: 255
+  bait:
+    dragonfly: 0.1
+    scarab: 0.1
+    tick: 0.1
+    rhino_beetle: 0.1
+    wasp: 0.1
+    grubb: 0.1
 old-timey-poppicog:
   name: Old-Timey Poppicog
   rarity: UNCOMMON
@@ -4269,6 +5555,9 @@ old-timey-poppicog:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 256
+  bait:
+    dragonfly: 0.1
+    tick: 0.1
 oled-anglefish:
   name: OLED Anglefish
   rarity: UNCOMMON
@@ -4285,6 +5574,11 @@ oled-anglefish:
     EVENING: 0.1
     NIGHT: 0.1
   model: 257
+  bait:
+    scarab: 0.1
+    grubb: 0.1
+    spiderling: 0.1
+    dragonfly: 0.1
 betafish:
   name: BETAfish
   rarity: RARE
@@ -4304,6 +5598,9 @@ betafish:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 258
+  bait:
+    wasp: 0.1
+    grubb: 0.1
 escargobot:
   name: Escargobot
   rarity: COMMON
@@ -4320,6 +5617,12 @@ escargobot:
     EVENING: 0.1
     NIGHT: 0.1
   model: 259
+  bait:
+    rhino_beetle: 0.1
+    wasp: 0.1
+    dragonfly: 0.1
+    spiderling: 0.1
+    tick: 0.1
 escargomid:
   name: Escargomid
   rarity: UNCOMMON
@@ -4339,6 +5642,9 @@ escargomid:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 260
+  bait:
+    wasp: 0.1
+    rhino_beetle: 0.1
 chronotrouter:
   name: Chronotrouter
   rarity: RARE
@@ -4358,6 +5664,9 @@ chronotrouter:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 261
+  bait:
+    rhino_beetle: 0.1
+    tick: 0.1
 initial-tee:
   name: Initial Tee
   rarity: UNCOMMON
@@ -4374,6 +5683,11 @@ initial-tee:
     EVENING: 0.1
     NIGHT: 0.1
   model: 262
+  bait:
+    scarab: 0.1
+    dragonfly: 0.1
+    tick: 0.1
+    wasp: 0.1
 snowgrave-rodtail:
   name: Snowgrave Rodtail
   rarity: COMMON
@@ -4394,6 +5708,12 @@ snowgrave-rodtail:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 263
+  bait:
+    dragonfly: 0.1
+    spiderling: 0.1
+    grubb: 0.1
+    wasp: 0.1
+    tick: 0.1
 eelbow:
   name: Eelbow
   rarity: UNCOMMON
@@ -4411,6 +5731,9 @@ eelbow:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 264
+  bait:
+    rhino_beetle: 0.1
+    wasp: 0.1
 locknplea:
   name: Locknplea
   rarity: RARE
@@ -4429,6 +5752,8 @@ locknplea:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 265
+  bait:
+    wasp: 0.1
 water-bybass:
   name: Water Bybass
   rarity: UNCOMMON
@@ -4449,6 +5774,10 @@ water-bybass:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 266
+  bait:
+    grubb: 0.1
+    wasp: 0.1
+    dragonfly: 0.1
 chromadine:
   name: Chromadine
   rarity: COMMON
@@ -4465,6 +5794,12 @@ chromadine:
   model: 267
   biomes:
     DRIPSTONE_CAVES: 0.1
+  bait:
+    wasp: 0.1
+    dragonfly: 0.1
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    tick: 0.1
 broken-wheel:
   name: Broken Wheel
   rarity: UNCOMMON
@@ -4488,6 +5823,9 @@ broken-wheel:
     DEEP_DARK: 0.1
     DRIPSTONE_CAVES: 0.1
     LUSH_CAVES: 0.1
+  bait:
+    dragonfly: 0.1
+    spiderling: 0.1
 dr-octogonapus:
   name: Dr Octogonapus
   rarity: LEGENDARY
@@ -4506,6 +5844,8 @@ dr-octogonapus:
   model: 269
   biomes:
     DEEP_DARK: 0.1
+  bait:
+    tick: 0.1
 cognutive:
   name: CogNUTive
   rarity: UNCOMMON
@@ -4523,6 +5863,9 @@ cognutive:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 270
+  bait:
+    grubb: 0.1
+    tick: 0.1
 servo-moray:
   name: Servo-Moray
   rarity: COMMON
@@ -4539,6 +5882,13 @@ servo-moray:
     DAY: 0.1
     EVENING: 0.1
   model: 271
+  bait:
+    grubb: 0.1
+    spiderling: 0.1
+    tick: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    scarab: 0.1
 escargotop:
   name: Escargotop
   rarity: RARE
@@ -4556,6 +5906,8 @@ escargotop:
     EVENING: 0.1
     NIGHT: 0.1
   model: 272
+  bait:
+    dragonfly: 0.1
 boopsnoototron:
   name: Boopsnoototron
   rarity: COMMON
@@ -4576,6 +5928,13 @@ boopsnoototron:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 273
+  bait:
+    scarab: 0.1
+    rhino_beetle: 0.1
+    grubb: 0.1
+    spiderling: 0.1
+    wasp: 0.1
+    dragonfly: 0.1
 floundrive:
   name: Floundrive
   rarity: COMMON
@@ -4592,6 +5951,11 @@ floundrive:
     DAWN: 0.1
     NIGHT: 0.1
   model: 274
+  bait:
+    scarab: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    wasp: 0.1
 autoboros:
   name: Autoboros
   rarity: RARE
@@ -4605,6 +5969,8 @@ autoboros:
   biomes:
     CHERRY_GROVE: 0.1
   model: 275
+  bait:
+    dragonfly: 0.1
 skulkborn-moray:
   name: Skulkborn Moray
   rarity: RARE
@@ -4626,6 +5992,8 @@ skulkborn-moray:
   model: 276
   biomes:
     DEEP_DARK: 0.1
+  bait:
+    grubb: 0.1
 dimensional-basilisk:
   name: Dimensional Basilisk
   rarity: RARE
@@ -4642,6 +6010,9 @@ dimensional-basilisk:
   model: 277
   biomes:
     LUSH_CAVES: 0.1
+  bait:
+    scarab: 0.1
+    dragonfly: 0.1
 ripper-roofin:
   name: Ripper Roofin
   rarity: LEGENDARY
@@ -4662,6 +6033,8 @@ ripper-roofin:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 278
+  bait:
+    tick: 0.1
 chip-skydark:
   name: Chip Skydark
   rarity: LEGENDARY
@@ -4678,6 +6051,8 @@ chip-skydark:
     EVENING: 0.1
     NIGHT: 0.1
   model: 279
+  bait:
+    dragonfly: 0.1
 rafflebones:
   name: Rafflebones
   rarity: LEGENDARY
@@ -4698,6 +6073,8 @@ rafflebones:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 280
+  bait:
+    wasp: 0.1
 goobly-gobbler:
   name: Goobly Gobbler
   rarity: RARE
@@ -4716,6 +6093,9 @@ goobly-gobbler:
     FULL_MOON: 0.1
     WANING_GIBBOUS: 0.1
   model: 281
+  bait:
+    grubb: 0.1
+    dragonfly: 0.1
 yin-dynastii:
   name: Yin Dynastii
   rarity: RARE
@@ -4731,6 +6111,8 @@ yin-dynastii:
   times:
     DAY: 0.1
   model: 282
+  bait:
+    scarab: 0.1
 yang-dynastii:
   name: Yang Dynastii
   rarity: RARE
@@ -4746,6 +6128,8 @@ yang-dynastii:
   times:
     NIGHT: 0.1
   model: 283
+  bait:
+    dragonfly: 0.1
 dinkus-the-deep:
   name: Dinkus the Deep
   rarity: RARE
@@ -4762,6 +6146,8 @@ dinkus-the-deep:
     LAST_QUARTER: 0.1
     WANING_CRESCENT: 0.1
   model: 284
+  bait:
+    tick: 0.1
 worldeater:
   name: Worldeater
   rarity: LEGENDARY
@@ -4781,6 +6167,8 @@ worldeater:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 285
+  bait:
+    tick: 0.1
 the-mindflayer:
   name: The Mindflayer
   rarity: LEGENDARY
@@ -4803,6 +6191,8 @@ the-mindflayer:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 286
+  bait:
+    tick: 0.1
 mr-boombastic:
   name: Mr Boombastic
   rarity: RARE
@@ -4823,6 +6213,8 @@ mr-boombastic:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 287
+  bait:
+    tick: 0.1
 needlessly-large-rodtail:
   name: Needlessly Large Rodtail
   rarity: UNCOMMON
@@ -4839,6 +6231,11 @@ needlessly-large-rodtail:
     DAY: 0.1
     EVENING: 0.1
   model: 288
+  bait:
+    rhino_beetle: 0.1
+    spiderling: 0.1
+    wasp: 0.1
+    tick: 0.1
 rodtail-of-domnion:
   name: Rodtail of Domnion
   rarity: RARE
@@ -4858,6 +6255,9 @@ rodtail-of-domnion:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 289
+  bait:
+    tick: 0.1
+    scarab: 0.1
 abaia-of-isles:
   name: Abaia of Isles
   rarity: RARE
@@ -4873,6 +6273,8 @@ abaia-of-isles:
   model: 290
   biomes:
     DRIPSTONE_CAVES: 0.1
+  bait:
+    tick: 0.1
 jim:
   name: Jim
   rarity: LEGENDARY
@@ -4888,6 +6290,8 @@ jim:
     DAWN: 0.1
     DAY: 0.1
   model: 291
+  bait:
+    grubb: 0.1
 king-jellyjelly:
   name: King Jellyjelly
   rarity: RARE
@@ -4904,8 +6308,11 @@ king-jellyjelly:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 292
+  bait:
+    tick: 0.1
+    wasp: 0.1
 wither-s-rodtail:
-  name: "Wither\u2019s Rodtail"
+  name: Wither’s Rodtail
   rarity: RARE
   description: A unique fish known as the Wither S Rodtail, with distinctive traits
     and behaviors.
@@ -4924,6 +6331,9 @@ wither-s-rodtail:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 293
+  bait:
+    wasp: 0.1
+    tick: 0.1
 shadowmaw-grubshark:
   name: Shadowmaw Grubshark
   rarity: RARE
@@ -4941,6 +6351,8 @@ shadowmaw-grubshark:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 294
+  bait:
+    dragonfly: 0.1
 astrological-mindwatcher:
   name: Astrological Mindwatcher
   rarity: RARE
@@ -4957,6 +6369,9 @@ astrological-mindwatcher:
     FULL_MOON: 0.1
     WANING_GIBBOUS: 0.1
   model: 295
+  bait:
+    spiderling: 0.1
+    dragonfly: 0.1
 chuchu-pik:
   name: Chuchu Pik
   rarity: RARE
@@ -4977,6 +6392,9 @@ chuchu-pik:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 296
+  bait:
+    rhino_beetle: 0.1
+    tick: 0.1
 illithid-maggot:
   name: Illithid Maggot
   rarity: COMMON
@@ -5001,6 +6419,13 @@ illithid-maggot:
     END_BARRENS: 0.1
     THE_VOID: 0.1
   model: 297
+  bait:
+    scarab: 0.1
+    wasp: 0.1
+    tick: 0.1
+    rhino_beetle: 0.1
+    spiderling: 0.1
+    grubb: 0.1
 redacted:
   name: '[REDACTED]'
   rarity: LEGENDARY
@@ -5029,6 +6454,8 @@ redacted:
     NEW_MOON: 0.1
     WAXING_CRESCENT: 0.1
   model: 298
+  bait:
+    rhino_beetle: 0.1
 luminous-shulk:
   name: Luminous Shulk
   rarity: RARE
@@ -5060,6 +6487,8 @@ luminous-shulk:
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
   model: 299
+  bait:
+    dragonfly: 0.1
 voidborn-moray:
   name: Voidborn Moray
   rarity: UNCOMMON
@@ -5087,6 +6516,11 @@ voidborn-moray:
     EVENING: 0.1
     NIGHT: 0.1
   model: 300
+  bait:
+    spiderling: 0.1
+    tick: 0.1
+    dragonfly: 0.1
+    wasp: 0.1
 stray-seagrass:
   name: Stray Seagrass
   rarity: COMMON
@@ -5098,6 +6532,7 @@ stray-seagrass:
     - all-time
     - all-week
     - freshwater
+    - all-bait
   tier: 0
   biomes:
     RIVER: 0.1
@@ -5111,6 +6546,7 @@ old-boot:
   defaults:
     - all-time
     - all-week
+    - all-bait
   tier: 1
   model: 302
   biomes:
@@ -5129,6 +6565,7 @@ waterlogged-boot:
     - all-week
     - freshwater
     - saltwater
+    - all-bait
   tier: 1
   biomes:
     RIVER: 0.1
@@ -5144,6 +6581,7 @@ message-in-a-bottle:
     - all-time
     - all-week
     - saltwater
+    - all-bait
   tier: 1
   model: 304
 broken-chain:
@@ -5156,6 +6594,7 @@ broken-chain:
   defaults:
     - all-time
     - all-week
+    - all-bait
   tier: 1
   model: 305
   biomes:
@@ -5172,6 +6611,7 @@ strange-biomass:
   defaults:
     - all-time
     - all-week
+    - all-bait
   tier: 1
   biomes:
     THE_END: 0.1
@@ -5190,6 +6630,7 @@ chorus-kelp:
   defaults:
     - all-time
     - all-week
+    - all-bait
   tier: 1
   biomes:
     THE_END: 0.1
@@ -5210,6 +6651,7 @@ smooth-rock:
     - all-week
     - freshwater
     - saltwater
+    - all-bait
   tier: 0
   biomes:
     RIVER: 0.1
@@ -5228,6 +6670,7 @@ small-shell:
     - all-time
     - all-week
     - saltwater
+    - all-bait
   tier: 1
   model: 309
 large-shell:
@@ -5241,6 +6684,7 @@ large-shell:
     - all-time
     - all-week
     - saltwater
+    - all-bait
   tier: 1
   model: 310
 coral-shell:
@@ -5254,6 +6698,7 @@ coral-shell:
     - all-time
     - all-week
     - saltwater
+    - all-bait
   tier: 1
   model: 311
 castaway-chest:
@@ -5268,6 +6713,7 @@ castaway-chest:
     - all-week
     - freshwater
     - saltwater
+    - all-bait
   tier: 1
   biomes:
     RIVER: 0.1
@@ -5284,6 +6730,7 @@ seafarers-chest:
     - all-week
     - freshwater
     - saltwater
+    - all-bait
   tier: 1
   biomes:
     RIVER: 0.1
@@ -5300,6 +6747,7 @@ captains-chest:
     - all-week
     - freshwater
     - saltwater
+    - all-bait
   tier: 2
   biomes:
     RIVER: 0.1
@@ -5316,6 +6764,7 @@ chest-of-ancient-tributes:
     - all-week
     - freshwater
     - saltwater
+    - all-bait
   tier: 4
   biomes:
     RIVER: 0.1
@@ -5332,6 +6781,7 @@ chest-of-wonderous-secrets:
     - all-week
     - freshwater
     - saltwater
+    - all-bait
   tier: 4
   biomes:
     RIVER: 0.1
@@ -5347,6 +6797,7 @@ broken-glasses:
     - all-time
     - all-week
     - freshwater
+    - all-bait
   tier: 1
   biomes:
     RIVER: 0.1
@@ -5366,6 +6817,7 @@ rotting-produce:
     - all-week
     - freshwater
     - saltwater
+    - all-bait
   tier: 1
   biomes:
     RIVER: 0.1
@@ -5382,6 +6834,7 @@ floating-kelp:
     - all-time
     - all-week
     - saltwater
+    - all-bait
   tier: 0
   model: 319
 pristine-pearl:
@@ -5395,6 +6848,7 @@ pristine-pearl:
     - all-time
     - all-week
     - saltwater
+    - all-bait
   tier: 1
   model: 320
 oyster-of-secrets:
@@ -5408,6 +6862,7 @@ oyster-of-secrets:
     - all-time
     - all-week
     - saltwater
+    - all-bait
   tier: 1
   model: 321
 crumpled-bottle:
@@ -5422,6 +6877,7 @@ crumpled-bottle:
     - all-week
     - freshwater
     - saltwater
+    - all-bait
   tier: 1
   biomes:
     RIVER: 0.1
@@ -5438,6 +6894,7 @@ dead-kelp:
   defaults:
     - all-time
     - all-week
+    - all-bait
   tier: 1
   model: 323
   biomes:
@@ -5455,6 +6912,7 @@ dark-pearl-cluster:
     - mountains
     - woodlands
     - all-week
+    - all-bait
   tier: 1
   times:
     EVENING: 0.1
@@ -5474,6 +6932,7 @@ trash:
     - all-week
     - freshwater
     - saltwater
+    - all-bait
   tier: 0
   biomes:
     RIVER: 0.1
