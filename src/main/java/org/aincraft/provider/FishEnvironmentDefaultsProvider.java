@@ -8,9 +8,8 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class FishEnvironmentDefaultsProvider {
 
@@ -78,7 +77,18 @@ public class FishEnvironmentDefaultsProvider {
             }
         }
 
+        Map<String, Double> baits = new HashMap<>();
+        ConfigurationSection baitSection = section.getConfigurationSection("bait");
+        if (baitSection != null) {
+            for (String baitKey : baitSection.getKeys(false)) {
+                double bonus = baitSection.getDouble(baitKey, 0.0);
+                if (bonus != 0.0) {
+                    baits.put(baitKey.toLowerCase(Locale.ENGLISH), bonus);
+                }
+            }
+        }
+
         // Defaults for openWaterRequired and rainRequired could be false or read from config if you add those fields to defaults
-        return new FishEnvironment(biomes, times, moons, model,false, false);
+        return new FishEnvironment(biomes, times, moons, model,false, false, baits);
     }
 }
