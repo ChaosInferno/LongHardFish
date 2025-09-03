@@ -21,6 +21,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.*;
@@ -298,6 +299,9 @@ public class FishDexFishSelector {
         // ===== Time & Moon =====
         placeTimeIconsForFish(gui, env, unseen);
         placeMoonIconsForFish(gui, player, env, unseen);
+
+        // ===== Bait tile (row 0, col 3) =====
+        placeBaitIconForFish(player, env, unseen);
 
         // ===== Environment groups + flags (with tooltips) =====
         placeEnvironmentGroupsForFish(player, env, unseen);
@@ -774,5 +778,82 @@ public class FishDexFishSelector {
     private static Key texKey(String path) {
         String safe = (path == null ? "" : path).toLowerCase(java.util.Locale.ROOT).replace(' ', '_');
         return Key.key(NS, safe);
+    }
+
+    private void putPlayerItemMain(Player p, int row, int col, ItemStack stack) {
+        int slot = GuiItemSlot.main(row, col);
+        p.getInventory().setItem(slot, stack);
+    }
+
+    /** Make a single-icon item with a custom model, visible tooltip, and immovable tag. */
+    private ItemStack makeIconWithTooltip(String modelSuffix, String title, List<Component> lore) {
+        ItemStack it = new ItemStack(Material.COD);
+        ItemMeta m = it.getItemMeta();
+        m.setItemModel(new NamespacedKey(NS, modelSuffix));                        // RP model
+        m.getPersistentDataContainer().set(IMMOVABLE_KEY,                 // lock it
+                PersistentDataType.BYTE, (byte)1);
+        // Show tooltip (don’t hide)
+        if (title != null) m.displayName(Component.text(title));
+        m.lore((lore != null && !lore.isEmpty()) ? lore : null);
+        try { m.removeItemFlags(ItemFlag.HIDE_ATTRIBUTES); } catch (Throwable ignored) {}
+        try { m.removeItemFlags(ItemFlag.HIDE_UNBREAKABLE); } catch (Throwable ignored) {}
+        it.setItemMeta(m);
+        return it;
+    }
+
+    /** Humanize a bait id like "rhino_beetle" or "none" -> "Rhino Beetle"/"None". */
+    private static String prettyBaitId(String id) {
+        if (id == null || id.isEmpty()) return "Unknown";
+        String[] parts = id.toLowerCase(Locale.ENGLISH).split("_");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < parts.length; i++) {
+            String w = parts[i];
+            if (w.isEmpty()) continue;
+            sb.append(Character.toUpperCase(w.charAt(0))).append(w.substring(1));
+            if (i + 1 < parts.length) sb.append(' ');
+        }
+        return sb.toString();
+    }
+
+    /** Place the bait tile at row 0, col 3 based on progress and env.getEnvironmentBaits(). */
+    private void placeBaitIconForFish(Player player, FishEnvironment env, boolean unseen) {
+        if (unseen) {
+            // Unknown: empty texture + “Bait requirements unknown”
+            ItemStack icon = makeIconWithTooltip(
+                    "icons/bait-icon_empty",
+                    "Bait requirements unknown",
+                    null
+            );
+            putPlayerItemMain(player, 0, 3, icon);
+            return;
+        }
+
+        // Known: build list from the fish’s bait table (may be empty or null → “Any bait or none”)
+        List<Component> lore = new ArrayList<>();
+        Map<String, Double> baitMap = (env != null) ? env.getEnvironmentBaits() : null;
+
+        if (baitMap == null || baitMap.isEmpty()) {
+            lore.add(Component.text("Any bait or none", NamedTextColor.GRAY));
+        } else {
+            // Show each allowed bait and its bonus (percent)
+            // Keep deterministic order: by name
+            baitMap.entrySet().stream()
+                    .sorted(Comparator.comparing(Map.Entry::getKey, String.CASE_INSENSITIVE_ORDER))
+                    .forEach(e -> {
+                        String id = e.getKey();
+                        double bonus = e.getValue() == null ? 0.0 : e.getValue();
+                        String line = ("none".equalsIgnoreCase(id))
+                                ? "None (+" + Math.round(bonus * 100.0) + "%)"
+                                : prettyBaitId(id);
+                        lore.add(Component.text(line, NamedTextColor.DARK_PURPLE));
+                    });
+        }
+
+        ItemStack icon = makeIconWithTooltip(
+                "icons/bait-icon",
+                "Bait required:",
+                lore
+        );
+        putPlayerItemMain(player, 0, 3, icon);
     }
 }
