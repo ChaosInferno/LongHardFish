@@ -209,3 +209,6 @@ all-bait:
     rhino_beetle: 0.1
     dragonfly: 0.1
     scarab: 0.1
+no-bait:
+  bait:
+    none: 0.1

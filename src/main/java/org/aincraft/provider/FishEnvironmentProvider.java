@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class FishEnvironmentProvider {
     private final FishConfig holder;
@@ -34,6 +35,8 @@ public class FishEnvironmentProvider {
             Map<FishTimeCycle, Double> timeWeights = new HashMap<>();
             Map<FishMoonCycle, Double> moonWeights = new HashMap<>();
 
+            Map<String, Double> baitBonuses = new HashMap<>();
+
             Integer defaultsModel = null;
 
             // 1. Load defaults from `defaults:` section
@@ -44,9 +47,11 @@ public class FishEnvironmentProvider {
                 def.getEnvironmentBiomes().forEach(biomeWeights::putIfAbsent);
                 def.getEnvironmentTimes().forEach(timeWeights::putIfAbsent);
                 def.getEnvironmentMoons().forEach(moonWeights::putIfAbsent);
+
                 if (defaultsModel == null && def.getModel() != null) {
                     defaultsModel = def.getModel();
                 }
+                def.getEnvironmentBaits().forEach(baitBonuses::putIfAbsent);
             }
 
             // 2. Override with fish-specific biomes
@@ -91,6 +96,19 @@ public class FishEnvironmentProvider {
                 }
             }
 
+            ConfigurationSection baitSection = section.getConfigurationSection("bait");
+            if (baitSection != null) {
+                for (String baitKey : baitSection.getKeys(false)) {
+                    double bonus = baitSection.getDouble(baitKey, 0.0);
+                    // store even if zero? keep consistent with defaults: ignore zero for cleanliness
+                    if (bonus != 0.0) {
+                        baitBonuses.put(baitKey.toLowerCase(Locale.ENGLISH), bonus);
+                    } else {
+                        baitBonuses.remove(baitKey.toLowerCase(Locale.ENGLISH));
+                    }
+                }
+            }
+
             boolean openWaterRequired = section.getBoolean("open-water-required", false);
             boolean rainRequired = section.getBoolean("rain-required", false);
 
@@ -106,7 +124,7 @@ public class FishEnvironmentProvider {
 
             fishEnvironments.put(
                     new NamespacedKey(plugin, key),
-                    new FishEnvironment(biomeWeights, timeWeights, moonWeights, model, openWaterRequired, rainRequired)
+                    new FishEnvironment(biomeWeights, timeWeights, moonWeights, model, openWaterRequired, rainRequired, baitBonuses)
             );
         }
 
