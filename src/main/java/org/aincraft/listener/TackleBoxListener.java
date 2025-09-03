@@ -12,9 +12,11 @@ import org.bukkit.inventory.ItemStack;
 public final class TackleBoxListener implements Listener {
 
     private final TackleBoxItem tackleBoxItem;
+    private final TackleBoxService service;
 
-    public TackleBoxListener(TackleBoxItem tackleBoxItem) {
+    public TackleBoxListener(TackleBoxItem tackleBoxItem, TackleBoxService service) {
         this.tackleBoxItem = tackleBoxItem;
+        this.service = service;
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = false)
@@ -39,7 +41,7 @@ public final class TackleBoxListener implements Listener {
         e.getPlayer().setCooldown(item.getType(), 5);
 
         // Run your command as the player
-        e.getPlayer().performCommand("tacklebox");
+        service.openFromHand(e.getPlayer(), e.getHand());
     }
 }
 

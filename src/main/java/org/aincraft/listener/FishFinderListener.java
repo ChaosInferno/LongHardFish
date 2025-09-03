@@ -5,6 +5,7 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import org.aincraft.container.FishTimeCycle;
 import org.aincraft.ingame_items.FishFinderItem;
 import org.bukkit.World;
+import org.bukkit.block.Biome;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -46,7 +47,7 @@ public final class FishFinderListener implements Listener {
 
         // Weather string
         String weather = (!w.hasStorm())
-                ? "Sunny"
+                ? "Clear"
                 : (w.isThundering() ? "Stormy" : "Rainy");
 
         // Time -> hh:mmAM/PM (0 ticks = 06:00)
@@ -76,10 +77,14 @@ public final class FishFinderListener implements Listener {
             default -> "Unknown";
         };
 
-        // Single-line action bar as requested
+        // Current biome (pretty-printed)
+        Biome biome = e.getPlayer().getLocation().getBlock().getBiome();
+        String biomeName = prettify(biome);
+
+        // Action bar message
         String msg = String.format(
-                "It's a %s day at %s %s. A %s is coming.",
-                weather, timeStr, cycleName, phaseName
+                "It's a %s %s at %s. Expect a %s over the %s.",
+                weather, cycleName, timeStr, phaseName, biomeName
         );
 
         e.getPlayer().sendActionBar(Component.text(msg, NamedTextColor.AQUA));
@@ -99,5 +104,16 @@ public final class FishFinderListener implements Listener {
         if (start < end) return tick >= start && tick < end;
         return tick >= start || tick < end;
     }
-}
 
+    // WINDSWEPT_FOREST -> "Windswept Forest"
+    private static String prettify(Biome biome) {
+        String s = biome.name().toLowerCase(java.util.Locale.ENGLISH).replace('_', ' ');
+        String[] parts = s.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (String p : parts) {
+            if (p.isEmpty()) continue;
+            sb.append(Character.toUpperCase(p.charAt(0))).append(p.substring(1)).append(' ');
+        }
+        return sb.toString().trim();
+    }
+}

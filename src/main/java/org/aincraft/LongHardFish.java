@@ -1,5 +1,6 @@
 package org.aincraft;
 
+import org.aincraft.bait.*;
 import org.aincraft.commands.FishDexCommand;
 import org.aincraft.commands.GiveFishItemsCommand;
 import org.aincraft.commands.TackleBoxCommand;
@@ -9,6 +10,7 @@ import org.aincraft.container.FishEnvironment;
 import org.aincraft.container.FishModel;
 import org.aincraft.gui.FishDexFishSelector;
 import org.aincraft.ingame_items.*;
+import org.aincraft.items.BaitRegistry;
 import org.aincraft.items.CustomFishItems;
 import org.aincraft.listener.*;
 import org.aincraft.provider.FishEnvironmentDefaultsProvider;
@@ -17,12 +19,13 @@ import org.aincraft.provider.FishModelProvider;
 import org.aincraft.provider.FishRarityProvider;
 import org.aincraft.commands.FishStatsCommand;
 import org.aincraft.service.InventoryBackupService;
+import org.aincraft.service.NaturalTrackerService;
 import org.aincraft.service.StatsService;
 import org.aincraft.storage.Database;
 import org.aincraft.storage.SQLiteDatabase;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -47,11 +50,17 @@ public class LongHardFish extends JavaPlugin {
     private WatchItem watchItem;
     private FishFinderItem fishFinderItem;
     private TackleBoxItem tackleBoxItem;
+    private BiomeRadarItem biomeRadarItem;
+    private BaitForagingService baitForaging;
 
     @Override
     public void onEnable() {
         FishConfig config = new FishConfig("fish.yml", this);
-        saveResource("fish_defaults.yml", false);
+        if (getResource("fish_defaults.yml") != null) {
+            saveResource("fish_defaults.yml", false);
+        } else {
+            getLogger().warning("fish_defaults.yml not embedded; skipping saveResource()");
+        }
         File defaultsFile = new File(getDataFolder(), "fish_defaults.yml");
         FileConfiguration defaultsConfig = YamlConfiguration.loadConfiguration(defaultsFile);
 
@@ -94,7 +103,6 @@ public class LongHardFish extends JavaPlugin {
         FishStatsCommand statsCmd = new FishStatsCommand(this, stats);
         Objects.requireNonNull(getCommand("fishstats")).setExecutor(statsCmd);
         Objects.requireNonNull(getCommand("fishstats")).setTabCompleter(statsCmd);
-        getCommand("tacklebox").setExecutor(new TackleBoxCommand(this));
 
         // --- Build lookups for the selector ---
         Map<NamespacedKey, FishEnvironment> envMap = environmentProvider.parseFishEnvironmentObjects();
@@ -125,8 +133,8 @@ public class LongHardFish extends JavaPlugin {
         };
 
         FishDexFishSelector.CaughtCountLookup countLookup = (playerId, fishKey) -> {
-            String keyOnly    = fishKey.getKey();    // e.g. "clownfish"
-            String namespaced = fishKey.toString();  // e.g. "longhardfish:clownfish"
+            String keyOnly    = fishKey.getKey();
+            String namespaced = fishKey.toString();
             try {
                 int n = db.caughtCount(playerId, namespaced);
                 if (n == 0) n = db.caughtCount(playerId, keyOnly);
@@ -137,17 +145,14 @@ public class LongHardFish extends JavaPlugin {
             }
         };
 
-        // IMPORTANT: make the mask back up the player's inventory *before* we start writing icons to it
+        // Backup+clear mask for Dex open
         BiConsumer<Player, Inventory> mask = (p, inv) -> {
             try {
-                invBackup.backupIfNeeded(p);  // snapshot once per open
-                // Clear main/hotbar/offhand/cursor so the ghosted hotbar is blank
+                invBackup.backupIfNeeded(p);
                 p.getInventory().clear();
                 p.getInventory().setExtraContents(null);
                 p.getInventory().setItemInOffHand(null);
                 p.setItemOnCursor(null);
-                // If you also want to hide armor while the Dex is open, uncomment:
-                // p.getInventory().setArmorContents(null);
             } catch (Exception ex) {
                 getLogger().warning("Failed to backup+clear inventory for " + p.getName() + ": " + ex.getMessage());
             }
@@ -191,6 +196,7 @@ public class LongHardFish extends JavaPlugin {
         this.watchItem = new WatchItem(this);
         this.fishFinderItem = new FishFinderItem(this);
         this.tackleBoxItem = new TackleBoxItem(this);
+        this.biomeRadarItem = new BiomeRadarItem(this);
 
         // Register current and future items here:
         CustomFishItems.register("fishdex", fishDexItem::create);
@@ -199,13 +205,60 @@ public class LongHardFish extends JavaPlugin {
         CustomFishItems.register("watch", watchItem::create);
         CustomFishItems.register("fish_finder", fishFinderItem::create);
         CustomFishItems.register("tacklebox", tackleBoxItem::create);
+        CustomFishItems.register("biome_radar", biomeRadarItem::create);
+
+        CustomFishItems.register("grubb", () -> GrubbBait.create(this, 1));
+        CustomFishItems.register("tick", () -> TickBait.create(this, 1));
+        CustomFishItems.register("wasp",        () -> WaspBait.create(this, 1));
+        CustomFishItems.register("spiderling",  () -> SpiderlingBait.create(this, 1));
+        CustomFishItems.register("dragonfly",   () -> DragonflyBait.create(this, 1));
+        CustomFishItems.register("rhino_beetle",() -> RhinoBeetleBait.create(this, 1));
+        CustomFishItems.register("scarab",      () -> ScarabBait.create(this, 1));
 
         getServer().getPluginManager().registerEvents(new FishDexListener(this, fishDexItem), this);
         getServer().getPluginManager().registerEvents(new SextantListener(sextantItem), this);
         getServer().getPluginManager().registerEvents(new WeatherRadioListener(weatherRadioItem), this);
         getServer().getPluginManager().registerEvents(new WatchListener(watchItem), this);
         getServer().getPluginManager().registerEvents(new FishFinderListener(fishFinderItem), this);
-        getServer().getPluginManager().registerEvents(new TackleBoxListener(tackleBoxItem), this);
+        getServer().getPluginManager().registerEvents(new BiomeRadarListener(biomeRadarItem), this);
+        getServer().getPluginManager().registerEvents(new RodBaitConsumeListener(this), this);
+
+        baitForaging = new BaitForagingService(this);
+        getServer().getPluginManager().registerEvents(baitForaging, this);
+
+        NaturalTrackerService naturalTracker = new NaturalTrackerService(this);
+        getServer().getPluginManager().registerEvents(naturalTracker, this);
+
+        GrubbBait.registerInto(this);
+        TickBait.registerInto(this);
+        WaspBait.registerInto(this);
+        SpiderlingBait.registerInto(this);
+        DragonflyBait.registerInto(this);
+        RhinoBeetleBait.registerInto(this);
+        ScarabBait.registerInto(this);
+
+        ForageTables.registerHoeTillBugTable(this, baitForaging);
+        ForageTables.registerLeavesBugs(this, baitForaging, naturalTracker);
+        ForageTables.registerLilyDragonfly(this, baitForaging, naturalTracker);
+        ForageTables.registerFernRhinoBeetle(this, baitForaging, naturalTracker);
+        ForageTables.registerDeadBushScarab(this, baitForaging, naturalTracker);
+
+        // Bait consumption on fishing
+        getServer().getPluginManager().registerEvents(new org.aincraft.listener.RodBaitConsumeListener(this), this);
+
+        // --- TackleBox: persistence service + command + open-on-right-click
+        final int tackleBoxSize = 54; // or 27 if you prefer single chest
+        TackleBoxService tackleBoxService = new TackleBoxService(this, tackleBoxItem, tackleBoxSize);
+
+        // The service itself listens for clicks & close (saving contents)
+        getServer().getPluginManager().registerEvents(tackleBoxService, this);
+
+        // Right-click listener should call service.openFromHand(...)
+        // (Make sure your TackleBoxListener constructor accepts the service)
+        getServer().getPluginManager().registerEvents(new TackleBoxListener(tackleBoxItem, tackleBoxService), this);
+
+        // /tacklebox opens the GUI for the box in hand
+        Objects.requireNonNull(getCommand("tacklebox")).setExecutor(new TackleBoxCommand(this, tackleBoxService));
 
         getCommand("lhfgive").setExecutor(new GiveFishItemsCommand(this));
     }

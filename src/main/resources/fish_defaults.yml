@@ -198,3 +198,14 @@ last-half:
     WAXING_CRESCENT: 0.1
     FIRST_QUARTER: 0.1
     WAXING_GIBBOUS: 0.1
+
+# --- GENERAL BAIT DEFAULTS ---
+all-bait:
+  bait:
+    tick: 0.1
+    grubb: 0.1
+    wasp: 0.1
+    spiderling: 0.1
+    rhino_beetle: 0.1
+    dragonfly: 0.1
+    scarab: 0.1

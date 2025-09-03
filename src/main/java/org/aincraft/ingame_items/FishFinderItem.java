@@ -29,9 +29,9 @@ public final class FishFinderItem {
 
         meta.displayName(Component.text("Fish Finder", NamedTextColor.AQUA));
         meta.lore(List.of(
-                Component.text("They said I was mad", NamedTextColor.GRAY),
-                Component.text("to combine all of them.", NamedTextColor.GRAY),
-                Component.text("This'll show them I am.", NamedTextColor.GRAY)
+                Component.text("A culmination of all the tools,", NamedTextColor.GRAY),
+                Component.text("held together by fish oil and hope.", NamedTextColor.GRAY),
+                Component.text("No doubt Willy would be proud.", NamedTextColor.GRAY)
         ));
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ENCHANTS);
 
