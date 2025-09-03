@@ -69,6 +69,15 @@ public class LongHardFish extends JavaPlugin {
         FishRarityProvider rarityProvider = new FishRarityProvider(config, this);
         FishModelProvider modelProvider = new FishModelProvider(config, this);
 
+        var envs = environmentProvider.parseFishEnvironmentObjects();
+
+        // Pick a fish that uses defaults, e.g. "trash"
+        var trash = envs.get(new NamespacedKey(this, "trash"));
+        getLogger().info("[SANITY] trash present? " + (trash != null));
+        if (trash != null) {
+            getLogger().info("[SANITY] trash bait map = " + trash.getEnvironmentBaits());
+        }
+
         // --- DB + Stats ---
         saveDefaultConfig();
         try {

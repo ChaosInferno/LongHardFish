@@ -87,6 +87,7 @@ public class FishCatchListener implements Listener {
         Location hookLocation = hook.getLocation();
         if (!processingHooks.add(hookId)) return;           // already handled
         Bukkit.getScheduler().runTask(plugin, () -> processingHooks.remove(hookId));
+        boolean loggedSample = false;
 
         // Build rarity map
         Map<NamespacedKey, FishDistribution> raw = rarityProvider.parseFishDistributorObjects();
@@ -97,12 +98,16 @@ public class FishCatchListener implements Listener {
         Map<NamespacedKey, Double> validFish =
                 filter.getValidFish(player, hookLocation, hook, environmentProvider, rarityMap);
 
+        plugin.getLogger().info("[SANITY] validFish size=" + validFish.size() +
+                " keys=" + validFish.keySet().stream().map(NamespacedKey::getKey).toList());
+
         ItemStack usedRod = findUsedRod(player);
         String rodBaitId = null;
         if (usedRod != null) {
             rodBaitId = org.aincraft.items.BaitKeys.getRodBait(plugin, usedRod);
             if (rodBaitId != null) rodBaitId = rodBaitId.toLowerCase(Locale.ENGLISH);
         }
+        plugin.getLogger().info("[SANITY] rodBaitId = " + rodBaitId);
 
         Map<NamespacedKey, org.aincraft.container.FishEnvironment> envMap =
                 environmentProvider.parseFishEnvironmentObjects();
@@ -142,6 +147,13 @@ public class FishCatchListener implements Listener {
             weight = weight * (1.0 + b);
             if (weight <= 0.0) { it.remove(); continue; }
             e.setValue(weight);
+            if (!loggedSample) {
+                plugin.getLogger().info("[SANITY] bait adj: fish=" + fishKey.getKey()
+                        + " map=" + baitMap
+                        + " rod=" + rodBaitId
+                        + " bonus=" + b);
+                loggedSample = true;
+            }
         }
 
         Map<NamespacedKey, Double> validFishPercent = FishPercentCalculator.calculatePercentages(validFish);
