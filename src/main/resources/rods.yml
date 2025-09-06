@@ -1,0 +1,23 @@
+# Fishing Rods
+# -------------
+# (Rod Name):
+# description:
+# tier:
+# bonus:
+
+old-rod:
+  description: Big PP
+  tier: 1
+  bonus:
+    rarity:
+      COMMON: 0.1
+copper-rod:
+  description: Amazing PP
+  tier: 2
+  bonus:
+    times:
+      DAY:
+        rarity:
+          UNCOMMON: 0.30
+        speed: 0.20
+        double: 1.00

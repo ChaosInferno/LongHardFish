@@ -18,6 +18,8 @@ import org.aincraft.provider.FishEnvironmentProvider;
 import org.aincraft.provider.FishModelProvider;
 import org.aincraft.provider.FishRarityProvider;
 import org.aincraft.commands.FishStatsCommand;
+import org.aincraft.rods.RodProvider;
+import org.aincraft.rods.RodsConfig;
 import org.aincraft.service.InventoryBackupService;
 import org.aincraft.service.NaturalTrackerService;
 import org.aincraft.service.StatsService;
@@ -52,6 +54,7 @@ public class LongHardFish extends JavaPlugin {
     private TackleBoxItem tackleBoxItem;
     private BiomeRadarItem biomeRadarItem;
     private BaitForagingService baitForaging;
+    private RodProvider rodProvider;
 
     @Override
     public void onEnable() {
@@ -70,6 +73,13 @@ public class LongHardFish extends JavaPlugin {
         FishModelProvider modelProvider = new FishModelProvider(config, this);
 
         var envs = environmentProvider.parseFishEnvironmentObjects();
+
+        saveResource("rods.yml", false); // if you ship a default
+        File rodsFile = new File(getDataFolder(), "rods.yml");
+        FileConfiguration rodsCfg = YamlConfiguration.loadConfiguration(rodsFile);
+        RodsConfig rodsConfig = new RodsConfig(rodsCfg);
+        rodProvider = new RodProvider(this, rodsConfig);
+        rodProvider.parse();
 
         // Pick a fish that uses defaults, e.g. "trash"
         var trash = envs.get(new NamespacedKey(this, "trash"));
@@ -105,7 +115,7 @@ public class LongHardFish extends JavaPlugin {
         stats.refreshFishNamesAsync(modelProvider.parseFishModelObjects());
 
         // Catch listener
-        FishCatchListener catchListener = new FishCatchListener(this, environmentProvider, rarityProvider, modelProvider, stats);
+        FishCatchListener catchListener = new FishCatchListener(this, environmentProvider, rarityProvider, modelProvider, stats, rodProvider);
         getServer().getPluginManager().registerEvents(catchListener, this);
 
         // Commands
@@ -271,6 +281,8 @@ public class LongHardFish extends JavaPlugin {
 
         getCommand("lhfgive").setExecutor(new GiveFishItemsCommand(this));
     }
+
+    public RodProvider getRodProvider() { return rodProvider; }
 
     @Override
     public void onDisable() {

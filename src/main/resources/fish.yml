@@ -6534,7 +6534,7 @@ stray-seagrass:
     - freshwater
     - all-bait
     - no-bait
-  tier: 0
+  tier: 1
   biomes:
     RIVER: 0.1
   model: 301
@@ -6660,7 +6660,7 @@ smooth-rock:
     - saltwater
     - all-bait
     - no-bait
-  tier: 0
+  tier: 1
   biomes:
     RIVER: 0.1
     DEEP_DARK: 0.1
@@ -6849,7 +6849,7 @@ floating-kelp:
     - saltwater
     - all-bait
     - no-bait
-  tier: 0
+  tier: 1
   model: 319
 pristine-pearl:
   name: Pristine Pearl
@@ -6950,7 +6950,7 @@ trash:
     - saltwater
     - all-bait
     - no-bait
-  tier: 0
+  tier: 1
   biomes:
     RIVER: 0.1
     DEEP_DARK: 0.1

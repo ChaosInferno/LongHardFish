@@ -13,7 +13,7 @@ commands:
     usage: /fishdex <fish-id>
   lhfgive:
     description: Give a registered LongHardFish custom item
-    usage: /lhfgive <item-id> [player] [amount]
+    usage: /lhfgive <item-id> [player] [amount] OR  /<command> rod <rod-id> [player]
     permission: longhardfish.give
     aliases: [ lhf-give, lhfitem, lhf-item ]
   tacklebox:

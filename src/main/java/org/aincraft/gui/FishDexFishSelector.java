@@ -843,7 +843,7 @@ public class FishDexFishSelector {
                         String id = e.getKey();
                         double bonus = e.getValue() == null ? 0.0 : e.getValue();
                         String line = ("none".equalsIgnoreCase(id))
-                                ? "None (+" + Math.round(bonus * 100.0) + "%)"
+                                ? "None"
                                 : prettyBaitId(id);
                         lore.add(Component.text(line, NamedTextColor.DARK_PURPLE));
                     });
