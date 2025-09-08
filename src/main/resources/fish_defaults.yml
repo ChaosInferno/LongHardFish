@@ -89,83 +89,83 @@ weird:
 # --- GROUPED BIOMES DEFAULTS ---
 deep-saltwater:
   biomes:
-    OCEAN: 0.1
-    DEEP_OCEAN: 0.1
+    OCEAN: 0.01
+    DEEP_OCEAN: 0.01
 shallow-saltwater:
   biomes:
-    MUSHROOM_FIELDS: 0.1
-    BEACH: 0.1
-    STONY_SHORE: 0.1
+    MUSHROOM_FIELDS: 0.01
+    BEACH: 0.01
+    STONY_SHORE: 0.01
 cold-saltwater:
   biomes:
-    COLD_OCEAN: 0.1
-    DEEP_COLD_OCEAN: 0.1
-    FROZEN_OCEAN: 0.1
-    DEEP_FROZEN_OCEAN: 0.1
-    SNOWY_BEACH: 0.1
+    COLD_OCEAN: 0.01
+    DEEP_COLD_OCEAN: 0.01
+    FROZEN_OCEAN: 0.01
+    DEEP_FROZEN_OCEAN: 0.01
+    SNOWY_BEACH: 0.01
 warm-saltwater:
   biomes:
-    WARM_OCEAN: 0.1
-    LUKEWARM_OCEAN: 0.1
-    DEEP_LUKEWARM_OCEAN: 0.1
+    WARM_OCEAN: 0.01
+    LUKEWARM_OCEAN: 0.01
+    DEEP_LUKEWARM_OCEAN: 0.01
 mountains:
   biomes:
-    JAGGED_PEAKS: 0.5
-    FROZEN_PEAKS: 0.5
-    STONY_PEAKS: 0.5
-    CHERRY_GROVE: 0.5
-    GROVE: 0.5
-    SNOWY_SLOPES: 0.5
-    WOODED_BADLANDS: 0.5
+    JAGGED_PEAKS: 0.01
+    FROZEN_PEAKS: 0.01
+    STONY_PEAKS: 0.01
+    CHERRY_GROVE: 0.01
+    GROVE: 0.01
+    SNOWY_SLOPES: 0.01
+    WOODED_BADLANDS: 0.01
 hot-places:
   biomes:
-    DESERT: 0.5
-    SAVANNA: 0.5
-    SAVANNA_PLATEAU: 0.5
-    WINDSWEPT_SAVANNA: 0.5
-    BADLANDS: 0.5
-    ERODED_BADLANDS: 0.5
+    DESERT: 0.01
+    SAVANNA: 0.01
+    SAVANNA_PLATEAU: 0.01
+    WINDSWEPT_SAVANNA: 0.01
+    BADLANDS: 0.01
+    ERODED_BADLANDS: 0.01
 cold-places:
   biomes:
-    FROZEN_RIVER: 0.5
-    SNOWY_TAIGA: 0.5
-    JAGGED_PEAKS: 0.5
-    FROZEN_PEAKS: 0.5
-    GROVE: 0.5
-    SNOWY_SLOPES: 0.5
-    SNOWY_PLAINS: 0.5
-    ICE_SPIKES: 0.5
+    FROZEN_RIVER: 0.01
+    SNOWY_TAIGA: 0.01
+    JAGGED_PEAKS: 0.01
+    FROZEN_PEAKS: 0.01
+    GROVE: 0.01
+    SNOWY_SLOPES: 0.01
+    SNOWY_PLAINS: 0.01
+    ICE_SPIKES: 0.01
 woodlands:
   biomes:
-    FOREST: 0.5
-    FLOWER_FOREST: 0.5
-    TAIGA: 0.5
-    OLD_GROWTH_PINE_TAIGA: 0.5
-    OLD_GROWTH_SPRUCE_TAIGA: 0.5
-    BIRCH_FOREST: 0.5
-    OLD_GROWTH_BIRCH_FOREST: 0.5
-    DARK_FOREST: 0.5
-    PALE_GARDEN: 0.5
+    FOREST: 0.01
+    FLOWER_FOREST: 0.01
+    TAIGA: 0.01
+    OLD_GROWTH_PINE_TAIGA: 0.01
+    OLD_GROWTH_SPRUCE_TAIGA: 0.01
+    BIRCH_FOREST: 0.01
+    OLD_GROWTH_BIRCH_FOREST: 0.01
+    DARK_FOREST: 0.01
+    PALE_GARDEN: 0.01
 rain-forest:
   biomes:
-    JUNGLE: 0.5
-    SPARSE_JUNGLE: 0.5
-    BAMBOO_JUNGLE: 0.5
+    JUNGLE: 0.01
+    SPARSE_JUNGLE: 0.01
+    BAMBOO_JUNGLE: 0.01
 flat-lands:
   biomes:
-    MEADOW: 0.5
-    WINDSWEPT_HILLS: 0.5
-    WINDSWEPT_GRAVELLY_HILLS: 0.5
-    WINDSWEPT_FOREST: 0.5
-    PLAINS: 0.5
-    SUNFLOWER_PLAINS: 0.5
+    MEADOW: 0.01
+    WINDSWEPT_HILLS: 0.01
+    WINDSWEPT_GRAVELLY_HILLS: 0.01
+    WINDSWEPT_FOREST: 0.01
+    PLAINS: 0.01
+    SUNFLOWER_PLAINS: 0.01
 wet-lands:
   biomes:
-    SWAMP: 0.5
-    MANGROVE_SWAMP: 0.5
+    SWAMP: 0.01
+    MANGROVE_SWAMP: 0.01
 rivers:
   biomes:
-    RIVER: 0.5
+    RIVER: 0.01
 
 # --- GENERAL TIME DEFAULTS ---
 all-time:
@@ -188,27 +188,27 @@ all-week:
     WAXING_GIBBOUS: 0.01
 first-half:
   moons:
-    FULL_MOON: 0.1
-    WANING_GIBBOUS: 0.1
-    LAST_QUARTER: 0.1
-    WANING_CRESCENT: 0.1
+    FULL_MOON: 0.01
+    WANING_GIBBOUS: 0.01
+    LAST_QUARTER: 0.01
+    WANING_CRESCENT: 0.01
 last-half:
   moons:
-    NEW_MOON: 0.1
-    WAXING_CRESCENT: 0.1
-    FIRST_QUARTER: 0.1
-    WAXING_GIBBOUS: 0.1
+    NEW_MOON: 0.01
+    WAXING_CRESCENT: 0.01
+    FIRST_QUARTER: 0.01
+    WAXING_GIBBOUS: 0.01
 
 # --- GENERAL BAIT DEFAULTS ---
 all-bait:
   bait:
-    tick: 0.1
-    grubb: 0.1
-    wasp: 0.1
-    spiderling: 0.1
-    rhino_beetle: 0.1
-    dragonfly: 0.1
-    scarab: 0.1
+    tick: 0.01
+    grubb: 0.01
+    wasp: 0.01
+    spiderling: 0.01
+    rhino_beetle: 0.01
+    dragonfly: 0.01
+    scarab: 0.01
 no-bait:
   bait:
-    none: 0.1
+    none: 0.01

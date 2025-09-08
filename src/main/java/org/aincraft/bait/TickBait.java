@@ -18,12 +18,12 @@ public final class TickBait {
     public static final String ID = "tick";
 
     public static ItemStack create(Plugin plugin, int amount) {
-        ItemStack s = new ItemStack(Material.REDSTONE, Math.max(1, amount));
+        ItemStack s = new ItemStack(Material.POISONOUS_POTATO, Math.max(1, amount));
         ItemMeta m = s.getItemMeta();
-        m.displayName(Component.text("Tick", NamedTextColor.GOLD));
+        m.displayName(Component.text("Tick", NamedTextColor.AQUA));
         m.lore(List.of(
-                Component.text("Bait", NamedTextColor.GRAY),
-                Component.text("Place in TackleBox slot 35 to attach to a rod", NamedTextColor.DARK_GRAY)
+                Component.text("A type of bait found when", NamedTextColor.GRAY),
+                Component.text("tilling along the soil", NamedTextColor.GRAY)
         ));
         m.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ENCHANTS);
         // RP model: longhardfish:item/tick   (adjust if your path differs)
@@ -39,7 +39,9 @@ public final class TickBait {
         BaitRegistry.register(new BaitRegistry.BaitDefinition(
                 ID,
                 amt -> create(plugin, amt),
-                java.util.List.of() // no standalone rules here (we’ll use a shared 50% table)
+                java.util.List.of(),
+                "Tick",     // singular
+                "Ticks"    // plural
         ));
     }
 }

@@ -55,6 +55,7 @@ public class LongHardFish extends JavaPlugin {
     private BiomeRadarItem biomeRadarItem;
     private BaitForagingService baitForaging;
     private RodProvider rodProvider;
+    private OmegaFishFinderItem omegaFishFinderItem;
 
     @Override
     public void onEnable() {
@@ -216,6 +217,7 @@ public class LongHardFish extends JavaPlugin {
         this.fishFinderItem = new FishFinderItem(this);
         this.tackleBoxItem = new TackleBoxItem(this);
         this.biomeRadarItem = new BiomeRadarItem(this);
+        this.omegaFishFinderItem = new OmegaFishFinderItem(this);
 
         // Register current and future items here:
         CustomFishItems.register("fishdex", fishDexItem::create);
@@ -225,6 +227,7 @@ public class LongHardFish extends JavaPlugin {
         CustomFishItems.register("fish_finder", fishFinderItem::create);
         CustomFishItems.register("tacklebox", tackleBoxItem::create);
         CustomFishItems.register("biome_radar", biomeRadarItem::create);
+        CustomFishItems.register("omega_fish_finder", omegaFishFinderItem::create);
 
         CustomFishItems.register("grubb", () -> GrubbBait.create(this, 1));
         CustomFishItems.register("tick", () -> TickBait.create(this, 1));
@@ -241,6 +244,7 @@ public class LongHardFish extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FishFinderListener(fishFinderItem), this);
         getServer().getPluginManager().registerEvents(new BiomeRadarListener(biomeRadarItem), this);
         getServer().getPluginManager().registerEvents(new RodBaitConsumeListener(this), this);
+        getServer().getPluginManager().registerEvents(new OmegaFishFinderListener(omegaFishFinderItem), this);
 
         baitForaging = new BaitForagingService(this);
         getServer().getPluginManager().registerEvents(baitForaging, this);

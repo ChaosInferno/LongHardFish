@@ -30,7 +30,7 @@ public class FishPercentCalculator {
 
         // Convert each fish score into a percentage
         for (Map.Entry<NamespacedKey, Double> entry : distributedFish.entrySet()) {
-            double percentage = (entry.getValue() / totalScore) * 100.0;
+            double percentage = (entry.getValue() / totalScore);
             percentageMap.put(entry.getKey(), percentage);
         }
 

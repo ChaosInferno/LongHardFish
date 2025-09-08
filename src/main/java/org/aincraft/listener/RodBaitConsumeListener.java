@@ -1,6 +1,7 @@
 package org.aincraft.listener;
 
 import org.aincraft.items.BaitKeys;
+import org.aincraft.items.BaitRegistry;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.FishHook;
@@ -14,6 +15,12 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
+
+import java.util.Locale;
+
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 
 public final class RodBaitConsumeListener implements Listener {
     private final Plugin plugin;
@@ -70,17 +77,20 @@ public final class RodBaitConsumeListener implements Listener {
         int count = BaitKeys.getRodBaitCount(plugin, rod);
 
         ItemMeta meta = rod.getItemMeta();
-        java.util.List<net.kyori.adventure.text.Component> lore = new java.util.ArrayList<>();
+        java.util.List<Component> lore = new java.util.ArrayList<>();
         if (meta.lore() != null) lore.addAll(meta.lore());
 
-        var plain = net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer.plainText();
-        lore.removeIf(c -> plain.serialize(c).toLowerCase().startsWith("bait: "));
+        // Remove any previous bait lines (old "Bait: ..." or new "... attached")
+        PlainTextComponentSerializer plain = PlainTextComponentSerializer.plainText();
+        lore.removeIf(c -> {
+            String s = plain.serialize(c).toLowerCase(Locale.ENGLISH).trim();
+            return s.startsWith("bait: ") || s.endsWith(" attached");
+        });
 
         if (id != null && count > 0) {
-            lore.add(net.kyori.adventure.text.Component.text(
-                    "Bait: " + id + " (x" + count + ")",
-                    net.kyori.adventure.text.format.NamedTextColor.GOLD
-            ));
+            // Use registry’s plural-aware display name
+            String display = BaitRegistry.displayName(id, count); // e.g. "Dragonfly" / "Dragonflies"
+            lore.add(Component.text(count + "x " + display + " attached", NamedTextColor.GOLD));
         }
 
         meta.lore(lore);

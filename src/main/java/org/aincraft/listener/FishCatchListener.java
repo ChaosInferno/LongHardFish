@@ -27,6 +27,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
+import org.aincraft.container.FishModel;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -44,6 +45,7 @@ public class FishCatchListener implements Listener {
         return (v < 0.0) ? 0.0 : (v > 1.0 ? 1.0 : v);
     }
     private final RodProvider rodProvider;
+    private final Map<NamespacedKey, FishModel> modelMap;
 
     public FishCatchListener(JavaPlugin plugin,
                              FishEnvironmentProvider environmentProvider,
@@ -58,6 +60,7 @@ public class FishCatchListener implements Listener {
         this.fishCreator = new FishCreator(plugin, modelProvider.parseFishModelObjects());
         this.filter = new FishFilter();
         this.rodProvider = rodProvider;
+        this.modelMap = modelProvider.parseFishModelObjects();
     }
 
     private static ItemStack findUsedRod(Player p) {
@@ -204,67 +207,10 @@ public class FishCatchListener implements Listener {
             }
         }
 
-        Map<NamespacedKey, Double> validFishPercent = FishPercentCalculator.calculatePercentages(validFish);
-        if (validFishPercent.isEmpty()) {
-            player.sendMessage("No fish are available to catch right now.");
-            return;
-        }
-
-        // Weighted choice
-        FishCalculator calc = new FishCalculator(validFishPercent);
-        NamespacedKey chosenFishKey = calc.getRandomFish();
-        if (chosenFishKey == null) {
-            player.sendMessage("Something went wrong while picking a fish.");
-            return;
-        }
-
-        // Create custom item
-        ItemStack customFish = fishCreator.createFishItem(
-                chosenFishKey,
-                rarityMap.get(chosenFishKey));
-        if (customFish == null) {
-            player.sendMessage("Failed to create custom fish item.");
-            return;
-        }
-
-        String displayNameText = null;
-
-        Component nameComp = customFish.getData(DataComponentTypes.ITEM_NAME);
-        if (nameComp != null) {
-            displayNameText = PlainTextComponentSerializer.plainText().serialize(nameComp);
-        }
-
-        if (displayNameText == null) {
-            ItemMeta meta2 = customFish.getItemMeta();
-            if (meta2 != null) {
-                Component comp = meta2.displayName();
-                if (comp != null) {
-                    displayNameText = PlainTextComponentSerializer.plainText().serialize(comp);
-                } else if (meta2.hasDisplayName()) { // legacy
-                    displayNameText = meta2.getDisplayName();
-                }
-            }
-        }
-
-        if (displayNameText == null) {
-            String pretty = chosenFishKey.getKey().replace('_',' ');
-            displayNameText = Character.toUpperCase(pretty.charAt(0)) + pretty.substring(1);
-        }
-
-        // 🧮 Record the catch in the DB (this increments caught_count)
-        stats.recordCatchAsync(player.getUniqueId(), chosenFishKey.toString(), displayNameText);
-
-        // Mark other eligible fish as "seen" (not the one we caught)
-        for (NamespacedKey key : validFish.keySet()) {
-                if (!key.equals(chosenFishKey)) {
-                       stats.markDropSeenAsync(player.getUniqueId(), key.toString(), null);
-                    }
-            }
-
         // ==== Rod bonuses =========================================================
         RodDefinition rod = currentRod;
 
-// Declare BEFORE the block so we can use it after for the drop.
+        // Declare BEFORE the block so we can use it after for the drop.
         boolean isDouble = false;
 
         if (rod != null) {
@@ -337,7 +283,105 @@ public class FishCatchListener implements Listener {
             }
         }
 
-// Swap the caught entity’s stack
+        Map<NamespacedKey, Double> validFishPercent = FishPercentCalculator.calculatePercentages(validFish);
+        if (validFishPercent.isEmpty()) {
+            player.sendMessage("No fish are available to catch right now.");
+            return;
+        }
+
+        try {
+            org.bukkit.inventory.ItemStack off = player.getInventory().getItemInOffHand();
+            boolean showDetails = false;
+            if (off != null && off.hasItemMeta()) {
+                var pdc = off.getItemMeta().getPersistentDataContainer();
+                var omegaKey = new org.bukkit.NamespacedKey(plugin, org.aincraft.ingame_items.OmegaFishFinderItem.ID);
+                Byte tag = pdc.get(omegaKey, org.bukkit.persistence.PersistentDataType.BYTE);
+                showDetails = (tag != null && tag == (byte)1);
+            }
+
+            if (showDetails) {
+                // Sort by descending percent
+                java.util.List<Map.Entry<NamespacedKey, Double>> list = new java.util.ArrayList<>(validFishPercent.entrySet());
+                list.sort((a, b) -> Double.compare(b.getValue(), a.getValue()));
+
+                StringBuilder sb = new StringBuilder("§bCatchable now:§7 ");
+                boolean first = true;
+                for (var en : list) {
+                    NamespacedKey id = en.getKey();
+                    double pct = en.getValue() * 100.0;
+
+                    // Name: prefer model name if present
+                    String name = null;
+                    var fm = modelMap.get(id);
+                    if (fm != null && fm.getName() != null && !fm.getName().isEmpty()) {
+                        name = fm.getName();
+                    } else {
+                        name = id.getKey().replace('_', ' ');
+                        name = Character.toUpperCase(name.charAt(0)) + name.substring(1);
+                    }
+
+                    if (!first) sb.append("§8, ");
+                    sb.append("§f").append(name).append(" §7(")
+                            .append(String.format(java.util.Locale.ENGLISH, "%.2f%%", pct))
+                            .append(")");
+                    first = false;
+                }
+                player.sendMessage(sb.toString());
+            }
+        } catch (Throwable ignored) {}
+
+        // Weighted choice
+        FishCalculator calc = new FishCalculator(validFishPercent);
+        NamespacedKey chosenFishKey = calc.getRandomFish();
+        if (chosenFishKey == null) {
+            player.sendMessage("Something went wrong while picking a fish.");
+            return;
+        }
+
+        // Create custom item
+        ItemStack customFish = fishCreator.createFishItem(
+                chosenFishKey,
+                rarityMap.get(chosenFishKey));
+        if (customFish == null) {
+            player.sendMessage("Failed to create custom fish item.");
+            return;
+        }
+
+        String displayNameText = null;
+
+        Component nameComp = customFish.getData(DataComponentTypes.ITEM_NAME);
+        if (nameComp != null) {
+            displayNameText = PlainTextComponentSerializer.plainText().serialize(nameComp);
+        }
+
+        if (displayNameText == null) {
+            ItemMeta meta2 = customFish.getItemMeta();
+            if (meta2 != null) {
+                Component comp = meta2.displayName();
+                if (comp != null) {
+                    displayNameText = PlainTextComponentSerializer.plainText().serialize(comp);
+                } else if (meta2.hasDisplayName()) { // legacy
+                    displayNameText = meta2.getDisplayName();
+                }
+            }
+        }
+
+        if (displayNameText == null) {
+            String pretty = chosenFishKey.getKey().replace('_',' ');
+            displayNameText = Character.toUpperCase(pretty.charAt(0)) + pretty.substring(1);
+        }
+
+        // 🧮 Record the catch in the DB (this increments caught_count)
+        stats.recordCatchAsync(player.getUniqueId(), chosenFishKey.toString(), displayNameText);
+
+        // Mark other eligible fish as "seen" (not the one we caught)
+        for (NamespacedKey key : validFish.keySet()) {
+                if (!key.equals(chosenFishKey)) {
+                       stats.markDropSeenAsync(player.getUniqueId(), key.toString(), null);
+                    }
+            }
+
+        // Swap the caught entity’s stack
         if (event.getCaught() instanceof Item caughtItem) {
             caughtItem.setItemStack(customFish);
             if (isDouble) {

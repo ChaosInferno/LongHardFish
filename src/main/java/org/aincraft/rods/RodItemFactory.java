@@ -22,13 +22,19 @@ public final class RodItemFactory {
         ItemMeta meta = rod.getItemMeta();
 
         String display = niceName(def.id());
-        meta.displayName(Component.text(display, NamedTextColor.GOLD));
+        meta.displayName(Component.text(display, NamedTextColor.AQUA));
 
         List<Component> lore = new ArrayList<>();
-        if (def.description() != null && !def.description().isBlank()) {
-            lore.add(Component.text(def.description(), NamedTextColor.GRAY));
+
+        lore.add(Component.text(stars(def.tier(), 4), NamedTextColor.GOLD));
+
+        String desc = def.description();
+        if (desc != null && !desc.isBlank()) {
+            for (String line : wrapWords(desc, 50)) {
+                lore.add(Component.text(line, NamedTextColor.GRAY));
+            }
         }
-        lore.add(Component.text("Tier " + def.tier(), NamedTextColor.DARK_AQUA));
+
         meta.lore(lore);
 
         // Optional: resource-pack model per rod id → longhardfish:rods/<id>
@@ -51,5 +57,40 @@ public final class RodItemFactory {
             if (i + 1 < parts.length) sb.append(' ');
         }
         return sb.toString();
+    }
+
+    private static String stars(int tier, int max) {
+        if (tier < 0) tier = 0;
+        if (tier > max) tier = max;
+        StringBuilder sb = new StringBuilder(max);
+        for (int i = 1; i <= max; i++) {
+            sb.append(i <= tier ? '★' : '☆');
+        }
+        return sb.toString();
+    }
+
+    private static List<String> wrapWords(String text, int width) {
+        List<String> lines = new ArrayList<>();
+        if (text == null || text.isBlank()) return lines;
+
+        String[] words = text.trim().split("\\s+");
+        StringBuilder line = new StringBuilder();
+
+        for (String w : words) {
+            if (line.length() == 0) {
+                // start new line with the word
+                line.append(w);
+            } else if (line.length() + 1 + w.length() <= width) {
+                // fits in current line
+                line.append(' ').append(w);
+            } else {
+                // push current line, start new with the word
+                lines.add(line.toString());
+                line.setLength(0);
+                line.append(w);
+            }
+        }
+        if (line.length() > 0) lines.add(line.toString());
+        return lines;
     }
 }

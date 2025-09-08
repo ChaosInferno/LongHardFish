@@ -4,6 +4,8 @@
 # description:
 # tier:
 # bonus:
+# speed: Good constraints are between -0.95 -> 0.95
+# double: Hard constraints are 0.0 -> no double chance to 1.0 -> guaranteed double chance
 
 old-rod:
   description: Big PP
@@ -15,9 +17,18 @@ copper-rod:
   description: Amazing PP
   tier: 2
   bonus:
+    time:
+      DAY:
+        rarity:
+          UNCOMMON: 0.35
+        speed: 0.15
+iron-rod:
+  description: Amazing PP
+  tier: 2
+  bonus:
     times:
       DAY:
         rarity:
-          UNCOMMON: 0.30
-        speed: 0.20
-        double: 1.00
+          UNCOMMON: 10.00
+        speed: 5.00
+        double: 5.00

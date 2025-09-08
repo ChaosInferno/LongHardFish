@@ -9,6 +9,7 @@ import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.aincraft.gui.TackleBoxGui;
 import org.aincraft.ingame_items.TackleBoxItem;
 import org.aincraft.items.BaitKeys;
+import org.aincraft.items.BaitRegistry;
 import org.aincraft.items.FishKeys;
 import org.aincraft.items.TackleBoxStorage;
 import org.bukkit.Bukkit;
@@ -24,6 +25,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -58,11 +60,10 @@ public final class TackleBoxService implements Listener {
     private static final int ROD_SLOT  = 17;
     private static final int BAIT_SLOT = 35;
 
-    // Redstone-only: 0–6, 35 (35 is also our bait bin)
-    private static final java.util.Set<Integer> REDSTONE_SLOTS = new java.util.LinkedHashSet<>();
+    private static final java.util.Set<Integer> BAIT_SLOTS = new java.util.LinkedHashSet<>();
     static {
-        REDSTONE_SLOTS.addAll(IntStream.rangeClosed(0, 6).boxed().toList());
-        REDSTONE_SLOTS.add(BAIT_SLOT);
+        BAIT_SLOTS.addAll(IntStream.rangeClosed(0, 6).boxed().toList());
+        BAIT_SLOTS.add(BAIT_SLOT);
     }
 
     private final JavaPlugin plugin;
@@ -112,8 +113,8 @@ public final class TackleBoxService implements Listener {
     private boolean isFishingRod(ItemStack it) {
         return it != null && it.getType() == Material.FISHING_ROD;
     }
-    private boolean isRedstoneDust(ItemStack it) {
-        return it != null && it.getType() == Material.REDSTONE;
+    private boolean isBaitItem(ItemStack it) {
+        return org.aincraft.items.BaitKeys.getBaitId(plugin, it) != null;
     }
 
     /** Does the given TOP-inventory slot accept this item? */
@@ -121,7 +122,7 @@ public final class TackleBoxService implements Listener {
         if (BLOCKED_SLOTS.contains(slot)) return false;                 // decorative
         if (FISH_SLOTS.contains(slot))   return isFishItem(item);       // fish-only
         if (slot == ROD_SLOT)            return isFishingRod(item);     // rod-only
-        if (REDSTONE_SLOTS.contains(slot)) return isRedstoneDust(item); // redstone-only (bait bin is redstone-based bait)
+        if (BAIT_SLOTS.contains(slot)) return isBaitItem(item); // bait-only
         return true;
     }
 
@@ -168,6 +169,7 @@ public final class TackleBoxService implements Listener {
 
     // -------------------- Bait helpers --------------------
 
+
     private void updateRodLore(ItemStack rod) {
         if (rod == null || !rod.hasItemMeta()) return;
         String id = BaitKeys.getRodBait(plugin, rod);
@@ -177,16 +179,19 @@ public final class TackleBoxService implements Listener {
         java.util.List<Component> lore = new java.util.ArrayList<>();
         if (meta.lore() != null) lore.addAll(meta.lore());
 
-        // remove any previous "Bait:" lines
+        // remove any previous bait line (old format)
         PlainTextComponentSerializer plain = PlainTextComponentSerializer.plainText();
         lore.removeIf(c -> {
-            String s = plain.serialize(c).toLowerCase();
-            return s.startsWith("bait: ");
+            String s = plain.serialize(c).toLowerCase(Locale.ENGLISH).trim();
+            return s.startsWith("bait: ") || s.endsWith(" attached"); // scrub old/new just in case
         });
 
         if (id != null && count > 0) {
-            lore.add(Component.text("Bait: " + id + " (x" + count + ")", NamedTextColor.GOLD));
+            String disp = org.aincraft.items.BaitRegistry.displayName(id, count);
+            // e.g., "3x Dragonflies attached"
+            lore.add(Component.text(count + "x " + disp + " attached", NamedTextColor.GOLD));
         }
+
         meta.lore(lore);
         rod.setItemMeta(meta);
     }
@@ -236,7 +241,7 @@ public final class TackleBoxService implements Listener {
         if (bin == null || bin.getType().isAir()) {
             ItemStack made = org.aincraft.items.BaitRegistry.create(rodId, Math.min(rodCount, 64));
             if (made == null) { // fallback if that bait got deregistered
-                made = new ItemStack(Material.REDSTONE, Math.min(rodCount, 64));
+                made = new ItemStack(Material.POISONOUS_POTATO, Math.min(rodCount, 64));
                 BaitKeys.setBaitId(plugin, made, rodId);
             }
             top.setItem(BAIT_SLOT, made);
@@ -280,7 +285,7 @@ public final class TackleBoxService implements Listener {
         ItemStack bait = org.aincraft.items.BaitRegistry.create(rodId, Math.min(rodCount, 64));
         if (bait == null) {
             // fallback if someone removed the bait definition
-            bait = new ItemStack(Material.REDSTONE, Math.min(rodCount, 64));
+            bait = new ItemStack(Material.POISONOUS_POTATO, Math.min(rodCount, 64));
             BaitKeys.setBaitId(plugin, bait, rodId);
         }
 
@@ -488,7 +493,7 @@ public final class TackleBoxService implements Listener {
         if (item == null || item.getType().isAir()) return java.util.List.of();
         if (isFishItem(item))        return FISH_SLOTS.stream().filter(i -> i < size).toList();
         if (isFishingRod(item))      return (ROD_SLOT < size) ? java.util.List.of(ROD_SLOT) : java.util.List.of();
-        if (isRedstoneDust(item))    return REDSTONE_SLOTS.stream().filter(i -> i < size).toList();
+        if (isBaitItem(item))        return BAIT_SLOTS.stream().filter(i -> i < size).toList();
         return java.util.List.of();
     }
 

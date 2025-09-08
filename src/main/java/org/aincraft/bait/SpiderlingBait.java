@@ -18,12 +18,12 @@ public final class SpiderlingBait {
     public static final String ID = "spiderling";
 
     public static ItemStack create(Plugin plugin, int amount) {
-        ItemStack s = new ItemStack(Material.REDSTONE, Math.max(1, amount));
+        ItemStack s = new ItemStack(Material.POISONOUS_POTATO, Math.max(1, amount));
         ItemMeta m = s.getItemMeta();
-        m.displayName(Component.text("Spiderling", NamedTextColor.GOLD));
+        m.displayName(Component.text("Spiderling", NamedTextColor.AQUA));
         m.lore(List.of(
-                Component.text("Bait", NamedTextColor.GRAY),
-                Component.text("Place in TackleBox slot 35 to attach to a rod", NamedTextColor.DARK_GRAY)
+                Component.text("A type of bait found when", NamedTextColor.GRAY),
+                Component.text("pruning the many trees", NamedTextColor.GRAY)
         ));
         m.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ENCHANTS);
         // Adjust to your RP path if needed
@@ -39,7 +39,9 @@ public final class SpiderlingBait {
         BaitRegistry.register(new BaitRegistry.BaitDefinition(
                 ID,
                 amt -> create(plugin, amt),
-                java.util.List.of()   // no per-bait rules here
+                java.util.List.of(),
+                "Spiderling",     // singular
+                "Spiderlings"    // plural
         ));
     }
 }
