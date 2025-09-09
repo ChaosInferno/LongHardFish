@@ -1,6 +1,7 @@
 package org.aincraft;
 
 import org.aincraft.bait.*;
+import org.aincraft.bobber.BobberAddonDisplay;
 import org.aincraft.commands.FishDexCommand;
 import org.aincraft.commands.GiveFishItemsCommand;
 import org.aincraft.commands.TackleBoxCommand;
@@ -18,6 +19,7 @@ import org.aincraft.provider.FishEnvironmentProvider;
 import org.aincraft.provider.FishModelProvider;
 import org.aincraft.provider.FishRarityProvider;
 import org.aincraft.commands.FishStatsCommand;
+import org.aincraft.rods.RodKeys;
 import org.aincraft.rods.RodProvider;
 import org.aincraft.rods.RodsConfig;
 import org.aincraft.service.InventoryBackupService;
@@ -266,15 +268,38 @@ public class LongHardFish extends JavaPlugin {
         ForageTables.registerFernRhinoBeetle(this, baitForaging, naturalTracker);
         ForageTables.registerDeadBushScarab(this, baitForaging, naturalTracker);
 
-        // Bait consumption on fishing
-        getServer().getPluginManager().registerEvents(new org.aincraft.listener.RodBaitConsumeListener(this), this);
-
         // --- TackleBox: persistence service + command + open-on-right-click
         final int tackleBoxSize = 54; // or 27 if you prefer single chest
         TackleBoxService tackleBoxService = new TackleBoxService(this, tackleBoxItem, tackleBoxSize);
 
         // The service itself listens for clicks & close (saving contents)
         getServer().getPluginManager().registerEvents(tackleBoxService, this);
+
+        BobberAddonDisplay.RodResolver rodResolver = angler -> {
+            var hand = angler.getInventory().getItemInMainHand();
+            if (hand == null || !hand.hasItemMeta()) return null;
+
+            var pdc = hand.getItemMeta().getPersistentDataContainer();
+            String rodId = pdc.get(RodKeys.rodId(this), org.bukkit.persistence.PersistentDataType.STRING);
+            if (rodId == null || rodId.isBlank()) return null;
+
+            return rodProvider.get(rodId); // your parsed definitions
+        };
+
+        BobberAddonDisplay.BobberItemFactory itemFactory = key -> {
+            if (key == null || key.isBlank()) return null;
+            var item = new org.bukkit.inventory.ItemStack(org.bukkit.Material.STICK);
+            var meta = item.getItemMeta();
+            var nk = org.bukkit.NamespacedKey.fromString(key);
+            if (nk == null) return null;
+            meta.setItemModel(nk);          // 1.21+; your RP must provide this model path
+            item.setItemMeta(meta);
+            return item;
+        };
+
+        BobberAddonDisplay addon = new BobberAddonDisplay(this, rodResolver, itemFactory);
+        addon.register(); // ProtocolLib packet listeners
+        getServer().getPluginManager().registerEvents(addon, this);
 
         // Right-click listener should call service.openFromHand(...)
         // (Make sure your TackleBoxListener constructor accepts the service)
