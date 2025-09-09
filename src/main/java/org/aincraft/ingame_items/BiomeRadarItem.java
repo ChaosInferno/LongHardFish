@@ -22,7 +22,7 @@ public final class BiomeRadarItem {
     }
 
     public ItemStack create() {
-        ItemStack stack = new ItemStack(Material.COMPASS, 1); // base doesn’t matter; model replaces it
+        ItemStack stack = new ItemStack(Material.KNOWLEDGE_BOOK, 1); // base doesn’t matter; model replaces it
         ItemMeta meta = stack.getItemMeta();
 
         meta.displayName(Component.text("Biome Radar", NamedTextColor.AQUA));

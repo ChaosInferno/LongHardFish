@@ -1,6 +1,7 @@
 package org.aincraft;
 
 import org.aincraft.bait.*;
+import org.aincraft.bobber.BobberAddonDisplay;
 import org.aincraft.commands.FishDexCommand;
 import org.aincraft.commands.GiveFishItemsCommand;
 import org.aincraft.commands.TackleBoxCommand;
@@ -18,6 +19,9 @@ import org.aincraft.provider.FishEnvironmentProvider;
 import org.aincraft.provider.FishModelProvider;
 import org.aincraft.provider.FishRarityProvider;
 import org.aincraft.commands.FishStatsCommand;
+import org.aincraft.rods.RodKeys;
+import org.aincraft.rods.RodProvider;
+import org.aincraft.rods.RodsConfig;
 import org.aincraft.service.InventoryBackupService;
 import org.aincraft.service.NaturalTrackerService;
 import org.aincraft.service.StatsService;
@@ -52,6 +56,8 @@ public class LongHardFish extends JavaPlugin {
     private TackleBoxItem tackleBoxItem;
     private BiomeRadarItem biomeRadarItem;
     private BaitForagingService baitForaging;
+    private RodProvider rodProvider;
+    private OmegaFishFinderItem omegaFishFinderItem;
 
     @Override
     public void onEnable() {
@@ -68,6 +74,22 @@ public class LongHardFish extends JavaPlugin {
         FishEnvironmentProvider environmentProvider = new FishEnvironmentProvider(config, defaultsProvider, this);
         FishRarityProvider rarityProvider = new FishRarityProvider(config, this);
         FishModelProvider modelProvider = new FishModelProvider(config, this);
+
+        var envs = environmentProvider.parseFishEnvironmentObjects();
+
+        saveResource("rods.yml", false); // if you ship a default
+        File rodsFile = new File(getDataFolder(), "rods.yml");
+        FileConfiguration rodsCfg = YamlConfiguration.loadConfiguration(rodsFile);
+        RodsConfig rodsConfig = new RodsConfig(rodsCfg);
+        rodProvider = new RodProvider(this, rodsConfig);
+        rodProvider.parse();
+
+        // Pick a fish that uses defaults, e.g. "trash"
+        var trash = envs.get(new NamespacedKey(this, "trash"));
+        getLogger().info("[SANITY] trash present? " + (trash != null));
+        if (trash != null) {
+            getLogger().info("[SANITY] trash bait map = " + trash.getEnvironmentBaits());
+        }
 
         // --- DB + Stats ---
         saveDefaultConfig();
@@ -96,7 +118,7 @@ public class LongHardFish extends JavaPlugin {
         stats.refreshFishNamesAsync(modelProvider.parseFishModelObjects());
 
         // Catch listener
-        FishCatchListener catchListener = new FishCatchListener(this, environmentProvider, rarityProvider, modelProvider, stats);
+        FishCatchListener catchListener = new FishCatchListener(this, environmentProvider, rarityProvider, modelProvider, stats, rodProvider);
         getServer().getPluginManager().registerEvents(catchListener, this);
 
         // Commands
@@ -197,6 +219,7 @@ public class LongHardFish extends JavaPlugin {
         this.fishFinderItem = new FishFinderItem(this);
         this.tackleBoxItem = new TackleBoxItem(this);
         this.biomeRadarItem = new BiomeRadarItem(this);
+        this.omegaFishFinderItem = new OmegaFishFinderItem(this);
 
         // Register current and future items here:
         CustomFishItems.register("fishdex", fishDexItem::create);
@@ -206,6 +229,7 @@ public class LongHardFish extends JavaPlugin {
         CustomFishItems.register("fish_finder", fishFinderItem::create);
         CustomFishItems.register("tacklebox", tackleBoxItem::create);
         CustomFishItems.register("biome_radar", biomeRadarItem::create);
+        CustomFishItems.register("omega_fish_finder", omegaFishFinderItem::create);
 
         CustomFishItems.register("grubb", () -> GrubbBait.create(this, 1));
         CustomFishItems.register("tick", () -> TickBait.create(this, 1));
@@ -222,6 +246,7 @@ public class LongHardFish extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FishFinderListener(fishFinderItem), this);
         getServer().getPluginManager().registerEvents(new BiomeRadarListener(biomeRadarItem), this);
         getServer().getPluginManager().registerEvents(new RodBaitConsumeListener(this), this);
+        getServer().getPluginManager().registerEvents(new OmegaFishFinderListener(omegaFishFinderItem), this);
 
         baitForaging = new BaitForagingService(this);
         getServer().getPluginManager().registerEvents(baitForaging, this);
@@ -243,15 +268,38 @@ public class LongHardFish extends JavaPlugin {
         ForageTables.registerFernRhinoBeetle(this, baitForaging, naturalTracker);
         ForageTables.registerDeadBushScarab(this, baitForaging, naturalTracker);
 
-        // Bait consumption on fishing
-        getServer().getPluginManager().registerEvents(new org.aincraft.listener.RodBaitConsumeListener(this), this);
-
         // --- TackleBox: persistence service + command + open-on-right-click
         final int tackleBoxSize = 54; // or 27 if you prefer single chest
         TackleBoxService tackleBoxService = new TackleBoxService(this, tackleBoxItem, tackleBoxSize);
 
         // The service itself listens for clicks & close (saving contents)
         getServer().getPluginManager().registerEvents(tackleBoxService, this);
+
+        BobberAddonDisplay.RodResolver rodResolver = angler -> {
+            var hand = angler.getInventory().getItemInMainHand();
+            if (hand == null || !hand.hasItemMeta()) return null;
+
+            var pdc = hand.getItemMeta().getPersistentDataContainer();
+            String rodId = pdc.get(RodKeys.rodId(this), org.bukkit.persistence.PersistentDataType.STRING);
+            if (rodId == null || rodId.isBlank()) return null;
+
+            return rodProvider.get(rodId); // your parsed definitions
+        };
+
+        BobberAddonDisplay.BobberItemFactory itemFactory = key -> {
+            if (key == null || key.isBlank()) return null;
+            var item = new org.bukkit.inventory.ItemStack(org.bukkit.Material.STICK);
+            var meta = item.getItemMeta();
+            var nk = org.bukkit.NamespacedKey.fromString(key);
+            if (nk == null) return null;
+            meta.setItemModel(nk);          // 1.21+; your RP must provide this model path
+            item.setItemMeta(meta);
+            return item;
+        };
+
+        BobberAddonDisplay addon = new BobberAddonDisplay(this, rodResolver, itemFactory);
+        addon.register(); // ProtocolLib packet listeners
+        getServer().getPluginManager().registerEvents(addon, this);
 
         // Right-click listener should call service.openFromHand(...)
         // (Make sure your TackleBoxListener constructor accepts the service)
@@ -262,6 +310,8 @@ public class LongHardFish extends JavaPlugin {
 
         getCommand("lhfgive").setExecutor(new GiveFishItemsCommand(this));
     }
+
+    public RodProvider getRodProvider() { return rodProvider; }
 
     @Override
     public void onDisable() {

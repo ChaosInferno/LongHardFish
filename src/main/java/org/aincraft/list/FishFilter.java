@@ -23,11 +23,11 @@ public class FishFilter {
     public FishFilter() {}
 
     public Map<NamespacedKey, Double> getValidFish(
-        Player player,
-        Location hookLocation,
-        FishHook hook,
-        FishEnvironmentProvider provider,
-        Map<NamespacedKey, FishRarity> rarityMap
+            Player player,
+            Location hookLocation,
+            FishHook hook,
+            FishEnvironmentProvider provider,
+            Map<NamespacedKey, FishRarity> rarityMap
     ) {
         Map<NamespacedKey, Double> distributedFish = new HashMap<>();
 
@@ -39,7 +39,11 @@ public class FishFilter {
         FishMoonCycle currentMoonPhase = FishMoonCycle.values()[moonPhaseIndex];
         FishTimeCycle currentTime = MinecraftTimeParser.getCurrentTimeCycle();
 
+        // NOTE: you may want to cache this map elsewhere to avoid reparsing every time
         Map<NamespacedKey, FishEnvironment> environments = provider.parseFishEnvironmentObjects();
+
+        final boolean isOpenWater = hook.isInOpenWater();
+        final boolean isRaining   = world.hasStorm();
 
         for (Map.Entry<NamespacedKey, FishEnvironment> entry : environments.entrySet()) {
             NamespacedKey fishKey = entry.getKey();
@@ -48,31 +52,17 @@ public class FishFilter {
             FishRarity rarity = rarityMap.get(fishKey);
             if (rarity == null) continue;
 
-            if (!rarityMap.containsKey(fishKey)) {
-                player.sendMessage(" - No rarity found for " + fishKey);
-            }
-
             double biomeWeight = env.getEnvironmentBiomes().getOrDefault(currentBiome, 0.0);
-            double timeWeight = env.getEnvironmentTimes().getOrDefault(currentTime, 0.0);
-            double moonWeight = env.getEnvironmentMoons().getOrDefault(currentMoonPhase, 0.0);
-            boolean rainMatch = env.getRainRequired();
-            boolean rainCheck = true;
-            boolean openWaterMatch = env.getOpenWaterRequired();
-            boolean openWaterCheck = hook.isInOpenWater();
+            double timeWeight  = env.getEnvironmentTimes().getOrDefault(currentTime, 0.0);
+            double moonWeight  = env.getEnvironmentMoons().getOrDefault(currentMoonPhase, 0.0);
 
-            if (rainMatch && !world.hasStorm()) {
-                rainCheck = false;
-            }
+            // --- Weather gate: only enforce when required
+            boolean rainOk = env.getRainRequired() ? isRaining : true;
 
-            if (!openWaterMatch && hook.isInOpenWater()) {
-                openWaterCheck = false;
-            }
+            // --- Open-water gate: only enforce when required
+            boolean openOk = env.getOpenWaterRequired() ? isOpenWater : true;
 
-            if (!openWaterMatch && !hook.isInOpenWater()) {
-                openWaterCheck = true;
-            }
-
-            if (biomeWeight != 0 && timeWeight != 0 && moonWeight != 0 && rainCheck && openWaterCheck) {
+            if (biomeWeight != 0.0 && timeWeight != 0.0 && moonWeight != 0.0 && rainOk && openOk) {
                 double score = FishRarityCalculator.calculateRarityScore(
                         rarity, env, currentBiome, currentTime, currentMoonPhase
                 );

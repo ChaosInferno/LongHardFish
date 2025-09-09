@@ -24,12 +24,13 @@ public final class TackleBoxItem {
 
     public ItemStack create() {
         // Base material can be anything; BARREL feels thematic and avoids some chest placement expectations
-        ItemStack stack = new ItemStack(Material.BARREL, 1);
+        ItemStack stack = new ItemStack(Material.KNOWLEDGE_BOOK, 1);
         ItemMeta meta = stack.getItemMeta();
 
         meta.displayName(Component.text("Tacklebox", NamedTextColor.AQUA));
         meta.lore(List.of(
-                Component.text("A simple tacklebox that doubles as a cooler.", NamedTextColor.GRAY)
+                Component.text("A simple tacklebox that doubles as a", NamedTextColor.GRAY),
+                Component.text("cooler. A necessity for any good fisher.", NamedTextColor.GRAY)
         ));
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES);
 
