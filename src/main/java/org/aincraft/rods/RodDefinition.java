@@ -40,9 +40,17 @@ public final class RodDefinition {
     private final Map<FishMoonCycle, DimBonus>  moonBonus  = new EnumMap<>(FishMoonCycle.class);
     private final Map<Biome, DimBonus> biomeBonus   = new java.util.HashMap<>();
 
-    public RodDefinition(String id, String description, int tier) {
+    private final String itemModelKey;   // e.g. "longhardfish:rods/copper-rod"
+    private final String bobberModelKey;
+
+    public RodDefinition(String id, String description, int tier, String itemModelKey, String bobberModelKey) {
         this.id = id; this.description = description; this.tier = tier;
+        this.itemModelKey = itemModelKey;
+        this.bobberModelKey = bobberModelKey != null ? bobberModelKey
+                : (itemModelKey != null ? itemModelKey + "_bobber" : "longhardfish:rods/");
     }
+    public String itemModelKey()   { return itemModelKey; }
+    public String bobberModelKey() { return bobberModelKey; }
 
     public String id() { return id; }
     public String description() { return description; }

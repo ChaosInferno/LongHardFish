@@ -29,7 +29,8 @@ public final class TackleBoxItem {
 
         meta.displayName(Component.text("Tacklebox", NamedTextColor.AQUA));
         meta.lore(List.of(
-                Component.text("A simple tacklebox that doubles as a cooler.", NamedTextColor.GRAY)
+                Component.text("A simple tacklebox that doubles as a", NamedTextColor.GRAY),
+                Component.text("cooler. A necessity for any good fisher.", NamedTextColor.GRAY)
         ));
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_ATTRIBUTES);
 

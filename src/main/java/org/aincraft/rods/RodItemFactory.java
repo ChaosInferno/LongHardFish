@@ -37,8 +37,7 @@ public final class RodItemFactory {
 
         meta.lore(lore);
 
-        // Optional: resource-pack model per rod id → longhardfish:rods/<id>
-        meta.setItemModel(NamespacedKey.fromString("longhardfish:rods/" + def.id()));
+        meta.setItemModel(NamespacedKey.fromString(def.itemModelKey()));
 
         // PDC
         meta.getPersistentDataContainer().set(RodKeys.rodId(plugin), PersistentDataType.STRING, def.id());

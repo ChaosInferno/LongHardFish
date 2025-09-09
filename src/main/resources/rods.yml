@@ -8,13 +8,13 @@
 # double: Hard constraints are 0.0 -> no double chance to 1.0 -> guaranteed double chance
 
 old-rod:
-  description: Big PP
+  description: A low quality rod crafted from some sticks and string. It gets the job done I suppose...
   tier: 1
   bonus:
     rarity:
       COMMON: 0.1
 copper-rod:
-  description: Amazing PP
+  description: A rod of ok quality with a copper base. It's calming warmth and reflected shine from the sun makes fishing during the day a breeze.
   tier: 2
   bonus:
     time:
@@ -22,13 +22,20 @@ copper-rod:
         rarity:
           UNCOMMON: 0.35
         speed: 0.15
+      NIGHT:
+        rarity:
+          UNCOMMON: -0.35
+        speed: -0.15
 iron-rod:
-  description: Amazing PP
+  description: A rod of ok quality with an iron base. It's cool feel and shimmer in the moonlight makes fishing at night a calming experience.
   tier: 2
   bonus:
-    times:
+    time:
+      NIGHT:
+        rarity:
+          UNCOMMON: 0.35
+        speed: 0.20
       DAY:
         rarity:
-          UNCOMMON: 10.00
-        speed: 5.00
-        double: 5.00
+          UNCOMMON: -0.35
+        speed: -0.20

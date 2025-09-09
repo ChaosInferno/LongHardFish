@@ -32,7 +32,9 @@ public final class RodProvider {
 
             String desc = s.getString("description", "");
             int tier = Math.max(1, s.getInt("tier", 1));
-            RodDefinition def = new RodDefinition(id, desc, tier);
+            String model = s.getString("model", "longhardfish:rods/" + id);
+            String bobberModel = s.getString("bobber_model", null);
+            RodDefinition def = new RodDefinition(id, desc, tier, model, bobberModel);
 
             ConfigurationSection bonus = s.getConfigurationSection("bonus");
             if (bonus != null) {
