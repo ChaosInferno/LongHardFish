@@ -244,9 +244,8 @@ seafoam-rod:
     moon:
       FULL_MOON:
         rarity:
-          UNCOMMON: 0.90
-          RARE: 0.90
-        speed: 0.15
+          COMMON: 1.25
+        speed: -0.15
     time:
       DAY:
         rarity:
@@ -267,3 +266,17 @@ seafoam-rod:
           UNCOMMON: 0.50
           RARE: 0.40
         speed: 0.25
+
+wraith-spine:
+  description: A masterful quality rod constructed of various bones and relics, it seems to have a mind of its own... Although its mood varies with each passing moon, it prefers being used at night.
+  tier: 4
+  bonus:
+    rarity:
+      COMMON: 0.25
+
+slitherpole:
+  description: A masterful quality rod with a slithery friend attached. Somewhere along the crafting process this little snake found a home, so make sure to keep it warm as it's cold-blooded.
+  tier: 4
+  bonus:
+    rarity:
+      COMMON: 0.25
