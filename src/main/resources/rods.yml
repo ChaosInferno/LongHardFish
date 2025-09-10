@@ -12,7 +12,8 @@ old-rod:
   tier: 1
   bonus:
     rarity:
-      COMMON: 0.1
+      COMMON: 0.25
+
 copper-rod:
   description: A rod of ok quality with a copper base. It's calming warmth and reflected shine from the sun makes fishing during the day a breeze.
   tier: 2
@@ -26,6 +27,7 @@ copper-rod:
         rarity:
           UNCOMMON: -0.35
         speed: -0.15
+
 iron-rod:
   description: A rod of ok quality with an iron base. It's cool feel and shimmer in the moonlight makes fishing at night a calming experience.
   tier: 2
@@ -39,3 +41,229 @@ iron-rod:
         rarity:
           UNCOMMON: -0.35
         speed: -0.20
+
+blazed-rod:
+  description: A good quality rod with a strong handle that's hot to the touch. The hook constantly radiates heat, making it the perfect rod in scorching climates.
+  tier: 3
+  bonus:
+    biome:
+      DESERT:
+        rarity:
+          UNCOMMON: 0.60
+          RARE: 0.20
+        speed: 0.40
+        double: 0.10
+      SAVANNA:
+        rarity:
+          UNCOMMON: 0.25
+          RARE: 0.10
+        speed: 0.20
+        double: 0.05
+      BADLANDS:
+        rarity:
+          UNCOMMON: 0.30
+          RARE: 0.10
+        speed: 0.25
+        double: 0.05
+      FROZEN_OCEAN:
+        rarity:
+          UNCOMMON: -0.60
+          RARE: -0.20
+        speed: -0.40
+      DEEP_FROZEN_OCEAN:
+        rarity:
+          UNCOMMON: -0.60
+          RARE: -0.20
+        speed: -0.40
+      FROZEN_PEAKS:
+        rarity:
+          UNCOMMON: -0.60
+          RARE: -0.20
+        speed: -0.40
+      FROZEN_RIVER:
+        rarity:
+          UNCOMMON: -0.60
+          RARE: -0.20
+        speed: -0.40
+      ICE_SPIKES:
+        rarity:
+          UNCOMMON: -0.60
+          RARE: -0.20
+        speed: -0.40
+      SNOWY_BEACH:
+        rarity:
+          UNCOMMON: -0.60
+          RARE: -0.20
+        speed: -0.40
+      SNOWY_PLAINS:
+        rarity:
+          UNCOMMON: -0.60
+          RARE: -0.20
+        speed: -0.40
+      SNOWY_SLOPES:
+        rarity:
+          UNCOMMON: -0.60
+          RARE: -0.20
+        speed: -0.40
+      SNOWY_TAIGA:
+        rarity:
+          UNCOMMON: -0.60
+          RARE: -0.20
+        speed: -0.40
+      ERODED_BADLANDS:
+        rarity:
+          UNCOMMON: 0.30
+          RARE: 0.10
+        speed: 0.25
+        double: 0.05
+    time:
+      DAY:
+        rarity:
+          UNCOMMON: 0.25
+          RARE: 0.15
+        speed: 0.15
+      NIGHT:
+        rarity:
+          COMMON: 0.25
+          UNCOMMON: -0.20
+        speed: -0.15
+
+echo-rod:
+  description: A good quality rod with a strong handle and crystalline structure. The constant buzzing that emanates from the hook seem to attract all sorts of cave fish.
+  tier: 3
+  bonus:
+    biome:
+      DEEP_DARK:
+        rarity:
+          UNCOMMON: 1.50
+          RARE: 0.35
+        speed: 0.70
+        double: 0.15
+      DRIPSTONE_CAVES:
+        rarity:
+          UNCOMMON: 0.35
+          RARE: 0.20
+        speed: 0.45
+      LUSH_CAVES:
+        rarity:
+          UNCOMMON: 0.30
+          RARE: 0.10
+        speed: 0.30
+    moon:
+      NEW_MOON:
+        rarity:
+          COMMON: 1.25
+        speed: -0.15
+    time:
+      NIGHT:
+        rarity:
+          UNCOMMON: 0.25
+          RARE: 0.15
+        speed: 0.15
+
+seafoam-rod:
+  description: A good quality rod with a strong handle and scaled base. The shining scales show a glimmering luster in the open sea that fish simply adore. It's most beautiful at sunrise.
+  tier: 3
+  bonus:
+    biome:
+      DEEP_OCEAN:
+        rarity:
+          UNCOMMON: 0.25
+          RARE: 0.40
+        speed: 0.30
+      OCEAN:
+        rarity:
+          UNCOMMON: 0.15
+          RARE: 0.20
+        speed: 0.20
+      LUKEWARM_OCEAN:
+        rarity:
+          UNCOMMON: 0.10
+          RARE: 0.15
+        speed: 0.15
+      COLD_OCEAN:
+        rarity:
+          UNCOMMON: 0.10
+          RARE: 0.15
+        speed: 0.15
+      FROZEN_OCEAN:
+        rarity:
+          UNCOMMON: 0.10
+          RARE: 0.15
+        speed: 0.15
+      DEEP_LUKEWARM_OCEAN:
+        rarity:
+          UNCOMMON: 0.20
+          RARE: 0.35
+        speed: 0.25
+      DEEP_FROZEN_OCEAN:
+        rarity:
+          UNCOMMON: 0.20
+          RARE: 0.35
+        speed: 0.25
+      DEEP_COLD_OCEAN:
+        rarity:
+          UNCOMMON: 0.15
+          RARE: 0.30
+        speed: 0.20
+      DEEP_DARK:
+        rarity:
+          UNCOMMON: -1.50
+          RARE: -2.00
+        speed: -0.70
+      DRIPSTONE_CAVES:
+        rarity:
+          UNCOMMON: -1.20
+          RARE: -1.50
+        speed: -0.60
+      LUSH_CAVES:
+        rarity:
+          UNCOMMON: -1.20
+          RARE: -1.50
+        speed: -0.60
+      DARK_FOREST:
+        rarity:
+          UNCOMMON: -1.20
+          RARE: -1.50
+        speed: -0.60
+      PALE_GARDEN:
+        rarity:
+          UNCOMMON: -1.20
+          RARE: -1.50
+        speed: -0.60
+      MANGROVE_SWAMP:
+        rarity:
+          UNCOMMON: -1.00
+          RARE: -1.00
+        speed: -0.50
+      SWAMP:
+        rarity:
+          UNCOMMON: -1.00
+          RARE: -1.00
+        speed: -0.50
+    moon:
+      FULL_MOON:
+        rarity:
+          UNCOMMON: 0.90
+          RARE: 0.90
+        speed: 0.15
+    time:
+      DAY:
+        rarity:
+          UNCOMMON: 0.25
+          RARE: 0.15
+        speed: 0.15
+      NIGHT:
+        rarity:
+          COMMON: 0.25
+          UNCOMMON: -0.30
+        speed: -0.25
+      EVENING:
+        rarity:
+          COMMON: 0.15
+        speed: -0.10
+      DAWN:
+        rarity:
+          UNCOMMON: 0.50
+          RARE: 0.40
+        speed: 0.25

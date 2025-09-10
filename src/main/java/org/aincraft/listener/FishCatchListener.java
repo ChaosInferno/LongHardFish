@@ -77,7 +77,12 @@ public class FishCatchListener implements Listener {
 
         FishHook hook = (FishHook) event.getHook();
 
-        int minLure = 10, maxLure = 30, minWait = 20, maxWait = 60;
+        // 1) Start from vanilla/Paper defaults for THIS hook (version-safe)
+        final int baseMinLure = hook.getMinLureTime();
+        final int baseMaxLure = hook.getMaxLureTime();
+        final int baseMinWait = hook.getMinWaitTime();
+        final int baseMaxWait = hook.getMaxWaitTime();
+
         double speedSum = 0.0; // additive from time+moon+biome
         try {
             Player p = event.getPlayer();
@@ -101,13 +106,21 @@ public class FishCatchListener implements Listener {
             }
         } catch (Throwable ignored) {}
 
-        // Convert additive speedSum into a scalar (positive => faster, negative => slower)
-        double scalar = Math.max(0.05, 1.0 - speedSum); // clamp >= 5% of base time
-        hook.setMinLureTime((int)Math.round(minLure * scalar));
-        hook.setMaxLureTime((int)Math.round(maxLure * scalar));
-        hook.setMinWaitTime((int)Math.round(minWait * scalar));
-        hook.setMaxWaitTime((int)Math.round(maxWait * scalar));
-        hook.setApplyLure(false);
+        // 2) Convert additive to scalar and apply to the *base* values
+        double scalar = Math.max(0.05, 1.0 - speedSum); // never faster than 5% of base
+
+        int minLure = (int) Math.max(1, Math.round(baseMinLure * scalar));
+        int maxLure = (int) Math.max(minLure, Math.round(baseMaxLure * scalar));
+
+        int minWait = (int) Math.max(1, Math.round(baseMinWait * scalar));
+        int maxWait = (int) Math.max(minWait, Math.round(baseMaxWait * scalar));
+
+        hook.setMinLureTime(minLure);
+        hook.setMaxLureTime(maxLure);
+        hook.setMinWaitTime(minWait);
+        hook.setMaxWaitTime(maxWait);
+
+        hook.setApplyLure(true);
     }
 
     private static final Set<UUID> processingHooks = ConcurrentHashMap.newKeySet();
