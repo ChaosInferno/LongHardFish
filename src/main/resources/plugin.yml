@@ -20,6 +20,10 @@ commands:
     description: Open the Tackle Box GUI
     usage: /tacklebox
     permission: longhardfish.tacklebox
+  fishgut:
+    description: Open the fish processor GUI
+    usage: /fishgut
+    permission: longhardfish.gut
 
 permissions:
   longhardfish.stats:
@@ -28,4 +32,6 @@ permissions:
   longhardfish.give:
     default: op
   longhardfish.tacklebox:
+    default: true
+  longhardfish.fishprocessor:
     default: true
