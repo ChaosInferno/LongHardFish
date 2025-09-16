@@ -34,6 +34,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -83,6 +84,25 @@ public class LongHardFish extends JavaPlugin {
         RodsConfig rodsConfig = new RodsConfig(rodsCfg);
         rodProvider = new RodProvider(this, rodsConfig);
         rodProvider.parse();
+
+        // --- Knives (config + provider + listeners + /lhfgive support) ---
+        saveResource("knives.yml", false); // ship a default in your jar's resources
+        File knivesFile = new File(getDataFolder(), "knives.yml");
+        FileConfiguration knivesCfg = YamlConfiguration.loadConfiguration(knivesFile);
+
+        org.aincraft.knives.KnifeProvider knifeProvider = new org.aincraft.knives.KnifeProvider(this, knivesCfg);
+        knifeProvider.parse();
+
+        // Listeners that enforce enchant rules and preferred break speed (Paper)
+        getServer().getPluginManager().registerEvents(new org.aincraft.knives.KnifeEnchantListener(this, knifeProvider), this);
+
+        getServer().getPluginManager().registerEvents(
+                new org.aincraft.knives.KnifeRepairListener(this, knifeProvider), this);
+
+        // Extend /lhfgive to handle “knife <knife-id>”
+        org.aincraft.commands.GiveFishItemsCommand giveCmd = new org.aincraft.commands.GiveFishItemsCommand(this, knifeProvider);
+        Objects.requireNonNull(getCommand("lhfgive")).setExecutor(giveCmd);
+        Objects.requireNonNull(getCommand("lhfgive")).setTabCompleter(giveCmd);
 
         // Pick a fish that uses defaults, e.g. "trash"
         var trash = envs.get(new NamespacedKey(this, "trash"));
@@ -212,6 +232,19 @@ public class LongHardFish extends JavaPlugin {
             Bukkit.getLogger().info("  Moons: " + entry.getValue().getEnvironmentMoons());
         }
 
+        var materialProvider = new org.aincraft.processor.BasicFishMaterialProvider();
+        var fishProcessorUI  = new org.aincraft.processor.FishProcessorUI(this, materialProvider);
+        getServer().getPluginManager().registerEvents(fishProcessorUI, this);
+
+        Objects.requireNonNull(getCommand("fishgut")).setExecutor((sender, cmd, lbl, args) -> {
+            if (sender instanceof Player p) {
+                fishProcessorUI.open(p);
+                return true;
+            }
+            sender.sendMessage("Players only.");
+            return true;
+        });
+
         this.fishDexItem = new FishDexItem(this);
         this.sextantItem = new SextantItem(this);
         this.weatherRadioItem = new WeatherRadioItem(this);
@@ -307,8 +340,6 @@ public class LongHardFish extends JavaPlugin {
 
         // /tacklebox opens the GUI for the box in hand
         Objects.requireNonNull(getCommand("tacklebox")).setExecutor(new TackleBoxCommand(this, tackleBoxService));
-
-        getCommand("lhfgive").setExecutor(new GiveFishItemsCommand(this));
     }
 
     public RodProvider getRodProvider() { return rodProvider; }

@@ -280,3 +280,17 @@ slitherpole:
   bonus:
     rarity:
       COMMON: 0.25
+
+blooming-line:
+  description: A masterful quality rod covered in flowers. As if blessed by the goddess of nature, this rod is teeming with everblooming flowers. It seems to thrive in the sunlight and near fertile soil.
+  tier: 4
+  bonus:
+    rarity:
+      COMMON: 0.25
+
+permafrost-pole:
+  description: A masterful quality rod that's freezing to the touch. Made from natural freezer sacs it always maintains below-zero temperatures, making the bobber ideal for catching fish in cold areas.
+  tier: 4
+  bonus:
+    rarity:
+      COMMON: 0.25

@@ -1,0 +1,22 @@
+knives:
+  iron-knife:
+    base: IRON_SWORD
+    model: "longhardfish:knives/iron-knife"
+    name: "Iron Knife"
+    durability: 250
+    enchantability: 14
+    attack:
+      damage: 4.8
+      speed: 2.0
+    allowed_enchantments: [ UNBREAKING, MENDING, SHARPNESS, LOOTING ]
+
+  diamond-knife:
+    base: IRON_SWORD
+    model: "longhardfish:knives/diamond-knife"
+    name: "Diamond Knife"
+    durability: 1561
+    enchantability: 10
+    attack:
+      damage: 5.6
+      speed: 2.0
+    allowed_enchantments: [ UNBREAKING ]
