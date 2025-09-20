@@ -198,6 +198,14 @@ public final class KnifeFactory {
         pdc.set(org.aincraft.items.Keys.knife(plugin),   org.bukkit.persistence.PersistentDataType.BYTE,   (byte)1);
         pdc.set(org.aincraft.items.Keys.knifeId(plugin), org.bukkit.persistence.PersistentDataType.STRING, def.id());
 
+        Integer max = def.durability(); // from knives.yml
+        if (max != null && max > 0) {
+            pdc.set(org.aincraft.items.Keys.knifeMax(plugin),
+                    org.bukkit.persistence.PersistentDataType.INTEGER, max);
+            pdc.set(org.aincraft.items.Keys.knifeDurability(plugin),
+                    org.bukkit.persistence.PersistentDataType.INTEGER, max);
+        }
+
         item.setItemMeta(meta);
         return item;
     }

@@ -93,6 +93,9 @@ public class LongHardFish extends JavaPlugin {
         org.aincraft.knives.KnifeProvider knifeProvider = new org.aincraft.knives.KnifeProvider(this, knivesCfg);
         knifeProvider.parse();
 
+        getServer().getPluginManager().registerEvents(
+                new org.aincraft.knives.KnifeSmithingListener(this, knifeProvider), this);
+
         // Listeners that enforce enchant rules and preferred break speed (Paper)
         getServer().getPluginManager().registerEvents(new org.aincraft.knives.KnifeEnchantListener(this, knifeProvider), this);
 

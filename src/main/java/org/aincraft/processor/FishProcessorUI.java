@@ -3,6 +3,7 @@ package org.aincraft.processor;
 
 import org.aincraft.items.FishKeys;
 import org.aincraft.items.Keys;
+import org.aincraft.knives.KnifeDurability; // << add
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.HumanEntity;
@@ -20,19 +21,22 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public final class FishProcessorUI implements Listener {
 
-    private static final int SIZE = 54;
+    private static final int SIZE = 27; // 9x3
     private static final String TITLE = ChatColor.DARK_AQUA + "Fish Processor";
 
+    // Inputs: leftmost 2x3 (cols 0-1, rows 0-2)
     private static final int[] INPUT_SLOTS = {
-            slot(0,0), slot(1,0), slot(2,0),
-            slot(0,1), slot(1,1), slot(2,1),
-            slot(0,2), slot(1,2), slot(2,2)
+            slot(0,0), slot(1,0),
+            slot(0,1), slot(1,1),
+            slot(0,2), slot(1,2)
     };
 
+    // Outputs: rightmost 4x3 (cols 5-8, rows 0-2)
     private static final int[] OUTPUT_SLOTS = buildOutputSlots();
 
-    private static final int KNIFE_SLOT = slot(4,2);
-    private static final int PROCESS_SLOT = slot(4,3);
+    // Knife at (3,0), Process at (3,2)
+    private static final int KNIFE_SLOT   = slot(3,0);
+    private static final int PROCESS_SLOT = slot(3,2);
 
     private final JavaPlugin plugin;
     private final FishMaterialProvider provider;
@@ -54,8 +58,8 @@ public final class FishProcessorUI implements Listener {
 
     private static int[] buildOutputSlots() {
         List<Integer> out = new ArrayList<>();
-        for (int row = 0; row < 6; row++) {
-            for (int col = 6; col <= 8; col++) out.add(slot(col, row));
+        for (int row = 0; row < 3; row++) {
+            for (int col = 5; col <= 8; col++) out.add(slot(col, row));
         }
         return out.stream().mapToInt(i -> i).toArray();
     }
@@ -69,7 +73,7 @@ public final class FishProcessorUI implements Listener {
         inv.setItem(KNIFE_SLOT, null);
 
         inv.setItem(PROCESS_SLOT, processButton());
-        inv.setItem(slot(4,1), nameItem(new ItemStack(Material.IRON_SWORD), ChatColor.YELLOW + "Knife Slot"));
+        inv.setItem(slot(3,1), nameItem(new ItemStack(Material.IRON_SWORD), ChatColor.YELLOW + "Knife Slot"));
     }
 
     private static ItemStack processButton() {
@@ -251,15 +255,20 @@ public final class FishProcessorUI implements Listener {
             player.sendMessage(ChatColor.RED + "[FishProc] Insert a valid knife into the knife slot.");
             return;
         }
-        ItemMeta kMeta = knife.getItemMeta();
-        Damageable kDmg = (kMeta instanceof Damageable) ? (Damageable) kMeta : null;
-        int unb = (kMeta != null) ? kMeta.getEnchantLevel(Enchantment.UNBREAKING) : 0;
-        int max = maxDamageFor(knife, kDmg);
-        int cur = (kDmg != null) ? kDmg.getDamage() : 0;
+
+        // --- custom durability (from PDC), not vanilla Damageable ---
+        int max = KnifeDurability.getMax(plugin, knife);
+        int remaining = KnifeDurability.getRemaining(plugin, knife);
         if (max <= 0) {
-            player.sendMessage(ChatColor.RED + "[FishProc] Knife cannot take durability.");
+            player.sendMessage(ChatColor.RED + "[FishProc] Knife has no durability.");
             return;
         }
+        if (remaining <= 0) {
+            player.sendMessage(ChatColor.RED + "[FishProc] Knife is broken. Repair or replace it.");
+            return;
+        }
+        int durabilityBudget = remaining;
+        int consumedThisRun = 0;
 
         ItemStack outProto = null;
         for (int s : INPUT_SLOTS) {
@@ -285,7 +294,6 @@ public final class FishProcessorUI implements Listener {
 
         int processed = 0, produced = 0;
         boolean broke = false, outOfSpace = false;
-        ThreadLocalRandom rng = ThreadLocalRandom.current();
 
         outer:
         for (int s : INPUT_SLOTS) {
@@ -307,8 +315,8 @@ public final class FishProcessorUI implements Listener {
                 int yield = Math.max(1, oneOut.getAmount());
                 if (capLeft < yield) {
                     outOfSpace = true;
-                    writeBack(inv, s, in, amt);         // << ensure client sees the reduced input
-                    updateViewers(inv);                 // << force redraw
+                    writeBack(inv, s, in, amt); // do not consume this fish
+                    updateViewers(inv);
                     break outer;
                 }
 
@@ -318,27 +326,50 @@ public final class FishProcessorUI implements Listener {
                 produced += yield;
                 capLeft -= yield;
 
-                // per-hit Unbreaking
-                if (kDmg != null && rng.nextInt(unb + 1) == 0) {
-                    cur++;
-                    if (cur >= max) {
-                        writeBack(inv, s, in, amt);     // << ensure client sees the reduced input
-                        inv.setItem(KNIFE_SLOT, null);
-                        broke = true;
-                        kDmg = null;
-                        updateViewers(inv);             // << force redraw (knife + input changed)
+                // --- Track actual durability consumption to avoid off-by-one (Unbreaking-safe) ---
+                int beforeRem = KnifeDurability.getRemaining(plugin, knife);
+
+                // Attempt to spend 1 use; helper removes the item if it hits 0
+                boolean justBroke = KnifeDurability.damageAndMaybeBreak(
+                        plugin, player, inv, KNIFE_SLOT, knife, 1
+                );
+                if (justBroke) {
+                    writeBack(inv, s, in, amt);
+                    broke = true;
+                    updateViewers(inv);
+                    break outer;
+                } else {
+                    inv.setItem(KNIFE_SLOT, knife); // force client refresh
+                    updateViewers(inv);
+                }
+
+                // Read after to see if a real consume happened (Unbreaking may skip)
+                int afterRem = justBroke ? 0 : KnifeDurability.getRemaining(plugin, knife);
+                if (afterRem < beforeRem) {
+                    consumedThisRun++;
+                    // If we’ve spent exactly our starting durability budget and the knife didn’t
+                    // physically disappear (edge case), stop cleanly so we don’t run "one short".
+                    if (!justBroke && consumedThisRun >= durabilityBudget) {
+                        writeBack(inv, s, in, amt);
+                        updateViewers(inv);
                         break outer;
                     }
                 }
+
+                if (justBroke) {
+                    // write back the remaining quantity for this input stack and stop
+                    writeBack(inv, s, in, amt);
+                    broke = true;
+                    updateViewers(inv);
+                    break outer;
+                } else {
+                    // keep the same instance reference in the slot so bar/meta update is visible
+                    inv.setItem(KNIFE_SLOT, knife);
+                    updateViewers(inv);
+                }
             }
 
-            // finished this slot normally -> commit the remainder (likely 0)
             writeBack(inv, s, in, amt);
-        }
-
-        if (!broke && kDmg != null) {
-            kDmg.setDamage(cur);
-            knife.setItemMeta(kDmg);
         }
 
         if (produced > 0) {
@@ -369,7 +400,6 @@ public final class FishProcessorUI implements Listener {
         if (remaining <= 0) {
             inv.setItem(slot, null);
         } else {
-            // clone is safer for client refresh in some implementations
             ItemStack copy = in.clone();
             copy.setAmount(remaining);
             inv.setItem(slot, copy);
@@ -382,13 +412,11 @@ public final class FishProcessorUI implements Listener {
         }
     }
 
-    private static boolean hasMaxDamage(Damageable dmg) {
-        try { return (boolean) dmg.getClass().getMethod("hasMaxDamage").invoke(dmg); }
-        catch (Throwable ignore) { return false; }
-    }
-
     private static int maxDamageFor(ItemStack tool, Damageable dmg) {
-        if (dmg != null && hasMaxDamage(dmg)) return dmg.getMaxDamage();
+        if (dmg != null) {
+            try { return (int) dmg.getClass().getMethod("getMaxDamage").invoke(dmg); }
+            catch (Throwable ignore) {}
+        }
         return tool.getType().getMaxDurability();
     }
 
@@ -441,10 +469,7 @@ public final class FishProcessorUI implements Listener {
     }
 
     private boolean isKnife(ItemStack it) {
-        if (it == null || it.getType() == Material.AIR) return false;
-        if (!it.getType().name().endsWith("_SWORD")) return false;
-        ItemMeta meta = it.getItemMeta();
-        return meta != null && meta.getPersistentDataContainer().has(Keys.knife(plugin), PersistentDataType.BYTE);
+        return KnifeDurability.isKnife(plugin, it);
     }
 
     private static final class Holder implements InventoryHolder {
