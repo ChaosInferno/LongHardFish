@@ -1,6 +1,8 @@
 // org/aincraft/processor/FishProcessorUI.java
 package org.aincraft.processor;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.aincraft.items.FishKeys;
 import org.aincraft.items.Keys;
 import org.aincraft.knives.KnifeDurability; // << add
@@ -15,14 +17,32 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.NamespacedKey;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static net.kyori.adventure.key.Key.key;
+import static net.kyori.adventure.text.Component.text;
+
 public final class FishProcessorUI implements Listener {
 
     private static final int SIZE = 27; // 9x3
-    private static final String TITLE = ChatColor.DARK_AQUA + "Fish Processor";
+    private static final String NS = "longhardfish";
+    private static final String NAV_EMPTY_TEX = "icons/empty";
+    private final NamespacedKey IMMOVABLE_KEY;
+    private static final Component TITLE =
+            Component.empty()
+                    // your icon glyphs (using the RP "interface" font)
+                    .append(text("\ue004\ua040\ue005")
+                            .font(key(NS, "interface"))
+                            .color(TextColor.color(0xFFFFFF)))
+                    // a little spacing + the label in classic gold & bold, not italic
+                    .append(text("Fish Cleaning Station",
+                            NamedTextColor.DARK_GRAY))
+                    .decoration(TextDecoration.ITALIC, false);
 
     // Inputs: leftmost 2x3 (cols 0-1, rows 0-2)
     private static final int[] INPUT_SLOTS = {
@@ -44,6 +64,7 @@ public final class FishProcessorUI implements Listener {
     public FishProcessorUI(JavaPlugin plugin, FishMaterialProvider provider) {
         this.plugin = plugin;
         this.provider = provider;
+        this.IMMOVABLE_KEY = new NamespacedKey(plugin, "immovable");
     }
 
     public void open(Player player) {
@@ -65,39 +86,45 @@ public final class FishProcessorUI implements Listener {
     }
 
     private void paint(Inventory inv) {
-        ItemStack filler = pane(DyeColor.GRAY);
+        ItemStack filler = emptySlotItem();
         for (int i = 0; i < SIZE; i++) inv.setItem(i, filler);
 
+        // Clear interactive slots
         for (int s : INPUT_SLOTS) inv.setItem(s, null);
         for (int s : OUTPUT_SLOTS) inv.setItem(s, null);
         inv.setItem(KNIFE_SLOT, null);
 
+        // Put real widgets back
         inv.setItem(PROCESS_SLOT, processButton());
-        inv.setItem(slot(3,1), nameItem(new ItemStack(Material.IRON_SWORD), ChatColor.YELLOW + "Knife Slot"));
     }
 
-    private static ItemStack processButton() {
-        ItemStack b = new ItemStack(Material.EMERALD);
-        ItemMeta m = b.getItemMeta();
-        m.setDisplayName(ChatColor.GREEN + "Process");
-        m.setLore(List.of(ChatColor.GRAY + "Convert fish → fillets", ChatColor.DARK_GRAY + "Consumes knife durability"));
-        b.setItemMeta(m);
-        return b;
-    }
-
-    private static ItemStack pane(DyeColor color) {
-        ItemStack it = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
+    private ItemStack processButton() {
+        ItemStack it = new ItemStack(Material.KNOWLEDGE_BOOK); // GUI sprite carrier
         ItemMeta m = it.getItemMeta();
-        m.setDisplayName(" ");
+
+        // point to assets/longhardfish/items/icons/process-button.json
+        m.setItemModel(new NamespacedKey(NS, "icons/process-button"));
+
+        // optional: show a simple title; comment these two lines to fully hide tooltip
+        m.displayName(net.kyori.adventure.text.Component.text("Process")
+                .color(net.kyori.adventure.text.format.NamedTextColor.GREEN)
+                .decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false));
+
+        java.util.List<net.kyori.adventure.text.Component> lore = new java.util.ArrayList<>();
+        lore.add(net.kyori.adventure.text.Component.text("Converts fish → materials")
+                .color(net.kyori.adventure.text.format.NamedTextColor.GRAY)
+                .decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false));
+        lore.add(net.kyori.adventure.text.Component.text("Consumes knife durability")
+                .color(net.kyori.adventure.text.format.NamedTextColor.DARK_GRAY)
+                .decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false));
+        m.lore(lore);
+
+        // keep it immovable like other chrome
+        m.getPersistentDataContainer().set(IMMOVABLE_KEY, PersistentDataType.BYTE, (byte)1);
+        try { m.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ENCHANTS); } catch (Throwable ignored) {}
+
         it.setItemMeta(m);
         return it;
-    }
-
-    private static ItemStack nameItem(ItemStack base, String name) {
-        ItemMeta m = base.getItemMeta();
-        m.setDisplayName(name);
-        base.setItemMeta(m);
-        return base;
     }
 
     /* ---------------- event wiring ---------------- */
@@ -118,31 +145,7 @@ public final class FishProcessorUI implements Listener {
             }
 
             if (isOutputSlot(raw)) {
-                switch (e.getAction()) {
-                    case PICKUP_ALL:
-                    case PICKUP_HALF:
-                    case PICKUP_ONE:
-                    case PICKUP_SOME:
-                    case SWAP_WITH_CURSOR:
-                    case HOTBAR_SWAP:
-                    case HOTBAR_MOVE_AND_READD:
-                        return;
-                    case MOVE_TO_OTHER_INVENTORY: {
-                        e.setCancelled(true);
-                        if (!(e.getWhoClicked() instanceof Player p)) return;
-                        ItemStack clicked = e.getCurrentItem();
-                        if (clicked == null || clicked.getType().isAir()) return;
-                        ItemStack give = clicked.clone();
-                        e.setCurrentItem(null);
-                        var overflow = p.getInventory().addItem(give);
-                        overflow.values().forEach(it -> p.getWorld().dropItemNaturally(p.getLocation(), it));
-                        p.updateInventory();
-                        return;
-                    }
-                    default:
-                        e.setCancelled(true);
-                        return;
-                }
+                return; // <-- no cancellation, let vanilla behavior happen
             }
 
             if (isInputSlot(raw) || raw == KNIFE_SLOT) {
@@ -156,13 +159,29 @@ public final class FishProcessorUI implements Listener {
 
         if (e.getAction() == InventoryAction.MOVE_TO_OTHER_INVENTORY) {
             ItemStack moving = e.getCurrentItem();
-            if (moving != null && !moving.getType().isAir() && isFishItem(moving)) {
-                e.setCancelled(true);
-                if (moveIntoInputs(e.getView().getTopInventory(), moving)) {
-                    e.setCurrentItem(moving.getAmount() <= 0 ? null : moving);
-                    ((Player)e.getWhoClicked()).updateInventory();
-                }
+            if (moving == null || moving.getType().isAir()) return;
+
+            // We'll do custom routing
+            e.setCancelled(true);
+
+            Inventory topInv = e.getView().getTopInventory();
+
+            if (isFishItem(moving)) {
+                // fish → inputs then outputs
+                routeStackIntoSlots(topInv, moving, INPUT_SLOTS);
+                routeStackIntoSlots(topInv, moving, OUTPUT_SLOTS);
+            } else if (isKnife(moving)) {
+                // knife → knife slot then outputs
+                tryPlaceKnifeInSlot(topInv, moving, KNIFE_SLOT);
+                routeStackIntoSlots(topInv, moving, OUTPUT_SLOTS);
+            } else {
+                // everything else → outputs
+                routeStackIntoSlots(topInv, moving, OUTPUT_SLOTS);
             }
+
+            e.setCurrentItem(moving.getAmount() <= 0 ? null : moving);
+            if (e.getWhoClicked() instanceof Player p) p.updateInventory();
+            return;
         }
     }
 
@@ -171,7 +190,7 @@ public final class FishProcessorUI implements Listener {
         if (!(e.getView().getTopInventory().getHolder() instanceof Holder)) return;
         for (int raw : e.getRawSlots()) {
             if (raw < SIZE) {
-                boolean allowed = isInputSlot(raw) || raw == KNIFE_SLOT || raw == PROCESS_SLOT;
+                boolean allowed = isInputSlot(raw) || isOutputSlot(raw) || raw == KNIFE_SLOT || raw == PROCESS_SLOT;
                 if (!allowed) { e.setCancelled(true); return; }
             }
         }
@@ -475,4 +494,83 @@ public final class FishProcessorUI implements Listener {
     private static final class Holder implements InventoryHolder {
         @Override public Inventory getInventory() { return null; }
     }
+
+    private void hideTooltipTop(Inventory gui, int slot) {
+        ItemStack s = gui.getItem(slot);
+        if (s == null) return;
+        ItemMeta m = s.getItemMeta();
+        if (m == null) return;
+        m.setHideTooltip(true);  // Paper 1.21.7
+        m.displayName(null);
+        m.lore(null);
+        s.setItemMeta(m);
+        gui.setItem(slot, s);
+    }
+
+    private ItemStack emptySlotItem() {
+        ItemStack it = new ItemStack(Material.COD);
+        ItemMeta m = it.getItemMeta();
+        if (m == null) return it;
+
+        // Use Bukkit NamespacedKey here:
+        m.setItemModel(new NamespacedKey(NS, NAV_EMPTY_TEX));
+
+        m.setHideTooltip(true);
+        m.displayName(null);
+        m.lore(null);
+
+        m.getPersistentDataContainer().set(IMMOVABLE_KEY, PersistentDataType.BYTE, (byte)1);
+
+        try { m.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ENCHANTS); } catch (Throwable ignored) {}
+
+        it.setItemMeta(m);
+        return it;
+    }
+
+    /** Merge as much of `moving` as possible into `slots` (stack-merge then fill empties). */
+    private static void routeStackIntoSlots(Inventory top, ItemStack moving, int[] slots) {
+        if (moving == null || moving.getType().isAir()) return;
+        int toMove = moving.getAmount();
+        if (toMove <= 0) return;
+
+        // a) merge into existing stacks
+        for (int s : slots) {
+            if (toMove <= 0) break;
+            ItemStack cur = top.getItem(s);
+            if (cur == null || cur.getType().isAir()) continue;
+            if (!canStack(cur, moving)) continue;
+            int max = Math.min(cur.getMaxStackSize(), 64);
+            int add = Math.min(toMove, max - cur.getAmount());
+            if (add > 0) { cur.setAmount(cur.getAmount() + add); toMove -= add; }
+        }
+
+        // b) fill empties
+        for (int s : slots) {
+            if (toMove <= 0) break;
+            ItemStack cur = top.getItem(s);
+            if (cur != null && !cur.getType().isAir()) continue;
+            ItemStack place = moving.clone();
+            int placeAmt = Math.min(place.getMaxStackSize(), Math.min(64, toMove));
+            place.setAmount(placeAmt);
+            top.setItem(s, place);
+            toMove -= placeAmt;
+        }
+
+        moving.setAmount(toMove);
+    }
+
+    /** Try to place exactly one knife into the KNIFE_SLOT if it's empty; otherwise do nothing. */
+    private void tryPlaceKnifeInSlot(Inventory top, ItemStack moving, int knifeSlot) {
+        if (moving == null || moving.getType().isAir()) return;
+        if (!isKnife(moving)) return;
+
+        ItemStack cur = top.getItem(knifeSlot);
+        if (cur == null || cur.getType().isAir()) {
+            ItemStack one = moving.clone();
+            one.setAmount(1);
+            top.setItem(knifeSlot, one);
+            moving.setAmount(moving.getAmount() - 1);
+        }
+    }
+
 }
