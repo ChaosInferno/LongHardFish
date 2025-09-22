@@ -16,6 +16,10 @@ commands:
     usage: /lhfgive <item-id> [player] [amount] OR  /<command> rod <rod-id> [player]
     permission: longhardfish.give
     aliases: [ lhf-give, lhfitem, lhf-item ]
+  lhf-give:
+    description: Give LongHardFish special items/blocks
+    usage: /<command> gutting_station [amount] OR /<command> <player> gutting_station [amount]
+    permission: lhf.admin
   tacklebox:
     description: Open the Tackle Box GUI
     usage: /tacklebox
@@ -24,6 +28,10 @@ commands:
     description: Open the fish processor GUI
     usage: /fishgut
     permission: longhardfish.gut
+  lhf-fishdex:
+    description: LongHardFish admin fishdex tools
+    usage: /<command> <player> ...
+    permission: lhf.admin
 
 permissions:
   longhardfish.stats:
@@ -35,3 +43,6 @@ permissions:
     default: true
   longhardfish.fishprocessor:
     default: true
+  lhf.admin:
+    description: Admin permission for LongHardFish utilities
+    default: op

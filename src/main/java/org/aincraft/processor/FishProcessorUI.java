@@ -3,10 +3,12 @@ package org.aincraft.processor;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
+import org.aincraft.events.PacketBlockInteractEvent;
 import org.aincraft.items.FishKeys;
 import org.aincraft.items.Keys;
 import org.aincraft.knives.KnifeDurability; // << add
 import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
@@ -58,6 +60,8 @@ public final class FishProcessorUI implements Listener {
     private static final int KNIFE_SLOT   = slot(3,0);
     private static final int PROCESS_SLOT = slot(3,2);
 
+    private final Map<BlockKey, TableState> tables = new java.util.concurrent.ConcurrentHashMap<>();
+
     private final JavaPlugin plugin;
     private final FishMaterialProvider provider;
 
@@ -68,8 +72,15 @@ public final class FishProcessorUI implements Listener {
     }
 
     public void open(Player player) {
-        Inventory inv = Bukkit.createInventory(new Holder(), SIZE, TITLE);
+        Inventory inv = Bukkit.createInventory(new Holder(null), SIZE, TITLE); // null => ephemeral
         paint(inv);
+        player.openInventory(inv);
+    }
+
+    public void open(Player player, BlockKey key) {
+        Inventory inv = Bukkit.createInventory(new Holder(key), SIZE, TITLE);
+        paint(inv);
+        loadStateInto(inv, stateFor(key)); // restore persisted contents
         player.openInventory(inv);
     }
 
@@ -198,10 +209,17 @@ public final class FishProcessorUI implements Listener {
 
     @EventHandler
     public void onClose(InventoryCloseEvent e) {
-        if (!(e.getInventory().getHolder() instanceof Holder)) return;
-        HumanEntity he = e.getPlayer();
+        if (!(e.getInventory().getHolder() instanceof Holder h)) return;
         Inventory inv = e.getInventory();
 
+        // Block-backed UI: persist and keep items in the table
+        if (h.key != null) {
+            saveStateFrom(inv, stateFor(h.key));
+            return;
+        }
+
+        // Ephemeral (old behavior): give items back
+        HumanEntity he = e.getPlayer();
         List<ItemStack> giveBack = new ArrayList<>();
         for (int s : INPUT_SLOTS) {
             ItemStack it = inv.getItem(s);
@@ -256,162 +274,171 @@ public final class FishProcessorUI implements Listener {
     /* ---------------- processing core ---------------- */
 
     private void processAll(Player player, Inventory inv) {
-        int totalFish = 0;
-        for (int s : INPUT_SLOTS) {
-            ItemStack it = inv.getItem(s);
-            if (it == null || it.getType().isAir()) continue;
-            String key = FishKeys.getFishKey(plugin, it);
-            if (key == null || key.isBlank()) continue;
-            totalFish += it.getAmount();
-        }
-        if (totalFish == 0) {
-            player.sendMessage(ChatColor.GRAY + "[FishProc] Place fish into the input slots.");
-            return;
+        TableState st = null;
+        if (inv.getHolder() instanceof Holder h && h.key != null) {
+            st = stateFor(h.key);
+            st.processing = true;   // mark "in progress"
         }
 
-        ItemStack knife = inv.getItem(KNIFE_SLOT);
-        if (!isKnife(knife)) {
-            player.sendMessage(ChatColor.RED + "[FishProc] Insert a valid knife into the knife slot.");
-            return;
-        }
+        try {
 
-        // --- custom durability (from PDC), not vanilla Damageable ---
-        int max = KnifeDurability.getMax(plugin, knife);
-        int remaining = KnifeDurability.getRemaining(plugin, knife);
-        if (max <= 0) {
-            player.sendMessage(ChatColor.RED + "[FishProc] Knife has no durability.");
-            return;
-        }
-        if (remaining <= 0) {
-            player.sendMessage(ChatColor.RED + "[FishProc] Knife is broken. Repair or replace it.");
-            return;
-        }
-        int durabilityBudget = remaining;
-        int consumedThisRun = 0;
-
-        ItemStack outProto = null;
-        for (int s : INPUT_SLOTS) {
-            ItemStack in = inv.getItem(s);
-            if (in == null || in.getType().isAir()) continue;
-            String fk = FishKeys.getFishKey(plugin, in);
-            if (fk == null || fk.isBlank()) continue;
-            ItemStack sample = provider.materialFor(fk, 1);
-            if (sample != null && !sample.getType().isAir() && sample.getAmount() > 0) {
-                outProto = sample.clone(); outProto.setAmount(1); break;
+            int totalFish = 0;
+            for (int s : INPUT_SLOTS) {
+                ItemStack it = inv.getItem(s);
+                if (it == null || it.getType().isAir()) continue;
+                String key = FishKeys.getFishKey(plugin, it);
+                if (key == null || key.isBlank()) continue;
+                totalFish += it.getAmount();
             }
-        }
-        if (outProto == null) {
-            player.sendMessage(ChatColor.GRAY + "[FishProc] Nothing to produce from these fish.");
-            return;
-        }
+            if (totalFish == 0) {
+                player.sendMessage(ChatColor.GRAY + "[FishProc] Place fish into the input slots.");
+                return;
+            }
 
-        int capLeft = calcCapacity(inv, outProto, OUTPUT_SLOTS);
-        if (capLeft <= 0) {
-            player.sendMessage(ChatColor.RED + "[FishProc] No space in output.");
-            return;
-        }
+            ItemStack knife = inv.getItem(KNIFE_SLOT);
+            if (!isKnife(knife)) {
+                player.sendMessage(ChatColor.RED + "[FishProc] Insert a valid knife into the knife slot.");
+                return;
+            }
 
-        int processed = 0, produced = 0;
-        boolean broke = false, outOfSpace = false;
+            int max = KnifeDurability.getMax(plugin, knife);
+            int remaining = KnifeDurability.getRemaining(plugin, knife);
+            if (max <= 0) {
+                player.sendMessage(ChatColor.RED + "[FishProc] Knife has no durability.");
+                return;
+            }
+            if (remaining <= 0) {
+                player.sendMessage(ChatColor.RED + "[FishProc] Knife is broken. Repair or replace it.");
+                return;
+            }
+            int durabilityBudget = remaining;
+            int consumedThisRun = 0;
 
-        outer:
-        for (int s : INPUT_SLOTS) {
-            ItemStack in = inv.getItem(s);
-            if (in == null || in.getType().isAir()) continue;
-            String fk = FishKeys.getFishKey(plugin, in);
-            if (fk == null || fk.isBlank()) continue;
-
-            int amt = in.getAmount();
-            while (amt > 0) {
-                ItemStack oneOut = provider.materialFor(fk, 1);
-                if (oneOut == null || oneOut.getType().isAir() || oneOut.getAmount() <= 0) { amt--; continue; }
-                if (!canStack(outProto, oneOut)) {
-                    player.sendMessage(ChatColor.RED + "[FishProc] These fish produce different outputs. Process one type at a time.");
-                    updateViewers(inv);
-                    return;
+            ItemStack outProto = null;
+            for (int s : INPUT_SLOTS) {
+                ItemStack in = inv.getItem(s);
+                if (in == null || in.getType().isAir()) continue;
+                String fk = FishKeys.getFishKey(plugin, in);
+                if (fk == null || fk.isBlank()) continue;
+                ItemStack sample = provider.materialFor(fk, 1);
+                if (sample != null && !sample.getType().isAir() && sample.getAmount() > 0) {
+                    outProto = sample.clone(); outProto.setAmount(1); break;
                 }
+            }
+            if (outProto == null) {
+                player.sendMessage(ChatColor.GRAY + "[FishProc] Nothing to produce from these fish.");
+                return;
+            }
 
-                int yield = Math.max(1, oneOut.getAmount());
-                if (capLeft < yield) {
-                    outOfSpace = true;
-                    writeBack(inv, s, in, amt); // do not consume this fish
-                    updateViewers(inv);
-                    break outer;
-                }
+            int capLeft = calcCapacity(inv, outProto, OUTPUT_SLOTS);
+            if (capLeft <= 0) {
+                player.sendMessage(ChatColor.RED + "[FishProc] No space in output.");
+                return;
+            }
 
-                // consume 1 fish
-                amt--;
-                processed++;
-                produced += yield;
-                capLeft -= yield;
+            int processed = 0, produced = 0;
+            boolean broke = false, outOfSpace = false;
 
-                // --- Track actual durability consumption to avoid off-by-one (Unbreaking-safe) ---
-                int beforeRem = KnifeDurability.getRemaining(plugin, knife);
+            outer:
+            for (int s : INPUT_SLOTS) {
+                ItemStack in = inv.getItem(s);
+                if (in == null || in.getType().isAir()) continue;
+                String fk = FishKeys.getFishKey(plugin, in);
+                if (fk == null || fk.isBlank()) continue;
 
-                // Attempt to spend 1 use; helper removes the item if it hits 0
-                boolean justBroke = KnifeDurability.damageAndMaybeBreak(
-                        plugin, player, inv, KNIFE_SLOT, knife, 1
-                );
-                if (justBroke) {
-                    writeBack(inv, s, in, amt);
-                    broke = true;
-                    updateViewers(inv);
-                    break outer;
-                } else {
-                    inv.setItem(KNIFE_SLOT, knife); // force client refresh
-                    updateViewers(inv);
-                }
+                int amt = in.getAmount();
+                while (amt > 0) {
+                    ItemStack oneOut = provider.materialFor(fk, 1);
+                    if (oneOut == null || oneOut.getType().isAir() || oneOut.getAmount() <= 0) { amt--; continue; }
+                    if (!canStack(outProto, oneOut)) {
+                        player.sendMessage(ChatColor.RED + "[FishProc] These fish produce different outputs. Process one type at a time.");
+                        updateViewers(inv);
+                        return;
+                    }
 
-                // Read after to see if a real consume happened (Unbreaking may skip)
-                int afterRem = justBroke ? 0 : KnifeDurability.getRemaining(plugin, knife);
-                if (afterRem < beforeRem) {
-                    consumedThisRun++;
-                    // If we’ve spent exactly our starting durability budget and the knife didn’t
-                    // physically disappear (edge case), stop cleanly so we don’t run "one short".
-                    if (!justBroke && consumedThisRun >= durabilityBudget) {
-                        writeBack(inv, s, in, amt);
+                    int yield = Math.max(1, oneOut.getAmount());
+                    if (capLeft < yield) {
+                        outOfSpace = true;
+                        writeBack(inv, s, in, amt); // do not consume this fish
                         updateViewers(inv);
                         break outer;
                     }
+
+                    // consume 1 fish
+                    amt--;
+                    processed++;
+                    produced += yield;
+                    capLeft -= yield;
+
+                    int beforeRem = KnifeDurability.getRemaining(plugin, knife);
+
+                    boolean justBroke = KnifeDurability.damageAndMaybeBreak(
+                            plugin, player, inv, KNIFE_SLOT, knife, 1
+                    );
+                    if (justBroke) {
+                        writeBack(inv, s, in, amt);
+                        broke = true;
+                        updateViewers(inv);
+                        break outer;
+                    } else {
+                        inv.setItem(KNIFE_SLOT, knife); // force client refresh
+                        updateViewers(inv);
+                    }
+
+                    int afterRem = justBroke ? 0 : KnifeDurability.getRemaining(plugin, knife);
+                    if (afterRem < beforeRem) {
+                        consumedThisRun++;
+                        if (!justBroke && consumedThisRun >= durabilityBudget) {
+                            writeBack(inv, s, in, amt);
+                            updateViewers(inv);
+                            break outer;
+                        }
+                    }
+
+                    if (justBroke) {
+                        writeBack(inv, s, in, amt);
+                        broke = true;
+                        updateViewers(inv);
+                        break outer;
+                    } else {
+                        inv.setItem(KNIFE_SLOT, knife);
+                        updateViewers(inv);
+                    }
                 }
 
-                if (justBroke) {
-                    // write back the remaining quantity for this input stack and stop
-                    writeBack(inv, s, in, amt);
-                    broke = true;
-                    updateViewers(inv);
-                    break outer;
+                writeBack(inv, s, in, amt);
+            }
+
+            if (produced > 0) {
+                depositMany(inv, outProto, produced, OUTPUT_SLOTS);
+                player.playSound(player, Sound.UI_LOOM_TAKE_RESULT, 1.0f, 1.1f);
+
+                int left = Math.max(0, totalFish - processed);
+                if (broke) {
+                    player.sendMessage(ChatColor.YELLOW + "[FishProc] Processed " + processed + " fish → " + produced +
+                            " fillet(s); knife broke with " + left + " fish left.");
+                    player.playSound(player, Sound.ENTITY_ITEM_BREAK, 1.0f, 0.9f);
+                } else if (outOfSpace) {
+                    player.sendMessage(ChatColor.GOLD + "[FishProc] Processed " + processed + " fish → " + produced +
+                            " fillet(s); outputs are full (" + left + " fish left).");
                 } else {
-                    // keep the same instance reference in the slot so bar/meta update is visible
-                    inv.setItem(KNIFE_SLOT, knife);
-                    updateViewers(inv);
+                    player.sendMessage(ChatColor.GREEN + "[FishProc] Processed " + processed + " fish → " + produced + " fillet(s).");
                 }
-            }
-
-            writeBack(inv, s, in, amt);
-        }
-
-        if (produced > 0) {
-            depositMany(inv, outProto, produced, OUTPUT_SLOTS);
-            player.playSound(player, Sound.UI_LOOM_TAKE_RESULT, 1.0f, 1.1f);
-
-            int left = Math.max(0, totalFish - processed);
-            if (broke) {
-                player.sendMessage(ChatColor.YELLOW + "[FishProc] Processed " + processed + " fish → " + produced +
-                        " fillet(s); knife broke with " + left + " fish left.");
-                player.playSound(player, Sound.ENTITY_ITEM_BREAK, 1.0f, 0.9f);
-            } else if (outOfSpace) {
-                player.sendMessage(ChatColor.GOLD + "[FishProc] Processed " + processed + " fish → " + produced +
-                        " fillet(s); outputs are full (" + left + " fish left).");
             } else {
-                player.sendMessage(ChatColor.GREEN + "[FishProc] Processed " + processed + " fish → " + produced + " fillet(s).");
+                player.sendMessage(ChatColor.GRAY + "[FishProc] Nothing to produce.");
             }
-        } else {
-            player.sendMessage(ChatColor.GRAY + "[FishProc] Nothing to produce.");
-        }
 
-        updateViewers(inv); // final safety refresh
+            updateViewers(inv); // final safety refresh
+
+        } finally {
+            // ALWAYS clear processing flag and persist the current inventory snapshot
+            if (st != null) {
+                st.processing = false;
+                saveStateFrom(inv, st);
+            }
+        }
     }
+
 
     /* ---------------- helpers ---------------- */
 
@@ -492,6 +519,9 @@ public final class FishProcessorUI implements Listener {
     }
 
     private static final class Holder implements InventoryHolder {
+        final BlockKey key; // null means "ephemeral" GUI
+        Holder() { this.key = null; }
+        Holder(BlockKey key) { this.key = key; }
         @Override public Inventory getInventory() { return null; }
     }
 
@@ -573,4 +603,123 @@ public final class FishProcessorUI implements Listener {
         }
     }
 
+    public static final class BlockKey {
+        public final java.util.UUID worldId;
+        public final int x, y, z;
+
+        public BlockKey(java.util.UUID worldId, int x, int y, int z) {
+            this.worldId = worldId; this.x = x; this.y = y; this.z = z;
+        }
+
+        @Override public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof BlockKey)) return false;
+            BlockKey k = (BlockKey) o;
+            return x == k.x && y == k.y && z == k.z &&
+                    java.util.Objects.equals(worldId, k.worldId);
+        }
+        @Override public int hashCode() {
+            return java.util.Objects.hash(worldId, x, y, z);
+        }
+    }
+
+    // Persistent state per table block
+    private static final class TableState {
+        final ItemStack[] inputs  = new ItemStack[INPUT_SLOTS.length];  // 6
+        final ItemStack[] outputs = new ItemStack[OUTPUT_SLOTS.length]; // 12
+        ItemStack knife = null;
+        boolean processing = false; // set true while processAll runs
+    }
+
+    private TableState stateFor(BlockKey key) {
+        return tables.computeIfAbsent(key, k -> new TableState());
+    }
+
+    private void loadStateInto(Inventory inv, TableState st) {
+        for (int s : INPUT_SLOTS)  inv.setItem(s, null);
+        for (int s : OUTPUT_SLOTS) inv.setItem(s, null);
+        inv.setItem(KNIFE_SLOT, null);
+
+        for (int i = 0; i < INPUT_SLOTS.length; i++) {
+            ItemStack it = st.inputs[i];
+            if (it != null && !it.getType().isAir()) inv.setItem(INPUT_SLOTS[i], it.clone());
+        }
+        for (int i = 0; i < OUTPUT_SLOTS.length; i++) {
+            ItemStack it = st.outputs[i];
+            if (it != null && !it.getType().isAir()) inv.setItem(OUTPUT_SLOTS[i], it.clone());
+        }
+        if (st.knife != null && !st.knife.getType().isAir()) inv.setItem(KNIFE_SLOT, st.knife.clone());
+    }
+
+    private void saveStateFrom(Inventory inv, TableState st) {
+        for (int i = 0; i < INPUT_SLOTS.length; i++) {
+            ItemStack it = inv.getItem(INPUT_SLOTS[i]);
+            st.inputs[i] = (it == null || it.getType().isAir()) ? null : it.clone();
+        }
+        for (int i = 0; i < OUTPUT_SLOTS.length; i++) {
+            ItemStack it = inv.getItem(OUTPUT_SLOTS[i]);
+            st.outputs[i] = (it == null || it.getType().isAir()) ? null : it.clone();
+        }
+        ItemStack knife = inv.getItem(KNIFE_SLOT);
+        st.knife = (knife == null || knife.getType().isAir()) ? null : knife.clone();
+    }
+
+    public void handleBlockBreak(World world, BlockKey key, Location dropAt) {
+        TableState st = tables.remove(key);
+        if (st == null) return;
+
+        // Close any open viewers of this table to avoid dupes
+        for (Player p : world.getPlayers()) {
+            var view = p.getOpenInventory();
+            if (view != null && view.getTopInventory() != null &&
+                    view.getTopInventory().getHolder() instanceof Holder h &&
+                    key.equals(h.key)) {
+                p.closeInventory();
+            }
+        }
+
+        if (st.processing) {
+            // Lose everything except the knife (anti-dupe rule)
+            if (st.knife != null && !st.knife.getType().isAir()) {
+                world.dropItemNaturally(dropAt, st.knife.clone());
+            }
+            java.util.Arrays.fill(st.inputs, null);
+            java.util.Arrays.fill(st.outputs, null);
+            st.knife = null;
+            return;
+        }
+
+        // Not processing: drop all like a chest
+        for (ItemStack it : st.inputs)  if (it != null && !it.getType().isAir()) world.dropItemNaturally(dropAt, it.clone());
+        for (ItemStack it : st.outputs) if (it != null && !it.getType().isAir()) world.dropItemNaturally(dropAt, it.clone());
+        if (st.knife != null && !st.knife.getType().isAir()) world.dropItemNaturally(dropAt, st.knife.clone());
+
+        java.util.Arrays.fill(st.inputs, null);
+        java.util.Arrays.fill(st.outputs, null);
+        st.knife = null;
+    }
+
+    private static BlockKey blockKeyFrom(Location loc) {
+        World w = loc.getWorld();
+        return new BlockKey(
+                (w != null ? w.getUID() : new java.util.UUID(0,0)),
+                loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()
+        );
+    }
+
+    // open at a specific block location
+    public void openAt(Player player, Location loc) {
+        open(player, blockKeyFrom(loc)); // delegate to the state-loading overload
+    }
+
+    // convenience
+    public void openAt(Player player, Block block) {
+        openAt(player, block.getLocation());
+    }
+
+    public void onTableBroken(org.bukkit.block.Block block) {
+        if (block == null) return;
+        org.bukkit.Location loc = block.getLocation();
+        handleBlockBreak(block.getWorld(), blockKeyFrom(loc), loc.toCenterLocation());
+    }
 }
