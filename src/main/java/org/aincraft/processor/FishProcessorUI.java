@@ -1,9 +1,14 @@
 // org/aincraft/processor/FishProcessorUI.java
 package org.aincraft.processor;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
+import org.aincraft.events.PacketBlockInteractEvent;
 import org.aincraft.items.FishKeys;
 import org.aincraft.items.Keys;
+import org.aincraft.knives.KnifeDurability; // << add
 import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
@@ -14,25 +19,48 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.NamespacedKey;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static net.kyori.adventure.key.Key.key;
+import static net.kyori.adventure.text.Component.text;
+
 public final class FishProcessorUI implements Listener {
 
-    private static final int SIZE = 54;
-    private static final String TITLE = ChatColor.DARK_AQUA + "Fish Processor";
+    private static final int SIZE = 27; // 9x3
+    private static final String NS = "longhardfish";
+    private static final String NAV_EMPTY_TEX = "icons/empty";
+    private final NamespacedKey IMMOVABLE_KEY;
+    private static final Component TITLE =
+            Component.empty()
+                    // your icon glyphs (using the RP "interface" font)
+                    .append(text("\ue004\ua040\ue005")
+                            .font(key(NS, "interface"))
+                            .color(TextColor.color(0xFFFFFF)))
+                    // a little spacing + the label in classic gold & bold, not italic
+                    .append(text("Fish Cleaning Station",
+                            NamedTextColor.DARK_GRAY))
+                    .decoration(TextDecoration.ITALIC, false);
 
+    // Inputs: leftmost 2x3 (cols 0-1, rows 0-2)
     private static final int[] INPUT_SLOTS = {
-            slot(0,0), slot(1,0), slot(2,0),
-            slot(0,1), slot(1,1), slot(2,1),
-            slot(0,2), slot(1,2), slot(2,2)
+            slot(0,0), slot(1,0),
+            slot(0,1), slot(1,1),
+            slot(0,2), slot(1,2)
     };
 
+    // Outputs: rightmost 4x3 (cols 5-8, rows 0-2)
     private static final int[] OUTPUT_SLOTS = buildOutputSlots();
 
-    private static final int KNIFE_SLOT = slot(4,2);
-    private static final int PROCESS_SLOT = slot(4,3);
+    // Knife at (3,0), Process at (3,2)
+    private static final int KNIFE_SLOT   = slot(3,0);
+    private static final int PROCESS_SLOT = slot(3,2);
+
+    private final Map<BlockKey, TableState> tables = new java.util.concurrent.ConcurrentHashMap<>();
 
     private final JavaPlugin plugin;
     private final FishMaterialProvider provider;
@@ -40,11 +68,19 @@ public final class FishProcessorUI implements Listener {
     public FishProcessorUI(JavaPlugin plugin, FishMaterialProvider provider) {
         this.plugin = plugin;
         this.provider = provider;
+        this.IMMOVABLE_KEY = new NamespacedKey(plugin, "immovable");
     }
 
     public void open(Player player) {
-        Inventory inv = Bukkit.createInventory(new Holder(), SIZE, TITLE);
+        Inventory inv = Bukkit.createInventory(new Holder(null), SIZE, TITLE); // null => ephemeral
         paint(inv);
+        player.openInventory(inv);
+    }
+
+    public void open(Player player, BlockKey key) {
+        Inventory inv = Bukkit.createInventory(new Holder(key), SIZE, TITLE);
+        paint(inv);
+        loadStateInto(inv, stateFor(key)); // restore persisted contents
         player.openInventory(inv);
     }
 
@@ -54,46 +90,52 @@ public final class FishProcessorUI implements Listener {
 
     private static int[] buildOutputSlots() {
         List<Integer> out = new ArrayList<>();
-        for (int row = 0; row < 6; row++) {
-            for (int col = 6; col <= 8; col++) out.add(slot(col, row));
+        for (int row = 0; row < 3; row++) {
+            for (int col = 5; col <= 8; col++) out.add(slot(col, row));
         }
         return out.stream().mapToInt(i -> i).toArray();
     }
 
     private void paint(Inventory inv) {
-        ItemStack filler = pane(DyeColor.GRAY);
+        ItemStack filler = emptySlotItem();
         for (int i = 0; i < SIZE; i++) inv.setItem(i, filler);
 
+        // Clear interactive slots
         for (int s : INPUT_SLOTS) inv.setItem(s, null);
         for (int s : OUTPUT_SLOTS) inv.setItem(s, null);
         inv.setItem(KNIFE_SLOT, null);
 
+        // Put real widgets back
         inv.setItem(PROCESS_SLOT, processButton());
-        inv.setItem(slot(4,1), nameItem(new ItemStack(Material.IRON_SWORD), ChatColor.YELLOW + "Knife Slot"));
     }
 
-    private static ItemStack processButton() {
-        ItemStack b = new ItemStack(Material.EMERALD);
-        ItemMeta m = b.getItemMeta();
-        m.setDisplayName(ChatColor.GREEN + "Process");
-        m.setLore(List.of(ChatColor.GRAY + "Convert fish → fillets", ChatColor.DARK_GRAY + "Consumes knife durability"));
-        b.setItemMeta(m);
-        return b;
-    }
-
-    private static ItemStack pane(DyeColor color) {
-        ItemStack it = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
+    private ItemStack processButton() {
+        ItemStack it = new ItemStack(Material.KNOWLEDGE_BOOK); // GUI sprite carrier
         ItemMeta m = it.getItemMeta();
-        m.setDisplayName(" ");
+
+        // point to assets/longhardfish/items/icons/process-button.json
+        m.setItemModel(new NamespacedKey(NS, "icons/process-button"));
+
+        // optional: show a simple title; comment these two lines to fully hide tooltip
+        m.displayName(net.kyori.adventure.text.Component.text("Process")
+                .color(net.kyori.adventure.text.format.NamedTextColor.GREEN)
+                .decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false));
+
+        java.util.List<net.kyori.adventure.text.Component> lore = new java.util.ArrayList<>();
+        lore.add(net.kyori.adventure.text.Component.text("Converts fish → materials")
+                .color(net.kyori.adventure.text.format.NamedTextColor.GRAY)
+                .decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false));
+        lore.add(net.kyori.adventure.text.Component.text("Consumes knife durability")
+                .color(net.kyori.adventure.text.format.NamedTextColor.DARK_GRAY)
+                .decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false));
+        m.lore(lore);
+
+        // keep it immovable like other chrome
+        m.getPersistentDataContainer().set(IMMOVABLE_KEY, PersistentDataType.BYTE, (byte)1);
+        try { m.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ENCHANTS); } catch (Throwable ignored) {}
+
         it.setItemMeta(m);
         return it;
-    }
-
-    private static ItemStack nameItem(ItemStack base, String name) {
-        ItemMeta m = base.getItemMeta();
-        m.setDisplayName(name);
-        base.setItemMeta(m);
-        return base;
     }
 
     /* ---------------- event wiring ---------------- */
@@ -114,31 +156,7 @@ public final class FishProcessorUI implements Listener {
             }
 
             if (isOutputSlot(raw)) {
-                switch (e.getAction()) {
-                    case PICKUP_ALL:
-                    case PICKUP_HALF:
-                    case PICKUP_ONE:
-                    case PICKUP_SOME:
-                    case SWAP_WITH_CURSOR:
-                    case HOTBAR_SWAP:
-                    case HOTBAR_MOVE_AND_READD:
-                        return;
-                    case MOVE_TO_OTHER_INVENTORY: {
-                        e.setCancelled(true);
-                        if (!(e.getWhoClicked() instanceof Player p)) return;
-                        ItemStack clicked = e.getCurrentItem();
-                        if (clicked == null || clicked.getType().isAir()) return;
-                        ItemStack give = clicked.clone();
-                        e.setCurrentItem(null);
-                        var overflow = p.getInventory().addItem(give);
-                        overflow.values().forEach(it -> p.getWorld().dropItemNaturally(p.getLocation(), it));
-                        p.updateInventory();
-                        return;
-                    }
-                    default:
-                        e.setCancelled(true);
-                        return;
-                }
+                return; // <-- no cancellation, let vanilla behavior happen
             }
 
             if (isInputSlot(raw) || raw == KNIFE_SLOT) {
@@ -152,13 +170,29 @@ public final class FishProcessorUI implements Listener {
 
         if (e.getAction() == InventoryAction.MOVE_TO_OTHER_INVENTORY) {
             ItemStack moving = e.getCurrentItem();
-            if (moving != null && !moving.getType().isAir() && isFishItem(moving)) {
-                e.setCancelled(true);
-                if (moveIntoInputs(e.getView().getTopInventory(), moving)) {
-                    e.setCurrentItem(moving.getAmount() <= 0 ? null : moving);
-                    ((Player)e.getWhoClicked()).updateInventory();
-                }
+            if (moving == null || moving.getType().isAir()) return;
+
+            // We'll do custom routing
+            e.setCancelled(true);
+
+            Inventory topInv = e.getView().getTopInventory();
+
+            if (isFishItem(moving)) {
+                // fish → inputs then outputs
+                routeStackIntoSlots(topInv, moving, INPUT_SLOTS);
+                routeStackIntoSlots(topInv, moving, OUTPUT_SLOTS);
+            } else if (isKnife(moving)) {
+                // knife → knife slot then outputs
+                tryPlaceKnifeInSlot(topInv, moving, KNIFE_SLOT);
+                routeStackIntoSlots(topInv, moving, OUTPUT_SLOTS);
+            } else {
+                // everything else → outputs
+                routeStackIntoSlots(topInv, moving, OUTPUT_SLOTS);
             }
+
+            e.setCurrentItem(moving.getAmount() <= 0 ? null : moving);
+            if (e.getWhoClicked() instanceof Player p) p.updateInventory();
+            return;
         }
     }
 
@@ -167,7 +201,7 @@ public final class FishProcessorUI implements Listener {
         if (!(e.getView().getTopInventory().getHolder() instanceof Holder)) return;
         for (int raw : e.getRawSlots()) {
             if (raw < SIZE) {
-                boolean allowed = isInputSlot(raw) || raw == KNIFE_SLOT || raw == PROCESS_SLOT;
+                boolean allowed = isInputSlot(raw) || isOutputSlot(raw) || raw == KNIFE_SLOT || raw == PROCESS_SLOT;
                 if (!allowed) { e.setCancelled(true); return; }
             }
         }
@@ -175,10 +209,17 @@ public final class FishProcessorUI implements Listener {
 
     @EventHandler
     public void onClose(InventoryCloseEvent e) {
-        if (!(e.getInventory().getHolder() instanceof Holder)) return;
-        HumanEntity he = e.getPlayer();
+        if (!(e.getInventory().getHolder() instanceof Holder h)) return;
         Inventory inv = e.getInventory();
 
+        // Block-backed UI: persist and keep items in the table
+        if (h.key != null) {
+            saveStateFrom(inv, stateFor(h.key));
+            return;
+        }
+
+        // Ephemeral (old behavior): give items back
+        HumanEntity he = e.getPlayer();
         List<ItemStack> giveBack = new ArrayList<>();
         for (int s : INPUT_SLOTS) {
             ItemStack it = inv.getItem(s);
@@ -233,135 +274,171 @@ public final class FishProcessorUI implements Listener {
     /* ---------------- processing core ---------------- */
 
     private void processAll(Player player, Inventory inv) {
-        int totalFish = 0;
-        for (int s : INPUT_SLOTS) {
-            ItemStack it = inv.getItem(s);
-            if (it == null || it.getType().isAir()) continue;
-            String key = FishKeys.getFishKey(plugin, it);
-            if (key == null || key.isBlank()) continue;
-            totalFish += it.getAmount();
-        }
-        if (totalFish == 0) {
-            player.sendMessage(ChatColor.GRAY + "[FishProc] Place fish into the input slots.");
-            return;
+        TableState st = null;
+        if (inv.getHolder() instanceof Holder h && h.key != null) {
+            st = stateFor(h.key);
+            st.processing = true;   // mark "in progress"
         }
 
-        ItemStack knife = inv.getItem(KNIFE_SLOT);
-        if (!isKnife(knife)) {
-            player.sendMessage(ChatColor.RED + "[FishProc] Insert a valid knife into the knife slot.");
-            return;
-        }
-        ItemMeta kMeta = knife.getItemMeta();
-        Damageable kDmg = (kMeta instanceof Damageable) ? (Damageable) kMeta : null;
-        int unb = (kMeta != null) ? kMeta.getEnchantLevel(Enchantment.UNBREAKING) : 0;
-        int max = maxDamageFor(knife, kDmg);
-        int cur = (kDmg != null) ? kDmg.getDamage() : 0;
-        if (max <= 0) {
-            player.sendMessage(ChatColor.RED + "[FishProc] Knife cannot take durability.");
-            return;
-        }
+        try {
 
-        ItemStack outProto = null;
-        for (int s : INPUT_SLOTS) {
-            ItemStack in = inv.getItem(s);
-            if (in == null || in.getType().isAir()) continue;
-            String fk = FishKeys.getFishKey(plugin, in);
-            if (fk == null || fk.isBlank()) continue;
-            ItemStack sample = provider.materialFor(fk, 1);
-            if (sample != null && !sample.getType().isAir() && sample.getAmount() > 0) {
-                outProto = sample.clone(); outProto.setAmount(1); break;
+            int totalFish = 0;
+            for (int s : INPUT_SLOTS) {
+                ItemStack it = inv.getItem(s);
+                if (it == null || it.getType().isAir()) continue;
+                String key = FishKeys.getFishKey(plugin, it);
+                if (key == null || key.isBlank()) continue;
+                totalFish += it.getAmount();
             }
-        }
-        if (outProto == null) {
-            player.sendMessage(ChatColor.GRAY + "[FishProc] Nothing to produce from these fish.");
-            return;
-        }
+            if (totalFish == 0) {
+                player.sendMessage(ChatColor.GRAY + "[FishProc] Place fish into the input slots.");
+                return;
+            }
 
-        int capLeft = calcCapacity(inv, outProto, OUTPUT_SLOTS);
-        if (capLeft <= 0) {
-            player.sendMessage(ChatColor.RED + "[FishProc] No space in output.");
-            return;
-        }
+            ItemStack knife = inv.getItem(KNIFE_SLOT);
+            if (!isKnife(knife)) {
+                player.sendMessage(ChatColor.RED + "[FishProc] Insert a valid knife into the knife slot.");
+                return;
+            }
 
-        int processed = 0, produced = 0;
-        boolean broke = false, outOfSpace = false;
-        ThreadLocalRandom rng = ThreadLocalRandom.current();
+            int max = KnifeDurability.getMax(plugin, knife);
+            int remaining = KnifeDurability.getRemaining(plugin, knife);
+            if (max <= 0) {
+                player.sendMessage(ChatColor.RED + "[FishProc] Knife has no durability.");
+                return;
+            }
+            if (remaining <= 0) {
+                player.sendMessage(ChatColor.RED + "[FishProc] Knife is broken. Repair or replace it.");
+                return;
+            }
+            int durabilityBudget = remaining;
+            int consumedThisRun = 0;
 
-        outer:
-        for (int s : INPUT_SLOTS) {
-            ItemStack in = inv.getItem(s);
-            if (in == null || in.getType().isAir()) continue;
-            String fk = FishKeys.getFishKey(plugin, in);
-            if (fk == null || fk.isBlank()) continue;
-
-            int amt = in.getAmount();
-            while (amt > 0) {
-                ItemStack oneOut = provider.materialFor(fk, 1);
-                if (oneOut == null || oneOut.getType().isAir() || oneOut.getAmount() <= 0) { amt--; continue; }
-                if (!canStack(outProto, oneOut)) {
-                    player.sendMessage(ChatColor.RED + "[FishProc] These fish produce different outputs. Process one type at a time.");
-                    updateViewers(inv);
-                    return;
+            ItemStack outProto = null;
+            for (int s : INPUT_SLOTS) {
+                ItemStack in = inv.getItem(s);
+                if (in == null || in.getType().isAir()) continue;
+                String fk = FishKeys.getFishKey(plugin, in);
+                if (fk == null || fk.isBlank()) continue;
+                ItemStack sample = provider.materialFor(fk, 1);
+                if (sample != null && !sample.getType().isAir() && sample.getAmount() > 0) {
+                    outProto = sample.clone(); outProto.setAmount(1); break;
                 }
+            }
+            if (outProto == null) {
+                player.sendMessage(ChatColor.GRAY + "[FishProc] Nothing to produce from these fish.");
+                return;
+            }
 
-                int yield = Math.max(1, oneOut.getAmount());
-                if (capLeft < yield) {
-                    outOfSpace = true;
-                    writeBack(inv, s, in, amt);         // << ensure client sees the reduced input
-                    updateViewers(inv);                 // << force redraw
-                    break outer;
-                }
+            int capLeft = calcCapacity(inv, outProto, OUTPUT_SLOTS);
+            if (capLeft <= 0) {
+                player.sendMessage(ChatColor.RED + "[FishProc] No space in output.");
+                return;
+            }
 
-                // consume 1 fish
-                amt--;
-                processed++;
-                produced += yield;
-                capLeft -= yield;
+            int processed = 0, produced = 0;
+            boolean broke = false, outOfSpace = false;
 
-                // per-hit Unbreaking
-                if (kDmg != null && rng.nextInt(unb + 1) == 0) {
-                    cur++;
-                    if (cur >= max) {
-                        writeBack(inv, s, in, amt);     // << ensure client sees the reduced input
-                        inv.setItem(KNIFE_SLOT, null);
-                        broke = true;
-                        kDmg = null;
-                        updateViewers(inv);             // << force redraw (knife + input changed)
+            outer:
+            for (int s : INPUT_SLOTS) {
+                ItemStack in = inv.getItem(s);
+                if (in == null || in.getType().isAir()) continue;
+                String fk = FishKeys.getFishKey(plugin, in);
+                if (fk == null || fk.isBlank()) continue;
+
+                int amt = in.getAmount();
+                while (amt > 0) {
+                    ItemStack oneOut = provider.materialFor(fk, 1);
+                    if (oneOut == null || oneOut.getType().isAir() || oneOut.getAmount() <= 0) { amt--; continue; }
+                    if (!canStack(outProto, oneOut)) {
+                        player.sendMessage(ChatColor.RED + "[FishProc] These fish produce different outputs. Process one type at a time.");
+                        updateViewers(inv);
+                        return;
+                    }
+
+                    int yield = Math.max(1, oneOut.getAmount());
+                    if (capLeft < yield) {
+                        outOfSpace = true;
+                        writeBack(inv, s, in, amt); // do not consume this fish
+                        updateViewers(inv);
                         break outer;
                     }
+
+                    // consume 1 fish
+                    amt--;
+                    processed++;
+                    produced += yield;
+                    capLeft -= yield;
+
+                    int beforeRem = KnifeDurability.getRemaining(plugin, knife);
+
+                    boolean justBroke = KnifeDurability.damageAndMaybeBreak(
+                            plugin, player, inv, KNIFE_SLOT, knife, 1
+                    );
+                    if (justBroke) {
+                        writeBack(inv, s, in, amt);
+                        broke = true;
+                        updateViewers(inv);
+                        break outer;
+                    } else {
+                        inv.setItem(KNIFE_SLOT, knife); // force client refresh
+                        updateViewers(inv);
+                    }
+
+                    int afterRem = justBroke ? 0 : KnifeDurability.getRemaining(plugin, knife);
+                    if (afterRem < beforeRem) {
+                        consumedThisRun++;
+                        if (!justBroke && consumedThisRun >= durabilityBudget) {
+                            writeBack(inv, s, in, amt);
+                            updateViewers(inv);
+                            break outer;
+                        }
+                    }
+
+                    if (justBroke) {
+                        writeBack(inv, s, in, amt);
+                        broke = true;
+                        updateViewers(inv);
+                        break outer;
+                    } else {
+                        inv.setItem(KNIFE_SLOT, knife);
+                        updateViewers(inv);
+                    }
                 }
+
+                writeBack(inv, s, in, amt);
             }
 
-            // finished this slot normally -> commit the remainder (likely 0)
-            writeBack(inv, s, in, amt);
-        }
+            if (produced > 0) {
+                depositMany(inv, outProto, produced, OUTPUT_SLOTS);
+                player.playSound(player, Sound.UI_LOOM_TAKE_RESULT, 1.0f, 1.1f);
 
-        if (!broke && kDmg != null) {
-            kDmg.setDamage(cur);
-            knife.setItemMeta(kDmg);
-        }
-
-        if (produced > 0) {
-            depositMany(inv, outProto, produced, OUTPUT_SLOTS);
-            player.playSound(player, Sound.UI_LOOM_TAKE_RESULT, 1.0f, 1.1f);
-
-            int left = Math.max(0, totalFish - processed);
-            if (broke) {
-                player.sendMessage(ChatColor.YELLOW + "[FishProc] Processed " + processed + " fish → " + produced +
-                        " fillet(s); knife broke with " + left + " fish left.");
-                player.playSound(player, Sound.ENTITY_ITEM_BREAK, 1.0f, 0.9f);
-            } else if (outOfSpace) {
-                player.sendMessage(ChatColor.GOLD + "[FishProc] Processed " + processed + " fish → " + produced +
-                        " fillet(s); outputs are full (" + left + " fish left).");
+                int left = Math.max(0, totalFish - processed);
+                if (broke) {
+                    player.sendMessage(ChatColor.YELLOW + "[FishProc] Processed " + processed + " fish → " + produced +
+                            " fillet(s); knife broke with " + left + " fish left.");
+                    player.playSound(player, Sound.ENTITY_ITEM_BREAK, 1.0f, 0.9f);
+                } else if (outOfSpace) {
+                    player.sendMessage(ChatColor.GOLD + "[FishProc] Processed " + processed + " fish → " + produced +
+                            " fillet(s); outputs are full (" + left + " fish left).");
+                } else {
+                    player.sendMessage(ChatColor.GREEN + "[FishProc] Processed " + processed + " fish → " + produced + " fillet(s).");
+                }
             } else {
-                player.sendMessage(ChatColor.GREEN + "[FishProc] Processed " + processed + " fish → " + produced + " fillet(s).");
+                player.sendMessage(ChatColor.GRAY + "[FishProc] Nothing to produce.");
             }
-        } else {
-            player.sendMessage(ChatColor.GRAY + "[FishProc] Nothing to produce.");
-        }
 
-        updateViewers(inv); // final safety refresh
+            updateViewers(inv); // final safety refresh
+
+        } finally {
+            // ALWAYS clear processing flag and persist the current inventory snapshot
+            if (st != null) {
+                st.processing = false;
+                saveStateFrom(inv, st);
+            }
+        }
     }
+
 
     /* ---------------- helpers ---------------- */
 
@@ -369,7 +446,6 @@ public final class FishProcessorUI implements Listener {
         if (remaining <= 0) {
             inv.setItem(slot, null);
         } else {
-            // clone is safer for client refresh in some implementations
             ItemStack copy = in.clone();
             copy.setAmount(remaining);
             inv.setItem(slot, copy);
@@ -382,13 +458,11 @@ public final class FishProcessorUI implements Listener {
         }
     }
 
-    private static boolean hasMaxDamage(Damageable dmg) {
-        try { return (boolean) dmg.getClass().getMethod("hasMaxDamage").invoke(dmg); }
-        catch (Throwable ignore) { return false; }
-    }
-
     private static int maxDamageFor(ItemStack tool, Damageable dmg) {
-        if (dmg != null && hasMaxDamage(dmg)) return dmg.getMaxDamage();
+        if (dmg != null) {
+            try { return (int) dmg.getClass().getMethod("getMaxDamage").invoke(dmg); }
+            catch (Throwable ignore) {}
+        }
         return tool.getType().getMaxDurability();
     }
 
@@ -441,13 +515,211 @@ public final class FishProcessorUI implements Listener {
     }
 
     private boolean isKnife(ItemStack it) {
-        if (it == null || it.getType() == Material.AIR) return false;
-        if (!it.getType().name().endsWith("_SWORD")) return false;
-        ItemMeta meta = it.getItemMeta();
-        return meta != null && meta.getPersistentDataContainer().has(Keys.knife(plugin), PersistentDataType.BYTE);
+        return KnifeDurability.isKnife(plugin, it);
     }
 
     private static final class Holder implements InventoryHolder {
+        final BlockKey key; // null means "ephemeral" GUI
+        Holder() { this.key = null; }
+        Holder(BlockKey key) { this.key = key; }
         @Override public Inventory getInventory() { return null; }
+    }
+
+    private void hideTooltipTop(Inventory gui, int slot) {
+        ItemStack s = gui.getItem(slot);
+        if (s == null) return;
+        ItemMeta m = s.getItemMeta();
+        if (m == null) return;
+        m.setHideTooltip(true);  // Paper 1.21.7
+        m.displayName(null);
+        m.lore(null);
+        s.setItemMeta(m);
+        gui.setItem(slot, s);
+    }
+
+    private ItemStack emptySlotItem() {
+        ItemStack it = new ItemStack(Material.COD);
+        ItemMeta m = it.getItemMeta();
+        if (m == null) return it;
+
+        // Use Bukkit NamespacedKey here:
+        m.setItemModel(new NamespacedKey(NS, NAV_EMPTY_TEX));
+
+        m.setHideTooltip(true);
+        m.displayName(null);
+        m.lore(null);
+
+        m.getPersistentDataContainer().set(IMMOVABLE_KEY, PersistentDataType.BYTE, (byte)1);
+
+        try { m.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ENCHANTS); } catch (Throwable ignored) {}
+
+        it.setItemMeta(m);
+        return it;
+    }
+
+    /** Merge as much of `moving` as possible into `slots` (stack-merge then fill empties). */
+    private static void routeStackIntoSlots(Inventory top, ItemStack moving, int[] slots) {
+        if (moving == null || moving.getType().isAir()) return;
+        int toMove = moving.getAmount();
+        if (toMove <= 0) return;
+
+        // a) merge into existing stacks
+        for (int s : slots) {
+            if (toMove <= 0) break;
+            ItemStack cur = top.getItem(s);
+            if (cur == null || cur.getType().isAir()) continue;
+            if (!canStack(cur, moving)) continue;
+            int max = Math.min(cur.getMaxStackSize(), 64);
+            int add = Math.min(toMove, max - cur.getAmount());
+            if (add > 0) { cur.setAmount(cur.getAmount() + add); toMove -= add; }
+        }
+
+        // b) fill empties
+        for (int s : slots) {
+            if (toMove <= 0) break;
+            ItemStack cur = top.getItem(s);
+            if (cur != null && !cur.getType().isAir()) continue;
+            ItemStack place = moving.clone();
+            int placeAmt = Math.min(place.getMaxStackSize(), Math.min(64, toMove));
+            place.setAmount(placeAmt);
+            top.setItem(s, place);
+            toMove -= placeAmt;
+        }
+
+        moving.setAmount(toMove);
+    }
+
+    /** Try to place exactly one knife into the KNIFE_SLOT if it's empty; otherwise do nothing. */
+    private void tryPlaceKnifeInSlot(Inventory top, ItemStack moving, int knifeSlot) {
+        if (moving == null || moving.getType().isAir()) return;
+        if (!isKnife(moving)) return;
+
+        ItemStack cur = top.getItem(knifeSlot);
+        if (cur == null || cur.getType().isAir()) {
+            ItemStack one = moving.clone();
+            one.setAmount(1);
+            top.setItem(knifeSlot, one);
+            moving.setAmount(moving.getAmount() - 1);
+        }
+    }
+
+    public static final class BlockKey {
+        public final java.util.UUID worldId;
+        public final int x, y, z;
+
+        public BlockKey(java.util.UUID worldId, int x, int y, int z) {
+            this.worldId = worldId; this.x = x; this.y = y; this.z = z;
+        }
+
+        @Override public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof BlockKey)) return false;
+            BlockKey k = (BlockKey) o;
+            return x == k.x && y == k.y && z == k.z &&
+                    java.util.Objects.equals(worldId, k.worldId);
+        }
+        @Override public int hashCode() {
+            return java.util.Objects.hash(worldId, x, y, z);
+        }
+    }
+
+    // Persistent state per table block
+    private static final class TableState {
+        final ItemStack[] inputs  = new ItemStack[INPUT_SLOTS.length];  // 6
+        final ItemStack[] outputs = new ItemStack[OUTPUT_SLOTS.length]; // 12
+        ItemStack knife = null;
+        boolean processing = false; // set true while processAll runs
+    }
+
+    private TableState stateFor(BlockKey key) {
+        return tables.computeIfAbsent(key, k -> new TableState());
+    }
+
+    private void loadStateInto(Inventory inv, TableState st) {
+        for (int s : INPUT_SLOTS)  inv.setItem(s, null);
+        for (int s : OUTPUT_SLOTS) inv.setItem(s, null);
+        inv.setItem(KNIFE_SLOT, null);
+
+        for (int i = 0; i < INPUT_SLOTS.length; i++) {
+            ItemStack it = st.inputs[i];
+            if (it != null && !it.getType().isAir()) inv.setItem(INPUT_SLOTS[i], it.clone());
+        }
+        for (int i = 0; i < OUTPUT_SLOTS.length; i++) {
+            ItemStack it = st.outputs[i];
+            if (it != null && !it.getType().isAir()) inv.setItem(OUTPUT_SLOTS[i], it.clone());
+        }
+        if (st.knife != null && !st.knife.getType().isAir()) inv.setItem(KNIFE_SLOT, st.knife.clone());
+    }
+
+    private void saveStateFrom(Inventory inv, TableState st) {
+        for (int i = 0; i < INPUT_SLOTS.length; i++) {
+            ItemStack it = inv.getItem(INPUT_SLOTS[i]);
+            st.inputs[i] = (it == null || it.getType().isAir()) ? null : it.clone();
+        }
+        for (int i = 0; i < OUTPUT_SLOTS.length; i++) {
+            ItemStack it = inv.getItem(OUTPUT_SLOTS[i]);
+            st.outputs[i] = (it == null || it.getType().isAir()) ? null : it.clone();
+        }
+        ItemStack knife = inv.getItem(KNIFE_SLOT);
+        st.knife = (knife == null || knife.getType().isAir()) ? null : knife.clone();
+    }
+
+    public void handleBlockBreak(World world, BlockKey key, Location dropAt) {
+        TableState st = tables.remove(key);
+        if (st == null) return;
+
+        // Close any open viewers of this table to avoid dupes
+        for (Player p : world.getPlayers()) {
+            var view = p.getOpenInventory();
+            if (view != null && view.getTopInventory() != null &&
+                    view.getTopInventory().getHolder() instanceof Holder h &&
+                    key.equals(h.key)) {
+                p.closeInventory();
+            }
+        }
+
+        if (st.processing) {
+            // Lose everything except the knife (anti-dupe rule)
+            if (st.knife != null && !st.knife.getType().isAir()) {
+                world.dropItemNaturally(dropAt, st.knife.clone());
+            }
+            java.util.Arrays.fill(st.inputs, null);
+            java.util.Arrays.fill(st.outputs, null);
+            st.knife = null;
+            return;
+        }
+
+        // Not processing: drop all like a chest
+        for (ItemStack it : st.inputs)  if (it != null && !it.getType().isAir()) world.dropItemNaturally(dropAt, it.clone());
+        for (ItemStack it : st.outputs) if (it != null && !it.getType().isAir()) world.dropItemNaturally(dropAt, it.clone());
+        if (st.knife != null && !st.knife.getType().isAir()) world.dropItemNaturally(dropAt, st.knife.clone());
+
+        java.util.Arrays.fill(st.inputs, null);
+        java.util.Arrays.fill(st.outputs, null);
+        st.knife = null;
+    }
+
+    private static BlockKey blockKeyFrom(Location loc) {
+        World w = loc.getWorld();
+        return new BlockKey(
+                (w != null ? w.getUID() : new java.util.UUID(0,0)),
+                loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()
+        );
+    }
+
+    // open at a specific block location
+    public void openAt(Player player, Location loc) {
+        open(player, blockKeyFrom(loc)); // delegate to the state-loading overload
+    }
+
+    // convenience
+    public void openAt(Player player, Block block) {
+        openAt(player, block.getLocation());
+    }
+
+    public void onTableBroken(org.bukkit.block.Block block) {
+        if (block == null) return;
+        org.bukkit.Location loc = block.getLocation();
+        handleBlockBreak(block.getWorld(), blockKeyFrom(loc), loc.toCenterLocation());
     }
 }

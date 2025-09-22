@@ -54,6 +54,27 @@ public final class KnifeProvider {
             Set<Enchantment> allowed = parseEnchantList(s.getStringList("allowed_enchantments"));
             Set<Enchantment> disallowed = parseEnchantList(s.getStringList("disallowed_enchantments"));
 
+            SmithingRecipe smithing = null;
+            String smithRaw = s.getString("smithing");
+            if (smithRaw != null && !smithRaw.isBlank()) {
+                // "netherite_upgrade, netherite-knife, NETHERITE_INGOT"
+                String[] parts = smithRaw.split(",");
+                if (parts.length == 3) {
+                    String templateKey = parts[0].trim().toLowerCase(); // e.g. "netherite_upgrade"
+                    String targetId    = parts[1].trim();               // e.g. "netherite-knife"
+                    String addName     = parts[2].trim();               // e.g. "NETHERITE_INGOT"
+
+                    Material addition = Material.matchMaterial(addName);
+                    if (addition == null) {
+                        plugin.getLogger().warning("[Knives] Unknown smithing addition material: " + addName + " for " + id);
+                    } else {
+                        smithing = new SmithingRecipe(templateKey, targetId, addition);
+                    }
+                } else {
+                    plugin.getLogger().warning("[Knives] smithing field for " + id + " must have 3 comma-separated values.");
+                }
+            }
+
             KnifeDefinition def = new KnifeDefinition(
                     id,
                     displayName,
@@ -64,7 +85,8 @@ public final class KnifeProvider {
                     attackSpeed,
                     enchantability,
                     allowed,
-                    disallowed
+                    disallowed,
+                    smithing
             );
 
             defs.put(id.toLowerCase(Locale.ENGLISH), def);

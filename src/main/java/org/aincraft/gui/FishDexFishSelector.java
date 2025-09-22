@@ -96,10 +96,10 @@ public class FishDexFishSelector {
 
     // Time icons
     private static final Map<FishTimeCycle, Integer> TIME_SLOTS = Map.of(
-            FishTimeCycle.DAWN, 7,
-            FishTimeCycle.DAY, 8,
-            FishTimeCycle.EVENING, 17,
-            FishTimeCycle.NIGHT, 26
+            FishTimeCycle.DAWN, 6,
+            FishTimeCycle.DAY, 7,
+            FishTimeCycle.EVENING, 8,
+            FishTimeCycle.NIGHT, 17
     );
     private static final Map<FishTimeCycle, String> TIME_ICON_SUFFIX = Map.of(
             FishTimeCycle.DAWN, "icons/morning-icon",
@@ -122,11 +122,11 @@ public class FishDexFishSelector {
     private static final Map<FishMoonCycle, String> MOON_ICON_SUFFIX = Map.of(
             FishMoonCycle.FULL_MOON, "icons/full_moon",
             FishMoonCycle.WANING_GIBBOUS, "icons/waning_gibbous",
-            FishMoonCycle.LAST_QUARTER, "icons/last_quarter",
+            FishMoonCycle.LAST_QUARTER, "icons/first_quarter",
             FishMoonCycle.WANING_CRESCENT, "icons/waning_crescent",
             FishMoonCycle.NEW_MOON, "icons/new_moon",
             FishMoonCycle.WAXING_CRESCENT, "icons/waxing_crescent",
-            FishMoonCycle.FIRST_QUARTER, "icons/first_quarter",
+            FishMoonCycle.FIRST_QUARTER, "icons/last_quarter",
             FishMoonCycle.WAXING_GIBBOUS, "icons/waxing_gibbous"
     );
 
@@ -265,7 +265,7 @@ public class FishDexFishSelector {
                 }
             }
             // Page indicator (uses fish-menu_(pageNumber))
-            int menuSlot = Math.min(6, pageIndex);
+            int menuSlot = Math.min(5, pageIndex);
             putIcon(gui, menuSlot, "icons/fish-menu_" + (pageIndex + 1));
             hideTooltipTop(gui, menuSlot);
 
@@ -285,7 +285,7 @@ public class FishDexFishSelector {
                 applyFishTooltip(gui, slot, model, pgr);
             }
             pageIndex = (model != null) ? Math.max(0, (model.getModelNumber() - 1) / PAGE_SIZE) : 0;
-            putIcon(gui, Math.min(6, pageIndex), "icons/fish-menu_" + (pageIndex + 1));
+            putIcon(gui, Math.min(5, pageIndex), "icons/fish-menu_" + (pageIndex + 1));
         }
 
         // Compute pageCount if paging
@@ -320,6 +320,9 @@ public class FishDexFishSelector {
         placeNavButtons(player, pageIndex, pageCount);
 
         Bukkit.getScheduler().runTask(plugin, () -> {
+            // 0..8 are valid hotbar slots
+            player.getInventory().setHeldItemSlot(0);
+
             player.openInventory(gui);
             if (playOpenSound) FishDexSFX.playOpen(player);
         });
@@ -370,9 +373,9 @@ public class FishDexFishSelector {
             String suffix = unseen ? (base + "_empty")
                     : (allowed.contains(moon) ? base : (base + "_empty"));
 
-            if      (i == 0) { putIcon(gui, 35, suffix);                     hideTooltipTop(gui, 35); }
-            else if (i == 1) { putIcon(gui, 44, suffix);                     hideTooltipTop(gui, 44); }
-            else if (i == 2) { putPlayerIconHotbar(player, 8, suffix);       hideTooltipHotbar(player, 8); }
+            if      (i == 0) { putIcon(gui, 26, suffix);                     hideTooltipTop(gui, 26); }
+            else if (i == 1) { putIcon(gui, 35, suffix);                     hideTooltipTop(gui, 35); }
+            else if (i == 2) { putIcon(gui, 44, suffix);                     hideTooltipTop(gui, 44); }
             else if (i == 3) { putPlayerIconMain(player, 0, 7, suffix);      hideTooltipMain(player, 0, 7); }
             else if (i == 4) { putIcon(gui, 53, suffix);                     hideTooltipTop(gui, 53); }
             else if (i == 5) { putPlayerIconMain(player, 1, 8, suffix);      hideTooltipMain(player, 1, 8); }
@@ -518,7 +521,7 @@ public class FishDexFishSelector {
                 .color(NamedTextColor.GREEN)
                 .decoration(TextDecoration.ITALIC, false)); // <- not italic
 
-        for (String line : wrapToMaxLines(desc, 3, 40)) {
+        for (String line : wrapToMaxLines(desc, 7, 45)) {
             lore.add(Component.text(line)); // keep default styling for description
             // (If you also want description non-italic, add .decoration(TextDecoration.ITALIC, false) here too)
         }

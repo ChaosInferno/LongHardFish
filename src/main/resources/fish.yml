@@ -1,7 +1,7 @@
 glider-bananafish:
   name: Glider Bananafish
   rarity: COMMON
-  description: Airy yellow glider that skims current crests.
+  description: The most common of all the bananafish. It is always on the move eating anything it can and laying eggs anywhere possible. Although not the smartest, it has achieved the number one slot in "most invasive species".
   open-water-required: true
   rain-required: false
   defaults:

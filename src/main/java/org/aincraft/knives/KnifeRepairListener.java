@@ -1,11 +1,13 @@
 // src/main/java/org/aincraft/knives/KnifeRepairListener.java
 package org.aincraft.knives;
 
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.inventory.PrepareItemCraftEvent;
-import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.event.inventory.*;
+import org.bukkit.inventory.AnvilInventory;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
@@ -14,6 +16,7 @@ import org.bukkit.Material;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public final class KnifeRepairListener implements Listener {
@@ -100,21 +103,23 @@ public final class KnifeRepairListener implements Listener {
 
             // Force-disable the shimmer even if something set a glint override
             try {
-                meta.getClass()
-                        .getMethod("setEnchantmentGlintOverride", Boolean.class)
-                        .invoke(meta, Boolean.FALSE);
+                meta.getClass().getMethod("setEnchantmentGlintOverride", Boolean.class).invoke(meta, Boolean.FALSE);
             } catch (Throwable ignored) {}
 
-            // Apply repaired damage
-            if (meta instanceof Damageable d) {
-                d.setDamage(repairedDamage(a, b));
-            }
             base.setItemMeta(meta);
         }
 
         return base;
     }
 
+    private static int safeVanillaMax(ItemStack it, Damageable d) {
+        int vMax = it.getType().getMaxDurability();
+        try {
+            var has = d.getClass().getMethod("hasMaxDamage");
+            if ((boolean) has.invoke(d)) vMax = d.getMaxDamage();
+        } catch (Throwable ignored) {}
+        return Math.max(1, vMax);
+    }
 
     /* ---------------- events ---------------- */
 
@@ -124,81 +129,371 @@ public final class KnifeRepairListener implements Listener {
         ItemStack[] matrix = inv.getMatrix();
         if (matrix == null || matrix.length == 0) return;
 
-        List<ItemStack> knives = new ArrayList<>();
+        // Find exactly two non-air items (vanilla repair uses two items)
+        List<ItemStack> nonAir = new ArrayList<>();
         for (ItemStack it : matrix) {
-            if (it == null || it.getType().isAir()) continue;
-            if (!isKnife(it)) {
-                // Any non-knife item present → not our repair; avoid colliding with other recipes
-                inv.setResult(null);
-                return;
-            }
-            knives.add(it);
+            if (it != null && !it.getType().isAir()) nonAir.add(it);
         }
-
-        if (knives.isEmpty()) { inv.setResult(null); return; }
-
-        // Only allow 2-knife repair (vanilla style). Anything else → no result.
-        if (knives.size() != 2) { inv.setResult(null); return; }
-
-        String id0 = knifeIdOf(knives.get(0));
-        String id1 = knifeIdOf(knives.get(1));
-        if (id0 == null || id1 == null || !Objects.equals(id0, id1)) {
-            inv.setResult(null); // must be the same knife type
+        if (nonAir.size() != 2) {
+            // Not a 2-item combine → don't interfere (keep vanilla behavior)
             return;
         }
 
-        // Build repaired result; keep name/model/PDC; remove enchants
-        ItemStack result = buildResult(knives.get(0), knives.get(1));
+        ItemStack a = nonAir.get(0);
+        ItemStack b = nonAir.get(1);
+        boolean aKnife = isKnife(a);
+        boolean bKnife = isKnife(b);
 
-        // EXTRA: make sure preview has no glint (like vanilla). Safe on older APIs.
+        if (!aKnife && !bKnife) {
+            // No knives involved → let vanilla repair happen
+            return;
+        }
+
+        // At least one is a knife; only allow if BOTH are knives with the same knife id
+        if (!(aKnife && bKnife)) {
+            // Mixed knife + non-knife → block
+            inv.setResult(null);
+            return;
+        }
+
+        String idA = knifeIdOf(a);
+        String idB = knifeIdOf(b);
+        if (idA == null || idB == null || !Objects.equals(idA, idB)) {
+            // Two knives but different types → block any vanilla combine
+            inv.setResult(null);
+            return;
+        }
+
+        // --- Custom knife repair path (both knives, same id) ---
+        ItemStack result = buildResult(a, b);
+
+        // Ensure no glint on preview (optional)
         try {
             var m = result.getItemMeta();
             if (m != null) {
-                // Paper 1.21+: setEnchantmentGlintOverride(Boolean)
                 m.getClass().getMethod("setEnchantmentGlintOverride", Boolean.class).invoke(m, (Boolean) null);
                 result.setItemMeta(m);
             }
         } catch (Throwable ignored) {}
 
-        // Normalize preview so it looks exactly like one of your knives
-        // (restores your name/model/attributes/green lore, keeps knife-id in PDC)
-        KnifeDefinition def = provider.get(id0); // same id for both inputs
+        KnifeDefinition def = provider.get(idA);
         KnifeFactory.normalizeAfterRepair(plugin, result, def);
 
-        // Show this in the crafting output preview
+        int customMax = Math.max(
+                org.aincraft.knives.KnifeDurability.getMax(plugin, a),
+                org.aincraft.knives.KnifeDurability.getMax(plugin, b)
+        );
+        int combinedRem = repairedRemaining(a, b);
+
+        var rm = result.getItemMeta();
+        if (rm != null) {
+            var rpdc = rm.getPersistentDataContainer();
+            rpdc.set(org.aincraft.items.Keys.knifeMax(plugin),
+                    org.bukkit.persistence.PersistentDataType.INTEGER, customMax);
+            rpdc.set(org.aincraft.items.Keys.knifeDurability(plugin),
+                    org.bukkit.persistence.PersistentDataType.INTEGER, combinedRem);
+            result.setItemMeta(rm);
+        }
+
+        applyVisualBar(result, customMax, combinedRem);
+
+        // Show our custom result; this overrides vanilla result for knives
         inv.setResult(result);
     }
 
     @EventHandler
     public void onCraftClick(CraftItemEvent e) {
-        // Re-validate right before the craft finalizes (in case another plugin changed the result)
         CraftingInventory inv = e.getInventory();
-        ItemStack result = inv.getResult();
+        ItemStack[] matrix = inv.getMatrix();
+        if (matrix == null) return;
+
+        // Collect exactly two non-air inputs
+        List<ItemStack> nonAir = new ArrayList<>();
+        for (ItemStack it : matrix) {
+            if (it != null && !it.getType().isAir()) nonAir.add(it);
+        }
+        if (nonAir.size() != 2) {
+            // Not our scenario → let vanilla proceed
+            return;
+        }
+
+        ItemStack a = nonAir.get(0);
+        ItemStack b = nonAir.get(1);
+        boolean aKnife = isKnife(a);
+        boolean bKnife = isKnife(b);
+
+        if (!aKnife && !bKnife) {
+            // Vanilla tool repair → allow
+            return;
+        }
+
+        if (!(aKnife && bKnife)) {
+            // Mixed knife + non-knife → block finalize
+            e.setCancelled(true);
+            return;
+        }
+
+        // Both knives; enforce same id and stamp our PDC/visuals
+        String idA = knifeIdOf(a);
+        String idB = knifeIdOf(b);
+        if (idA == null || idB == null || !Objects.equals(idA, idB)) {
+            // Two different knife types → block finalize
+            e.setCancelled(true);
+            return;
+        }
+
+        // Custom knife result: ensure PDC and bar are correct on the crafted item
+        ItemStack crafted = e.getCurrentItem();
+        if (crafted == null || crafted.getType() == Material.AIR) return;
+
+        // Strip applied enchants (your design for knife craft-repair)
+        new ArrayList<>(crafted.getEnchantments().keySet()).forEach(crafted::removeEnchantment);
+
+        int customMax = Math.max(
+                org.aincraft.knives.KnifeDurability.getMax(plugin, a),
+                org.aincraft.knives.KnifeDurability.getMax(plugin, b)
+        );
+        int combinedRem = repairedRemaining(a, b);
+
+        var cm = crafted.getItemMeta();
+        if (cm != null) {
+            var cpdc = cm.getPersistentDataContainer();
+            cpdc.set(org.aincraft.items.Keys.knife(plugin),
+                    org.bukkit.persistence.PersistentDataType.BYTE, (byte)1);
+            cpdc.set(org.aincraft.items.Keys.knifeId(plugin),
+                    org.bukkit.persistence.PersistentDataType.STRING, idA);
+            cpdc.set(org.aincraft.items.Keys.knifeMax(plugin),
+                    org.bukkit.persistence.PersistentDataType.INTEGER, customMax);
+            cpdc.set(org.aincraft.items.Keys.knifeDurability(plugin),
+                    org.bukkit.persistence.PersistentDataType.INTEGER, combinedRem);
+            crafted.setItemMeta(cm);
+        }
+
+        applyVisualBar(crafted, customMax, combinedRem);
+
+        KnifeDefinition def = provider.get(idA);
+        KnifeFactory.normalizeAfterRepair(plugin, crafted, def);
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onPrepareAnvil(PrepareAnvilEvent e) {
+        AnvilInventory inv = e.getInventory();
+        ItemStack left  = inv.getFirstItem();
+        ItemStack right = inv.getSecondItem();
+
+        if (left == null || left.getType().isAir() || right == null || right.getType().isAir()) return;
+
+        boolean lKnife = isKnife(left);
+        boolean rKnife = isKnife(right);
+
+        if (!lKnife && !rKnife) {
+            // No knives → let vanilla anvil behavior proceed
+            return;
+        }
+        if (!(lKnife && rKnife)) {
+            // Mixed (knife + non-knife) → block anvil combine for knives
+            e.setResult(null);
+            return;
+        }
+
+        // Both knives: must be same knifeId
+        String idL = knifeIdOf(left);
+        String idR = knifeIdOf(right);
+        if (idL == null || idR == null || !Objects.equals(idL, idR)) {
+            e.setResult(null);
+            return;
+        }
+
+        KnifeDefinition def = provider.get(idL);
+
+        // Choose a base to preserve cosmetics; keep its enchants
+        ItemStack base  = (damageOf(left) <= damageOf(right)) ? left : right;
+        Map<Enchantment,Integer> keepEnchants = new java.util.HashMap<>(base.getEnchantments());
+
+        // Start result as that base clone
+        ItemStack result = base.clone();
+        result.setAmount(1);
+
+        // Compute custom max/remaining purely from PDC/definition
+        int maxA = org.aincraft.knives.KnifeDurability.getMax(plugin, left);
+        int maxB = org.aincraft.knives.KnifeDurability.getMax(plugin, right);
+        int customMax = Math.max(maxA, maxB);
+        if (customMax <= 0 && def != null && def.durability() != null) customMax = def.durability();
+        if (customMax <= 0) { e.setResult(null); return; }
+
+        int combinedRem = repairedRemaining(left, right);
+
+        // Stamp identity + custom durability into PDC
+        var rm = result.getItemMeta();
+        if (rm != null) {
+            var pdc = rm.getPersistentDataContainer();
+            pdc.set(org.aincraft.items.Keys.knife(plugin), org.bukkit.persistence.PersistentDataType.BYTE, (byte)1);
+            pdc.set(org.aincraft.items.Keys.knifeId(plugin), org.bukkit.persistence.PersistentDataType.STRING, idL);
+            pdc.set(org.aincraft.items.Keys.knifeMax(plugin), org.bukkit.persistence.PersistentDataType.INTEGER, customMax);
+            pdc.set(org.aincraft.items.Keys.knifeDurability(plugin), org.bukkit.persistence.PersistentDataType.INTEGER, combinedRem);
+            result.setItemMeta(rm);
+        }
+
+        // Bar + cosmetics
+        applyVisualBar(result, customMax, combinedRem);
+        if (def != null) KnifeFactory.normalizeAfterRepair(plugin, result, def);
+
+        // IMPORTANT: keep enchants for anvil repair
+        restoreEnchantsRespectingAllowList(result, def, keepEnchants);
+
+        e.setResult(result);
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void onAnvilResultClick(InventoryClickEvent e) {
+        if (!(e.getInventory() instanceof AnvilInventory inv)) return;
+        if (e.getSlotType() != InventoryType.SlotType.RESULT) return;
+        if (e.getRawSlot() != 2) return; // result slot
+
+        ItemStack left  = inv.getFirstItem();
+        ItemStack right = inv.getSecondItem();
+        ItemStack result = e.getCurrentItem();
         if (result == null || result.getType() == Material.AIR) return;
 
-        ItemStack[] matrix = inv.getMatrix();
-        List<ItemStack> knives = new ArrayList<>();
-        for (ItemStack it : matrix) {
-            if (it == null || it.getType().isAir()) continue;
-            if (!isKnife(it)) { e.setCancelled(true); return; }
-            knives.add(it);
-        }
-        if (knives.size() != 2) { e.setCancelled(true); return; }
-        String id0 = knifeIdOf(knives.get(0));
-        String id1 = knifeIdOf(knives.get(1));
-        if (id0 == null || id1 == null || !Objects.equals(id0, id1)) { e.setCancelled(true); return; }
+        boolean lKnife = isKnife(left);
+        boolean rKnife = isKnife(right);
 
-        // Ensure enchantments are stripped on the actual crafted stack
-        var crafted = e.getCurrentItem();
-        if (crafted != null) {
-            new ArrayList<>(crafted.getEnchantments().keySet()).forEach(crafted::removeEnchantment);
-            // Damage should already be set from PrepareItemCraftEvent; compute again just in case:
-            if (crafted.hasItemMeta() && crafted.getItemMeta() instanceof Damageable d) {
-                d.setDamage(repairedDamage(knives.get(0), knives.get(1)));
-                crafted.setItemMeta(d);
+        if (!lKnife && !rKnife) {
+            // Vanilla tools/items → allow vanilla result click
+            return;
+        }
+        if (!(lKnife && rKnife)) {
+            // Mixed (knife + non-knife) → block
+            e.setCancelled(true);
+            return;
+        }
+
+        String idL = knifeIdOf(left);
+        String idR = knifeIdOf(right);
+        if (idL == null || idR == null || !Objects.equals(idL, idR)) {
+            e.setCancelled(true);
+            return;
+        }
+
+        KnifeDefinition def = provider.get(idL);
+
+        // Keep enchants from the better (less-damaged) base
+        ItemStack base = (damageOf(left) <= damageOf(right)) ? left : right;
+        Map<Enchantment,Integer> keepEnchants = new java.util.HashMap<>(base.getEnchantments());
+
+        int maxA = org.aincraft.knives.KnifeDurability.getMax(plugin, left);
+        int maxB = org.aincraft.knives.KnifeDurability.getMax(plugin, right);
+        int customMax = Math.max(maxA, maxB);
+        if (customMax <= 0 && def != null && def.durability() != null) customMax = def.durability();
+        if (customMax <= 0) { e.setCancelled(true); return; }
+
+        int combinedRem = repairedRemaining(left, right);
+
+        // Stamp your PDC onto the *result stack the player will take*
+        var rm = result.getItemMeta();
+        if (rm != null) {
+            var pdc = rm.getPersistentDataContainer();
+            pdc.set(org.aincraft.items.Keys.knife(plugin), org.bukkit.persistence.PersistentDataType.BYTE, (byte)1);
+            pdc.set(org.aincraft.items.Keys.knifeId(plugin), org.bukkit.persistence.PersistentDataType.STRING, idL);
+            pdc.set(org.aincraft.items.Keys.knifeMax(plugin), org.bukkit.persistence.PersistentDataType.INTEGER, customMax);
+            pdc.set(org.aincraft.items.Keys.knifeDurability(plugin), org.bukkit.persistence.PersistentDataType.INTEGER, combinedRem);
+            result.setItemMeta(rm);
+        }
+
+        applyVisualBar(result, customMax, combinedRem);
+        if (def != null) KnifeFactory.normalizeAfterRepair(plugin, result, def);
+
+        // Preserve enchants for anvil repair
+        restoreEnchantsRespectingAllowList(result, def, keepEnchants);
+
+        // Put updated stack back so the player takes the corrected item
+        e.setCurrentItem(result);
+    }
+
+    private int repairedRemaining(ItemStack a, ItemStack b) {
+        int maxA = org.aincraft.knives.KnifeDurability.getMax(plugin, a);
+        int maxB = org.aincraft.knives.KnifeDurability.getMax(plugin, b);
+        int remA = org.aincraft.knives.KnifeDurability.getRemaining(plugin, a);
+        int remB = org.aincraft.knives.KnifeDurability.getRemaining(plugin, b);
+
+        int max = Math.max(maxA, maxB);
+        if (max <= 0) return 0;
+
+        int bonus = Math.max(1, (int) Math.floor(max * 0.05)); // vanilla 5% bonus
+        return Math.min(max, Math.max(0, remA) + Math.max(0, remB) + bonus);
+    }
+
+    // Map your custom durability to the visible vanilla Damageable bar (cosmetic only)
+    private void applyVisualBar(ItemStack stack, int customMax, int customRemaining) {
+        if (stack == null || !stack.hasItemMeta()) return;
+        var meta = stack.getItemMeta();
+        if (!(meta instanceof org.bukkit.inventory.meta.Damageable d)) return;
+
+        int vanillaMax;
+        boolean hasPerItemMax;
+        try {
+            int perItem = d.getMaxDamage();              // throws if not present
+            vanillaMax = Math.max(1, perItem);
+            hasPerItemMax = true;
+        } catch (IllegalStateException noPerItem) {
+            vanillaMax = Math.max(1, stack.getType().getMaxDurability());
+            hasPerItemMax = false;
+        }
+
+        if (customMax <= 0) customMax = 1;
+
+        final int legalTop = hasPerItemMax ? Math.max(0, vanillaMax - 1) : vanillaMax;
+
+        double usedFrac = 1.0 - (Math.min(customMax, Math.max(0, customRemaining)) / (double) customMax);
+        int mapped = (int) Math.floor(usedFrac * legalTop);
+        if (mapped < 0) mapped = 0;
+        if (mapped > legalTop) mapped = legalTop;
+
+        d.setDamage(mapped);
+        stack.setItemMeta(meta);
+    }
+
+
+    private int vanillaRemaining(ItemStack it) {
+        if (it == null || !it.hasItemMeta()) return 0;
+        var meta = it.getItemMeta();
+        if (!(meta instanceof org.bukkit.inventory.meta.Damageable d)) return 0;
+
+        // Start from the material’s max durability
+        int vMax = it.getType().getMaxDurability();
+
+        // Paper 1.21.7: ONLY call getMaxDamage() if hasMaxDamage() is true
+        try {
+            var hasMaxMethod = d.getClass().getMethod("hasMaxDamage");
+            boolean has = (boolean) hasMaxMethod.invoke(d);
+            if (has) vMax = d.getMaxDamage();
+        } catch (Throwable ignored) {
+            // Older API or no per-item max; stick with material max
+        }
+
+        if (vMax <= 0) return 0;
+        return Math.max(0, vMax - d.getDamage());
+    }
+
+    private static void restoreEnchantsRespectingAllowList(ItemStack stack, KnifeDefinition def, Map<Enchantment,Integer> toRestore) {
+        if (stack == null || toRestore == null || toRestore.isEmpty()) return;
+        var meta = stack.getItemMeta();
+        if (meta == null) return;
+
+        for (var e : toRestore.entrySet()) {
+            var ench = e.getKey();
+            int lvl  = e.getValue();
+            // If you want to honor your allow/disallow lists:
+            if (def == null || def.isEnchantAllowed(ench)) {
+                meta.addEnchant(ench, lvl, true);
             }
         }
-        KnifeDefinition def = provider.get(id0);
-        KnifeFactory.normalizeAfterRepair(plugin, crafted, def);
+
+        // Make sure shimmer isn't forced off
+        try {
+            meta.getClass().getMethod("setEnchantmentGlintOverride", Boolean.class).invoke(meta, (Boolean) null);
+        } catch (Throwable ignored) {}
+
+        stack.setItemMeta(meta);
     }
 }

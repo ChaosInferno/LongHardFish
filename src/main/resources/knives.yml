@@ -1,4 +1,37 @@
 knives:
+  wooden-knife:
+    base: IRON_SWORD
+    model: "longhardfish:knives/wooden-knife"
+    name: "Wooden Knife"
+    durability: 59
+    enchantability: 15
+    attack:
+      damage: 3.2
+      speed: 2.0
+    allowed_enchantments: [ UNBREAKING, MENDING, SHARPNESS, LOOTING ]
+
+  stone-knife:
+    base: IRON_SWORD
+    model: "longhardfish:knives/stone-knife"
+    name: "Stone Knife"
+    durability: 130
+    enchantability: 5
+    attack:
+      damage: 4.0
+      speed: 2.0
+    allowed_enchantments: [ UNBREAKING, MENDING, SHARPNESS, LOOTING ]
+
+  gold-knife:
+    base: IRON_SWORD
+    model: "longhardfish:knives/gold-knife"
+    name: "Gold Knife"
+    durability: 32
+    enchantability: 22
+    attack:
+      damage: 5.0
+      speed: 2.0
+    allowed_enchantments: [ UNBREAKING, MENDING, SHARPNESS, LOOTING ]
+
   iron-knife:
     base: IRON_SWORD
     model: "longhardfish:knives/iron-knife"
@@ -11,7 +44,7 @@ knives:
     allowed_enchantments: [ UNBREAKING, MENDING, SHARPNESS, LOOTING ]
 
   diamond-knife:
-    base: IRON_SWORD
+    base: DIAMOND_SWORD
     model: "longhardfish:knives/diamond-knife"
     name: "Diamond Knife"
     durability: 1561
@@ -19,4 +52,16 @@ knives:
     attack:
       damage: 5.6
       speed: 2.0
-    allowed_enchantments: [ UNBREAKING ]
+    allowed_enchantments: [ UNBREAKING, MENDING, SHARPNESS, LOOTING ]
+    smithing: netherite_upgrade, netherite-knife, netherite_ingot
+
+  netherite-knife:
+    base: NETHERITE_SWORD
+    model: "longhardfish:knives/netherite-knife"
+    name: "Netherite Knife"
+    durability: 2031
+    enchantability: 15
+    attack:
+      damage: 6.4
+      speed: 2.0
+    allowed_enchantments: [ UNBREAKING, MENDING, SHARPNESS, LOOTING ]

@@ -2,9 +2,7 @@ package org.aincraft;
 
 import org.aincraft.bait.*;
 import org.aincraft.bobber.BobberAddonDisplay;
-import org.aincraft.commands.FishDexCommand;
-import org.aincraft.commands.GiveFishItemsCommand;
-import org.aincraft.commands.TackleBoxCommand;
+import org.aincraft.commands.*;
 import org.aincraft.config.FishConfig;
 import org.aincraft.container.FishDistribution;
 import org.aincraft.container.FishEnvironment;
@@ -14,11 +12,11 @@ import org.aincraft.ingame_items.*;
 import org.aincraft.items.BaitRegistry;
 import org.aincraft.items.CustomFishItems;
 import org.aincraft.listener.*;
+import org.aincraft.packetblocks.GuttingStationRegistry;
 import org.aincraft.provider.FishEnvironmentDefaultsProvider;
 import org.aincraft.provider.FishEnvironmentProvider;
 import org.aincraft.provider.FishModelProvider;
 import org.aincraft.provider.FishRarityProvider;
-import org.aincraft.commands.FishStatsCommand;
 import org.aincraft.rods.RodKeys;
 import org.aincraft.rods.RodProvider;
 import org.aincraft.rods.RodsConfig;
@@ -92,6 +90,23 @@ public class LongHardFish extends JavaPlugin {
 
         org.aincraft.knives.KnifeProvider knifeProvider = new org.aincraft.knives.KnifeProvider(this, knivesCfg);
         knifeProvider.parse();
+
+        getServer().getPluginManager().registerEvents(
+                new org.aincraft.knives.KnifeSmithingListener(this, knifeProvider), this);
+
+        Bukkit.getScheduler().runTask(this, () -> {
+            try {
+                org.aincraft.Bridge.bridge(); // throws if bridge not ready
+                org.aincraft.packetblocks.GuttingStationRegistry.register();
+                getLogger().info("Gutting Station registered with PacketBlocks.");
+            } catch (Throwable t) {
+                getLogger().severe("PacketBlocks not ready; skipping Gutting Station registration: " + t.getMessage());
+            }
+        });
+
+        GiveGuttingStationCommand givePacketBlockCmd = new GiveGuttingStationCommand();
+        Objects.requireNonNull(getCommand("lhf-give")).setExecutor(givePacketBlockCmd);
+        Objects.requireNonNull(getCommand("lhf-give")).setTabCompleter(givePacketBlockCmd);
 
         // Listeners that enforce enchant rules and preferred break speed (Paper)
         getServer().getPluginManager().registerEvents(new org.aincraft.knives.KnifeEnchantListener(this, knifeProvider), this);
@@ -236,6 +251,11 @@ public class LongHardFish extends JavaPlugin {
         var fishProcessorUI  = new org.aincraft.processor.FishProcessorUI(this, materialProvider);
         getServer().getPluginManager().registerEvents(fishProcessorUI, this);
 
+        getServer().getPluginManager().registerEvents(
+                new org.aincraft.listener.FishGutTableListener(this, fishProcessorUI),
+                this
+        );
+
         Objects.requireNonNull(getCommand("fishgut")).setExecutor((sender, cmd, lbl, args) -> {
             if (sender instanceof Player p) {
                 fishProcessorUI.open(p);
@@ -286,6 +306,10 @@ public class LongHardFish extends JavaPlugin {
 
         NaturalTrackerService naturalTracker = new NaturalTrackerService(this);
         getServer().getPluginManager().registerEvents(naturalTracker, this);
+
+        FishDexAdminCommand admin = new FishDexAdminCommand(db); // pass your db field + plugin
+        Objects.requireNonNull(getCommand("lhf-fishdex")).setExecutor(admin);
+        Objects.requireNonNull(getCommand("lhf-fishdex")).setTabCompleter(admin);
 
         GrubbBait.registerInto(this);
         TickBait.registerInto(this);
