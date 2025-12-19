@@ -6,10 +6,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.ShapedRecipe;
 
 /**
- * Blocks the vanilla fishing rod crafting recipe (3 Sticks + 2 String pattern).
- * Forces players to use only the custom fishing-rod recipe from recipe_rods.yml.
+ * Blocks vanilla fishing rod crafting attempts while allowing custom recipes.
+ *
+ * Checks the recipe's NamespacedKey to distinguish between:
+ * - Custom "fishing-rod" recipe: Allowed (crafting succeeds)
+ * - Vanilla fishing rod (3 Sticks + 2 String): Blocked (result set to null)
  *
  * Vanilla recipe pattern:
  * S S S
@@ -31,7 +36,20 @@ public final class VanillaFishingRodBlocker implements Listener {
             return;
         }
 
-        // Check if this is a vanilla fishing rod crafting attempt
+        // Check if a recipe was matched
+        Recipe recipe = inventory.getRecipe();
+
+        // If we have a ShapedRecipe, check if it's our custom "fishing-rod" recipe
+        if (recipe instanceof ShapedRecipe shapedRecipe) {
+            String recipeKey = shapedRecipe.getKey().getKey();
+            // Allow our custom fishing-rod recipe to proceed
+            if ("fishing-rod".equals(recipeKey)) {
+                return;
+            }
+        }
+
+        // For vanilla recipes (no recipe match or other shaped recipes),
+        // verify it matches the vanilla pattern and block it
         if (isVanillaFishingRodRecipe(inventory)) {
             event.getInventory().setResult(null);
         }
