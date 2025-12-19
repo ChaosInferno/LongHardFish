@@ -336,6 +336,14 @@ public class LongHardFish extends JavaPlugin {
         recipeService.registerAll(recipeDefinitions);
         getLogger().info("Custom crafting recipes loaded (" + recipeDefinitions.size() + " total).");
 
+        // Remove vanilla fishing rod recipe entirely
+        NamespacedKey vanillaFishingRod = new NamespacedKey("minecraft", "fishing_rod");
+        if (getServer().removeRecipe(vanillaFishingRod)) {
+            getLogger().info("Vanilla fishing rod recipe unregistered successfully.");
+        } else {
+            getLogger().warning("Failed to unregister vanilla fishing rod recipe - may not exist or already removed.");
+        }
+
         // Discover recipes for players automatically (shows in recipe book when they have ingredients)
         getServer().getPluginManager().registerEvents(
             new org.aincraft.recipes.RecipeDiscoveryListener(this, recipeDefinitions), this);
@@ -347,10 +355,6 @@ public class LongHardFish extends JavaPlugin {
         // Block vanilla fishing rod crafting - force use of custom recipe
         getServer().getPluginManager().registerEvents(
             new org.aincraft.recipes.VanillaFishingRodBlocker(), this);
-
-        // Block vanilla fishing rod recipe discovery in recipe book
-        getServer().getPluginManager().registerEvents(
-            new org.aincraft.recipes.RecipeDiscoveryBlocker(), this);
 
         // Custom recipes with custom items as ingredients
         org.aincraft.recipes.CustomRecipeListener customRecipes = new org.aincraft.recipes.CustomRecipeListener(this);
