@@ -283,17 +283,40 @@ public class LongHardFish extends JavaPlugin {
         CustomFishItems.register("rhino_beetle",() -> RhinoBeetleBait.create(this, 1));
         CustomFishItems.register("scarab",      () -> ScarabBait.create(this, 1));
 
-        // === RECIPE SYSTEM ===
-        saveResource("recipes.yml", false);
-        File recipesFile = new File(getDataFolder(), "recipes.yml");
-        FileConfiguration recipesConfig = YamlConfiguration.loadConfiguration(recipesFile);
+        // Register all knives from KnifeProvider
+        for (String knifeId : knifeProvider.ids()) {
+            CustomFishItems.register(knifeId, () -> {
+                var knife = knifeProvider.get(knifeId);
+                if (knife != null) {
+                    return org.aincraft.knives.KnifeFactory.create(this, knife);
+                }
+                return null;
+            });
+        }
 
+        // === RECIPE SYSTEM ===
+        // Load tool recipes
+        saveResource("recipes_tools.yml", false);
+        File recipesToolsFile = new File(getDataFolder(), "recipes_tools.yml");
+        FileConfiguration recipesToolsConfig = YamlConfiguration.loadConfiguration(recipesToolsFile);
+
+        // Load knife recipes
+        saveResource("recipe_knives.yml", false);
+        File recipesKnivesFile = new File(getDataFolder(), "recipe_knives.yml");
+        FileConfiguration recipesKnivesConfig = YamlConfiguration.loadConfiguration(recipesKnivesFile);
+
+        // Parse and merge both recipe files
         org.aincraft.recipes.RecipeConfigParser recipeParser = new org.aincraft.recipes.RecipeConfigParser(this);
-        this.recipeDefinitions = recipeParser.parse(recipesConfig);
+        Map<String, org.aincraft.recipes.RecipeDefinition> toolRecipes = recipeParser.parse(recipesToolsConfig);
+        Map<String, org.aincraft.recipes.RecipeDefinition> knifeRecipes = recipeParser.parse(recipesKnivesConfig);
+
+        // Combine all recipes
+        this.recipeDefinitions = new java.util.LinkedHashMap<>(toolRecipes);
+        this.recipeDefinitions.putAll(knifeRecipes);
 
         this.recipeService = new org.aincraft.recipes.RecipeRegistrationService(this);
         recipeService.registerAll(recipeDefinitions);
-        getLogger().info("Custom crafting recipes loaded.");
+        getLogger().info("Custom crafting recipes loaded (" + recipeDefinitions.size() + " total).");
 
         // Discover recipes for players automatically (shows in recipe book when they have ingredients)
         getServer().getPluginManager().registerEvents(
@@ -397,8 +420,12 @@ public class LongHardFish extends JavaPlugin {
         // Right-click listener should call service.openFromHand(...)
         getServer().getPluginManager().registerEvents(new TackleBoxListener(tackleBoxItem, tackleBoxService), this);
 
+        // Create the tool and bait command handlers
+        org.aincraft.commands.GiveToolCommand giveToolCmd = new org.aincraft.commands.GiveToolCommand();
+        org.aincraft.commands.GiveBaitCommand giveBaitCmd = new org.aincraft.commands.GiveBaitCommand();
+
         // Register the main /lhf command dispatcher
-        LhfCommand lhfCmd = new LhfCommand(this, giveCmd, adminCmd, statsCmd, fishProcessorUI, tackleBoxService);
+        LhfCommand lhfCmd = new LhfCommand(this, giveCmd, giveToolCmd, giveBaitCmd, adminCmd, statsCmd, fishProcessorUI, tackleBoxService);
         Objects.requireNonNull(getCommand("lhf")).setExecutor(lhfCmd);
         Objects.requireNonNull(getCommand("lhf")).setTabCompleter(lhfCmd);
     }

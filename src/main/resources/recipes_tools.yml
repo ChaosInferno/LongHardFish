@@ -1,5 +1,5 @@
-# Custom Crafting Recipes Configuration
-# This file defines all custom crafting recipes for the Long Hard Fish plugin
+# Custom Crafting Recipes Configuration - Tools
+# This file defines all custom crafting recipes for tools and custom items
 
 biome_radar:
   # Result item - must match a CustomFishItems registry ID
@@ -138,7 +138,7 @@ fishdex:
   # 3x3 crafting grid shape
   shape:
     - "121"     # Row 1: Redstone Dust, Glass Pane, Redstone Dust
-    - "346"     # Row 2: Lapis Lazuli, Observer, Copper Block
+    - "346"     # Row 2: Lapis Lazuli, Observer, Copper Ingot
     - "525"     # Row 3: Button (any), Glass Pane, Button (any)
 
   # Map shape characters to materials
