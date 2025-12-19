@@ -3,15 +3,13 @@ package org.aincraft.listener;
 import dev.triumphteam.gui.guis.StorageGui;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.aincraft.gui.TackleBoxGui;
 import org.aincraft.ingame_items.TackleBoxItem;
 import org.aincraft.items.BaitKeys;
 import org.aincraft.items.BaitRegistry;
 import org.aincraft.items.FishKeys;
 import org.aincraft.items.TackleBoxStorage;
+import org.aincraft.rods.RodItemFactory;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -158,31 +156,6 @@ public final class TackleBoxService implements TackleBoxGui.TackleBoxClickHandle
 
     // -------------------- Bait Helpers --------------------
 
-    private void updateRodLore(ItemStack rod) {
-        if (rod == null || !rod.hasItemMeta()) return;
-        String id = BaitKeys.getRodBait(plugin, rod);
-        int count = BaitKeys.getRodBaitCount(plugin, rod);
-
-        ItemMeta meta = rod.getItemMeta();
-        java.util.List<Component> lore = new java.util.ArrayList<>();
-        if (meta.lore() != null) lore.addAll(meta.lore());
-
-        // remove any previous bait line (old format)
-        PlainTextComponentSerializer plain = PlainTextComponentSerializer.plainText();
-        lore.removeIf(c -> {
-            String s = plain.serialize(c).toLowerCase(Locale.ENGLISH).trim();
-            return s.startsWith("bait: ") || s.endsWith(" attached");
-        });
-
-        if (id != null && count > 0) {
-            String disp = BaitRegistry.displayName(id, count);
-            lore.add(Component.text(count + "x " + disp + " attached", NamedTextColor.GOLD));
-        }
-
-        meta.lore(lore);
-        rod.setItemMeta(meta);
-    }
-
     /**
      * Attach from slot 35 into the rod in slot 17, only when the rod is being picked up.
      */
@@ -216,7 +189,7 @@ public final class TackleBoxService implements TackleBoxGui.TackleBoxClickHandle
         if (bin.getAmount() <= 0) top.setItem(baitSlot, null);
 
         BaitKeys.setRodBait(plugin, rod, rodId, rodCount);
-        updateRodLore(rod);
+        RodItemFactory.updateBaitStatusLine(plugin, rod, rodId);
         top.setItem(rodSlot, rod);
     }
 
@@ -256,10 +229,11 @@ public final class TackleBoxService implements TackleBoxGui.TackleBoxClickHandle
 
         if (rodCount <= 0) {
             BaitKeys.clearRodBait(plugin, incomingRod);
+            RodItemFactory.updateBaitStatusLine(plugin, incomingRod, null);
         } else {
             BaitKeys.setRodBait(plugin, incomingRod, rodId, rodCount);
+            RodItemFactory.updateBaitStatusLine(plugin, incomingRod, rodId);
         }
-        updateRodLore(incomingRod);
     }
 
     /**
@@ -291,10 +265,11 @@ public final class TackleBoxService implements TackleBoxGui.TackleBoxClickHandle
         rodCount -= bait.getAmount();
         if (rodCount <= 0) {
             BaitKeys.clearRodBait(plugin, rod);
+            RodItemFactory.updateBaitStatusLine(plugin, rod, null);
         } else {
             BaitKeys.setRodBait(plugin, rod, rodId, rodCount);
+            RodItemFactory.updateBaitStatusLine(plugin, rod, rodId);
         }
-        updateRodLore(rod);
         top.setItem(rodSlot, rod);
     }
 

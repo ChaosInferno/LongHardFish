@@ -12,6 +12,10 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import org.aincraft.items.BaitKeys;
+import org.aincraft.items.BaitRegistry;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 
 public final class RodItemFactory {
     private final Plugin plugin;
@@ -122,5 +126,46 @@ public final class RodItemFactory {
         }
         if (line.length() > 0) lines.add(line.toString());
         return lines;
+    }
+
+    /**
+     * Updates the rod's lore to reflect the current bait status.
+     * Removes the old bait status line and adds a new one based on current bait data.
+     *
+     * @param plugin The plugin instance
+     * @param rod The fishing rod ItemStack to update
+     * @param baitId The bait ID (null or empty for no bait)
+     */
+    public static void updateBaitStatusLine(Plugin plugin, ItemStack rod, String baitId) {
+        if (rod == null || !rod.hasItemMeta()) return;
+
+        ItemMeta meta = rod.getItemMeta();
+        List<Component> lore = new ArrayList<>();
+        if (meta.lore() != null) {
+            lore.addAll(meta.lore());
+        }
+
+        // Remove any previous bait status lines (old "Bait: ..." or new "... attached")
+        PlainTextComponentSerializer plain = PlainTextComponentSerializer.plainText();
+        lore.removeIf(c -> {
+            String s = plain.serialize(c).toLowerCase(Locale.ENGLISH).trim();
+            return s.startsWith("bait: ") || s.endsWith(" attached") || s.equals("no bait attached");
+        });
+
+        // Add new bait status line
+        if (baitId == null || baitId.isBlank()) {
+            lore.add(Component.text("No bait attached", NamedTextColor.GOLD));
+        } else {
+            int count = BaitKeys.getRodBaitCount(plugin, rod);
+            String displayName = BaitRegistry.displayName(baitId, count);
+            if (count > 0) {
+                lore.add(Component.text(count + "x " + displayName + " attached", NamedTextColor.GOLD));
+            } else {
+                lore.add(Component.text("No bait attached", NamedTextColor.GOLD));
+            }
+        }
+
+        meta.lore(lore);
+        rod.setItemMeta(meta);
     }
 }
