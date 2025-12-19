@@ -6,6 +6,23 @@
 # TIER 1 - BASIC RODS (Easy to craft)
 # ============================================================================
 
+fishing-rod:
+  # Result item - must match a CustomFishItems registry ID
+  result: fishing-rod
+  permission: longhardfish.craft.rod.tier1
+
+  # 3x3 crafting grid shape
+  shape:
+    - "   "     # Row 1: empty
+    - " 12"     # Row 2: empty, Stick, String
+    - " 3 "     # Row 3: empty, String, empty
+
+  # Map shape characters to materials
+  ingredients:
+    '1': STICK
+    '2': STRING
+    '3': STRING
+
 old-rod:
   # Result item - must match a CustomFishItems registry ID
   result: old-rod
