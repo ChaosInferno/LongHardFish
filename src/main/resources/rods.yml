@@ -7,6 +7,13 @@
 # speed: Good constraints are between -0.95 -> 0.95
 # double: Hard constraints are 0.0 -> no double chance to 1.0 -> guaranteed double chance
 
+fishing-rod:
+  description: A regular fishing rod
+  tier: 1
+  bonus:
+    rarity:
+      COMMON: 0.30
+
 old-rod:
   description: A low quality rod crafted from some sticks and string. It gets the job done I suppose...
   tier: 1
