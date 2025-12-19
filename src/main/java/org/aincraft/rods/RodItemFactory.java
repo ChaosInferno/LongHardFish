@@ -43,6 +43,9 @@ public final class RodItemFactory {
             }
         }
 
+        // Bait status line (gold)
+        lore.add(Component.text("No bait attached", NamedTextColor.GOLD));
+
         meta.lore(lore);
 
         meta.setItemModel(NamespacedKey.fromString(def.itemModelKey()));
