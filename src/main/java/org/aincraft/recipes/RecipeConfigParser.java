@@ -82,7 +82,8 @@ public final class RecipeConfigParser {
             }
         }
 
-        return new RecipeDefinition(id, resultId, shape, ingredients);
+        String permission = section.getString("permission");
+        return new RecipeDefinition(id, resultId, shape, ingredients, permission);
     }
 
     private RecipeDefinition.IngredientChoice parseIngredient(

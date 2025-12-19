@@ -294,6 +294,17 @@ public class LongHardFish extends JavaPlugin {
             });
         }
 
+        // Register all rods from RodProvider
+        for (String rodId : rodProvider.ids()) {
+            CustomFishItems.register(rodId, () -> {
+                var rod = rodProvider.get(rodId);
+                if (rod != null) {
+                    return org.aincraft.rods.RodFactory.create(this, rod);
+                }
+                return null;
+            });
+        }
+
         // === RECIPE SYSTEM ===
         // Load tool recipes
         saveResource("recipes_tools.yml", false);
@@ -305,14 +316,21 @@ public class LongHardFish extends JavaPlugin {
         File recipesKnivesFile = new File(getDataFolder(), "recipe_knives.yml");
         FileConfiguration recipesKnivesConfig = YamlConfiguration.loadConfiguration(recipesKnivesFile);
 
-        // Parse and merge both recipe files
+        // Load rod recipes
+        saveResource("recipe_rods.yml", false);
+        File recipesRodsFile = new File(getDataFolder(), "recipe_rods.yml");
+        FileConfiguration recipesRodsConfig = YamlConfiguration.loadConfiguration(recipesRodsFile);
+
+        // Parse and merge all recipe files
         org.aincraft.recipes.RecipeConfigParser recipeParser = new org.aincraft.recipes.RecipeConfigParser(this);
         Map<String, org.aincraft.recipes.RecipeDefinition> toolRecipes = recipeParser.parse(recipesToolsConfig);
         Map<String, org.aincraft.recipes.RecipeDefinition> knifeRecipes = recipeParser.parse(recipesKnivesConfig);
+        Map<String, org.aincraft.recipes.RecipeDefinition> rodRecipes = recipeParser.parse(recipesRodsConfig);
 
         // Combine all recipes
         this.recipeDefinitions = new java.util.LinkedHashMap<>(toolRecipes);
         this.recipeDefinitions.putAll(knifeRecipes);
+        this.recipeDefinitions.putAll(rodRecipes);
 
         this.recipeService = new org.aincraft.recipes.RecipeRegistrationService(this);
         recipeService.registerAll(recipeDefinitions);
@@ -321,6 +339,10 @@ public class LongHardFish extends JavaPlugin {
         // Discover recipes for players automatically (shows in recipe book when they have ingredients)
         getServer().getPluginManager().registerEvents(
             new org.aincraft.recipes.RecipeDiscoveryListener(this, recipeDefinitions), this);
+
+        // Enforce permission requirements for recipes that have them
+        getServer().getPluginManager().registerEvents(
+            new org.aincraft.recipes.RecipePermissionListener(recipeDefinitions), this);
 
         // Custom recipes with custom items as ingredients
         org.aincraft.recipes.CustomRecipeListener customRecipes = new org.aincraft.recipes.CustomRecipeListener(this);

@@ -15,8 +15,13 @@ public record RecipeDefinition(
     String id,
     String resultItemId,
     List<String> shape,
-    Map<Character, IngredientChoice> ingredients
+    Map<Character, IngredientChoice> ingredients,
+    String permission
 ) {
+    public RecipeDefinition(String id, String resultItemId, List<String> shape, Map<Character, IngredientChoice> ingredients) {
+        this(id, resultItemId, shape, ingredients, null);
+    }
+
     public RecipeDefinition {
         Objects.requireNonNull(id, "id");
         Objects.requireNonNull(resultItemId, "resultItemId");
