@@ -9,7 +9,7 @@
 old-rod:
   # Result item - must match a CustomFishItems registry ID
   result: old-rod
-  permission: longhardfish.craft.old-rod
+  permission: longhardfish.craft.rod.tier1
 
   # 3x3 crafting grid shape
   shape:
@@ -31,7 +31,7 @@ old-rod:
 copper-rod:
   # Result item - must match a CustomFishItems registry ID
   result: copper-rod
-  permission: longhardfish.craft.copper-rod
+  permission: longhardfish.craft.rod.tier2
 
   # 3x3 crafting grid shape
   shape:
@@ -50,7 +50,7 @@ copper-rod:
 iron-rod:
   # Result item - must match a CustomFishItems registry ID
   result: iron-rod
-  permission: longhardfish.craft.iron-rod
+  permission: longhardfish.craft.rod.tier2
 
   # 3x3 crafting grid shape
   shape:
@@ -73,7 +73,7 @@ iron-rod:
 blazed-rod:
   # Result item - must match a CustomFishItems registry ID
   result: blazed-rod
-  permission: longhardfish.craft.blazed-rod
+  permission: longhardfish.craft.rod.tier3
 
   # 3x3 crafting grid shape
   shape:
@@ -93,7 +93,7 @@ blazed-rod:
 echo-rod:
   # Result item - must match a CustomFishItems registry ID
   result: echo-rod
-  permission: longhardfish.craft.echo-rod
+  permission: longhardfish.craft.rod.tier3
 
   # 3x3 crafting grid shape
   shape:
@@ -113,7 +113,7 @@ echo-rod:
 seafoam-rod:
   # Result item - must match a CustomFishItems registry ID
   result: seafoam-rod
-  permission: longhardfish.craft.seafoam-rod
+  permission: longhardfish.craft.rod.tier3
 
   # 3x3 crafting grid shape
   shape:
@@ -137,7 +137,7 @@ seafoam-rod:
 wraith-spine:
   # Result item - must match a CustomFishItems registry ID
   result: wraith-spine
-  permission: longhardfish.craft.wraith-spine
+  permission: longhardfish.craft.rod.tier4
 
   # 3x3 crafting grid shape
   shape:
@@ -157,7 +157,7 @@ wraith-spine:
 slitherpole:
   # Result item - must match a CustomFishItems registry ID
   result: slitherpole
-  permission: longhardfish.craft.slitherpole
+  permission: longhardfish.craft.rod.tier4
 
   # 3x3 crafting grid shape
   shape:
@@ -177,7 +177,7 @@ slitherpole:
 blooming-line:
   # Result item - must match a CustomFishItems registry ID
   result: blooming-line
-  permission: longhardfish.craft.blooming-line
+  permission: longhardfish.craft.rod.tier4
 
   # 3x3 crafting grid shape
   shape:
@@ -216,7 +216,7 @@ blooming-line:
 permafrost-pole:
   # Result item - must match a CustomFishItems registry ID
   result: permafrost-pole
-  permission: longhardfish.craft.permafrost-pole
+  permission: longhardfish.craft.rod.tier4
 
   # 3x3 crafting grid shape
   shape:
