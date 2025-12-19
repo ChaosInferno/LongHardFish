@@ -27,23 +27,6 @@ permissions:
     description: Admin permission for LongHardFish utilities
     default: op
 
-  # Knife Crafting Permissions
-  longhardfish.craft.wooden-knife:
-    description: Craft wooden-knife
-    default: true
-  longhardfish.craft.stone-knife:
-    description: Craft stone-knife
-    default: true
-  longhardfish.craft.gold-knife:
-    description: Craft gold-knife
-    default: true
-  longhardfish.craft.iron-knife:
-    description: Craft iron-knife
-    default: true
-  longhardfish.craft.diamond-knife:
-    description: Craft diamond-knife
-    default: true
-
   # Tier 1 Rod Crafting Permissions (Easy)
   longhardfish.craft.old-rod:
     description: Craft old-rod (Tier 1)
