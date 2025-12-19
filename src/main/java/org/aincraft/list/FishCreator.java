@@ -80,6 +80,7 @@ public class FishCreator {
             case LEGENDARY -> "Legendary";
             case EVENT     -> "Event";
         };
-        return Component.text(longName, color);
+        return Component.text(longName, color)
+                .decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false);
     }
 }

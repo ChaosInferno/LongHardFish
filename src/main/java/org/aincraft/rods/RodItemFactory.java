@@ -27,8 +27,9 @@ public final class RodItemFactory {
 
         List<Component> lore = new ArrayList<>();
 
-        // Line 2: Rarity based on tier
-        Component rarityLine = Component.text(tierToRarityName(def.tier()), tierToRarityColor(def.tier()));
+        // Line 2: Rarity based on tier (no italics)
+        Component rarityLine = Component.text(tierToRarityName(def.tier()), tierToRarityColor(def.tier()))
+                .decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false);
         lore.add(rarityLine);
 
         // Line 3: Stars
