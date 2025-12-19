@@ -57,6 +57,8 @@ public class LongHardFish extends JavaPlugin {
     private BaitForagingService baitForaging;
     private RodProvider rodProvider;
     private OmegaFishFinderItem omegaFishFinderItem;
+    private org.aincraft.recipes.RecipeRegistrationService recipeService;
+    private Map<String, org.aincraft.recipes.RecipeDefinition> recipeDefinitions;
 
     @Override
     public void onEnable() {
@@ -104,20 +106,19 @@ public class LongHardFish extends JavaPlugin {
             }
         });
 
-        GiveGuttingStationCommand givePacketBlockCmd = new GiveGuttingStationCommand();
-        Objects.requireNonNull(getCommand("lhf-give")).setExecutor(givePacketBlockCmd);
-        Objects.requireNonNull(getCommand("lhf-give")).setTabCompleter(givePacketBlockCmd);
-
         // Listeners that enforce enchant rules and preferred break speed (Paper)
         getServer().getPluginManager().registerEvents(new org.aincraft.knives.KnifeEnchantListener(this, knifeProvider), this);
 
         getServer().getPluginManager().registerEvents(
                 new org.aincraft.knives.KnifeRepairListener(this, knifeProvider), this);
 
-        // Extend /lhfgive to handle “knife <knife-id>”
-        org.aincraft.commands.GiveFishItemsCommand giveCmd = new org.aincraft.commands.GiveFishItemsCommand(this, knifeProvider);
-        Objects.requireNonNull(getCommand("lhfgive")).setExecutor(giveCmd);
-        Objects.requireNonNull(getCommand("lhfgive")).setTabCompleter(giveCmd);
+        // Create the give command with full support for knife, fish, rod, and tool subcommands
+        org.aincraft.commands.GiveFishItemsCommand giveCmd = new org.aincraft.commands.GiveFishItemsCommand(
+            this,
+            knifeProvider,
+            modelProvider,
+            rarityProvider
+        );
 
         // Pick a fish that uses defaults, e.g. "trash"
         var trash = envs.get(new NamespacedKey(this, "trash"));
@@ -156,10 +157,8 @@ public class LongHardFish extends JavaPlugin {
         FishCatchListener catchListener = new FishCatchListener(this, environmentProvider, rarityProvider, modelProvider, stats, rodProvider);
         getServer().getPluginManager().registerEvents(catchListener, this);
 
-        // Commands
+        // Create stats command for use in main /lhf command
         FishStatsCommand statsCmd = new FishStatsCommand(this, stats);
-        Objects.requireNonNull(getCommand("fishstats")).setExecutor(statsCmd);
-        Objects.requireNonNull(getCommand("fishstats")).setTabCompleter(statsCmd);
 
         // --- Build lookups for the selector ---
         Map<NamespacedKey, FishEnvironment> envMap = environmentProvider.parseFishEnvironmentObjects();
@@ -256,14 +255,6 @@ public class LongHardFish extends JavaPlugin {
                 this
         );
 
-        Objects.requireNonNull(getCommand("fishgut")).setExecutor((sender, cmd, lbl, args) -> {
-            if (sender instanceof Player p) {
-                fishProcessorUI.open(p);
-                return true;
-            }
-            sender.sendMessage("Players only.");
-            return true;
-        });
 
         this.fishDexItem = new FishDexItem(this);
         this.sextantItem = new SextantItem(this);
@@ -292,6 +283,40 @@ public class LongHardFish extends JavaPlugin {
         CustomFishItems.register("rhino_beetle",() -> RhinoBeetleBait.create(this, 1));
         CustomFishItems.register("scarab",      () -> ScarabBait.create(this, 1));
 
+        // === RECIPE SYSTEM ===
+        saveResource("recipes.yml", false);
+        File recipesFile = new File(getDataFolder(), "recipes.yml");
+        FileConfiguration recipesConfig = YamlConfiguration.loadConfiguration(recipesFile);
+
+        org.aincraft.recipes.RecipeConfigParser recipeParser = new org.aincraft.recipes.RecipeConfigParser(this);
+        this.recipeDefinitions = recipeParser.parse(recipesConfig);
+
+        this.recipeService = new org.aincraft.recipes.RecipeRegistrationService(this);
+        recipeService.registerAll(recipeDefinitions);
+        getLogger().info("Custom crafting recipes loaded.");
+
+        // Discover recipes for players automatically (shows in recipe book when they have ingredients)
+        getServer().getPluginManager().registerEvents(
+            new org.aincraft.recipes.RecipeDiscoveryListener(this, recipeDefinitions), this);
+
+        // Custom recipes with custom items as ingredients
+        org.aincraft.recipes.CustomRecipeListener customRecipes = new org.aincraft.recipes.CustomRecipeListener(this);
+
+        // Load compounded recipes from YAML
+        saveResource("compounded_recipes.yml", false);
+        File compoundedFile = new File(getDataFolder(), "compounded_recipes.yml");
+        FileConfiguration compoundedConfig = YamlConfiguration.loadConfiguration(compoundedFile);
+
+        org.aincraft.recipes.CompoundedRecipeParser compoundedParser = new org.aincraft.recipes.CompoundedRecipeParser(this);
+        Map<String, org.aincraft.recipes.CustomRecipeListener.ItemPattern> compoundedRecipes = compoundedParser.parse(compoundedConfig);
+
+        // Register all compounded recipes
+        for (Map.Entry<String, org.aincraft.recipes.CustomRecipeListener.ItemPattern> entry : compoundedRecipes.entrySet()) {
+            customRecipes.registerRecipe(entry.getKey(), entry.getValue());
+        }
+
+        getServer().getPluginManager().registerEvents(customRecipes, this);
+
         getServer().getPluginManager().registerEvents(new FishDexListener(this, fishDexItem), this);
         getServer().getPluginManager().registerEvents(new SextantListener(sextantItem), this);
         getServer().getPluginManager().registerEvents(new WeatherRadioListener(weatherRadioItem), this);
@@ -301,15 +326,17 @@ public class LongHardFish extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new RodBaitConsumeListener(this), this);
         getServer().getPluginManager().registerEvents(new OmegaFishFinderListener(omegaFishFinderItem), this);
 
+        // Block custom fish from being cooked in furnaces/campfires
+        getServer().getPluginManager().registerEvents(new CustomFishCookingBlocker(this), this);
+
         baitForaging = new BaitForagingService(this);
         getServer().getPluginManager().registerEvents(baitForaging, this);
 
         NaturalTrackerService naturalTracker = new NaturalTrackerService(this);
         getServer().getPluginManager().registerEvents(naturalTracker, this);
 
-        FishDexAdminCommand admin = new FishDexAdminCommand(db); // pass your db field + plugin
-        Objects.requireNonNull(getCommand("lhf-fishdex")).setExecutor(admin);
-        Objects.requireNonNull(getCommand("lhf-fishdex")).setTabCompleter(admin);
+        // Create admin command for use in main /lhf command
+        FishDexAdminCommand adminCmd = new FishDexAdminCommand(db);
 
         GrubbBait.registerInto(this);
         TickBait.registerInto(this);
@@ -329,8 +356,17 @@ public class LongHardFish extends JavaPlugin {
         final int tackleBoxSize = 54; // or 27 if you prefer single chest
         TackleBoxService tackleBoxService = new TackleBoxService(this, tackleBoxItem, tackleBoxSize);
 
-        // The service itself listens for clicks & close (saving contents)
-        getServer().getPluginManager().registerEvents(tackleBoxService, this);
+        // Prevent dropping the TackleBox while the GUI is open
+        getServer().getPluginManager().registerEvents(new org.bukkit.event.Listener() {
+            @org.bukkit.event.EventHandler(priority = org.bukkit.event.EventPriority.HIGHEST)
+            public void onDrop(org.bukkit.event.player.PlayerDropItemEvent e) {
+                if (tackleBoxService.hasOpenSession(e.getPlayer())
+                        && tackleBoxService.getTackleBoxItem().isTackleBox(e.getItemDrop().getItemStack())) {
+                    e.setCancelled(true);
+                    e.getPlayer().setCooldown(e.getItemDrop().getItemStack().getType(), 5);
+                }
+            }
+        }, this);
 
         BobberAddonDisplay.RodResolver rodResolver = angler -> {
             var hand = angler.getInventory().getItemInMainHand();
@@ -359,17 +395,23 @@ public class LongHardFish extends JavaPlugin {
         getServer().getPluginManager().registerEvents(addon, this);
 
         // Right-click listener should call service.openFromHand(...)
-        // (Make sure your TackleBoxListener constructor accepts the service)
         getServer().getPluginManager().registerEvents(new TackleBoxListener(tackleBoxItem, tackleBoxService), this);
 
-        // /tacklebox opens the GUI for the box in hand
-        Objects.requireNonNull(getCommand("tacklebox")).setExecutor(new TackleBoxCommand(this, tackleBoxService));
+        // Register the main /lhf command dispatcher
+        LhfCommand lhfCmd = new LhfCommand(this, giveCmd, adminCmd, statsCmd, fishProcessorUI, tackleBoxService);
+        Objects.requireNonNull(getCommand("lhf")).setExecutor(lhfCmd);
+        Objects.requireNonNull(getCommand("lhf")).setTabCompleter(lhfCmd);
     }
 
     public RodProvider getRodProvider() { return rodProvider; }
 
     @Override
     public void onDisable() {
+        // Unregister recipes
+        if (recipeService != null && recipeDefinitions != null) {
+            recipeService.unregisterAll(recipeDefinitions);
+        }
+
         // Try to restore any online players who still have a masked inventory
         if (invBackup != null) {
             for (Player p : Bukkit.getOnlinePlayers()) {
@@ -378,6 +420,15 @@ public class LongHardFish extends JavaPlugin {
                 } catch (Exception ex) {
                     getLogger().warning("Failed to restore inventory for " + p.getName() + ": " + ex.getMessage());
                 }
+            }
+        }
+
+        // Close database
+        if (db != null) {
+            try {
+                db.close();
+            } catch (Exception e) {
+                getLogger().warning("Failed to close database: " + e.getMessage());
             }
         }
     }

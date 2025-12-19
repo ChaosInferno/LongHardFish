@@ -1,0 +1,21 @@
+# Compounded Recipes Configuration
+# Recipes that combine custom items with vanilla materials
+
+fish_finder:
+  # Result item - must match a CustomFishItems registry ID
+  result: fish_finder
+
+  # 3x3 crafting grid shape
+  shape:
+    - "121"     # Row 1: Glass, Biome Radar, Glass
+    - "345"     # Row 2: Sextant, Heart of Sea, Weather Radio
+    - "161"     # Row 3: Glass, Watch, Glass
+
+  # Map shape characters to materials or custom items
+  ingredients:
+    '1': GLASS
+    '2': biome_radar
+    '3': sextant
+    '4': HEART_OF_THE_SEA
+    '5': weather_radio
+    '6': watch
