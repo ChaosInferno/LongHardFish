@@ -26,3 +26,58 @@ permissions:
   lhf.admin:
     description: Admin permission for LongHardFish utilities
     default: op
+
+  # Knife Crafting Permissions
+  longhardfish.craft.wooden-knife:
+    description: Craft wooden-knife
+    default: true
+  longhardfish.craft.stone-knife:
+    description: Craft stone-knife
+    default: true
+  longhardfish.craft.gold-knife:
+    description: Craft gold-knife
+    default: true
+  longhardfish.craft.iron-knife:
+    description: Craft iron-knife
+    default: true
+  longhardfish.craft.diamond-knife:
+    description: Craft diamond-knife
+    default: true
+
+  # Tier 1 Rod Crafting Permissions (Easy)
+  longhardfish.craft.old-rod:
+    description: Craft old-rod (Tier 1)
+    default: true
+
+  # Tier 2 Rod Crafting Permissions (Intermediate)
+  longhardfish.craft.copper-rod:
+    description: Craft copper-rod (Tier 2)
+    default: true
+  longhardfish.craft.iron-rod:
+    description: Craft iron-rod (Tier 2)
+    default: true
+
+  # Tier 3 Rod Crafting Permissions (Advanced)
+  longhardfish.craft.blazed-rod:
+    description: Craft blazed-rod (Tier 3)
+    default: true
+  longhardfish.craft.echo-rod:
+    description: Craft echo-rod (Tier 3)
+    default: true
+  longhardfish.craft.seafoam-rod:
+    description: Craft seafoam-rod (Tier 3)
+    default: true
+
+  # Tier 4 Rod Crafting Permissions (Masterful)
+  longhardfish.craft.wraith-spine:
+    description: Craft wraith-spine (Tier 4)
+    default: op
+  longhardfish.craft.slitherpole:
+    description: Craft slitherpole (Tier 4)
+    default: op
+  longhardfish.craft.blooming-line:
+    description: Craft blooming-line (Tier 4)
+    default: op
+  longhardfish.craft.permafrost-pole:
+    description: Craft permafrost-pole (Tier 4)
+    default: op
