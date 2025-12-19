@@ -21,15 +21,22 @@ public final class RodItemFactory {
         ItemStack rod = new ItemStack(Material.FISHING_ROD);
         ItemMeta meta = rod.getItemMeta();
 
+        // Line 1: White name, no italics
         String display = niceName(def.id());
-        meta.displayName(Component.text(display, NamedTextColor.AQUA));
+        meta.displayName(Component.text(display, NamedTextColor.WHITE).decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false));
 
         List<Component> lore = new ArrayList<>();
 
+        // Line 2: Rarity based on tier
+        Component rarityLine = Component.text(tierToRarityName(def.tier()), tierToRarityColor(def.tier()));
+        lore.add(rarityLine);
+
+        // Line 3: Stars
         lore.add(Component.text(stars(def.tier(), 4), NamedTextColor.GOLD));
 
+        // Description for Tier 3+ only (remove for Tier 1 & 2)
         String desc = def.description();
-        if (desc != null && !desc.isBlank()) {
+        if (def.tier() >= 3 && desc != null && !desc.isBlank()) {
             for (String line : wrapWords(desc, 50)) {
                 lore.add(Component.text(line, NamedTextColor.GRAY));
             }
@@ -44,6 +51,26 @@ public final class RodItemFactory {
         meta.getPersistentDataContainer().set(RodKeys.rodTier(plugin), PersistentDataType.INTEGER, def.tier());
         rod.setItemMeta(meta);
         return rod;
+    }
+
+    private static String tierToRarityName(int tier) {
+        return switch (tier) {
+            case 1 -> "Common";
+            case 2 -> "Uncommon";
+            case 3 -> "Rare";
+            case 4 -> "Legendary";
+            default -> "Unknown";
+        };
+    }
+
+    private static NamedTextColor tierToRarityColor(int tier) {
+        return switch (tier) {
+            case 1 -> NamedTextColor.GRAY;
+            case 2 -> NamedTextColor.GREEN;
+            case 3 -> NamedTextColor.AQUA;
+            case 4 -> NamedTextColor.GOLD;
+            default -> NamedTextColor.GRAY;
+        };
     }
 
     public static String niceName(String id) {
