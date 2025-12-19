@@ -344,6 +344,10 @@ public class LongHardFish extends JavaPlugin {
         getServer().getPluginManager().registerEvents(
             new org.aincraft.recipes.RecipePermissionListener(recipeDefinitions), this);
 
+        // Block vanilla fishing rod crafting - force use of custom recipe
+        getServer().getPluginManager().registerEvents(
+            new org.aincraft.recipes.VanillaFishingRodBlocker(), this);
+
         // Custom recipes with custom items as ingredients
         org.aincraft.recipes.CustomRecipeListener customRecipes = new org.aincraft.recipes.CustomRecipeListener(this);
 
