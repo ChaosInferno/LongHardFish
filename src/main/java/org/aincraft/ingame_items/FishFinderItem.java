@@ -2,6 +2,7 @@ package org.aincraft.ingame_items;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemFlag;
@@ -27,7 +28,7 @@ public final class FishFinderItem {
         ItemStack stack = new ItemStack(Material.KNOWLEDGE_BOOK, 1);
         ItemMeta meta = stack.getItemMeta();
 
-        meta.displayName(Component.text("Fish Finder", NamedTextColor.AQUA));
+        meta.displayName(Component.text("Fish Finder", NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false));
         meta.lore(List.of(
                 Component.text("A culmination of all the tools,", NamedTextColor.GRAY),
                 Component.text("held together by fish oil and hope.", NamedTextColor.GRAY),

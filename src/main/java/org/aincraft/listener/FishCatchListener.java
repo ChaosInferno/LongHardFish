@@ -1,6 +1,9 @@
 package org.aincraft.listener;
 
 import io.papermc.paper.datacomponent.DataComponentTypes;
+import net.kyori.adventure.key.Key;
+import net.kyori.adventure.sound.Sound;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.aincraft.calculator.FishCalculator;
 import org.aincraft.container.FishDistribution;
 import org.aincraft.container.FishRarity;
@@ -16,6 +19,7 @@ import org.aincraft.service.StatsService;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.FishHook;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Item;
@@ -146,9 +150,6 @@ public class FishCatchListener implements Listener {
         Map<NamespacedKey, Double> validFish =
                 filter.getValidFish(player, hookLocation, hook, environmentProvider, rarityMap);
 
-        plugin.getLogger().info("[SANITY] validFish size=" + validFish.size() +
-                " keys=" + validFish.keySet().stream().map(NamespacedKey::getKey).toList());
-
         ItemStack rodStack = findUsedRod(player);
         String currentRodId = org.aincraft.rods.RodUtil.getRodId(plugin, rodStack);
         RodDefinition currentRod = (currentRodId != null) ? rodProvider.get(currentRodId) : null;
@@ -174,7 +175,6 @@ public class FishCatchListener implements Listener {
             rodBaitId = org.aincraft.items.BaitKeys.getRodBait(plugin, rodStack);
             if (rodBaitId != null) rodBaitId = rodBaitId.toLowerCase(Locale.ENGLISH);
         }
-        plugin.getLogger().info("[SANITY] rodBaitId = " + rodBaitId);
 
         Map<NamespacedKey, org.aincraft.container.FishEnvironment> envMap =
                 environmentProvider.parseFishEnvironmentObjects();
@@ -211,13 +211,6 @@ public class FishCatchListener implements Listener {
             weight = weight * (1.0 + b);
             if (weight <= 0.0) { it.remove(); continue; }
             e.setValue(weight);
-            if (!loggedSample) {
-                plugin.getLogger().info("[SANITY] bait adj: fish=" + fishKey.getKey()
-                        + " map=" + baitMap
-                        + " rod=" + rodBaitId
-                        + " bonus=" + b);
-                loggedSample = true;
-            }
         }
 
         // ==== Rod bonuses =========================================================
@@ -384,17 +377,34 @@ public class FishCatchListener implements Listener {
             displayNameText = Character.toUpperCase(pretty.charAt(0)) + pretty.substring(1);
         }
 
-        // 🧮 Record the catch in the DB (this increments caught_count)
-        stats.recordCatchAsync(player.getUniqueId(), chosenFishKey.toString(), displayNameText);
+        // Get the fish rarity for sound priority determination
+        FishRarity caughtFishRarity = rarityMap.get(chosenFishKey);
 
-        // Mark other eligible fish as "seen" (not the one we caught)
+        // Collect fish keys to mark as "seen" (all except the caught one)
+        java.util.List<String> seenFishKeys = new java.util.ArrayList<>();
         for (NamespacedKey key : validFish.keySet()) {
-                if (!key.equals(chosenFishKey)) {
-                       stats.markDropSeenAsync(player.getUniqueId(), key.toString(), null);
-                    }
+            if (!key.equals(chosenFishKey)) {
+                seenFishKeys.add(key.toString());
             }
+        }
 
-        // Swap the caught entity’s stack
+        // Record the catch with callback to handle sound effects
+        // Then mark other fish as seen to avoid database lock conflicts
+        stats.recordCatchAsyncWithCallback(player.getUniqueId(), chosenFishKey.toString(), displayNameText, isFirstCatch -> {
+            // Mark other eligible fish as "seen" after recording the catch
+            // Sequential execution prevents SQLITE_BUSY errors
+            if (!seenFishKeys.isEmpty()) {
+                stats.markMultipleDropSeenAsyncWithCallback(player.getUniqueId(), seenFishKeys, newlySeenCount -> {
+                    // Combine messages: play caught sound and display message with seen count appended if applicable
+                    playFishDiscoverySoundWithSeenCount(player, isFirstCatch, caughtFishRarity, newlySeenCount);
+                });
+            } else {
+                // No other fish to mark as seen, just play the caught sound
+                playFishDiscoverySoundWithSeenCount(player, isFirstCatch, caughtFishRarity, 0);
+            }
+        });
+
+        // Swap the caught entity's stack
         if (event.getCaught() instanceof Item caughtItem) {
             caughtItem.setItemStack(customFish);
             if (isDouble) {
@@ -402,6 +412,113 @@ public class FishCatchListener implements Listener {
             }
         } else {
             player.sendMessage("Caught entity is not an item.");
+        }
+
+        // Manually apply durability damage to fishing rod
+        // Required because replacing caught item prevents vanilla durability from applying
+        applyRodDurabilityDamage(player);
+    }
+
+    /**
+     * Applies durability damage to the player's fishing rod.
+     * Vanilla durability doesn't apply when we replace the caught item, so we handle it manually.
+     * Takes Unbreaking enchantment into account.
+     *
+     * @param player The player whose rod should take damage
+     */
+    private void applyRodDurabilityDamage(Player player) {
+        ItemStack rod = findUsedRod(player);
+        if (rod == null || rod.getType() != org.bukkit.Material.FISHING_ROD) return;
+
+        ItemMeta meta = rod.getItemMeta();
+        if (!(meta instanceof org.bukkit.inventory.meta.Damageable damageable)) return;
+
+        // Check Unbreaking enchantment level
+        int unbreakingLevel = rod.getEnchantmentLevel(Enchantment.UNBREAKING);
+
+        // Unbreaking has a chance to prevent durability loss
+        // Formula: (100 / (level + 1))% chance to take damage
+        if (unbreakingLevel > 0) {
+            double damageChance = 1.0 / (unbreakingLevel + 1.0);
+            if (Math.random() >= damageChance) {
+                return; // Unbreaking prevented damage
+            }
+        }
+
+        // Apply 1 point of damage
+        int currentDamage = damageable.getDamage();
+        int maxDurability = rod.getType().getMaxDurability();
+
+        if (currentDamage + 1 >= maxDurability) {
+            // Rod breaks
+            player.playSound(player.getLocation(), org.bukkit.Sound.ENTITY_ITEM_BREAK, 1.0f, 1.0f);
+            rod.setAmount(0); // Remove the item
+        } else {
+            // Apply damage
+            damageable.setDamage(currentDamage + 1);
+            rod.setItemMeta(meta);
+        }
+    }
+
+    /**
+     * Plays the appropriate fish discovery sound based on priority and sends accompanying message.
+     * Combines caught and seen messages when both conditions apply.
+     * Priority system (higher number = overrides lower):
+     * 1. catch.new-seen - When fish is marked as seen (not caught) for the first time
+     * 2. catch.new-caught - When any fish is caught for the first time
+     * 3. catch.new-caught-rare - When a RARE fish is caught for the first time
+     * 4. catch.new-caught-legendary - When a LEGENDARY fish is caught for the first time
+     *
+     * @param player The player to play sound for
+     * @param isFirstCatch True if this is the first catch of the caught fish
+     * @param rarity The rarity of the caught fish (can be null if not a first catch)
+     * @param newlySeenCount Count of newly seen fish (0 if none were seen)
+     */
+    private void playFishDiscoverySoundWithSeenCount(Player player, boolean isFirstCatch, @javax.annotation.Nullable FishRarity rarity, int newlySeenCount) {
+        String soundKey = null;
+        String message = null;
+
+        // Determine the primary message and sound based on whether this is a first catch
+        if (isFirstCatch) {
+            // Playing a catch sound - apply priority based on rarity
+            if (rarity == FishRarity.LEGENDARY) {
+                soundKey = "longhardfish:catch.new-caught-legendary";
+                message = "Unknown species discovered, creating index entry";
+            } else if (rarity == FishRarity.RARE) {
+                soundKey = "longhardfish:catch.new-caught-rare";
+                message = "Rare fish discovered, registering index entry";
+            } else {
+                // For COMMON, UNCOMMON, EVENT: play generic first-catch sound
+                soundKey = "longhardfish:catch.new-caught";
+                message = "Index entry registered";
+            }
+
+            // Append seen message if other fish were newly seen
+            if (newlySeenCount == 1) {
+                message += ". New entry added to index";
+            } else if (newlySeenCount > 1) {
+                message += ". New entries added to index";
+            }
+        } else if (newlySeenCount > 0) {
+            // Not a first catch, but other fish were newly seen
+            soundKey = "longhardfish:catch.new-seen";
+            if (newlySeenCount == 1) {
+                message = "New entry added to index";
+            } else {
+                message = "New entries added to index";
+            }
+        }
+
+        // Play sound and display message
+        if (soundKey != null) {
+            try {
+                player.playSound(Sound.sound(Key.key(soundKey), Sound.Source.PLAYER, 1.0f, 1.0f));
+                if (message != null) {
+                    player.sendActionBar(net.kyori.adventure.text.Component.text(message, NamedTextColor.GOLD));
+                }
+            } catch (Exception e) {
+                plugin.getLogger().warning("Failed to play fish discovery sound '" + soundKey + "': " + e.getMessage());
+            }
         }
     }
 }

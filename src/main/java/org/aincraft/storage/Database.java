@@ -10,6 +10,17 @@ public interface Database extends AutoCloseable {
     void init() throws Exception;
     void recordCatch(UUID playerId, String fishKey, @Nullable String displayName) throws Exception;
     void markDropSeen(UUID playerId, String fishKey, @Nullable String displayName) throws Exception;
+
+    /**
+     * Records a catch and returns true if this was the first time the fish was caught.
+     */
+    boolean recordCatchAndGetIsFirst(UUID playerId, String fishKey, @Nullable String displayName) throws Exception;
+
+    /**
+     * Marks a fish as seen and returns true if this was the first time the fish was marked as seen.
+     */
+    boolean markDropSeenAndGetIsFirst(UUID playerId, String fishKey, @Nullable String displayName) throws Exception;
+
     boolean hasCaught(UUID playerId, String fishKey) throws Exception;
     int caughtCount(UUID playerId, String fishKey) throws Exception;
 
@@ -22,9 +33,13 @@ public interface Database extends AutoCloseable {
     void setCaughtFlag(UUID playerId, String fishKey, boolean value, @Nullable String displayName) throws Exception; // idempotent: true => >=1, false => 0
     void setCaughtCount(UUID playerId, String fishKey, int count, @Nullable String displayName) throws Exception;
 
-    // Bulk helpers (used by “all”)
+    // Bulk helpers (used by "all")
     List<String> allFishKeys() throws Exception;
     void setAllSeen(UUID playerId, boolean seen) throws Exception;               // seen add/remove all
     void setAllCaughtAtLeastOne(UUID playerId) throws Exception;                 // caught add all
     void clearAllCaught(UUID playerId) throws Exception;                         // caught remove all
+
+    // Batch marking multiple fish as seen in single transaction
+    // Returns the count of fish that were newly seen for the first time
+    int markMultipleDropSeen(UUID playerId, List<String> fishKeys) throws Exception;
 }

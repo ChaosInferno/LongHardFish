@@ -59,18 +59,12 @@ public final class LhfCommand implements TabExecutor {
         switch (subcommand) {
             case "give":
                 return giveCmd.onCommand(sender, command, label, subArgs);
-            case "tool":
-                return giveToolCmd.onCommand(sender, command, label, subArgs);
-            case "bait":
-                return giveBaitCmd.onCommand(sender, command, label, subArgs);
             case "admin":
                 return handleAdmin(sender, label, subArgs);
             case "stats":
                 return statsCmd.onCommand(sender, command, label, subArgs);
             case "gui":
-                return handleGui(sender, label);
-            case "processor":
-                return handleGui(sender, label);
+                return handleGui(sender, label, subArgs);
             default:
                 sendMainUsage(sender, label);
                 return true;
@@ -91,12 +85,19 @@ public final class LhfCommand implements TabExecutor {
         return adminCmd.onCommand(sender, new FakeCommand(), label, args);
     }
 
-    private boolean handleGui(CommandSender sender, String label) {
+    private boolean handleGui(CommandSender sender, String label, String[] args) {
         if (!(sender instanceof Player p)) {
             sender.sendMessage("Players only.");
             return true;
         }
-        fishProcessorUI.open(p);
+
+        // Support both /lhf gui and /lhf gui processor
+        if (args.length == 0 || args[0].equalsIgnoreCase("processor")) {
+            fishProcessorUI.open(p);
+            return true;
+        }
+
+        sender.sendMessage("§eUsage: §7/" + label + " gui [processor]");
         return true;
     }
 
@@ -114,12 +115,9 @@ public final class LhfCommand implements TabExecutor {
             String prefix = args[0].toLowerCase(Locale.ENGLISH);
 
             if ("give".startsWith(prefix)) subcommands.add("give");
-            if ("tool".startsWith(prefix)) subcommands.add("tool");
-            if ("bait".startsWith(prefix)) subcommands.add("bait");
             if (sender.hasPermission("lhf.admin") && "admin".startsWith(prefix)) subcommands.add("admin");
             if (sender.hasPermission("longhardfish.stats") && "stats".startsWith(prefix)) subcommands.add("stats");
             if ("gui".startsWith(prefix)) subcommands.add("gui");
-            if ("processor".startsWith(prefix)) subcommands.add("processor");
 
             return subcommands;
         }
@@ -132,14 +130,18 @@ public final class LhfCommand implements TabExecutor {
             switch (subcommand) {
                 case "give":
                     return giveCmd.onTabComplete(sender, command, alias, subArgs);
-                case "tool":
-                    return giveToolCmd.onTabComplete(sender, command, alias, subArgs);
-                case "bait":
-                    return giveBaitCmd.onTabComplete(sender, command, alias, subArgs);
                 case "admin":
                     return adminCmd.onTabComplete(sender, command, alias, subArgs);
                 case "stats":
                     return statsCmd.onTabComplete(sender, command, alias, subArgs);
+                case "gui":
+                    if (args.length == 2) {
+                        List<String> guiSubs = new ArrayList<>();
+                        String prefix = args[1].toLowerCase(Locale.ENGLISH);
+                        if ("processor".startsWith(prefix)) guiSubs.add("processor");
+                        return guiSubs;
+                    }
+                    return new ArrayList<>();
                 default:
                     return new ArrayList<>();
             }
@@ -151,7 +153,7 @@ public final class LhfCommand implements TabExecutor {
     private void sendMainUsage(CommandSender sender, String label) {
         sender.sendMessage("§e/§b" + label + "§e - LongHardFish command suite");
         sender.sendMessage("§7Subcommands:");
-        sender.sendMessage("§7  /" + label + " give <item|rod|fish|knife> ...");
+        sender.sendMessage("§7  /" + label + " give <rod|fish|knife|tool|bait> ...");
         sender.sendMessage("§7  /" + label + " tool <tool-id> [player] [amount]");
         sender.sendMessage("§7  /" + label + " bait <bait-id> [amount] [player]");
         sender.sendMessage("§7  /" + label + " stats [player] [limit]");

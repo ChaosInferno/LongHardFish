@@ -33,6 +33,11 @@ import org.aincraft.provider.FishRarityProvider;
 import org.bukkit.NamespacedKey;
 import java.util.Map;
 
+// Imports for gutting output materials
+import org.aincraft.processor.GuttingOutput;
+import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.persistence.PersistentDataType;
+
 public final class GiveFishItemsCommand implements TabExecutor {
 
     private final LongHardFish plugin;
@@ -46,26 +51,37 @@ public final class GiveFishItemsCommand implements TabExecutor {
     private final Map<NamespacedKey, FishDistribution> rarityMap;
     private final FishCreator fishCreator;
 
+    // Tool and Bait command delegates
+    private GiveToolCommand giveToolCmd;
+    private GiveBaitCommand giveBaitCmd;
+
+    // Gutting output materials
+    private final Map<String, GuttingOutput> guttingOutputMap;
+    private final NamespacedKey guttingOutputKey;
+
     // Back-compat: existing constructor still works (no knives, no fish)
     public GiveFishItemsCommand(LongHardFish plugin) {
-        this(plugin, null, null, null);
+        this(plugin, null, null, null, null);
     }
 
     // Back-compat: pass KnifeProvider so /lhfgive knife works (no fish)
     public GiveFishItemsCommand(LongHardFish plugin, KnifeProvider knifeProvider) {
-        this(plugin, knifeProvider, null, null);
+        this(plugin, knifeProvider, null, null, null);
     }
 
-    // Preferred: pass all providers for rod, knife, and fish support
+    // Preferred: pass all providers for rod, knife, fish, and materials support
     public GiveFishItemsCommand(
         LongHardFish plugin,
         KnifeProvider knifeProvider,
         FishModelProvider modelProvider,
-        FishRarityProvider rarityProvider
+        FishRarityProvider rarityProvider,
+        Map<String, GuttingOutput> guttingOutputMap
     ) {
         this.plugin = plugin;
         this.knifeProvider = knifeProvider;
         this.rodItemFactory = new RodItemFactory(plugin);
+        this.guttingOutputMap = guttingOutputMap;
+        this.guttingOutputKey = new NamespacedKey(plugin, "gutting_output_id");
 
         // Initialize fish components
         this.modelProvider = modelProvider;
@@ -79,6 +95,14 @@ public final class GiveFishItemsCommand implements TabExecutor {
             this.rarityMap = null;
             this.fishCreator = null;
         }
+    }
+
+    /**
+     * Set the tool and bait command delegates (optional, for /lhf give tool/bait support)
+     */
+    public void setDelegateCommands(GiveToolCommand toolCmd, GiveBaitCommand baitCmd) {
+        this.giveToolCmd = toolCmd;
+        this.giveBaitCmd = baitCmd;
     }
 
     private static boolean noPerm(CommandSender sender) {
@@ -96,11 +120,6 @@ public final class GiveFishItemsCommand implements TabExecutor {
         if (args.length < 1) {
             sendUsage(sender, label);
             return true;
-        }
-
-        // --- Subcommand: item ---
-        if (args[0].equalsIgnoreCase("item")) {
-            return handleGiveCustomItem(sender, label, args);
         }
 
         // --- Subcommand: rod ---
@@ -124,6 +143,39 @@ public final class GiveFishItemsCommand implements TabExecutor {
                 return true;
             }
             return handleGiveKnife(sender, label, args);
+        }
+
+        // --- Subcommand: tool ---
+        if (args[0].equalsIgnoreCase("tool")) {
+            if (giveToolCmd == null) {
+                sender.sendMessage("§cTools are not enabled on this server.");
+                return true;
+            }
+            // Remove "tool" from args and pass rest to tool command
+            String[] toolArgs = new String[args.length - 1];
+            System.arraycopy(args, 1, toolArgs, 0, args.length - 1);
+            return giveToolCmd.onCommand(sender, command, label, toolArgs);
+        }
+
+        // --- Subcommand: bait ---
+        if (args[0].equalsIgnoreCase("bait")) {
+            if (giveBaitCmd == null) {
+                sender.sendMessage("§cBait is not enabled on this server.");
+                return true;
+            }
+            // Remove "bait" from args and pass rest to bait command
+            String[] baitArgs = new String[args.length - 1];
+            System.arraycopy(args, 1, baitArgs, 0, args.length - 1);
+            return giveBaitCmd.onCommand(sender, command, label, baitArgs);
+        }
+
+        // --- Subcommand: materials ---
+        if (args[0].equalsIgnoreCase("materials") || args[0].equalsIgnoreCase("material")) {
+            if (guttingOutputMap == null || guttingOutputMap.isEmpty()) {
+                sender.sendMessage("§cGutting materials are not enabled on this server.");
+                return true;
+            }
+            return handleGiveMaterial(sender, label, args);
         }
 
         // Unknown subcommand
@@ -369,6 +421,121 @@ public final class GiveFishItemsCommand implements TabExecutor {
         return true;
     }
 
+    private boolean handleGiveMaterial(CommandSender sender, String label, String[] args) {
+        if (args.length < 2) {
+            sender.sendMessage("§eUsage: §7/" + label + " materials <material-id> [player] [amount]");
+            sender.sendMessage("§7Available materials: §f" + String.join(", ", guttingOutputMap.keySet()));
+            return true;
+        }
+
+        String materialId = args[1].toLowerCase(Locale.ENGLISH);
+        GuttingOutput output = guttingOutputMap.get(materialId);
+
+        if (output == null) {
+            sender.sendMessage("§cUnknown material id: §f" + materialId);
+            sender.sendMessage("§7Available: §f" + String.join(", ", guttingOutputMap.keySet()));
+            return true;
+        }
+
+        // Resolve target player and amount (same pattern as fish)
+        Player target = null;
+        int amount = 1;
+
+        if (args.length >= 3) {
+            Player maybe = Bukkit.getPlayerExact(args[2]);
+            if (maybe != null) {
+                target = maybe;
+                if (args.length >= 4) {
+                    amount = parseAmount(args[3], sender);
+                    if (amount == -1) return true;
+                }
+            } else {
+                if (sender instanceof Player p) {
+                    target = p;
+                    amount = parseAmount(args[2], sender);
+                    if (amount == -1) return true;
+                } else {
+                    sender.sendMessage("§cConsole must specify a valid player.");
+                    return true;
+                }
+            }
+        } else {
+            if (sender instanceof Player p) {
+                target = p;
+            } else {
+                sender.sendMessage("§cConsole must specify a player.");
+                return true;
+            }
+        }
+
+        // Create the material item
+        ItemStack materialItem = createGuttingOutputItem(output, amount);
+
+        // Give to player
+        var overflow = target.getInventory().addItem(materialItem);
+        for (ItemStack it : overflow.values()) {
+            target.getWorld().dropItemNaturally(target.getLocation(), it);
+        }
+
+        // Success messages
+        sender.sendMessage("§aGave §f" + target.getName() + "§a x§f" + amount + "§a material §b" + materialId + "§a.");
+        if (sender != target) {
+            target.sendMessage("§aYou received x§f" + amount + "§a material §b" + materialId + "§a.");
+        }
+        return true;
+    }
+
+    private ItemStack createGuttingOutputItem(GuttingOutput output, int amount) {
+        ItemStack item = new ItemStack(output.getBaseMaterial(), amount);
+        ItemMeta meta = item.getItemMeta();
+        if (meta != null) {
+            // Set display name in white, not italic
+            Component name = Component.text(output.getName())
+                    .color(NamedTextColor.WHITE)
+                    .decoration(TextDecoration.ITALIC, false);
+            meta.displayName(name);
+
+            // Set rarity as lore with color based on rarity
+            Component rarityLine = Component.text(formatRarity(output.getRarity()))
+                    .color(rarityToColor(output.getRarity()))
+                    .decoration(TextDecoration.ITALIC, false);
+            meta.lore(List.of(rarityLine));
+
+            // Tag with gutting output ID
+            meta.getPersistentDataContainer().set(guttingOutputKey, PersistentDataType.STRING, output.getId());
+
+            item.setItemMeta(meta);
+        }
+
+        // Apply stacking limit from gutting_output.yml
+        if (output.getStackingLimit() > 0) {
+            item.setData(io.papermc.paper.datacomponent.DataComponentTypes.MAX_STACK_SIZE, output.getStackingLimit());
+        }
+
+        return item;
+    }
+
+    private String formatRarity(String rarity) {
+        if (rarity == null || rarity.isEmpty()) {
+            return "Common";
+        }
+        String lower = rarity.toLowerCase();
+        return lower.substring(0, 1).toUpperCase() + lower.substring(1);
+    }
+
+    private NamedTextColor rarityToColor(String rarity) {
+        if (rarity == null) {
+            return NamedTextColor.GRAY;
+        }
+
+        return switch (rarity.toUpperCase()) {
+            case "COMMON" -> NamedTextColor.GRAY;
+            case "UNCOMMON" -> NamedTextColor.GREEN;
+            case "RARE" -> NamedTextColor.AQUA;
+            case "LEGENDARY" -> NamedTextColor.GOLD;
+            default -> NamedTextColor.GRAY;
+        };
+    }
 
     private NamespacedKey resolveFishKey(String input) {
         // Try as-is if namespaced
@@ -384,11 +551,19 @@ public final class GiveFishItemsCommand implements TabExecutor {
 
     private void sendUsage(CommandSender sender, String label) {
         sender.sendMessage("§eUsage:");
-        sender.sendMessage("§7/" + label + " item <item-id> [player] [amount]");
         sender.sendMessage("§7/" + label + " rod <rod-id> [player]");
         sender.sendMessage("§7/" + label + " fish <fish-id> [player] [amount]");
         if (knifeProvider != null) {
             sender.sendMessage("§7/" + label + " knife <knife-id> [player] [amount]");
+        }
+        if (giveToolCmd != null) {
+            sender.sendMessage("§7/" + label + " tool <tool-id> [player] [amount]");
+        }
+        if (giveBaitCmd != null) {
+            sender.sendMessage("§7/" + label + " bait <bait-id> [amount] [player]");
+        }
+        if (guttingOutputMap != null && !guttingOutputMap.isEmpty()) {
+            sender.sendMessage("§7/" + label + " materials <material-id> [player] [amount]");
         }
     }
 
@@ -398,40 +573,13 @@ public final class GiveFishItemsCommand implements TabExecutor {
 
         if (args.length == 1) {
             String prefix = args[0].toLowerCase(Locale.ENGLISH);
-            if ("item".startsWith(prefix)) out.add("item");
             if ("rod".startsWith(prefix)) out.add("rod");
             if (fishCreator != null && "fish".startsWith(prefix)) out.add("fish");
             if (knifeProvider != null && "knife".startsWith(prefix)) out.add("knife");
+            if (giveToolCmd != null && "tool".startsWith(prefix)) out.add("tool");
+            if (giveBaitCmd != null && "bait".startsWith(prefix)) out.add("bait");
+            if (guttingOutputMap != null && !guttingOutputMap.isEmpty() && "materials".startsWith(prefix)) out.add("materials");
             return out;
-        }
-
-        // item completion
-        if (args[0].equalsIgnoreCase("item")) {
-            if (args.length == 2) {
-                String prefix = args[1].toLowerCase(Locale.ENGLISH);
-                for (String id : CustomFishItems.ids()) {
-                    if (id.toLowerCase(Locale.ENGLISH).startsWith(prefix)) out.add(id);
-                }
-                return out;
-            }
-            if (args.length == 3) {
-                String prefix = args[2].toLowerCase(Locale.ENGLISH);
-                for (Player p : Bukkit.getOnlinePlayers()) {
-                    if (p.getName().toLowerCase(Locale.ENGLISH).startsWith(prefix)) out.add(p.getName());
-                }
-                for (String s : new String[]{"1", "2", "4", "8", "16", "32", "64"}) {
-                    if (s.startsWith(prefix)) out.add(s);
-                }
-                return out;
-            }
-            if (args.length == 4) {
-                String prefix = args[3].toLowerCase(Locale.ENGLISH);
-                for (String s : new String[]{"1", "2", "4", "8", "16", "32", "64"}) {
-                    if (s.startsWith(prefix)) out.add(s);
-                }
-                return out;
-            }
-            return List.of();
         }
 
         // rod completion
@@ -501,6 +649,54 @@ public final class GiveFishItemsCommand implements TabExecutor {
                 String prefix = args[2].toLowerCase(Locale.ENGLISH);
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     if (p.getName().toLowerCase(Locale.ENGLISH).startsWith(prefix)) out.add(p.getName());
+                }
+                // also allow amount here if player will be implied
+                for (String s : new String[]{"1", "2", "4", "8", "16", "32", "64"}) {
+                    if (s.startsWith(prefix)) out.add(s);
+                }
+                return out;
+            }
+            if (args.length == 4) {
+                String prefix = args[3].toLowerCase(Locale.ENGLISH);
+                for (String s : new String[]{"1", "2", "4", "8", "16", "32", "64"}) {
+                    if (s.startsWith(prefix)) out.add(s);
+                }
+                return out;
+            }
+            return List.of();
+        }
+
+        // tool completion - delegate to GiveToolCommand
+        if (giveToolCmd != null && args[0].equalsIgnoreCase("tool")) {
+            String[] toolArgs = new String[args.length - 1];
+            System.arraycopy(args, 1, toolArgs, 0, args.length - 1);
+            return giveToolCmd.onTabComplete(sender, command, alias, toolArgs);
+        }
+
+        // bait completion - delegate to GiveBaitCommand
+        if (giveBaitCmd != null && args[0].equalsIgnoreCase("bait")) {
+            String[] baitArgs = new String[args.length - 1];
+            System.arraycopy(args, 1, baitArgs, 0, args.length - 1);
+            return giveBaitCmd.onTabComplete(sender, command, alias, baitArgs);
+        }
+
+        // materials completion
+        if (guttingOutputMap != null && (args[0].equalsIgnoreCase("materials") || args[0].equalsIgnoreCase("material"))) {
+            if (args.length == 2) {
+                String prefix = args[1].toLowerCase(Locale.ENGLISH);
+                for (String materialId : guttingOutputMap.keySet()) {
+                    if (materialId.toLowerCase(Locale.ENGLISH).startsWith(prefix)) {
+                        out.add(materialId);
+                    }
+                }
+                return out;
+            }
+            if (args.length == 3) {
+                String prefix = args[2].toLowerCase(Locale.ENGLISH);
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    if (p.getName().toLowerCase(Locale.ENGLISH).startsWith(prefix)) {
+                        out.add(p.getName());
+                    }
                 }
                 // also allow amount here if player will be implied
                 for (String s : new String[]{"1", "2", "4", "8", "16", "32", "64"}) {

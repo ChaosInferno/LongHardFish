@@ -2,6 +2,7 @@ package org.aincraft.ingame_items;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemFlag;
@@ -26,7 +27,7 @@ public final class WatchItem {
         ItemStack stack = new ItemStack(Material.KNOWLEDGE_BOOK, 1);
         ItemMeta meta = stack.getItemMeta();
 
-        meta.displayName(Component.text("Watch", NamedTextColor.AQUA));
+        meta.displayName(Component.text("Watch", NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false));
         meta.lore(List.of(
                 Component.text("Clocks are neat and all,", NamedTextColor.GRAY),
                 Component.text("but nothing beats the cool", NamedTextColor.GRAY),

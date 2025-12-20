@@ -32,9 +32,32 @@ public class FishCreator {
         FishModel fish = modelMap.get(key);
         if (fish == null) return null;
 
-        ItemStack item = new ItemStack(Material.COD);
+        // Determine base material:
+        // - JUNK or CHEST type: KNOWLEDGE_BOOK (prevents consumption, allows right-click)
+        // - Custom material specified: use that
+        // - Otherwise: default to COD
+        Material baseMaterial;
+        org.aincraft.container.FishType fishType = fish.getType();
+        if (fishType == org.aincraft.container.FishType.JUNK || fishType == org.aincraft.container.FishType.CHEST) {
+            baseMaterial = Material.KNOWLEDGE_BOOK;
+        } else if (fish.getMaterial() != null) {
+            baseMaterial = fish.getMaterial();
+        } else {
+            baseMaterial = Material.COD;
+        }
+        ItemStack item = new ItemStack(baseMaterial);
 
-        item.setData(DataComponentTypes.ITEM_MODEL, Key.key(key.getNamespace(), key.getKey()));
+        // Set custom model for fish without explicit material override
+        // (JUNK/CHEST fish get KNOWLEDGE_BOOK but still need custom models)
+        if (fish.getMaterial() == null || fishType == org.aincraft.container.FishType.JUNK || fishType == org.aincraft.container.FishType.CHEST) {
+            item.setData(DataComponentTypes.ITEM_MODEL, Key.key(key.getNamespace(), key.getKey()));
+        }
+
+        // Set max stack size to 64 for JUNK/CHEST fish (KNOWLEDGE_BOOK defaults to 1)
+        if (fishType == org.aincraft.container.FishType.JUNK || fishType == org.aincraft.container.FishType.CHEST) {
+            item.setData(DataComponentTypes.MAX_STACK_SIZE, 64);
+        }
+
         item.setData(DataComponentTypes.ITEM_NAME, Component.text(fish.getName()));
         item.setData(DataComponentTypes.LORE, ItemLore.lore(List.of(Component.text(fish.getDescription()))));
 

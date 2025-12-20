@@ -284,6 +284,98 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
     }
 
     @Override
+    public boolean recordCatchAndGetIsFirst(UUID playerId, String fishKey, String displayName) throws SQLException {
+        try (Connection c = ds.getConnection()) {
+            c.setAutoCommit(false);
+            try (PreparedStatement psPlayer = c.prepareStatement(SQL_INSERT_PLAYER_IF_NEEDED);
+                 PreparedStatement psFish   = c.prepareStatement(SQL_UPSERT_FISH);
+                 PreparedStatement psCheck  = c.prepareStatement(SQL_SELECT_CAUGHT_COUNT);
+                 PreparedStatement psUpsert = c.prepareStatement(SQL_UPSERT_CATCH)) {
+
+                // Check current count BEFORE incrementing
+                psCheck.setString(1, playerId.toString());
+                psCheck.setString(2, fishKey);
+                int caughtBefore = 0;
+                try (ResultSet rs = psCheck.executeQuery()) {
+                    if (rs.next()) {
+                        caughtBefore = rs.getInt("caught_count");
+                    }
+                }
+                boolean isFirst = (caughtBefore == 0);
+
+                // Now perform the insert/update
+                psPlayer.setString(1, playerId.toString());
+                psPlayer.executeUpdate();
+
+                psFish.setString(1, fishKey);
+                if (displayName != null && !displayName.isBlank()) {
+                    psFish.setString(2, displayName);
+                } else {
+                    psFish.setNull(2, Types.VARCHAR);
+                }
+                psFish.executeUpdate();
+
+                psUpsert.setString(1, playerId.toString());
+                psUpsert.setString(2, fishKey);
+                psUpsert.executeUpdate();
+
+                c.commit();
+                return isFirst;
+            } catch (Throwable t) {
+                c.rollback();
+                throw asSql(t, "recordCatchAndGetIsFirst failed");
+            } finally {
+                c.setAutoCommit(true);
+            }
+        }
+    }
+
+    @Override
+    public boolean markDropSeenAndGetIsFirst(UUID playerId, String fishKey, String displayName) throws SQLException {
+        try (Connection c = ds.getConnection()) {
+            c.setAutoCommit(false);
+            try (PreparedStatement psPlayer = c.prepareStatement(SQL_INSERT_PLAYER_IF_NEEDED);
+                 PreparedStatement psFish   = c.prepareStatement(SQL_UPSERT_FISH);
+                 PreparedStatement psCheck  = c.prepareStatement(SQL_HAS_DROP_SEEN);
+                 PreparedStatement psUpsert = c.prepareStatement(SQL_UPSERT_DROP_SEEN)) {
+
+                // Check if already seen BEFORE marking
+                psCheck.setString(1, playerId.toString());
+                psCheck.setString(2, fishKey);
+                boolean alreadySeen;
+                try (ResultSet rs = psCheck.executeQuery()) {
+                    alreadySeen = rs.next();
+                }
+                boolean isFirst = !alreadySeen;
+
+                // Now perform the insert/update
+                psPlayer.setString(1, playerId.toString());
+                psPlayer.executeUpdate();
+
+                psFish.setString(1, fishKey);
+                if (displayName != null && !displayName.isBlank()) {
+                    psFish.setString(2, displayName);
+                } else {
+                    psFish.setNull(2, Types.VARCHAR);
+                }
+                psFish.executeUpdate();
+
+                psUpsert.setString(1, playerId.toString());
+                psUpsert.setString(2, fishKey);
+                psUpsert.executeUpdate();
+
+                c.commit();
+                return isFirst;
+            } catch (Throwable t) {
+                c.rollback();
+                throw asSql(t, "markDropSeenAndGetIsFirst failed");
+            } finally {
+                c.setAutoCommit(true);
+            }
+        }
+    }
+
+    @Override
     public Map<String, Integer> topFish(UUID playerId, int limit) throws SQLException {
         try (Connection c = ds.getConnection();
              PreparedStatement ps = c.prepareStatement(SQL_TOP_FISH)) {
@@ -584,6 +676,57 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
                      "UPDATE player_fish_stats SET caught_count = 0, last_caught_at = NULL WHERE player_uuid = ?")) {
             ps.setString(1, playerId.toString());
             ps.executeUpdate();
+        }
+    }
+
+    @Override
+    public int markMultipleDropSeen(UUID playerId, List<String> fishKeys) throws SQLException {
+        if (fishKeys == null || fishKeys.isEmpty()) return 0;
+
+        try (Connection c = ds.getConnection()) {
+            c.setAutoCommit(false);
+            try {
+                // Ensure player exists
+                try (PreparedStatement psPlayer = c.prepareStatement(SQL_INSERT_PLAYER_IF_NEEDED)) {
+                    psPlayer.setString(1, playerId.toString());
+                    psPlayer.executeUpdate();
+                }
+
+                // Count how many fish have drop_seen = 0 BEFORE update
+                int newlySeenCount = 0;
+                String playerId_str = playerId.toString();
+
+                String checkNewlySeenSql = "SELECT COUNT(*) FROM player_fish_stats WHERE player_uuid = ? AND fish_key = ? AND drop_seen = 0";
+                try (PreparedStatement psCheck = c.prepareStatement(checkNewlySeenSql)) {
+                    for (String fishKey : fishKeys) {
+                        psCheck.setString(1, playerId_str);
+                        psCheck.setString(2, fishKey);
+                        try (ResultSet rs = psCheck.executeQuery()) {
+                            if (rs.next() && rs.getInt(1) > 0) {
+                                newlySeenCount++;
+                            }
+                        }
+                    }
+                }
+
+                // Mark all fish as seen in batch
+                try (PreparedStatement psUpsert = c.prepareStatement(SQL_UPSERT_DROP_SEEN)) {
+                    for (String fishKey : fishKeys) {
+                        psUpsert.setString(1, playerId_str);
+                        psUpsert.setString(2, fishKey);
+                        psUpsert.addBatch();
+                    }
+                    psUpsert.executeBatch();
+                }
+
+                c.commit();
+                return newlySeenCount;
+            } catch (Throwable t) {
+                c.rollback();
+                throw asSql(t, "markMultipleDropSeen failed");
+            } finally {
+                c.setAutoCommit(true);
+            }
         }
     }
 

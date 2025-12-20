@@ -236,12 +236,12 @@ public class FishDexFishSelector {
             sorted = new ArrayList<>(allFishIds.get());
             sorted.sort(Comparator.comparingInt(id -> {
                 FishModel fm = modelLookup.get(id);
-                return (fm != null) ? fm.getModelNumber() : Integer.MAX_VALUE;
+                return (fm != null && fm.getModelNumber() > 0) ? fm.getModelNumber() : Integer.MAX_VALUE;
             }));
             holder.ordered = sorted;
             holder.pagingEnabled = true;
 
-            int modelNumber = (model != null) ? model.getModelNumber() : 1;
+            int modelNumber = (model != null && model.getModelNumber() > 0) ? model.getModelNumber() : 1;
             pageIndex = Math.max(0, (modelNumber - 1) / PAGE_SIZE);
             int start = pageIndex * PAGE_SIZE;
 
@@ -284,7 +284,7 @@ public class FishDexFishSelector {
                 holder.slotToFish.put(slot, fishId);
                 applyFishTooltip(gui, slot, model, pgr);
             }
-            pageIndex = (model != null) ? Math.max(0, (model.getModelNumber() - 1) / PAGE_SIZE) : 0;
+            pageIndex = (model != null && model.getModelNumber() > 0) ? Math.max(0, (model.getModelNumber() - 1) / PAGE_SIZE) : 0;
             putIcon(gui, Math.min(5, pageIndex), "icons/fish-menu_" + (pageIndex + 1));
         }
 
@@ -604,7 +604,7 @@ public class FishDexFishSelector {
                 : "???";
 
         List<Component> lore = null;
-        if (fm != null) {
+        if (fm != null && fm.getModelNumber() > 0) {
             lore = List.of(Component.text("No. " + modelNo3(fm.getModelNumber())));
         }
 
@@ -663,7 +663,7 @@ public class FishDexFishSelector {
         List<NamespacedKey> sorted = new ArrayList<>(allFishIds.get());
         sorted.sort(Comparator.comparingInt(id -> {
             FishModel fm = modelLookup.get(id);
-            return (fm != null) ? fm.getModelNumber() : Integer.MAX_VALUE;
+            return (fm != null && fm.getModelNumber() > 0) ? fm.getModelNumber() : Integer.MAX_VALUE;
         }));
 
         if (sorted.isEmpty()) return;

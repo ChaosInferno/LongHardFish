@@ -314,23 +314,29 @@ public final class FishProcessorUI implements Listener {
             int durabilityBudget = remaining;
             int consumedThisRun = 0;
 
-            ItemStack outProto = null;
+            // Sample output to validate we can produce something
+            List<ItemStack> sampleOutputs = null;
             for (int s : INPUT_SLOTS) {
                 ItemStack in = inv.getItem(s);
                 if (in == null || in.getType().isAir()) continue;
                 String fk = FishKeys.getFishKey(plugin, in);
                 if (fk == null || fk.isBlank()) continue;
-                ItemStack sample = provider.materialFor(fk, 1);
-                if (sample != null && !sample.getType().isAir() && sample.getAmount() > 0) {
-                    outProto = sample.clone(); outProto.setAmount(1); break;
+                List<ItemStack> samples = provider.materialFor(fk, 1);
+                if (samples != null && !samples.isEmpty()) {
+                    sampleOutputs = new ArrayList<>(samples);
+                    break;
                 }
             }
-            if (outProto == null) {
+            if (sampleOutputs == null || sampleOutputs.isEmpty()) {
                 player.sendMessage(ChatColor.GRAY + "[FishProc] Nothing to produce from these fish.");
                 return;
             }
 
-            int capLeft = calcCapacity(inv, outProto, OUTPUT_SLOTS);
+            // Calculate total capacity needed for all output types
+            int capLeft = 0;
+            for (ItemStack sample : sampleOutputs) {
+                capLeft += calcCapacity(inv, sample, OUTPUT_SLOTS);
+            }
             if (capLeft <= 0) {
                 player.sendMessage(ChatColor.RED + "[FishProc] No space in output.");
                 return;
@@ -338,6 +344,7 @@ public final class FishProcessorUI implements Listener {
 
             int processed = 0, produced = 0;
             boolean broke = false, outOfSpace = false;
+            List<ItemStack> accumulatedOutputs = new ArrayList<>();
 
             outer:
             for (int s : INPUT_SLOTS) {
@@ -348,16 +355,20 @@ public final class FishProcessorUI implements Listener {
 
                 int amt = in.getAmount();
                 while (amt > 0) {
-                    ItemStack oneOut = provider.materialFor(fk, 1);
-                    if (oneOut == null || oneOut.getType().isAir() || oneOut.getAmount() <= 0) { amt--; continue; }
-                    if (!canStack(outProto, oneOut)) {
-                        player.sendMessage(ChatColor.RED + "[FishProc] These fish produce different outputs. Process one type at a time.");
-                        updateViewers(inv);
-                        return;
+                    List<ItemStack> outputs = provider.materialFor(fk, 1);
+                    if (outputs == null || outputs.isEmpty()) { amt--; continue; }
+
+                    // Calculate total yield from all outputs
+                    int totalYield = 0;
+                    for (ItemStack out : outputs) {
+                        if (out != null && !out.getType().isAir() && out.getAmount() > 0) {
+                            totalYield += out.getAmount();
+                        }
                     }
 
-                    int yield = Math.max(1, oneOut.getAmount());
-                    if (capLeft < yield) {
+                    if (totalYield <= 0) { amt--; continue; }
+
+                    if (capLeft < totalYield) {
                         outOfSpace = true;
                         writeBack(inv, s, in, amt); // do not consume this fish
                         updateViewers(inv);
@@ -367,8 +378,11 @@ public final class FishProcessorUI implements Listener {
                     // consume 1 fish
                     amt--;
                     processed++;
-                    produced += yield;
-                    capLeft -= yield;
+                    produced += totalYield;
+                    capLeft -= totalYield;
+
+                    // Accumulate the actual outputs
+                    accumulatedOutputs.addAll(outputs);
 
                     int beforeRem = KnifeDurability.getRemaining(plugin, knife);
 
@@ -410,19 +424,24 @@ public final class FishProcessorUI implements Listener {
             }
 
             if (produced > 0) {
-                depositMany(inv, outProto, produced, OUTPUT_SLOTS);
+                // Deposit all accumulated outputs
+                for (ItemStack outItem : accumulatedOutputs) {
+                    if (outItem != null && !outItem.getType().isAir() && outItem.getAmount() > 0) {
+                        depositMany(inv, outItem.clone(), outItem.getAmount(), OUTPUT_SLOTS);
+                    }
+                }
                 player.playSound(player, Sound.UI_LOOM_TAKE_RESULT, 1.0f, 1.1f);
 
                 int left = Math.max(0, totalFish - processed);
                 if (broke) {
                     player.sendMessage(ChatColor.YELLOW + "[FishProc] Processed " + processed + " fish → " + produced +
-                            " fillet(s); knife broke with " + left + " fish left.");
+                            " item(s); knife broke with " + left + " fish left.");
                     player.playSound(player, Sound.ENTITY_ITEM_BREAK, 1.0f, 0.9f);
                 } else if (outOfSpace) {
                     player.sendMessage(ChatColor.GOLD + "[FishProc] Processed " + processed + " fish → " + produced +
-                            " fillet(s); outputs are full (" + left + " fish left).");
+                            " item(s); outputs are full (" + left + " fish left).");
                 } else {
-                    player.sendMessage(ChatColor.GREEN + "[FishProc] Processed " + processed + " fish → " + produced + " fillet(s).");
+                    player.sendMessage(ChatColor.GREEN + "[FishProc] Processed " + processed + " fish → " + produced + " item(s).");
                 }
             } else {
                 player.sendMessage(ChatColor.GRAY + "[FishProc] Nothing to produce.");

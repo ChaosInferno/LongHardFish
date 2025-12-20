@@ -196,12 +196,15 @@ public final class TackleBoxService implements TackleBoxGui.TackleBoxClickHandle
     /**
      * Unload all bait from an incoming rod *before* it lands in slot 17, stacking into slot 35 if possible.
      */
-    private void unloadIncomingRodToBin(ItemStack incomingRod, Inventory top) {
+    private void unloadIncomingRodToBin(ItemStack incomingRod, Inventory top, Player player) {
         if (incomingRod == null || incomingRod.getType() != Material.FISHING_ROD) return;
 
         String rodId = BaitKeys.getRodBait(plugin, incomingRod);
         int rodCount = BaitKeys.getRodBaitCount(plugin, incomingRod);
         if (rodId == null || rodCount <= 0) return;
+
+        // Track if bait was actually removed for sound effect
+        boolean baitRemoved = false;
 
         int baitSlot = TackleBoxGui.getBaitBinSlot();
         ItemStack bin = top.getItem(baitSlot);
@@ -213,6 +216,7 @@ public final class TackleBoxService implements TackleBoxGui.TackleBoxClickHandle
             }
             top.setItem(baitSlot, made);
             rodCount -= made.getAmount();
+            baitRemoved = true;
         } else {
             String binId = BaitKeys.getBaitId(plugin, bin);
             if (binId != null && binId.equals(rodId)) {
@@ -223,6 +227,7 @@ public final class TackleBoxService implements TackleBoxGui.TackleBoxClickHandle
                     bin.setAmount(bin.getAmount() + add);
                     rodCount -= add;
                     top.setItem(baitSlot, bin);
+                    baitRemoved = true;
                 }
             }
         }
@@ -234,12 +239,17 @@ public final class TackleBoxService implements TackleBoxGui.TackleBoxClickHandle
             BaitKeys.setRodBait(plugin, incomingRod, rodId, rodCount);
             RodItemFactory.updateBaitStatusLine(plugin, incomingRod, rodId);
         }
+
+        // Play detach sound when bait was removed
+        if (baitRemoved && player != null) {
+            player.playSound(Sound.sound(Key.key("longhardfish:bait.detach"), Sound.Source.PLAYER, 1.0f, 1.0f));
+        }
     }
 
     /**
      * Move all bait from rod into slot 35 if 35 is empty.
      */
-    private void unloadRodBaitToSlot35(Inventory top) {
+    private void unloadRodBaitToSlot35(Inventory top, Player player) {
         int rodSlot = TackleBoxGui.getRodSlot();
         int baitSlot = TackleBoxGui.getBaitBinSlot();
         if (top.getSize() <= Math.max(rodSlot, baitSlot)) return;
@@ -271,6 +281,11 @@ public final class TackleBoxService implements TackleBoxGui.TackleBoxClickHandle
             RodItemFactory.updateBaitStatusLine(plugin, rod, rodId);
         }
         top.setItem(rodSlot, rod);
+
+        // Play detach sound when bait was unloaded
+        if (player != null) {
+            player.playSound(Sound.sound(Key.key("longhardfish:bait.detach"), Sound.Source.PLAYER, 1.0f, 1.0f));
+        }
     }
 
     // -------------------- Click Handler Implementation --------------------
@@ -329,7 +344,7 @@ public final class TackleBoxService implements TackleBoxGui.TackleBoxClickHandle
         if (slot == TackleBoxGui.getRodSlot()
                 && e.getClick() == ClickType.RIGHT
                 && (e.getCursor() == null || e.getCursor().getType().isAir())) {
-            unloadRodBaitToSlot35(s.gui.getInventory());
+            unloadRodBaitToSlot35(s.gui.getInventory(), player);
             e.setCancelled(true);
             return;
         }
@@ -353,7 +368,7 @@ public final class TackleBoxService implements TackleBoxGui.TackleBoxClickHandle
 
         // A) If placing a rod INTO slot 17: unload bait to bin first
         if (slot == TackleBoxGui.getRodSlot() && incoming != null && incoming.getType() == Material.FISHING_ROD) {
-            unloadIncomingRodToBin(incoming, s.gui.getInventory());
+            unloadIncomingRodToBin(incoming, s.gui.getInventory(), player);
             return;
         }
 

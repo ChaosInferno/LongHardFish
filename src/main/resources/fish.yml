@@ -18,6 +18,17 @@ glider-bananafish:
     scarab: 0.01
     dragonfly: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 glider-sturgeon:
   name: Glider Sturgeon
   rarity: COMMON
@@ -37,6 +48,17 @@ glider-sturgeon:
     wasp: 0.01
     rhino_beetle: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 glider-chungus:
   name: Glider Chungus
   rarity: COMMON
@@ -56,6 +78,17 @@ glider-chungus:
     wasp: 0.01
     tick: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 glider-gudgeon:
   name: Glider Gudgeon
   rarity: COMMON
@@ -77,6 +110,17 @@ glider-gudgeon:
     grubb: 0.01
     wasp: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 rose-fili:
   name: Rose Fili
   rarity: COMMON
@@ -99,6 +143,17 @@ rose-fili:
     tick: 0.01
     rhino_beetle: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 chonkler-pip:
   name: Chonkler Pip
   rarity: COMMON
@@ -117,6 +172,17 @@ chonkler-pip:
     scarab: 0.01
     rhino_beetle: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 mountain-bananafish:
   name: Mountain Bananafish
   rarity: COMMON
@@ -138,6 +204,17 @@ mountain-bananafish:
     rhino_beetle: 0.01
     wasp: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 muddy-salmon:
   name: Muddy Salmon
   rarity: COMMON
@@ -157,6 +234,17 @@ muddy-salmon:
     rhino_beetle: 0.01
     grubb: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 tiger-carp:
   name: Tiger Carp
   rarity: COMMON
@@ -176,6 +264,17 @@ tiger-carp:
     scarab: 0.01
     grubb: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 tiger-trout:
   name: Tiger Trout
   rarity: COMMON
@@ -198,6 +297,17 @@ tiger-trout:
     tick: 0.01
     spiderling: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 glider-mystelune:
   name: Glider Mystelune
   rarity: COMMON
@@ -224,6 +334,17 @@ glider-mystelune:
     grubb: 0.01
     scarab: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 red-tailed-dart:
   name: Red-tailed Dart
   rarity: COMMON
@@ -248,6 +369,17 @@ red-tailed-dart:
     dragonfly: 0.01
     tick: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 muddy-brugis:
   name: Muddy Brugis
   rarity: COMMON
@@ -273,6 +405,17 @@ muddy-brugis:
     dragonfly: 0.01
     scarab: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 mossy-mudskip:
   name: Mossy Mudskip
   rarity: COMMON
@@ -294,6 +437,17 @@ mossy-mudskip:
     wasp: 0.01
     dragonfly: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 sandy-carp:
   name: Sandy Carp
   rarity: COMMON
@@ -314,6 +468,17 @@ sandy-carp:
     spiderling: 0.01
     dragonfly: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 muddy-estuary:
   name: Muddy Estuary
   rarity: COMMON
@@ -336,6 +501,17 @@ muddy-estuary:
     dragonfly: 0.01
     grubb: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 muddy-bass:
   name: Muddy Bass
   rarity: COMMON
@@ -358,6 +534,17 @@ muddy-bass:
     scarab: 0.01
     dragonfly: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 bloodfin-phyra:
   name: Bloodfin Phyra
   rarity: COMMON
@@ -385,6 +572,17 @@ bloodfin-phyra:
     spiderling: 0.01
     tick: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 owhmiewemoa-shin:
   name: Owhmiewemoa Shin
   rarity: UNCOMMON
@@ -403,6 +601,22 @@ owhmiewemoa-shin:
   bait:
     rhino_beetle: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 wandering-ptidiwhiskir:
   name: Wandering Ptidiwhiskir
   rarity: UNCOMMON
@@ -423,6 +637,22 @@ wandering-ptidiwhiskir:
   bait:
     spiderling: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 ancient-boopsnoot:
   name: Ancient Boopsnoot
   rarity: COMMON
@@ -444,6 +674,17 @@ ancient-boopsnoot:
     tick: 0.01
     grubb: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 ancient-dorado:
   name: Ancient Dorado
   rarity: COMMON
@@ -464,6 +705,17 @@ ancient-dorado:
     tick: 0.01
     spiderling: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 ancient-elara:
   name: Ancient Elara
   rarity: COMMON
@@ -484,6 +736,17 @@ ancient-elara:
     rhino_beetle: 0.01
     spiderling: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 largemouth-bass:
   name: Largemouth Bass
   rarity: UNCOMMON
@@ -504,6 +767,22 @@ largemouth-bass:
     wasp: 0.01
     scarab: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 mossy-goby:
   name: Mossy Goby
   rarity: COMMON
@@ -524,6 +803,17 @@ mossy-goby:
     dragonfly: 0.01
     grubb: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 rising-dancefin:
   name: Rising Dancefin
   rarity: COMMON
@@ -553,6 +843,17 @@ rising-dancefin:
     grubb: 0.01
     rhino_beetle: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 jade-bananafish:
   name: Jade Bananafish
   rarity: COMMON
@@ -572,6 +873,17 @@ jade-bananafish:
     tick: 0.01
     dragonfly: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 honeykelp-flowfin:
   name: Honeykelp Flowfin
   rarity: UNCOMMON
@@ -593,6 +905,22 @@ honeykelp-flowfin:
     wasp: 0.01
     tick: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 broseph-hookfin:
   name: Broseph Hookfin
   rarity: COMMON
@@ -619,6 +947,17 @@ broseph-hookfin:
     tick: 0.01
     dragonfly: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 emerald-estuary:
   name: Emerald Estuary
   rarity: COMMON
@@ -640,6 +979,17 @@ emerald-estuary:
     scarab: 0.01
     tick: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 poison-soaked-sensei:
   name: Poison-soaked Sensei
   rarity: COMMON
@@ -661,6 +1011,17 @@ poison-soaked-sensei:
     spiderling: 0.01
     grubb: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 coral-bylowin:
   name: Coral Bylowin
   rarity: COMMON
@@ -681,6 +1042,17 @@ coral-bylowin:
     spiderling: 0.01
     scarab: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 coral-seraphine:
   name: Coral Seraphine
   rarity: COMMON
@@ -708,6 +1080,17 @@ coral-seraphine:
     spiderling: 0.01
     tick: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 loving-gutpike:
   name: Loving Gutpike
   rarity: COMMON
@@ -728,6 +1111,17 @@ loving-gutpike:
     dragonfly: 0.01
     tick: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 glimmering-bananafish:
   name: Glimmering Bananafish
   rarity: COMMON
@@ -748,6 +1142,17 @@ glimmering-bananafish:
     tick: 0.01
     dragonfly: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 spotted-rhyb:
   name: Spotted Rhyb
   rarity: COMMON
@@ -771,6 +1176,17 @@ spotted-rhyb:
     wasp: 0.01
     rhino_beetle: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 amethyst-riptideon:
   name: Amethyst Riptideon
   rarity: COMMON
@@ -793,6 +1209,17 @@ amethyst-riptideon:
     grubb: 0.01
     spiderling: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 emerald-crytalanth:
   name: Emerald Crytalanth
   rarity: COMMON
@@ -815,6 +1242,17 @@ emerald-crytalanth:
     tick: 0.01
     scarab: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 rainbow-piranha:
   name: Rainbow Piranha
   rarity: UNCOMMON
@@ -833,6 +1271,22 @@ rainbow-piranha:
   bait:
     rhino_beetle: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 obsidian-bussernut:
   name: Obsidian Bussernut
   rarity: UNCOMMON
@@ -854,6 +1308,22 @@ obsidian-bussernut:
     spiderling: 0.01
     grubb: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 radiated-klauknbals:
   name: Radiated Klauknbals
   rarity: UNCOMMON
@@ -880,6 +1350,22 @@ radiated-klauknbals:
     wasp: 0.01
     grubb: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 moonlit-schnozzer:
   name: Moonlit Schnozzer
   rarity: COMMON
@@ -906,6 +1392,17 @@ moonlit-schnozzer:
     grubb: 0.01
     rhino_beetle: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 prismarine-gutpike:
   name: Prismarine Gutpike
   rarity: COMMON
@@ -929,6 +1426,17 @@ prismarine-gutpike:
     spiderling: 0.01
     grubb: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 prismarine-kelvorn:
   name: Prismarine Kelvorn
   rarity: COMMON
@@ -952,6 +1460,17 @@ prismarine-kelvorn:
     dragonfly: 0.01
     tick: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 pearlestra:
   name: Pearlestra
   rarity: UNCOMMON
@@ -977,6 +1496,22 @@ pearlestra:
     scarab: 0.01
     dragonfly: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 moonlit-boopsnoot:
   name: Moonlit Boopsnoot
   rarity: COMMON
@@ -1000,6 +1535,17 @@ moonlit-boopsnoot:
     wasp: 0.01
     scarab: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 cerulean-riptideon:
   name: Cerulean Riptideon
   rarity: COMMON
@@ -1028,6 +1574,17 @@ cerulean-riptideon:
     grubb: 0.01
     spiderling: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 oxidized-copper-sturgeon:
   name: Oxidized-copper Sturgeon
   rarity: UNCOMMON
@@ -1047,6 +1604,22 @@ oxidized-copper-sturgeon:
   bait:
     rhino_beetle: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 berserker-doomageddon:
   name: Berserker Doomageddon
   rarity: UNCOMMON
@@ -1068,6 +1641,22 @@ berserker-doomageddon:
   bait:
     rhino_beetle: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 ecstatic-minsk:
   name: Ecstatic Minsk
   rarity: COMMON
@@ -1089,6 +1678,17 @@ ecstatic-minsk:
     wasp: 0.01
     grubb: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 tiger-mudjack:
   name: Tiger Mudjack
   rarity: COMMON
@@ -1111,6 +1711,17 @@ tiger-mudjack:
     rhino_beetle: 0.01
     dragonfly: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 heidifish:
   name: Heidifish
   rarity: UNCOMMON
@@ -1131,6 +1742,22 @@ heidifish:
     rhino_beetle: 0.01
     scarab: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 sandy-woodskip:
   name: Sandy Woodskip
   rarity: COMMON
@@ -1151,6 +1778,17 @@ sandy-woodskip:
     scarab: 0.01
     dragonfly: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 glider-lingcod:
   name: Glider Lingcod
   rarity: COMMON
@@ -1177,6 +1815,17 @@ glider-lingcod:
     scarab: 0.01
     rhino_beetle: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 charging-pepet:
   name: Charging Pepet
   rarity: UNCOMMON
@@ -1203,6 +1852,22 @@ charging-pepet:
     tick: 0.01
     grubb: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 muddy-bream:
   name: Muddy Bream
   rarity: COMMON
@@ -1224,6 +1889,17 @@ muddy-bream:
     scarab: 0.01
     wasp: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 muddy-boopsnoot:
   name: Muddy Boopsnoot
   rarity: COMMON
@@ -1244,6 +1920,17 @@ muddy-boopsnoot:
     tick: 0.01
     grubb: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 arctic-grayling:
   name: Arctic Grayling
   rarity: COMMON
@@ -1264,6 +1951,17 @@ arctic-grayling:
     dragonfly: 0.01
     spiderling: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 dark-heidifish:
   name: Dark Heidifish
   rarity: UNCOMMON
@@ -1288,6 +1986,22 @@ dark-heidifish:
   bait:
     wasp: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 relic-canth:
   name: Relic Canth
   rarity: COMMON
@@ -1308,6 +2022,17 @@ relic-canth:
     spiderling: 0.01
     wasp: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 wavering-puckerfish:
   name: Wavering Puckerfish
   rarity: COMMON
@@ -1328,6 +2053,17 @@ wavering-puckerfish:
     scarab: 0.01
     tick: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 glider-poppicok:
   name: Glider Poppicok
   rarity: COMMON
@@ -1353,6 +2089,17 @@ glider-poppicok:
     rhino_beetle: 0.01
     dragonfly: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 arctic-minnoe:
   name: Arctic Minnoe
   rarity: COMMON
@@ -1373,6 +2120,17 @@ arctic-minnoe:
     grubb: 0.01
     rhino_beetle: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 polar-bananafish:
   name: Polar Bananafish
   rarity: COMMON
@@ -1393,6 +2151,17 @@ polar-bananafish:
     grubb: 0.01
     wasp: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 lonely-minsk:
   name: Lonely Minsk
   rarity: COMMON
@@ -1415,6 +2184,17 @@ lonely-minsk:
     rhino_beetle: 0.01
     tick: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 polar-fili:
   name: Polar Fili
   rarity: COMMON
@@ -1441,6 +2221,17 @@ polar-fili:
     rhino_beetle: 0.01
     wasp: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 arctic-tuna:
   name: Arctic Tuna
   rarity: COMMON
@@ -1460,6 +2251,17 @@ arctic-tuna:
     scarab: 0.01
     grubb: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 grubshark:
   name: Grubshark
   rarity: UNCOMMON
@@ -1480,6 +2282,22 @@ grubshark:
   bait:
     tick: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 arctic-horizonfin:
   name: Arctic Horizonfin
   rarity: COMMON
@@ -1505,6 +2323,17 @@ arctic-horizonfin:
     rhino_beetle: 0.01
     spiderling: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 arctic-mystelune:
   name: Arctic Mystelune
   rarity: COMMON
@@ -1529,6 +2358,17 @@ arctic-mystelune:
     rhino_beetle: 0.01
     dragonfly: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 arctic-bylowin:
   name: Arctic Bylowin
   rarity: COMMON
@@ -1554,6 +2394,17 @@ arctic-bylowin:
     grubb: 0.01
     tick: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 sand-minnoe:
   name: Sand Minnoe
   rarity: COMMON
@@ -1572,6 +2423,17 @@ sand-minnoe:
     grubb: 0.01
     spiderling: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 frozen-nautivora:
   name: Frozen Nautivora
   rarity: UNCOMMON
@@ -1594,6 +2456,22 @@ frozen-nautivora:
     scarab: 0.01
     spiderling: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 abraisive-traavelpin:
   name: Abraisive Traavelpin
   rarity: COMMON
@@ -1619,6 +2497,17 @@ abraisive-traavelpin:
     tick: 0.01
     dragonfly: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 sahara-poppicok:
   name: Sahara Poppicok
   rarity: COMMON
@@ -1637,6 +2526,17 @@ sahara-poppicok:
     rhino_beetle: 0.01
     tick: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 sky-tilapia:
   name: Sky Tilapia
   rarity: COMMON
@@ -1658,6 +2558,17 @@ sky-tilapia:
     rhino_beetle: 0.01
     tick: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 glacial-albacore:
   name: Glacial Albacore
   rarity: COMMON
@@ -1676,6 +2587,17 @@ glacial-albacore:
     dragonfly: 0.01
     spiderling: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 frostbite-fili:
   name: Frostbite Fili
   rarity: COMMON
@@ -1696,6 +2618,17 @@ frostbite-fili:
     rhino_beetle: 0.01
     spiderling: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 runic-menhaden:
   name: Runic Menhaden
   rarity: UNCOMMON
@@ -1720,6 +2653,22 @@ runic-menhaden:
   bait:
     dragonfly: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 moonlit-aruana:
   name: Moonlit Aruana
   rarity: COMMON
@@ -1747,6 +2696,17 @@ moonlit-aruana:
     grubb: 0.01
     wasp: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 glacial-boopsnoot:
   name: Glacial Boopsnoot
   rarity: COMMON
@@ -1766,6 +2726,17 @@ glacial-boopsnoot:
     wasp: 0.01
     spiderling: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 depressed-minsk:
   name: Depressed Minsk
   rarity: COMMON
@@ -1791,6 +2762,17 @@ depressed-minsk:
     tick: 0.01
     grubb: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 enlightened-albacore:
   name: Enlightened Albacore
   rarity: COMMON
@@ -1813,6 +2795,17 @@ enlightened-albacore:
     grubb: 0.01
     rhino_beetle: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 glacial-bananafish:
   name: Glacial Bananafish
   rarity: COMMON
@@ -1835,6 +2828,17 @@ glacial-bananafish:
     rhino_beetle: 0.01
     scarab: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 retreating-pepet:
   name: Retreating Pepet
   rarity: UNCOMMON
@@ -1860,6 +2864,22 @@ retreating-pepet:
     wasp: 0.01
     tick: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 dormant-doomageddon:
   name: Dormant Doomageddon
   rarity: UNCOMMON
@@ -1878,6 +2898,22 @@ dormant-doomageddon:
     scarab: 0.01
     grubb: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 primal-halibut:
   name: Primal Halibut
   rarity: COMMON
@@ -1902,6 +2938,17 @@ primal-halibut:
     wasp: 0.01
     scarab: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 blue-jellyjelly:
   name: Blue Jellyjelly
   rarity: COMMON
@@ -1924,6 +2971,17 @@ blue-jellyjelly:
     rhino_beetle: 0.01
     grubb: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 boreal-tetra:
   name: Boreal Tetra
   rarity: COMMON
@@ -1945,6 +3003,17 @@ boreal-tetra:
     scarab: 0.01
     tick: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 boreal-squid:
   name: Boreal Squid
   rarity: UNCOMMON
@@ -1967,6 +3036,22 @@ boreal-squid:
     scarab: 0.01
     tick: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 voidborn-boopsnoot:
   name: Voidborn Boopsnoot
   rarity: COMMON
@@ -1986,6 +3071,17 @@ voidborn-boopsnoot:
     spiderling: 0.01
     dragonfly: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 boreal-coralspine:
   name: Boreal Coralspine
   rarity: COMMON
@@ -2014,6 +3110,17 @@ boreal-coralspine:
     grubb: 0.01
     tick: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 primal-glydefin:
   name: Primal Glydefin
   rarity: COMMON
@@ -2039,6 +3146,17 @@ primal-glydefin:
     spiderling: 0.01
     rhino_beetle: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 voidborn-goldberg:
   name: Voidborn Goldberg
   rarity: COMMON
@@ -2060,6 +3178,17 @@ voidborn-goldberg:
     tick: 0.01
     scarab: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 boreal-albacore:
   name: Boreal Albacore
   rarity: COMMON
@@ -2089,6 +3218,17 @@ boreal-albacore:
     wasp: 0.01
     tick: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 voidborn-seaglider:
   name: Voidborn Seaglider
   rarity: COMMON
@@ -2112,6 +3252,17 @@ voidborn-seaglider:
     dragonfly: 0.01
     rhino_beetle: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 fading-dancefin:
   name: Fading Dancefin
   rarity: COMMON
@@ -2136,6 +3287,17 @@ fading-dancefin:
     spiderling: 0.01
     dragonfly: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 ruined-poppicok:
   name: Ruined Poppicok
   rarity: COMMON
@@ -2155,6 +3317,17 @@ ruined-poppicok:
     rhino_beetle: 0.01
     dragonfly: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 voidborn-minnoe:
   name: Voidborn Minnoe
   rarity: COMMON
@@ -2176,6 +3349,17 @@ voidborn-minnoe:
     rhino_beetle: 0.01
     scarab: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 primal-mullet:
   name: Primal Mullet
   rarity: UNCOMMON
@@ -2193,6 +3377,22 @@ primal-mullet:
   bait:
     tick: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 read-herring:
   name: Read Herring
   rarity: COMMON
@@ -2215,6 +3415,17 @@ read-herring:
     dragonfly: 0.01
     wasp: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 rhodonite-estuary:
   name: Rhodonite Estuary
   rarity: COMMON
@@ -2233,6 +3444,17 @@ rhodonite-estuary:
     wasp: 0.01
     grubb: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 golden-albacore:
   name: Golden Albacore
   rarity: UNCOMMON
@@ -2250,6 +3472,22 @@ golden-albacore:
   bait:
     spiderling: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 sunny-woodskip:
   name: Sunny Woodskip
   rarity: COMMON
@@ -2269,6 +3507,17 @@ sunny-woodskip:
     tick: 0.01
     spiderling: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 dawnglider-riptideon:
   name: Dawnglider Riptideon
   rarity: COMMON
@@ -2291,6 +3540,17 @@ dawnglider-riptideon:
     grubb: 0.01
     wasp: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 crimson-flounder:
   name: Crimson Flounder
   rarity: COMMON
@@ -2311,6 +3571,17 @@ crimson-flounder:
     spiderling: 0.01
     grubb: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 sunset-lionfish:
   name: Sunset Lionfish
   rarity: COMMON
@@ -2331,6 +3602,17 @@ sunset-lionfish:
     grubb: 0.01
     dragonfly: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 sunset-goldberg:
   name: Sunset Goldberg
   rarity: COMMON
@@ -2350,6 +3632,17 @@ sunset-goldberg:
     wasp: 0.01
     tick: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 dawnglider-poppicok:
   name: Dawnglider Poppicok
   rarity: COMMON
@@ -2371,6 +3664,17 @@ dawnglider-poppicok:
     dragonfly: 0.01
     rhino_beetle: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 dawnglider-herring:
   name: Dawnglider Herring
   rarity: COMMON
@@ -2394,6 +3698,17 @@ dawnglider-herring:
     tick: 0.01
     dragonfly: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 lucid-puckerfish:
   name: Lucid Puckerfish
   rarity: COMMON
@@ -2415,6 +3730,17 @@ lucid-puckerfish:
     spiderling: 0.01
     tick: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 soulless-puckerfish:
   name: Soulless Puckerfish
   rarity: COMMON
@@ -2443,6 +3769,17 @@ soulless-puckerfish:
     spiderling: 0.01
     wasp: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 sunrise-boopsnoot:
   name: Sunrise Boopsnoot
   rarity: COMMON
@@ -2464,6 +3801,17 @@ sunrise-boopsnoot:
     scarab: 0.01
     tick: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 albino-grayling:
   name: Albino Grayling
   rarity: COMMON
@@ -2484,6 +3832,17 @@ albino-grayling:
     spiderling: 0.01
     rhino_beetle: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 ascended-puckerfish:
   name: Ascended Puckerfish
   rarity: COMMON
@@ -2506,6 +3865,17 @@ ascended-puckerfish:
     tick: 0.01
     scarab: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 crumbling-klauknbals:
   name: Crumbling Klauknbals
   rarity: COMMON
@@ -2526,6 +3896,17 @@ crumbling-klauknbals:
     rhino_beetle: 0.01
     grubb: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 bottom-angelfish:
   name: Bottom Angelfish
   rarity: COMMON
@@ -2544,6 +3925,17 @@ bottom-angelfish:
     grubb: 0.01
     tick: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 tiger-goby:
   name: Tiger Goby
   rarity: UNCOMMON
@@ -2560,6 +3952,22 @@ tiger-goby:
   bait:
     dragonfly: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 gravel-finfin:
   name: Gravel Finfin
   rarity: COMMON
@@ -2582,6 +3990,17 @@ gravel-finfin:
     wasp: 0.01
     grubb: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 chonkler-finfin:
   name: Chonkler Finfin
   rarity: UNCOMMON
@@ -2601,6 +4020,22 @@ chonkler-finfin:
     wasp: 0.01
     tick: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 nanides-shin:
   name: Nanides Shin
   rarity: UNCOMMON
@@ -2619,6 +4054,22 @@ nanides-shin:
   bait:
     grubb: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 primal-bananafish:
   name: Primal Bananafish
   rarity: COMMON
@@ -2640,6 +4091,17 @@ primal-bananafish:
     tick: 0.01
     scarab: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 dry-aged-rhyb:
   name: Dry-aged Rhyb
   rarity: COMMON
@@ -2662,6 +4124,17 @@ dry-aged-rhyb:
     wasp: 0.01
     rhino_beetle: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 saltwater-bass:
   name: Saltwater Bass
   rarity: COMMON
@@ -2681,6 +4154,17 @@ saltwater-bass:
     tick: 0.01
     scarab: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 dark-boopsnoot:
   name: Dark Boopsnoot
   rarity: COMMON
@@ -2705,6 +4189,17 @@ dark-boopsnoot:
     wasp: 0.01
     scarab: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 tropical-takoki:
   name: Tropical Takoki
   rarity: COMMON
@@ -2726,6 +4221,17 @@ tropical-takoki:
     dragonfly: 0.01
     wasp: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 royal-gramma:
   name: Royal Gramma
   rarity: UNCOMMON
@@ -2743,6 +4249,22 @@ royal-gramma:
   bait:
     spiderling: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 waning-threadfin:
   name: Waning Threadfin
   rarity: COMMON
@@ -2761,6 +4283,17 @@ waning-threadfin:
     dragonfly: 0.01
     wasp: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 forgetful-tang:
   name: Forgetful Tang
   rarity: UNCOMMON
@@ -2782,6 +4315,22 @@ forgetful-tang:
   bait:
     dragonfly: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 fatherly-clownfish:
   name: Fatherly Clownfish
   rarity: UNCOMMON
@@ -2804,6 +4353,22 @@ fatherly-clownfish:
     rhino_beetle: 0.01
     tick: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 sunrise-threadfin:
   name: Sunrise Threadfin
   rarity: COMMON
@@ -2825,6 +4390,17 @@ sunrise-threadfin:
     spiderling: 0.01
     grubb: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 masked-blenny:
   name: Masked Blenny
   rarity: COMMON
@@ -2847,6 +4423,17 @@ masked-blenny:
     scarab: 0.01
     dragonfly: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 tropical-wobbletail:
   name: Tropical Wobbletail
   rarity: COMMON
@@ -2867,6 +4454,17 @@ tropical-wobbletail:
     scarab: 0.01
     grubb: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 sunstreak-butterflyfish:
   name: Sunstreak Butterflyfish
   rarity: COMMON
@@ -2890,6 +4488,17 @@ sunstreak-butterflyfish:
     grubb: 0.01
     spiderling: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 amethyst-cichilid:
   name: Amethyst Cichilid
   rarity: COMMON
@@ -2915,6 +4524,17 @@ amethyst-cichilid:
     grubb: 0.01
     dragonfly: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 full-moon-threadfin:
   name: Full-Moon Threadfin
   rarity: COMMON
@@ -2938,6 +4558,17 @@ full-moon-threadfin:
     grubb: 0.01
     tick: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 cerulean-razorback:
   name: Cerulean Razorback
   rarity: COMMON
@@ -2963,6 +4594,17 @@ cerulean-razorback:
     spiderling: 0.01
     tick: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 moonlit-butterflyfish:
   name: Moonlit Butterflyfish
   rarity: COMMON
@@ -2983,6 +4625,17 @@ moonlit-butterflyfish:
     dragonfly: 0.01
     rhino_beetle: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 sunstreak-elara:
   name: Sunstreak Elara
   rarity: UNCOMMON
@@ -3004,6 +4657,22 @@ sunstreak-elara:
     grubb: 0.01
     scarab: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 seafoam-waverunner:
   name: Seafoam Waverunner
   rarity: COMMON
@@ -3026,6 +4695,17 @@ seafoam-waverunner:
     scarab: 0.01
     dragonfly: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 rainbow-bananafish:
   name: Rainbow Bananafish
   rarity: COMMON
@@ -3049,6 +4729,17 @@ rainbow-bananafish:
     wasp: 0.01
     grubb: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 candy-drillcod:
   name: Candy Drillcod
   rarity: COMMON
@@ -3073,6 +4764,17 @@ candy-drillcod:
     grubb: 0.01
     tick: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 courting-klauknbals:
   name: Courting Klauknbals
   rarity: UNCOMMON
@@ -3098,6 +4800,22 @@ courting-klauknbals:
   bait:
     wasp: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 rosegold-flowfin:
   name: Rosegold Flowfin
   rarity: COMMON
@@ -3117,6 +4835,17 @@ rosegold-flowfin:
     dragonfly: 0.01
     rhino_beetle: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 prismarine-betta:
   name: Prismarine Betta
   rarity: COMMON
@@ -3139,6 +4868,17 @@ prismarine-betta:
     rhino_beetle: 0.01
     dragonfly: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 aquamarine-estuary:
   name: Aquamarine Estuary
   rarity: COMMON
@@ -3159,6 +4899,17 @@ aquamarine-estuary:
     grubb: 0.01
     wasp: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 fruity-albacore:
   name: Fruity Albacore
   rarity: COMMON
@@ -3181,6 +4932,17 @@ fruity-albacore:
     spiderling: 0.01
     rhino_beetle: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 eroti-dancefin:
   name: Eroti Dancefin
   rarity: COMMON
@@ -3205,6 +4967,17 @@ eroti-dancefin:
     wasp: 0.01
     tick: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 tropical-zing:
   name: Tropical Zing
   rarity: COMMON
@@ -3225,6 +4998,17 @@ tropical-zing:
     tick: 0.01
     spiderling: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 bismuth-estuary:
   name: Bismuth Estuary
   rarity: UNCOMMON
@@ -3248,6 +5032,22 @@ bismuth-estuary:
     wasp: 0.01
     spiderling: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 nightfall-threadfin:
   name: Nightfall Threadfin
   rarity: UNCOMMON
@@ -3266,6 +5066,22 @@ nightfall-threadfin:
   bait:
     grubb: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 heavenly-jetfin:
   name: Heavenly Jetfin
   rarity: UNCOMMON
@@ -3287,6 +5103,22 @@ heavenly-jetfin:
     grubb: 0.01
     wasp: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 treasured-luminae:
   name: Treasured Luminae
   rarity: RARE
@@ -3303,6 +5135,22 @@ treasured-luminae:
   bait:
     wasp: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 glorious-dancefin:
   name: Glorious Dancefin
   rarity: UNCOMMON
@@ -3327,6 +5175,22 @@ glorious-dancefin:
     wasp: 0.01
     scarab: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 elusive-eel:
   name: Elusive Eel
   rarity: RARE
@@ -3349,6 +5213,22 @@ elusive-eel:
   model: 155
   bait:
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 treasured-ptidiwhiskir:
   name: Treasured Ptidiwhiskir
   rarity: RARE
@@ -3372,6 +5252,22 @@ treasured-ptidiwhiskir:
   bait:
     dragonfly: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 ethereal-mindwatcher:
   name: Ethereal Mindwatcher
   rarity: LEGENDARY
@@ -3394,6 +5290,22 @@ ethereal-mindwatcher:
   model: 157
   bait:
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-4
+      expected: 2.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.65
+      range: 1-4
+      expected: 1.625
+      can_be_zero: true
+    intact_eyes:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
 dream-threadfin:
   name: Dream Threadfin
   rarity: RARE
@@ -3412,6 +5324,22 @@ dream-threadfin:
   model: 158
   bait:
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 albino-dragling:
   name: Albino Dragling
   rarity: UNCOMMON
@@ -3432,6 +5360,22 @@ albino-dragling:
     spiderling: 0.01
     grubb: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 top-angelfish:
   name: Top Angelfish
   rarity: UNCOMMON
@@ -3458,6 +5402,22 @@ top-angelfish:
     scarab: 0.01
     grubb: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 dream-squid:
   name: Dream Squid
   rarity: UNCOMMON
@@ -3482,6 +5442,22 @@ dream-squid:
   bait:
     scarab: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 treasured-minnoe:
   name: Treasured Minnoe
   rarity: RARE
@@ -3502,6 +5478,22 @@ treasured-minnoe:
   model: 162
   bait:
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 fulfilled-minsk:
   name: Fulfilled Minsk
   rarity: UNCOMMON
@@ -3524,6 +5516,22 @@ fulfilled-minsk:
     wasp: 0.01
     dragonfly: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 brosephina-hookfin:
   name: Brosephina Hookfin
   rarity: RARE
@@ -3547,6 +5555,22 @@ brosephina-hookfin:
   bait:
     dragonfly: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 sunset-threadfin:
   name: Sunset Threadfin
   rarity: UNCOMMON
@@ -3571,6 +5595,22 @@ sunset-threadfin:
     rhino_beetle: 0.01
     scarab: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 commanding-pepet:
   name: Commanding Pepet
   rarity: RARE
@@ -3586,6 +5626,22 @@ commanding-pepet:
   model: 166
   bait:
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 luminous-lionfish:
   name: Luminous Lionfish
   rarity: UNCOMMON
@@ -3612,6 +5668,22 @@ luminous-lionfish:
     scarab: 0.01
     wasp: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 golden-dart:
   name: Golden Dart
   rarity: UNCOMMON
@@ -3631,6 +5703,22 @@ golden-dart:
     rhino_beetle: 0.01
     tick: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 full-moon-poppicok:
   name: Full-Moon Poppicok
   rarity: UNCOMMON
@@ -3651,6 +5739,22 @@ full-moon-poppicok:
     wasp: 0.01
     spiderling: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 shrouded-ghostly-grubshark:
   name: Shrouded-Ghostly Grubshark
   rarity: LEGENDARY
@@ -3675,6 +5779,22 @@ shrouded-ghostly-grubshark:
   model: 170
   bait:
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-4
+      expected: 2.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.65
+      range: 1-4
+      expected: 1.625
+      can_be_zero: true
+    intact_eyes:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
 prime-rhyb:
   name: Prime Rhyb
   rarity: RARE
@@ -3694,6 +5814,22 @@ prime-rhyb:
   model: 171
   bait:
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 ghostly-puckerfish:
   name: Ghostly Puckerfish
   rarity: UNCOMMON
@@ -3718,6 +5854,22 @@ ghostly-puckerfish:
     wasp: 0.01
     tick: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 rose-goldfish:
   name: Rose Goldfish
   rarity: RARE
@@ -3734,6 +5886,22 @@ rose-goldfish:
   bait:
     grubb: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 isle-takoki:
   name: Isle Takoki
   rarity: UNCOMMON
@@ -3752,6 +5920,22 @@ isle-takoki:
     grubb: 0.01
     rhino_beetle: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 luminous-whelk:
   name: Luminous Whelk
   rarity: UNCOMMON
@@ -3776,6 +5960,22 @@ luminous-whelk:
   bait:
     dragonfly: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 beeper-sneepihr:
   name: Beeper Sneepihr
   rarity: UNCOMMON
@@ -3795,6 +5995,22 @@ beeper-sneepihr:
     scarab: 0.01
     rhino_beetle: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 yeeper-sneepihr:
   name: Yeeper Sneepihr
   rarity: UNCOMMON
@@ -3812,6 +6028,22 @@ yeeper-sneepihr:
   bait:
     scarab: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 bola-claymore:
   name: Bola & Claymore
   rarity: LEGENDARY
@@ -3830,6 +6062,22 @@ bola-claymore:
   model: 178
   bait:
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-4
+      expected: 2.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.65
+      range: 1-4
+      expected: 1.625
+      can_be_zero: true
+    intact_eyes:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
 pure-goldfish:
   name: Pure Goldfish
   rarity: RARE
@@ -3851,6 +6099,22 @@ pure-goldfish:
   model: 179
   bait:
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 green-apple-goomi:
   name: Green-apple Goomi
   rarity: UNCOMMON
@@ -3870,6 +6134,22 @@ green-apple-goomi:
     scarab: 0.01
     spiderling: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 weeh-shee-wooshi:
   name: Weeh, Shee & Wooshi
   rarity: RARE
@@ -3893,6 +6173,22 @@ weeh-shee-wooshi:
   bait:
     tick: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 cerulean-merfish:
   name: Cerulean Merfish
   rarity: UNCOMMON
@@ -3910,6 +6206,22 @@ cerulean-merfish:
   bait:
     rhino_beetle: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 travelling-belogna:
   name: Travelling Belogna
   rarity: RARE
@@ -3935,6 +6247,22 @@ travelling-belogna:
   bait:
     wasp: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 raging-boomfish:
   name: Raging Boomfish
   rarity: UNCOMMON
@@ -3959,6 +6287,22 @@ raging-boomfish:
   bait:
     tick: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 whoopee-anamalo:
   name: Whoopee Anamalo
   rarity: UNCOMMON
@@ -3978,6 +6322,22 @@ whoopee-anamalo:
   bait:
     dragonfly: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 bronze-skrub:
   name: Bronze Skrub
   rarity: UNCOMMON
@@ -4005,6 +6365,22 @@ bronze-skrub:
     rhino_beetle: 0.01
     dragonfly: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 ethereal-chungus:
   name: Ethereal Chungus
   rarity: RARE
@@ -4027,6 +6403,22 @@ ethereal-chungus:
   model: 187
   bait:
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 nightfall-puffer:
   name: Nightfall Puffer
   rarity: UNCOMMON
@@ -4047,6 +6439,22 @@ nightfall-puffer:
     dragonfly: 0.01
     spiderling: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 sunrise-puffer:
   name: Sunrise Puffer
   rarity: UNCOMMON
@@ -4065,6 +6473,22 @@ sunrise-puffer:
   bait:
     tick: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 common-snail:
   name: Common Snail
   rarity: RARE
@@ -4089,6 +6513,22 @@ common-snail:
   bait:
     rhino_beetle: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 alto-falloshimp:
   name: Alto Falloshimp
   rarity: UNCOMMON
@@ -4116,6 +6556,22 @@ alto-falloshimp:
     tick: 0.01
     grubb: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 jaques-clenshimp:
   name: Jaques Clenshimp
   rarity: RARE
@@ -4134,6 +6590,22 @@ jaques-clenshimp:
   bait:
     tick: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 common-gripper:
   name: Common Gripper
   rarity: UNCOMMON
@@ -4153,6 +6625,22 @@ common-gripper:
   bait:
     tick: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 nightmare-squid:
   name: Nightmare Squid
   rarity: RARE
@@ -4171,6 +6659,22 @@ nightmare-squid:
   model: 194
   bait:
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 albino-kreken:
   name: Albino Kreken
   rarity: RARE
@@ -4190,6 +6694,22 @@ albino-kreken:
   model: 195
   bait:
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 pink-jellyjelly:
   name: Pink Jellyjelly
   rarity: UNCOMMON
@@ -4212,6 +6732,22 @@ pink-jellyjelly:
     spiderling: 0.01
     wasp: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 haunted-fishbones:
   name: Haunted Fishbones
   rarity: COMMON
@@ -4233,6 +6769,17 @@ haunted-fishbones:
     tick: 0.01
     scarab: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 abyssal-jetfin:
   name: Abyssal Jetfin
   rarity: UNCOMMON
@@ -4255,6 +6802,22 @@ abyssal-jetfin:
   bait:
     dragonfly: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 primal-canth:
   name: Primal Canth
   rarity: RARE
@@ -4274,6 +6837,22 @@ primal-canth:
   bait:
     tick: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 concealed-eel:
   name: Concealed Eel
   rarity: UNCOMMON
@@ -4298,6 +6877,22 @@ concealed-eel:
   bait:
     dragonfly: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 diamonite-bananafish:
   name: Diamonite Bananafish
   rarity: COMMON
@@ -4321,6 +6916,17 @@ diamonite-bananafish:
     rhino_beetle: 0.01
     wasp: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 rubinite-salmon:
   name: Rubinite Salmon
   rarity: COMMON
@@ -4342,6 +6948,17 @@ rubinite-salmon:
     rhino_beetle: 0.01
     tick: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 quartzenite-gutpike:
   name: Quartzenite Gutpike
   rarity: COMMON
@@ -4369,6 +6986,17 @@ quartzenite-gutpike:
     grubb: 0.01
     tick: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 charged-quartzenite-gutpike:
   name: Charged Quartzenite Gutpike
   rarity: UNCOMMON
@@ -4390,6 +7018,22 @@ charged-quartzenite-gutpike:
     dragonfly: 0.01
     rhino_beetle: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 prismarinite-minnoe:
   name: Prismarinite Minnoe
   rarity: COMMON
@@ -4409,6 +7053,17 @@ prismarinite-minnoe:
     tick: 0.01
     spiderling: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 amethysite-minnoe:
   name: Amethysite Minnoe
   rarity: COMMON
@@ -4429,6 +7084,17 @@ amethysite-minnoe:
     scarab: 0.01
     spiderling: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 emerald-schmeckle:
   name: Emerald Schmeckle
   rarity: COMMON
@@ -4449,6 +7115,17 @@ emerald-schmeckle:
     wasp: 0.01
     scarab: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 crystalline-back-rhyb:
   name: Crystalline Back Rhyb
   rarity: UNCOMMON
@@ -4473,6 +7150,22 @@ crystalline-back-rhyb:
     tick: 0.01
     scarab: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 anchor-mimook:
   name: Anchor Mimook
   rarity: COMMON
@@ -4496,6 +7189,17 @@ anchor-mimook:
     rhino_beetle: 0.01
     wasp: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 fishhook-mimook:
   name: Fishhook Mimook
   rarity: COMMON
@@ -4519,6 +7223,17 @@ fishhook-mimook:
     scarab: 0.01
     grubb: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 azalea-grubshark:
   name: Azalea Grubshark
   rarity: UNCOMMON
@@ -4545,6 +7260,22 @@ azalea-grubshark:
     spiderling: 0.01
     rhino_beetle: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 emeraldite-discus:
   name: Emeraldite Discus
   rarity: COMMON
@@ -4564,6 +7295,17 @@ emeraldite-discus:
     spiderling: 0.01
     tick: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 primal-eel:
   name: Primal Eel
   rarity: COMMON
@@ -4591,6 +7333,17 @@ primal-eel:
     spiderling: 0.01
     rhino_beetle: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 ruling-turok:
   name: Ruling Turok
   rarity: UNCOMMON
@@ -4611,6 +7364,22 @@ ruling-turok:
     grubb: 0.01
     spiderling: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 jasper-gripper:
   name: Jasper Gripper
   rarity: COMMON
@@ -4632,6 +7401,17 @@ jasper-gripper:
     scarab: 0.01
     dragonfly: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 lush-slimswimer:
   name: Lush Slimswimer
   rarity: COMMON
@@ -4653,6 +7433,17 @@ lush-slimswimer:
     tick: 0.01
     rhino_beetle: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 reborn-puckerfish:
   name: Reborn Puckerfish
   rarity: COMMON
@@ -4675,6 +7466,17 @@ reborn-puckerfish:
     tick: 0.01
     rhino_beetle: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 reborn-razorback:
   name: Reborn Razorback
   rarity: COMMON
@@ -4699,6 +7501,17 @@ reborn-razorback:
     scarab: 0.01
     dragonfly: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 amethyst-sculblade:
   name: Amethyst Sculblade
   rarity: COMMON
@@ -4723,6 +7536,17 @@ amethyst-sculblade:
     scarab: 0.01
     dragonfly: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 crystal-jellyjelly:
   name: Crystal Jellyjelly
   rarity: RARE
@@ -4744,6 +7568,22 @@ crystal-jellyjelly:
   bait:
     tick: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 crystal-jetfin:
   name: Crystal Jetfin
   rarity: COMMON
@@ -4770,6 +7610,17 @@ crystal-jetfin:
     dragonfly: 0.01
     wasp: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 docile-doomageddon:
   name: Docile Doomageddon
   rarity: COMMON
@@ -4789,6 +7640,17 @@ docile-doomageddon:
     scarab: 0.01
     spiderling: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 emeraldite-teetle:
   name: Emeraldite Teetle
   rarity: UNCOMMON
@@ -4810,6 +7672,22 @@ emeraldite-teetle:
     dragonfly: 0.01
     tick: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 loving-scrubber:
   name: Loving Scrubber
   rarity: UNCOMMON
@@ -4836,6 +7714,22 @@ loving-scrubber:
   bait:
     rhino_beetle: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 seafoam-zing:
   name: Seafoam Zing
   rarity: COMMON
@@ -4857,6 +7751,17 @@ seafoam-zing:
     grubb: 0.01
     wasp: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 crimson-gripper:
   name: Crimson Gripper
   rarity: COMMON
@@ -4878,6 +7783,17 @@ crimson-gripper:
     wasp: 0.01
     tick: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 dune-gripper:
   name: Dune Gripper
   rarity: COMMON
@@ -4899,6 +7815,17 @@ dune-gripper:
     tick: 0.01
     dragonfly: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 obsidian-gripper:
   name: Obsidian Gripper
   rarity: UNCOMMON
@@ -4921,6 +7848,22 @@ obsidian-gripper:
     wasp: 0.01
     grubb: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 bone-gripper:
   name: Bone Gripper
   rarity: UNCOMMON
@@ -4943,6 +7886,22 @@ bone-gripper:
     rhino_beetle: 0.01
     tick: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 sunset-gripper:
   name: Sunset Gripper
   rarity: COMMON
@@ -4968,6 +7927,17 @@ sunset-gripper:
     dragonfly: 0.01
     rhino_beetle: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 jade-gripper:
   name: Jade Gripper
   rarity: UNCOMMON
@@ -4988,6 +7958,22 @@ jade-gripper:
     grubb: 0.01
     rhino_beetle: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 amethyst-gripper:
   name: Amethyst Gripper
   rarity: UNCOMMON
@@ -5009,6 +7995,22 @@ amethyst-gripper:
     dragonfly: 0.01
     rhino_beetle: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 twinhorn-gripper:
   name: Twinhorn Gripper
   rarity: RARE
@@ -5028,6 +8030,22 @@ twinhorn-gripper:
   bait:
     grubb: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 wellfed-gripper:
   name: Wellfed Gripper
   rarity: UNCOMMON
@@ -5053,6 +8071,22 @@ wellfed-gripper:
     spiderling: 0.01
     grubb: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 sunshine-gripper:
   name: Sunshine Gripper
   rarity: UNCOMMON
@@ -5074,6 +8108,22 @@ sunshine-gripper:
     wasp: 0.01
     dragonfly: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 surface-gripper:
   name: Surface Gripper
   rarity: COMMON
@@ -5095,6 +8145,17 @@ surface-gripper:
     dragonfly: 0.01
     wasp: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 radiated-gripper:
   name: Radiated Gripper
   rarity: UNCOMMON
@@ -5119,6 +8180,22 @@ radiated-gripper:
     dragonfly: 0.01
     rhino_beetle: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 mr-gripper:
   name: Mr. Gripper
   rarity: LEGENDARY
@@ -5138,6 +8215,22 @@ mr-gripper:
   model: 238
   bait:
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-4
+      expected: 2.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.65
+      range: 1-4
+      expected: 1.625
+      can_be_zero: true
+    intact_eyes:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
 concealed-gripper:
   name: Concealed Gripper
   rarity: UNCOMMON
@@ -5158,6 +8251,22 @@ concealed-gripper:
     scarab: 0.01
     rhino_beetle: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 crawling-gripper:
   name: Crawling Gripper
   rarity: UNCOMMON
@@ -5177,6 +8286,22 @@ crawling-gripper:
     rhino_beetle: 0.01
     grubb: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 sonic-gripper:
   name: Sonic Gripper
   rarity: RARE
@@ -5198,6 +8323,22 @@ sonic-gripper:
   model: 241
   bait:
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 pivot-gripper:
   name: Pivot Gripper
   rarity: UNCOMMON
@@ -5223,6 +8364,22 @@ pivot-gripper:
   bait:
     dragonfly: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 rhudon-gripper:
   name: Rhudon Gripper
   rarity: COMMON
@@ -5251,6 +8408,17 @@ rhudon-gripper:
     grubb: 0.01
     dragonfly: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 rockbash-gripper:
   name: Rockbash Gripper
   rarity: UNCOMMON
@@ -5276,6 +8444,22 @@ rockbash-gripper:
     dragonfly: 0.01
     grubb: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 headhunt-gripper:
   name: Headhunt Gripper
   rarity: COMMON
@@ -5301,6 +8485,17 @@ headhunt-gripper:
     scarab: 0.01
     tick: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 bean-gripper:
   name: Bean Gripper
   rarity: UNCOMMON
@@ -5323,6 +8518,22 @@ bean-gripper:
   bait:
     grubb: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 bouncy-gripper:
   name: Bouncy Gripper
   rarity: RARE
@@ -5341,6 +8552,22 @@ bouncy-gripper:
   model: 247
   bait:
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 hypno-gripper:
   name: Hypno Gripper
   rarity: COMMON
@@ -5367,6 +8594,17 @@ hypno-gripper:
     wasp: 0.01
     scarab: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 emerald-gripper:
   name: Emerald Gripper
   rarity: COMMON
@@ -5392,6 +8630,17 @@ emerald-gripper:
     spiderling: 0.01
     rhino_beetle: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 fleshrend-gripper:
   name: Fleshrend Gripper
   rarity: UNCOMMON
@@ -5419,6 +8668,22 @@ fleshrend-gripper:
     spiderling: 0.01
     grubb: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 til-a-i-pia:
   name: Til-A.I.-pia
   rarity: COMMON
@@ -5444,6 +8709,17 @@ til-a-i-pia:
     spiderling: 0.01
     scarab: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 bigbyte-piranha:
   name: BigByte Piranha
   rarity: COMMON
@@ -5466,6 +8742,17 @@ bigbyte-piranha:
     grubb: 0.01
     dragonfly: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 mechaphyra:
   name: Mechaphyra
   rarity: UNCOMMON
@@ -5490,6 +8777,22 @@ mechaphyra:
     tick: 0.01
     dragonfly: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 troutomobile:
   name: Troutomobile
   rarity: UNCOMMON
@@ -5511,6 +8814,22 @@ troutomobile:
     rhino_beetle: 0.01
     tick: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 moderated-threadfin:
   name: Moderated Threadfin
   rarity: COMMON
@@ -5534,6 +8853,17 @@ moderated-threadfin:
     rhino_beetle: 0.01
     wasp: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 old-timey-poppicog:
   name: Old-Timey Poppicog
   rarity: UNCOMMON
@@ -5558,6 +8888,22 @@ old-timey-poppicog:
   bait:
     dragonfly: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 oled-anglefish:
   name: OLED Anglefish
   rarity: UNCOMMON
@@ -5579,6 +8925,22 @@ oled-anglefish:
     grubb: 0.01
     spiderling: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 betafish:
   name: BETAfish
   rarity: RARE
@@ -5601,6 +8963,22 @@ betafish:
   bait:
     wasp: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 escargobot:
   name: Escargobot
   rarity: COMMON
@@ -5623,6 +9001,17 @@ escargobot:
     dragonfly: 0.01
     spiderling: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 escargomid:
   name: Escargomid
   rarity: UNCOMMON
@@ -5645,6 +9034,22 @@ escargomid:
   bait:
     wasp: 0.01
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 chronotrouter:
   name: Chronotrouter
   rarity: RARE
@@ -5667,6 +9072,22 @@ chronotrouter:
   bait:
     rhino_beetle: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 initial-tee:
   name: Initial Tee
   rarity: UNCOMMON
@@ -5688,6 +9109,22 @@ initial-tee:
     dragonfly: 0.01
     tick: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 snowgrave-rodtail:
   name: Snowgrave Rodtail
   rarity: COMMON
@@ -5714,6 +9151,17 @@ snowgrave-rodtail:
     grubb: 0.01
     wasp: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 eelbow:
   name: Eelbow
   rarity: UNCOMMON
@@ -5734,6 +9182,22 @@ eelbow:
   bait:
     rhino_beetle: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 locknplea:
   name: Locknplea
   rarity: RARE
@@ -5754,6 +9218,22 @@ locknplea:
   model: 265
   bait:
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 water-bybass:
   name: Water Bybass
   rarity: UNCOMMON
@@ -5778,6 +9258,22 @@ water-bybass:
     grubb: 0.01
     wasp: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 chromadine:
   name: Chromadine
   rarity: COMMON
@@ -5800,6 +9296,17 @@ chromadine:
     spiderling: 0.01
     rhino_beetle: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 broken-wheel:
   name: Broken Wheel
   rarity: UNCOMMON
@@ -5826,6 +9333,22 @@ broken-wheel:
   bait:
     dragonfly: 0.01
     spiderling: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 dr-octogonapus:
   name: Dr Octogonapus
   rarity: LEGENDARY
@@ -5846,6 +9369,22 @@ dr-octogonapus:
     DEEP_DARK: 0.01
   bait:
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-4
+      expected: 2.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.65
+      range: 1-4
+      expected: 1.625
+      can_be_zero: true
+    intact_eyes:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
 cognutive:
   name: CogNUTive
   rarity: UNCOMMON
@@ -5866,6 +9405,22 @@ cognutive:
   bait:
     grubb: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 servo-moray:
   name: Servo-Moray
   rarity: COMMON
@@ -5889,6 +9444,17 @@ servo-moray:
     rhino_beetle: 0.01
     dragonfly: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 escargotop:
   name: Escargotop
   rarity: RARE
@@ -5908,6 +9474,22 @@ escargotop:
   model: 272
   bait:
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 boopsnoototron:
   name: Boopsnoototron
   rarity: COMMON
@@ -5935,6 +9517,17 @@ boopsnoototron:
     spiderling: 0.01
     wasp: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 floundrive:
   name: Floundrive
   rarity: COMMON
@@ -5956,6 +9549,17 @@ floundrive:
     rhino_beetle: 0.01
     dragonfly: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 autoboros:
   name: Autoboros
   rarity: RARE
@@ -5971,6 +9575,22 @@ autoboros:
   model: 275
   bait:
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 skulkborn-moray:
   name: Skulkborn Moray
   rarity: RARE
@@ -5994,6 +9614,22 @@ skulkborn-moray:
     DEEP_DARK: 0.01
   bait:
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 dimensional-basilisk:
   name: Dimensional Basilisk
   rarity: RARE
@@ -6013,6 +9649,22 @@ dimensional-basilisk:
   bait:
     scarab: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 ripper-roofin:
   name: Ripper Roofin
   rarity: LEGENDARY
@@ -6035,6 +9687,22 @@ ripper-roofin:
   model: 278
   bait:
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-4
+      expected: 2.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.65
+      range: 1-4
+      expected: 1.625
+      can_be_zero: true
+    intact_eyes:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
 chip-skydark:
   name: Chip Skydark
   rarity: LEGENDARY
@@ -6053,6 +9721,22 @@ chip-skydark:
   model: 279
   bait:
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-4
+      expected: 2.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.65
+      range: 1-4
+      expected: 1.625
+      can_be_zero: true
+    intact_eyes:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
 rafflebones:
   name: Rafflebones
   rarity: LEGENDARY
@@ -6075,6 +9759,22 @@ rafflebones:
   model: 280
   bait:
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-4
+      expected: 2.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.65
+      range: 1-4
+      expected: 1.625
+      can_be_zero: true
+    intact_eyes:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
 goobly-gobbler:
   name: Goobly Gobbler
   rarity: RARE
@@ -6096,6 +9796,22 @@ goobly-gobbler:
   bait:
     grubb: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 yin-dynastii:
   name: Yin Dynastii
   rarity: RARE
@@ -6113,6 +9829,22 @@ yin-dynastii:
   model: 282
   bait:
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 yang-dynastii:
   name: Yang Dynastii
   rarity: RARE
@@ -6130,6 +9862,22 @@ yang-dynastii:
   model: 283
   bait:
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 dinkus-the-deep:
   name: Dinkus the Deep
   rarity: RARE
@@ -6148,6 +9896,22 @@ dinkus-the-deep:
   model: 284
   bait:
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 worldeater:
   name: Worldeater
   rarity: LEGENDARY
@@ -6169,6 +9933,22 @@ worldeater:
   model: 285
   bait:
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-4
+      expected: 2.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.65
+      range: 1-4
+      expected: 1.625
+      can_be_zero: true
+    intact_eyes:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
 the-mindflayer:
   name: The Mindflayer
   rarity: LEGENDARY
@@ -6193,6 +9973,22 @@ the-mindflayer:
   model: 286
   bait:
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-4
+      expected: 2.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.65
+      range: 1-4
+      expected: 1.625
+      can_be_zero: true
+    intact_eyes:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
 mr-boombastic:
   name: Mr Boombastic
   rarity: RARE
@@ -6215,6 +10011,22 @@ mr-boombastic:
   model: 287
   bait:
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 needlessly-large-rodtail:
   name: Needlessly Large Rodtail
   rarity: UNCOMMON
@@ -6236,6 +10048,22 @@ needlessly-large-rodtail:
     spiderling: 0.01
     wasp: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 rodtail-of-domnion:
   name: Rodtail of Domnion
   rarity: RARE
@@ -6258,6 +10086,22 @@ rodtail-of-domnion:
   bait:
     tick: 0.01
     scarab: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 abaia-of-isles:
   name: Abaia of Isles
   rarity: RARE
@@ -6275,6 +10119,22 @@ abaia-of-isles:
     DRIPSTONE_CAVES: 0.01
   bait:
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 jim:
   name: Jim
   rarity: LEGENDARY
@@ -6292,6 +10152,22 @@ jim:
   model: 291
   bait:
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-4
+      expected: 2.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.65
+      range: 1-4
+      expected: 1.625
+      can_be_zero: true
+    intact_eyes:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
 king-jellyjelly:
   name: King Jellyjelly
   rarity: RARE
@@ -6311,6 +10187,22 @@ king-jellyjelly:
   bait:
     tick: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 wither-s-rodtail:
   name: Wither’s Rodtail
   rarity: RARE
@@ -6334,6 +10226,22 @@ wither-s-rodtail:
   bait:
     wasp: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 shadowmaw-grubshark:
   name: Shadowmaw Grubshark
   rarity: RARE
@@ -6353,6 +10261,22 @@ shadowmaw-grubshark:
   model: 294
   bait:
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 astrological-mindwatcher:
   name: Astrological Mindwatcher
   rarity: RARE
@@ -6372,6 +10296,22 @@ astrological-mindwatcher:
   bait:
     spiderling: 0.01
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 chuchu-pik:
   name: Chuchu Pik
   rarity: RARE
@@ -6395,6 +10335,22 @@ chuchu-pik:
   bait:
     rhino_beetle: 0.01
     tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 illithid-maggot:
   name: Illithid Maggot
   rarity: COMMON
@@ -6426,6 +10382,17 @@ illithid-maggot:
     rhino_beetle: 0.01
     spiderling: 0.01
     grubb: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 redacted:
   name: '[REDACTED]'
   rarity: LEGENDARY
@@ -6456,6 +10423,22 @@ redacted:
   model: 298
   bait:
     rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-4
+      expected: 2.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.65
+      range: 1-4
+      expected: 1.625
+      can_be_zero: true
+    intact_eyes:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
 luminous-shulk:
   name: Luminous Shulk
   rarity: RARE
@@ -6489,6 +10472,22 @@ luminous-shulk:
   model: 299
   bait:
     dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 voidborn-moray:
   name: Voidborn Moray
   rarity: UNCOMMON
@@ -6521,11 +10520,28 @@ voidborn-moray:
     tick: 0.01
     dragonfly: 0.01
     wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 stray-seagrass:
   name: Stray Seagrass
   rarity: COMMON
   description: A unique fish known as the Stray Seagrass, with distinctive traits
     and behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -6538,10 +10554,22 @@ stray-seagrass:
   biomes:
     RIVER: 0.01
   model: 301
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 old-boot:
   name: Old Boot
   rarity: COMMON
   description: A unique fish known as the Old Boot, with distinctive traits and behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -6555,11 +10583,23 @@ old-boot:
     DEEP_DARK: 0.01
     DRIPSTONE_CAVES: 0.01
     LUSH_CAVES: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 waterlogged-boot:
   name: Waterlogged Boot
   rarity: COMMON
   description: A unique fish known as the Waterlogged Boot, with distinctive traits
     and behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -6573,11 +10613,23 @@ waterlogged-boot:
   biomes:
     RIVER: 0.01
   model: 303
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 message-in-a-bottle:
   name: Message in a Bottle
   rarity: COMMON
   description: A unique fish known as the Message In A Bottle, with distinctive traits
     and behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -6588,11 +10640,23 @@ message-in-a-bottle:
     - no-bait
   tier: 1
   model: 304
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 broken-chain:
   name: Broken Chain
   rarity: COMMON
   description: A unique fish known as the Broken Chain, with distinctive traits and
     behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -6606,11 +10670,23 @@ broken-chain:
     DEEP_DARK: 0.01
     DRIPSTONE_CAVES: 0.01
     LUSH_CAVES: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 strange-biomass:
   name: Strange Biomass
   rarity: COMMON
   description: A unique fish known as the Strange Biomass, with distinctive traits
     and behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -6626,11 +10702,23 @@ strange-biomass:
     END_HIGHLANDS: 0.01
     END_BARRENS: 0.01
   model: 306
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 chorus-kelp:
   name: Chorus Kelp
   rarity: COMMON
   description: A unique fish known as the Chorus Kelp, with distinctive traits and
     behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -6646,11 +10734,23 @@ chorus-kelp:
     END_HIGHLANDS: 0.01
     END_BARRENS: 0.01
   model: 307
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 smooth-rock:
   name: Smooth Rock
   rarity: COMMON
   description: A unique fish known as the Smooth Rock, with distinctive traits and
     behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -6667,11 +10767,23 @@ smooth-rock:
     DRIPSTONE_CAVES: 0.01
     LUSH_CAVES: 0.01
   model: 308
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 small-shell:
   name: Small Shell
   rarity: COMMON
   description: A unique fish known as the Small Shell, with distinctive traits and
     behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -6682,11 +10794,23 @@ small-shell:
     - no-bait
   tier: 1
   model: 309
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 large-shell:
   name: Large Shell
   rarity: COMMON
   description: A unique fish known as the Large Shell, with distinctive traits and
     behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -6697,11 +10821,23 @@ large-shell:
     - no-bait
   tier: 1
   model: 310
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 coral-shell:
   name: Coral Shell
   rarity: UNCOMMON
   description: A unique fish known as the Coral Shell, with distinctive traits and
     behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -6712,11 +10848,28 @@ coral-shell:
     - no-bait
   tier: 1
   model: 311
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 castaway-chest:
   name: Castaway Chest
   rarity: COMMON
   description: A unique fish known as the Castaway Chest, with distinctive traits
     and behaviors.
+  type: CHEST
   open-water-required: true
   rain-required: false
   defaults:
@@ -6729,11 +10882,23 @@ castaway-chest:
   biomes:
     RIVER: 0.01
   model: 312
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 seafarers-chest:
   name: Seafarers Chest
   rarity: UNCOMMON
   description: A unique fish known as the Seafarers Chest, with distinctive traits
     and behaviors.
+  type: CHEST
   open-water-required: true
   rain-required: false
   defaults:
@@ -6746,11 +10911,28 @@ seafarers-chest:
   biomes:
     RIVER: 0.01
   model: 313
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 captains-chest:
   name: Captains Chest
   rarity: RARE
   description: A unique fish known as the Captains Chest, with distinctive traits
     and behaviors.
+  type: CHEST
   open-water-required: true
   rain-required: false
   defaults:
@@ -6763,11 +10945,28 @@ captains-chest:
   biomes:
     RIVER: 0.01
   model: 314
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 chest-of-ancient-tributes:
   name: Chest of Ancient Tributes
   rarity: LEGENDARY
   description: A unique fish known as the Chest Of Ancient Tributes, with distinctive
     traits and behaviors.
+  type: CHEST
   open-water-required: true
   rain-required: false
   defaults:
@@ -6780,11 +10979,28 @@ chest-of-ancient-tributes:
   biomes:
     RIVER: 0.01
   model: 315
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-4
+      expected: 2.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.65
+      range: 1-4
+      expected: 1.625
+      can_be_zero: true
+    intact_eyes:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
 chest-of-wonderous-secrets:
   name: Chest of Wonderous Secrets
   rarity: LEGENDARY
   description: A unique fish known as the Chest Of Wonderous Secrets, with distinctive
     traits and behaviors.
+  type: CHEST
   open-water-required: true
   rain-required: false
   defaults:
@@ -6797,11 +11013,28 @@ chest-of-wonderous-secrets:
   biomes:
     RIVER: 0.01
   model: 316
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-4
+      expected: 2.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.65
+      range: 1-4
+      expected: 1.625
+      can_be_zero: true
+    intact_eyes:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
 broken-glasses:
   name: Broken Glasses
   rarity: COMMON
   description: A unique fish known as the Broken Glasses, with distinctive traits
     and behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -6817,11 +11050,23 @@ broken-glasses:
     DRIPSTONE_CAVES: 0.01
     LUSH_CAVES: 0.01
   model: 317
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 rotting-produce:
   name: Rotting Produce
   rarity: COMMON
   description: A unique fish known as the Rotting Produce, with distinctive traits
     and behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -6836,11 +11081,23 @@ rotting-produce:
     RIVER: 0.01
     LUSH_CAVES: 0.01
   model: 318
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 floating-kelp:
   name: Floating Kelp
   rarity: COMMON
   description: A unique fish known as the Floating Kelp, with distinctive traits and
     behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -6851,11 +11108,23 @@ floating-kelp:
     - no-bait
   tier: 1
   model: 319
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 pristine-pearl:
   name: Pristine Pearl
   rarity: UNCOMMON
   description: A unique fish known as the Pristine Pearl, with distinctive traits
     and behaviors.
+  type: JUNK
   open-water-required: true
   rain-required: false
   defaults:
@@ -6865,11 +11134,28 @@ pristine-pearl:
     - all-bait
   tier: 1
   model: 320
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 oyster-of-secrets:
   name: Oyster of Secrets
   rarity: RARE
   description: A unique fish known as the Oyster Of Secrets, with distinctive traits
     and behaviors.
+  type: JUNK
   open-water-required: true
   rain-required: false
   defaults:
@@ -6879,11 +11165,28 @@ oyster-of-secrets:
     - all-bait
   tier: 1
   model: 321
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-3
+      expected: 2.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.6
+      range: 1-3
+      expected: 1.2
+      can_be_zero: true
+    fin_spine:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 crumpled-bottle:
   name: Crumpled Bottle
   rarity: COMMON
   description: A unique fish known as the Crumpled Bottle, with distinctive traits
     and behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -6900,10 +11203,22 @@ crumpled-bottle:
     DRIPSTONE_CAVES: 0.01
     LUSH_CAVES: 0.01
   model: 322
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 dead-kelp:
   name: Dead Kelp
   rarity: COMMON
   description: A unique fish known as the Dead Kelp, with distinctive traits and behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: true
   defaults:
@@ -6917,11 +11232,23 @@ dead-kelp:
     DEEP_DARK: 0.01
     DRIPSTONE_CAVES: 0.01
     LUSH_CAVES: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
 dark-pearl-cluster:
   name: Dark Pearl Cluster
   rarity: UNCOMMON
   description: A unique fish known as the Dark Pearl Cluster, with distinctive traits
     and behaviors.
+  type: JUNK
   open-water-required: true
   rain-required: false
   defaults:
@@ -6937,10 +11264,27 @@ dark-pearl-cluster:
   biomes:
     DEEP_DARK: 0.01
     DRIPSTONE_CAVES: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-2
+      expected: 1.5
+      can_be_zero: false
+    fish_oil:
+      chance: 0.55
+      range: 1-2
+      expected: 0.825
+      can_be_zero: true
+    fish_guts:
+      chance: 0.75
+      range: 1-1
+      expected: 0.75
+      can_be_zero: true
 trash:
   name: Trash
   rarity: COMMON
   description: A unique fish known as the Trash, with distinctive traits and behaviors.
+  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -6957,3 +11301,134 @@ trash:
     DRIPSTONE_CAVES: 0.01
     LUSH_CAVES: 0.01
   model: 325
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
+cod:
+  name: Cod
+  rarity: COMMON
+  description: A common saltwater fish found in cold ocean waters.
+  material: COD
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - saltwater
+  tier: 1
+  biomes:
+    OCEAN: 0.01
+    COLD_OCEAN: 0.01
+    LUKEWARM_OCEAN: 0.01
+  model: 326
+  bait:
+    grubb: 0.01
+    tick: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
+salmon:
+  name: Salmon
+  rarity: COMMON
+  description: A popular fish that swims upstream in rivers.
+  material: SALMON
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - freshwater
+  tier: 1
+  biomes:
+    RIVER: 0.01
+    FROZEN_RIVER: 0.01
+  model: 327
+  bait:
+    grubb: 0.01
+    dragonfly: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
+pufferfish:
+  name: Pufferfish
+  rarity: COMMON
+  description: A spiky fish that inflates when threatened.
+  material: PUFFERFISH
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - saltwater
+  tier: 1
+  biomes:
+    WARM_OCEAN: 0.01
+    LUKEWARM_OCEAN: 0.01
+  model: 328
+  bait:
+    spiderling: 0.01
+    wasp: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true
+tropical-fish:
+  name: Tropical Fish
+  rarity: COMMON
+  description: A colorful fish found in warm ocean waters.
+  material: TROPICAL_FISH
+  open-water-required: true
+  rain-required: false
+  defaults:
+    - all-time
+    - all-week
+    - saltwater
+  tier: 1
+  biomes:
+    WARM_OCEAN: 0.01
+  model: 329
+  bait:
+    dragonfly: 0.01
+    rhino_beetle: 0.01
+  materials:
+    fish_fillet:
+      chance: 1.0
+      range: 1-1
+      expected: 1.0
+      can_be_zero: false
+    fish_oil:
+      chance: 0.5
+      range: 1-1
+      expected: 0.5
+      can_be_zero: true

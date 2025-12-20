@@ -13,15 +13,14 @@ fishing-rod:
 
   # 3x3 crafting grid shape
   shape:
-    - "   "     # Row 1: empty
+    - "  1"     # Row 1: empty, empty, Stick
     - " 12"     # Row 2: empty, Stick, String
-    - " 3 "     # Row 3: empty, String, empty
+    - "1 2"     # Row 3: Stick, empty, String
 
   # Map shape characters to materials
   ingredients:
     '1': STICK
     '2': STRING
-    '3': STRING
 
 old-rod:
   # Result item - must match a CustomFishItems registry ID

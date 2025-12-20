@@ -167,3 +167,36 @@ fishdex:
         - POLISHED_BLACKSTONE_BUTTON
         - CRIMSON_BUTTON
         - WARPED_BUTTON
+
+gutting_station:
+  # Result item - must match a CustomFishItems registry ID
+  result: gutting_station
+
+  # 3x3 crafting grid shape
+  shape:
+    - "11 "     # Row 1: Leather, Leather, empty
+    - "223"     # Row 2: Wood Plank (any), Wood Plank (any), Iron Nugget
+    - "224"     # Row 3: Wood Plank (any), Wood Plank (any), Copper Ingot
+
+  # Map shape characters to materials
+  ingredients:
+    '1': LEATHER
+    '3': IRON_NUGGET
+    '4': COPPER_INGOT
+
+    # Material choice for "any wood plank"
+    '2':
+      type: material_choice
+      materials:
+        - OAK_PLANKS
+        - SPRUCE_PLANKS
+        - BIRCH_PLANKS
+        - JUNGLE_PLANKS
+        - ACACIA_PLANKS
+        - DARK_OAK_PLANKS
+        - MANGROVE_PLANKS
+        - CHERRY_PLANKS
+        - BAMBOO_PLANKS
+        - PALE_OAK_PLANKS
+        - CRIMSON_PLANKS
+        - WARPED_PLANKS
