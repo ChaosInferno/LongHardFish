@@ -2,6 +2,7 @@ package org.aincraft.ingame_items;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemFlag;
@@ -26,7 +27,7 @@ public final class WeatherRadioItem {
         ItemStack stack = new ItemStack(Material.KNOWLEDGE_BOOK, 1);
         ItemMeta meta = stack.getItemMeta();
 
-        meta.displayName(Component.text("Weather Radio", NamedTextColor.AQUA));
+        meta.displayName(Component.text("Weather Radio", NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false));
         meta.lore(List.of(
                 Component.text("Always tuned to the weather", NamedTextColor.GRAY),
                 Component.text("station. How does Willy always", NamedTextColor.GRAY),

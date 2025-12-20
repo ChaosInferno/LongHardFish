@@ -4,6 +4,7 @@ package org.aincraft.ingame_items;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemFlag;
@@ -33,7 +34,7 @@ public final class OmegaFishFinderItem {
         ItemStack it = new ItemStack(Material.KNOWLEDGE_BOOK);
         ItemMeta meta = it.getItemMeta();
 
-        meta.displayName(Component.text("Omega Fish Finder ZX", NamedTextColor.AQUA));
+        meta.displayName(Component.text("Omega Fish Finder ZX", NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false));
         meta.lore(List.of(
                 Component.text("A tool of the gods not meant", NamedTextColor.GRAY),
                 Component.text("for mortal men. If you have", NamedTextColor.GRAY),

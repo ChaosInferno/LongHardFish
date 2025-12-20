@@ -13,6 +13,7 @@ import java.util.List;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 
 public final class ScarabBait {
     public static final String ID = "scarab";
@@ -20,10 +21,9 @@ public final class ScarabBait {
     public static ItemStack create(Plugin plugin, int amount) {
         ItemStack s = new ItemStack(Material.POISONOUS_POTATO, Math.max(1, amount));
         ItemMeta m = s.getItemMeta();
-        m.displayName(Component.text("Scarab", NamedTextColor.AQUA));
+        m.displayName(Component.text("Scarab", NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false));
         m.lore(List.of(
-                Component.text("A type of bait found when", NamedTextColor.GRAY),
-                Component.text("scavenging around dead bushes", NamedTextColor.GRAY)
+                Component.text("Common", NamedTextColor.GRAY).decoration(TextDecoration.ITALIC, false)
         ));
         m.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_ENCHANTS);
         m.setItemModel(NamespacedKey.fromString("longhardfish:bait/scarab"));

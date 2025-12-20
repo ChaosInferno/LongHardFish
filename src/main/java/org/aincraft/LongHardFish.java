@@ -3,7 +3,9 @@ package org.aincraft;
 import org.aincraft.bait.*;
 import org.aincraft.bobber.BobberAddonDisplay;
 import org.aincraft.commands.*;
+import org.aincraft.ItemService;
 import org.aincraft.config.FishConfig;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.aincraft.container.FishDistribution;
 import org.aincraft.container.FishEnvironment;
 import org.aincraft.container.FishModel;
@@ -33,12 +35,12 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.nio.file.Path;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.BiConsumer;
 
 public class LongHardFish extends JavaPlugin {
@@ -76,6 +78,12 @@ public class LongHardFish extends JavaPlugin {
         FishRarityProvider rarityProvider = new FishRarityProvider(config, this);
         FishModelProvider modelProvider = new FishModelProvider(config, this);
 
+        // --- Treasure loot tables ---
+        saveResource("treasure.yml", false);
+        File treasureFile = new File(getDataFolder(), "treasure.yml");
+        FileConfiguration treasureCfg = YamlConfiguration.loadConfiguration(treasureFile);
+        org.aincraft.provider.TreasureProvider treasureProvider = new org.aincraft.provider.TreasureProvider(treasureCfg, this);
+
         var envs = environmentProvider.parseFishEnvironmentObjects();
 
         saveResource("rods.yml", false); // if you ship a default
@@ -112,13 +120,9 @@ public class LongHardFish extends JavaPlugin {
         getServer().getPluginManager().registerEvents(
                 new org.aincraft.knives.KnifeRepairListener(this, knifeProvider), this);
 
-        // Create the give command with full support for knife, fish, rod, and tool subcommands
-        org.aincraft.commands.GiveFishItemsCommand giveCmd = new org.aincraft.commands.GiveFishItemsCommand(
-            this,
-            knifeProvider,
-            modelProvider,
-            rarityProvider
-        );
+        // Create the tool and bait command handlers
+        org.aincraft.commands.GiveToolCommand giveToolCmd = new org.aincraft.commands.GiveToolCommand();
+        org.aincraft.commands.GiveBaitCommand giveBaitCmd = new org.aincraft.commands.GiveBaitCommand();
 
         // Pick a fish that uses defaults, e.g. "trash"
         var trash = envs.get(new NamespacedKey(this, "trash"));
@@ -165,6 +169,7 @@ public class LongHardFish extends JavaPlugin {
         Map<NamespacedKey, FishModel> modelMap = modelProvider.parseFishModelObjects();
         Map<NamespacedKey, FishDistribution> distMap = rarityProvider.parseFishDistributorObjects();
         Map<NamespacedKey, Integer> tierMap = environmentProvider.parseFishTierMap();
+        Map<NamespacedKey, org.aincraft.container.TreasureLootTable> treasureMap = treasureProvider.parseTreasureLootTables();
 
         // Key used by GuiItemSlot to lock icons in place
         NamespacedKey immovableKey = new NamespacedKey(this, "immovable");
@@ -246,7 +251,34 @@ public class LongHardFish extends JavaPlugin {
             Bukkit.getLogger().info("  Moons: " + entry.getValue().getEnvironmentMoons());
         }
 
-        var materialProvider = new org.aincraft.processor.BasicFishMaterialProvider();
+        // Load materials system
+        saveResource("gutting_output.yml", false); // ensure file exists
+        File guttingOutputFile = new File(getDataFolder(), "gutting_output.yml");
+        FileConfiguration guttingOutputCfg = YamlConfiguration.loadConfiguration(guttingOutputFile);
+        org.aincraft.processor.GuttingOutputProvider guttingOutputProvider =
+                new org.aincraft.processor.GuttingOutputProvider(guttingOutputCfg, this);
+        Map<String, org.aincraft.processor.GuttingOutput> guttingOutputMap =
+                guttingOutputProvider.parseGuttingOutputs();
+
+        // Build fish materials map from parsed models
+        Map<String, java.util.List<org.aincraft.processor.FishMaterial>> fishMaterialsMap = new HashMap<>();
+        for (Map.Entry<NamespacedKey, FishModel> entry : modelMap.entrySet()) {
+            String fishKey = entry.getKey().toString(); // "plugin:fish_name" format
+            List<org.aincraft.processor.FishMaterial> materials = entry.getValue().getMaterials();
+            if (!materials.isEmpty()) {
+                fishMaterialsMap.put(fishKey, materials);
+            }
+        }
+
+        // Create material-based provider
+        org.aincraft.processor.FishMaterialProvider materialProvider =
+                new org.aincraft.processor.MaterialBasedFishMaterialProvider(
+                        this,
+                        guttingOutputProvider,
+                        guttingOutputMap,
+                        fishMaterialsMap
+                );
+
         var fishProcessorUI  = new org.aincraft.processor.FishProcessorUI(this, materialProvider);
         getServer().getPluginManager().registerEvents(fishProcessorUI, this);
 
@@ -255,6 +287,28 @@ public class LongHardFish extends JavaPlugin {
                 this
         );
 
+        // Register gutting output cooking listener
+        getServer().getPluginManager().registerEvents(
+                new org.aincraft.listener.GuttingOutputCookingListener(this, guttingOutputMap),
+                this
+        );
+
+        // Register gutting output edible listener
+        getServer().getPluginManager().registerEvents(
+                new org.aincraft.listener.GuttingOutputEdibleListener(this, guttingOutputMap),
+                this
+        );
+
+        // Create the give command with full support for knife, fish, rod, tool, bait, and materials subcommands
+        org.aincraft.commands.GiveFishItemsCommand giveCmd = new org.aincraft.commands.GiveFishItemsCommand(
+                this,
+                knifeProvider,
+                modelProvider,
+                rarityProvider,
+                guttingOutputMap
+        );
+        // Set tool and bait delegates so they work under /lhf give as well
+        giveCmd.setDelegateCommands(giveToolCmd, giveBaitCmd);
 
         this.fishDexItem = new FishDexItem(this);
         this.sextantItem = new SextantItem(this);
@@ -274,6 +328,7 @@ public class LongHardFish extends JavaPlugin {
         CustomFishItems.register("tacklebox", tackleBoxItem::create);
         CustomFishItems.register("biome_radar", biomeRadarItem::create);
         CustomFishItems.register("omega_fish_finder", omegaFishFinderItem::create);
+        CustomFishItems.register("gutting_station", this::createGuttingStation);
 
         CustomFishItems.register("grubb", () -> GrubbBait.create(this, 1));
         CustomFishItems.register("tick", () -> TickBait.create(this, 1));
@@ -386,6 +441,10 @@ public class LongHardFish extends JavaPlugin {
         // Block custom fish from being cooked in furnaces/campfires
         getServer().getPluginManager().registerEvents(new CustomFishCookingBlocker(this), this);
 
+        // Handle CHEST fish right-click to open treasure loot
+        // Note: JUNK and CHEST fish use KNOWLEDGE_BOOK material which prevents consumption
+        getServer().getPluginManager().registerEvents(new ChestFishInteractListener(this, modelMap, treasureMap), this);
+
         baitForaging = new BaitForagingService(this);
         getServer().getPluginManager().registerEvents(baitForaging, this);
 
@@ -454,10 +513,6 @@ public class LongHardFish extends JavaPlugin {
         // Right-click listener should call service.openFromHand(...)
         getServer().getPluginManager().registerEvents(new TackleBoxListener(tackleBoxItem, tackleBoxService), this);
 
-        // Create the tool and bait command handlers
-        org.aincraft.commands.GiveToolCommand giveToolCmd = new org.aincraft.commands.GiveToolCommand();
-        org.aincraft.commands.GiveBaitCommand giveBaitCmd = new org.aincraft.commands.GiveBaitCommand();
-
         // Register the main /lhf command dispatcher
         LhfCommand lhfCmd = new LhfCommand(this, giveCmd, giveToolCmd, giveBaitCmd, adminCmd, statsCmd, fishProcessorUI, tackleBoxService);
         Objects.requireNonNull(getCommand("lhf")).setExecutor(lhfCmd);
@@ -465,6 +520,21 @@ public class LongHardFish extends JavaPlugin {
     }
 
     public RodProvider getRodProvider() { return rodProvider; }
+
+    private ItemStack createGuttingStation() {
+        ItemStack item = new ItemStack(Material.STONE);
+        ItemService.itemService().write(item, "longhardfish:block/gutting_station");
+
+        ItemMeta meta = item.getItemMeta();
+        NamespacedKey modelKey = NamespacedKey.fromString("longhardfish:block/gutting_station");
+        if (modelKey != null) meta.setItemModel(modelKey);
+        meta.displayName(
+                net.kyori.adventure.text.Component.text("Gutting Station")
+                        .decoration(TextDecoration.ITALIC, false)
+        );
+        item.setItemMeta(meta);
+        return item;
+    }
 
     @Override
     public void onDisable() {

@@ -2,6 +2,7 @@ package org.aincraft.ingame_items;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -27,7 +28,7 @@ public final class FishDexItem {
         ItemStack stack = new ItemStack(Material.KNOWLEDGE_BOOK, 1);
         ItemMeta meta = stack.getItemMeta();
 
-        meta.displayName(Component.text("FishDex", NamedTextColor.AQUA));
+        meta.displayName(Component.text("FishDex", NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false));
         meta.lore(java.util.List.of(
                 Component.text("A digital catalogue for all the", NamedTextColor.GRAY),
                 Component.text("fish you are destined to catch.", NamedTextColor.GRAY)));

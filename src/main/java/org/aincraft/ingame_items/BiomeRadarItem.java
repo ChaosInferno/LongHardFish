@@ -2,6 +2,7 @@ package org.aincraft.ingame_items;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemFlag;
@@ -25,7 +26,7 @@ public final class BiomeRadarItem {
         ItemStack stack = new ItemStack(Material.KNOWLEDGE_BOOK, 1); // base doesn’t matter; model replaces it
         ItemMeta meta = stack.getItemMeta();
 
-        meta.displayName(Component.text("Biome Radar", NamedTextColor.AQUA));
+        meta.displayName(Component.text("Biome Radar", NamedTextColor.WHITE).decoration(TextDecoration.ITALIC, false));
         meta.lore(List.of(
                 Component.text("It seems to use some sort", NamedTextColor.GRAY),
                 Component.text("sea to sky '5G' technology.", NamedTextColor.GRAY),

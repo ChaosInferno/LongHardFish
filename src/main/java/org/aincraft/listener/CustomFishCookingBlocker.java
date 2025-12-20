@@ -44,7 +44,28 @@ public final class CustomFishCookingBlocker implements Listener {
     }
 
     /**
-     * Prevents fuel from being consumed when custom fish are in the furnace.
+     * Checks if the given ItemStack is a custom fish that should NOT be cookable.
+     * Cod and salmon are exceptions and can be cooked like vanilla fish.
+     *
+     * @param stack The ItemStack to check
+     * @return true if the item is a custom fish that cannot be cooked, false otherwise
+     */
+    private boolean isUncookableFish(ItemStack stack) {
+        if (stack == null || stack.getType().isAir()) return false;
+        String fishKey = FishKeys.getFishKey(plugin, stack);
+        if (fishKey == null || fishKey.isBlank()) return false;
+
+        // Allow cod and salmon to be cooked
+        if (fishKey.equals("longhardfish:cod") || fishKey.equals("longhardfish:salmon")) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Prevents fuel from being consumed when uncookable custom fish are in the furnace.
+     * Cod and salmon are exceptions and can be cooked.
      * Uses HIGHEST priority to run after other plugins.
      */
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
@@ -57,42 +78,45 @@ public final class CustomFishCookingBlocker implements Listener {
         FurnaceInventory inventory = furnace.getInventory();
         ItemStack source = inventory.getSmelting();
 
-        if (!isCustomFish(source)) return;
+        if (!isUncookableFish(source)) return;
 
         // Cancel the fuel burn to prevent fuel consumption
         event.setCancelled(true);
     }
 
     /**
-     * Prevents custom fish from being smelted in furnaces.
+     * Prevents uncookable custom fish from being smelted in furnaces.
+     * Cod and salmon are exceptions and can be cooked.
      * Uses HIGHEST priority to run after other plugins.
      */
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onFurnaceSmelt(FurnaceSmeltEvent event) {
         ItemStack source = event.getSource();
 
-        if (!isCustomFish(source)) return;
+        if (!isUncookableFish(source)) return;
 
         // Cancel the smelting completion
         event.setCancelled(true);
     }
 
     /**
-     * Prevents custom fish from being cooked on any block (campfires, smokers, blast furnaces, etc.).
+     * Prevents uncookable custom fish from being cooked on any block (campfires, smokers, blast furnaces, etc.).
+     * Cod and salmon are exceptions and can be cooked.
      * Uses HIGHEST priority to run after other plugins.
      */
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBlockCook(BlockCookEvent event) {
         ItemStack source = event.getSource();
 
-        if (!isCustomFish(source)) return;
+        if (!isUncookableFish(source)) return;
 
         // Cancel any block cooking
         event.setCancelled(true);
     }
 
     /**
-     * Prevents players from placing custom fish on campfires via right-click.
+     * Prevents players from placing uncookable custom fish on campfires via right-click.
+     * Cod and salmon are exceptions and can be cooked.
      * Provides immediate feedback to players.
      * Uses HIGHEST priority to ensure we can intercept before vanilla logic.
      */
@@ -110,7 +134,7 @@ public final class CustomFishCookingBlocker implements Listener {
 
         // Get the item in player's hand
         ItemStack item = event.getItem();
-        if (!isCustomFish(item)) return;
+        if (!isUncookableFish(item)) return;
 
         // Block the interaction
         event.setCancelled(true);
