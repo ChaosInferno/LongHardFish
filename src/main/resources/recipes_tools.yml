@@ -1,0 +1,169 @@
+# Custom Crafting Recipes Configuration - Tools
+# This file defines all custom crafting recipes for tools and custom items
+
+biome_radar:
+  # Result item - must match a CustomFishItems registry ID
+  result: biome_radar
+
+  # 3x3 crafting grid shape
+  shape:
+    - "121"     # Row 1: Bucket, Comparator, Bucket
+    - "343"     # Row 2: Redstone, Compass, Redstone
+    - "567"     # Row 3: Sapling (any), Observer, Fern/Grass (any)
+
+  # Map shape characters to materials
+  ingredients:
+    '1': BUCKET
+    '2': COMPARATOR
+    '3': REDSTONE
+    '4': COMPASS
+
+    # Material choice for "any sapling"
+    '5':
+      type: material_choice
+      materials:
+        - OAK_SAPLING
+        - BIRCH_SAPLING
+        - SPRUCE_SAPLING
+        - JUNGLE_SAPLING
+        - ACACIA_SAPLING
+        - DARK_OAK_SAPLING
+        - CHERRY_SAPLING
+        - MANGROVE_PROPAGULE
+
+    '6': OBSERVER
+
+    # Material choice for "any grass type"
+    '7':
+      type: material_choice
+      materials:
+        - FERN
+        - SHORT_GRASS
+        - TALL_GRASS
+        - SEAGRASS
+
+sextant:
+  # Result item - must match a CustomFishItems registry ID
+  result: sextant
+
+  # 3x3 crafting grid shape
+  shape:
+    - " 1 "     # Row 1: empty, Spyglass, empty
+    - "232"     # Row 2: Stick, Compass, Stick
+    - "444"     # Row 3: Gold Ingot, Gold Ingot, Gold Ingot
+
+  # Map shape characters to materials
+  ingredients:
+    '1': SPYGLASS
+    '2': STICK
+    '3': COMPASS
+    '4': GOLD_INGOT
+
+watch:
+  # Result item - must match a CustomFishItems registry ID
+  result: watch
+
+  # 3x3 crafting grid shape
+  shape:
+    - " 11"     # Row 1: empty, Chain, Chain
+    - "234"     # Row 2: Stick, Clock, any Button
+    - " 5 "     # Row 3: empty, Redstone Repeater, empty
+
+  # Map shape characters to materials
+  ingredients:
+    '1': CHAIN
+    '2': STICK
+    '3': CLOCK
+    '5': REPEATER
+
+    # Material choice for "any button"
+    '4':
+      type: material_choice
+      materials:
+        - OAK_BUTTON
+        - SPRUCE_BUTTON
+        - BIRCH_BUTTON
+        - JUNGLE_BUTTON
+        - ACACIA_BUTTON
+        - DARK_OAK_BUTTON
+        - MANGROVE_BUTTON
+        - CHERRY_BUTTON
+        - BAMBOO_BUTTON
+        - PALE_OAK_BUTTON
+        - STONE_BUTTON
+        - POLISHED_BLACKSTONE_BUTTON
+        - CRIMSON_BUTTON
+        - WARPED_BUTTON
+
+weather_radio:
+  # Result item - must match a CustomFishItems registry ID
+  result: weather_radio
+
+  # 3x3 crafting grid shape
+  shape:
+    - "12 "     # Row 1: Lightning Rod, Daylight Detector, empty
+    - "456"     # Row 2: Redstone, Compass, Comparator
+    - "777"     # Row 3: Paper, Paper, Paper
+
+  # Map shape characters to materials
+  ingredients:
+    '1': LIGHTNING_ROD
+    '2': DAYLIGHT_DETECTOR
+    '4': REDSTONE
+    '5': COMPASS
+    '6': COMPARATOR
+    '7': PAPER
+
+tacklebox:
+  # Result item - must match a CustomFishItems registry ID
+  result: tacklebox
+
+  # 3x3 crafting grid shape
+  shape:
+    - " 1 "     # Row 1: empty, Chain, empty
+    - "232"     # Row 2: Iron Nugget, Chest, Iron Nugget
+    - "444"     # Row 3: Iron Ingot, Iron Ingot, Iron Ingot
+
+  # Map shape characters to materials
+  ingredients:
+    '1': CHAIN
+    '2': IRON_NUGGET
+    '3': CHEST
+    '4': IRON_INGOT
+
+fishdex:
+  # Result item - must match a CustomFishItems registry ID
+  result: fishdex
+
+  # 3x3 crafting grid shape
+  shape:
+    - "121"     # Row 1: Redstone Dust, Glass Pane, Redstone Dust
+    - "346"     # Row 2: Lapis Lazuli, Observer, Copper Ingot
+    - "525"     # Row 3: Button (any), Glass Pane, Button (any)
+
+  # Map shape characters to materials
+  ingredients:
+    '1': REDSTONE
+    '2': GLASS_PANE
+    '3': LAPIS_LAZULI
+    '4': OBSERVER
+    '6': COPPER_INGOT
+
+    # Material choice for "any button"
+    '5':
+      type: material_choice
+      materials:
+        - OAK_BUTTON
+        - SPRUCE_BUTTON
+        - BIRCH_BUTTON
+        - JUNGLE_BUTTON
+        - ACACIA_BUTTON
+        - DARK_OAK_BUTTON
+        - MANGROVE_BUTTON
+        - CHERRY_BUTTON
+        - BAMBOO_BUTTON
+        - PALE_OAK_BUTTON
+        - STONE_BUTTON
+        - POLISHED_BLACKSTONE_BUTTON
+        - CRIMSON_BUTTON
+        - WARPED_BUTTON

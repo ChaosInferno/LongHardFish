@@ -4,34 +4,14 @@ main: org.aincraft.LongHardFish
 api-version: 1.20
 
 commands:
-  fishstats:
-    description: Show top caught fish
-    usage: "/fishstats [player] [limit]"
-    permission: longhardfish.stats
+  lhf:
+    description: LongHardFish command suite
+    usage: /lhf <subcommand> ...
+    aliases: [ longhardfish ]
+    permission: longhardfish.use
   fishdex:
     description: Open the FishDex for a specific fish id
     usage: /fishdex <fish-id>
-  lhfgive:
-    description: Give a registered LongHardFish custom item
-    usage: /lhfgive <item-id> [player] [amount] OR  /<command> rod <rod-id> [player]
-    permission: longhardfish.give
-    aliases: [ lhf-give, lhfitem, lhf-item ]
-  lhf-give:
-    description: Give LongHardFish special items/blocks
-    usage: /<command> gutting_station [amount] OR /<command> <player> gutting_station [amount]
-    permission: lhf.admin
-  tacklebox:
-    description: Open the Tackle Box GUI
-    usage: /tacklebox
-    permission: longhardfish.tacklebox
-  fishgut:
-    description: Open the fish processor GUI
-    usage: /fishgut
-    permission: longhardfish.gut
-  lhf-fishdex:
-    description: LongHardFish admin fishdex tools
-    usage: /<command> <player> ...
-    permission: lhf.admin
 
 permissions:
   longhardfish.stats:
@@ -45,4 +25,18 @@ permissions:
     default: true
   lhf.admin:
     description: Admin permission for LongHardFish utilities
+    default: op
+
+  # Rod Tier Crafting Permissions
+  longhardfish.craft.rod.tier1:
+    description: Craft Tier 1 rods (basic)
+    default: true
+  longhardfish.craft.rod.tier2:
+    description: Craft Tier 2 rods (intermediate)
+    default: op
+  longhardfish.craft.rod.tier3:
+    description: Craft Tier 3 rods (advanced)
+    default: op
+  longhardfish.craft.rod.tier4:
+    description: Craft Tier 4 rods (masterful)
     default: op

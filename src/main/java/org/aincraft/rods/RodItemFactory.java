@@ -12,6 +12,10 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import org.aincraft.items.BaitKeys;
+import org.aincraft.items.BaitRegistry;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 
 public final class RodItemFactory {
     private final Plugin plugin;
@@ -21,19 +25,30 @@ public final class RodItemFactory {
         ItemStack rod = new ItemStack(Material.FISHING_ROD);
         ItemMeta meta = rod.getItemMeta();
 
+        // Line 1: White name, no italics
         String display = niceName(def.id());
-        meta.displayName(Component.text(display, NamedTextColor.AQUA));
+        meta.displayName(Component.text(display, NamedTextColor.WHITE).decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false));
 
         List<Component> lore = new ArrayList<>();
 
+        // Line 2: Rarity based on tier (no italics)
+        Component rarityLine = Component.text(tierToRarityName(def.tier()), tierToRarityColor(def.tier()))
+                .decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false);
+        lore.add(rarityLine);
+
+        // Line 3: Stars
         lore.add(Component.text(stars(def.tier(), 4), NamedTextColor.GOLD));
 
+        // Description for Tier 3+ only (remove for Tier 1 & 2)
         String desc = def.description();
-        if (desc != null && !desc.isBlank()) {
+        if (def.tier() >= 3 && desc != null && !desc.isBlank()) {
             for (String line : wrapWords(desc, 50)) {
                 lore.add(Component.text(line, NamedTextColor.GRAY));
             }
         }
+
+        // Bait status line (gold)
+        lore.add(Component.text("No bait attached", NamedTextColor.GOLD));
 
         meta.lore(lore);
 
@@ -44,6 +59,26 @@ public final class RodItemFactory {
         meta.getPersistentDataContainer().set(RodKeys.rodTier(plugin), PersistentDataType.INTEGER, def.tier());
         rod.setItemMeta(meta);
         return rod;
+    }
+
+    private static String tierToRarityName(int tier) {
+        return switch (tier) {
+            case 1 -> "Common";
+            case 2 -> "Uncommon";
+            case 3 -> "Rare";
+            case 4 -> "Legendary";
+            default -> "Unknown";
+        };
+    }
+
+    private static NamedTextColor tierToRarityColor(int tier) {
+        return switch (tier) {
+            case 1 -> NamedTextColor.GRAY;
+            case 2 -> NamedTextColor.GREEN;
+            case 3 -> NamedTextColor.AQUA;
+            case 4 -> NamedTextColor.GOLD;
+            default -> NamedTextColor.GRAY;
+        };
     }
 
     public static String niceName(String id) {
@@ -91,5 +126,46 @@ public final class RodItemFactory {
         }
         if (line.length() > 0) lines.add(line.toString());
         return lines;
+    }
+
+    /**
+     * Updates the rod's lore to reflect the current bait status.
+     * Removes the old bait status line and adds a new one based on current bait data.
+     *
+     * @param plugin The plugin instance
+     * @param rod The fishing rod ItemStack to update
+     * @param baitId The bait ID (null or empty for no bait)
+     */
+    public static void updateBaitStatusLine(Plugin plugin, ItemStack rod, String baitId) {
+        if (rod == null || !rod.hasItemMeta()) return;
+
+        ItemMeta meta = rod.getItemMeta();
+        List<Component> lore = new ArrayList<>();
+        if (meta.lore() != null) {
+            lore.addAll(meta.lore());
+        }
+
+        // Remove any previous bait status lines (old "Bait: ..." or new "... attached")
+        PlainTextComponentSerializer plain = PlainTextComponentSerializer.plainText();
+        lore.removeIf(c -> {
+            String s = plain.serialize(c).toLowerCase(Locale.ENGLISH).trim();
+            return s.startsWith("bait: ") || s.endsWith(" attached") || s.equals("no bait attached");
+        });
+
+        // Add new bait status line
+        if (baitId == null || baitId.isBlank()) {
+            lore.add(Component.text("No bait attached", NamedTextColor.GOLD));
+        } else {
+            int count = BaitKeys.getRodBaitCount(plugin, rod);
+            String displayName = BaitRegistry.displayName(baitId, count);
+            if (count > 0) {
+                lore.add(Component.text(count + "x " + displayName + " attached", NamedTextColor.GOLD));
+            } else {
+                lore.add(Component.text("No bait attached", NamedTextColor.GOLD));
+            }
+        }
+
+        meta.lore(lore);
+        rod.setItemMeta(meta);
     }
 }

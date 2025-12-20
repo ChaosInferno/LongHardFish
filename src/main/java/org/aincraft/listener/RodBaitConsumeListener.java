@@ -1,7 +1,7 @@
 package org.aincraft.listener;
 
 import org.aincraft.items.BaitKeys;
-import org.aincraft.items.BaitRegistry;
+import org.aincraft.rods.RodItemFactory;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.FishHook;
@@ -12,15 +12,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
-
-import java.util.Locale;
-
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 
 public final class RodBaitConsumeListener implements Listener {
     private final Plugin plugin;
@@ -56,10 +49,11 @@ public final class RodBaitConsumeListener implements Listener {
         cnt -= 1;
         if (cnt <= 0) {
             BaitKeys.clearRodBait(plugin, rod);
+            RodItemFactory.updateBaitStatusLine(plugin, rod, null);
         } else {
             BaitKeys.setRodBait(plugin, rod, id, cnt);
+            RodItemFactory.updateBaitStatusLine(plugin, rod, id);
         }
-        updateRodLore(plugin, rod); // keeps the tooltip in sync immediately
     }
 
     private ItemStack getActiveRod(Player p) {
@@ -69,31 +63,5 @@ public final class RodBaitConsumeListener implements Listener {
         ItemStack off = inv.getItemInOffHand();
         if (off != null && off.getType() == Material.FISHING_ROD) return off;
         return null;
-    }
-
-    private void updateRodLore(Plugin plugin, ItemStack rod) {
-        if (rod == null || !rod.hasItemMeta()) return;
-        String id = BaitKeys.getRodBait(plugin, rod);
-        int count = BaitKeys.getRodBaitCount(plugin, rod);
-
-        ItemMeta meta = rod.getItemMeta();
-        java.util.List<Component> lore = new java.util.ArrayList<>();
-        if (meta.lore() != null) lore.addAll(meta.lore());
-
-        // Remove any previous bait lines (old "Bait: ..." or new "... attached")
-        PlainTextComponentSerializer plain = PlainTextComponentSerializer.plainText();
-        lore.removeIf(c -> {
-            String s = plain.serialize(c).toLowerCase(Locale.ENGLISH).trim();
-            return s.startsWith("bait: ") || s.endsWith(" attached");
-        });
-
-        if (id != null && count > 0) {
-            // Use registry’s plural-aware display name
-            String display = BaitRegistry.displayName(id, count); // e.g. "Dragonfly" / "Dragonflies"
-            lore.add(Component.text(count + "x " + display + " attached", NamedTextColor.GOLD));
-        }
-
-        meta.lore(lore);
-        rod.setItemMeta(meta);
     }
 }

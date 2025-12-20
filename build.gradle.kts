@@ -2,6 +2,7 @@ plugins {
     id("java")
     id("java-library")
     id("xyz.jpenilla.run-paper") version "2.3.1"
+    id("io.github.goooler.shadow") version "8.1.8"
 }
 
 group = "org.aincraft"
@@ -29,13 +30,30 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.7-R0.1-SNAPSHOT")
     compileOnly("org.jetbrains:annotations:24.1.0")
     compileOnly("net.dmulloy2:ProtocolLib:5.4.0")
-    compileOnly("org.aincraft:packetblocks-api:1.0.2")
+    compileOnly("org.aincraft:packetblocks-api:1.0.5")
     implementation("com.github.ben-manes.caffeine:caffeine:3.2.2")
     implementation("com.zaxxer:HikariCP:7.0.1")
     implementation("org.xerial:sqlite-jdbc:3.50.3.0")
+    implementation("dev.triumphteam:triumph-gui:3.1.12")
 }
 
 tasks {
+    shadowJar {
+        relocate("dev.triumphteam.gui", "org.aincraft.libs.gui")
+        archiveFileName.set("LongHardFish.jar")
+    }
+
+    register<Copy>("copyToRun") {
+        description = "Copy built JAR to run/plugins directory"
+        from(shadowJar.get().archiveFile)
+        into(file("run/plugins"))
+        dependsOn(shadowJar)
+    }
+
+    build {
+        dependsOn(shadowJar)
+        finalizedBy("copyToRun")
+    }
 
     named<xyz.jpenilla.runpaper.task.RunServer>("runServer") {
         val toolchains = project.extensions.getByType<JavaToolchainService>()
@@ -45,5 +63,6 @@ tasks {
             }
         )
         minecraftVersion("1.21.7")
+        dependsOn("copyToRun")
     }
 }

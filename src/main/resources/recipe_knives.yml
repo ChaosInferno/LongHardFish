@@ -1,0 +1,76 @@
+# Custom Crafting Recipes Configuration - Knives
+# This file defines all custom crafting recipes for knives
+
+wooden-knife:
+  result: wooden-knife
+  shape:
+    - " 1 "
+    - " 2 "
+    - "   "
+  ingredients:
+    '1':
+      type: material_choice
+      materials:
+        - OAK_PLANKS
+        - SPRUCE_PLANKS
+        - BIRCH_PLANKS
+        - JUNGLE_PLANKS
+        - ACACIA_PLANKS
+        - DARK_OAK_PLANKS
+        - MANGROVE_PLANKS
+        - CHERRY_PLANKS
+        - BAMBOO_PLANKS
+        - PALE_OAK_PLANKS
+        - CRIMSON_PLANKS
+        - WARPED_PLANKS
+    '2': STICK
+
+stone-knife:
+  result: stone-knife
+  shape:
+    - " 1 "
+    - " 2 "
+    - "   "
+  ingredients:
+    '1':
+      type: material_choice
+      materials:
+        - COBBLESTONE
+        - MOSSY_COBBLESTONE
+        - DEEPSLATE
+        - COBBLED_DEEPSLATE
+    '2': STICK
+
+gold-knife:
+  result: gold-knife
+  shape:
+    - " 1 "
+    - " 2 "
+    - "   "
+  ingredients:
+    '1': GOLD_INGOT
+    '2': STICK
+
+iron-knife:
+  result: iron-knife
+  shape:
+    - " 1 "
+    - " 2 "
+    - "   "
+  ingredients:
+    '1': IRON_INGOT
+    '2': STICK
+
+diamond-knife:
+  result: diamond-knife
+  shape:
+    - " 1 "
+    - " 2 "
+    - "   "
+  ingredients:
+    '1': DIAMOND
+    '2': STICK
+
+# Netherite Knife is only craftable via Smithing Table
+# Upgrade: Diamond Knife + Netherite Ingot → Netherite Knife
+# (See knives.yml smithing field for Smithing Table recipe)

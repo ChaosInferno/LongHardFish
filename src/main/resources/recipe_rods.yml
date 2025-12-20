@@ -1,0 +1,251 @@
+# Custom Crafting Recipes Configuration - Fishing Rods
+# This file defines all custom crafting recipes for fishing rods
+# Rods are organized by tier (1-4) with increasing difficulty
+
+# ============================================================================
+# TIER 1 - BASIC RODS (Easy to craft)
+# ============================================================================
+
+fishing-rod:
+  # Result item - must match a CustomFishItems registry ID
+  result: fishing-rod
+  permission: longhardfish.craft.rod.tier1
+
+  # 3x3 crafting grid shape
+  shape:
+    - "   "     # Row 1: empty
+    - " 12"     # Row 2: empty, Stick, String
+    - " 3 "     # Row 3: empty, String, empty
+
+  # Map shape characters to materials
+  ingredients:
+    '1': STICK
+    '2': STRING
+    '3': STRING
+
+old-rod:
+  # Result item - must match a CustomFishItems registry ID
+  result: old-rod
+  permission: longhardfish.craft.rod.tier1
+
+  # 3x3 crafting grid shape
+  shape:
+    - "   "     # Row 1: empty
+    - " 12"     # Row 2: empty, Stick, String
+    - " 34"     # Row 3: empty, Stick, String
+
+  # Map shape characters to materials
+  ingredients:
+    '1': STICK
+    '2': STRING
+    '3': STICK
+    '4': STRING
+
+# ============================================================================
+# TIER 2 - INTERMEDIATE RODS (Moderate difficulty)
+# ============================================================================
+
+copper-rod:
+  # Result item - must match a CustomFishItems registry ID
+  result: copper-rod
+  permission: longhardfish.craft.rod.tier2
+
+  # 3x3 crafting grid shape
+  shape:
+    - " 1 "     # Row 1: empty, Copper Ingot, empty
+    - "234"     # Row 2: String, Stick, Redstone
+    - " 5 "     # Row 3: empty, Stick, empty
+
+  # Map shape characters to materials
+  ingredients:
+    '1': COPPER_INGOT
+    '2': STRING
+    '3': STICK
+    '4': REDSTONE
+    '5': STICK
+
+iron-rod:
+  # Result item - must match a CustomFishItems registry ID
+  result: iron-rod
+  permission: longhardfish.craft.rod.tier2
+
+  # 3x3 crafting grid shape
+  shape:
+    - " 1 "     # Row 1: empty, Iron Ingot, empty
+    - "234"     # Row 2: String, Stick, Lapis Lazuli
+    - " 5 "     # Row 3: empty, Stick, empty
+
+  # Map shape characters to materials
+  ingredients:
+    '1': IRON_INGOT
+    '2': STRING
+    '3': STICK
+    '4': LAPIS_LAZULI
+    '5': STICK
+
+# ============================================================================
+# TIER 3 - ADVANCED RODS (Difficult to craft)
+# ============================================================================
+
+blazed-rod:
+  # Result item - must match a CustomFishItems registry ID
+  result: blazed-rod
+  permission: longhardfish.craft.rod.tier3
+
+  # 3x3 crafting grid shape
+  shape:
+    - " 12"     # Row 1: empty, Blaze Rod, Copper Block
+    - "345"     # Row 2: Netherite Scrap, Stick, Magma Cream
+    - " 6 "     # Row 3: empty, Stick, empty
+
+  # Map shape characters to materials
+  ingredients:
+    '1': BLAZE_ROD
+    '2': COPPER_BLOCK
+    '3': NETHERITE_SCRAP
+    '4': STICK
+    '5': MAGMA_CREAM
+    '6': STICK
+
+echo-rod:
+  # Result item - must match a CustomFishItems registry ID
+  result: echo-rod
+  permission: longhardfish.craft.rod.tier3
+
+  # 3x3 crafting grid shape
+  shape:
+    - " 12"     # Row 1: empty, Amethyst Shard, Deepslate
+    - "345"     # Row 2: Sculk Block, Stick, Echo Shard
+    - " 6 "     # Row 3: empty, Stick, empty
+
+  # Map shape characters to materials
+  ingredients:
+    '1': AMETHYST_SHARD
+    '2': DEEPSLATE
+    '3': SCULK
+    '4': STICK
+    '5': ECHO_SHARD
+    '6': STICK
+
+seafoam-rod:
+  # Result item - must match a CustomFishItems registry ID
+  result: seafoam-rod
+  permission: longhardfish.craft.rod.tier3
+
+  # 3x3 crafting grid shape
+  shape:
+    - " 12"     # Row 1: empty, Sea Lantern, Prismarine Shard
+    - "345"     # Row 2: Nautilus Shell, Stick, Heart of the Sea
+    - " 6 "     # Row 3: empty, Stick, empty
+
+  # Map shape characters to materials
+  ingredients:
+    '1': SEA_LANTERN
+    '2': PRISMARINE_SHARD
+    '3': NAUTILUS_SHELL
+    '4': STICK
+    '5': HEART_OF_THE_SEA
+    '6': STICK
+
+# ============================================================================
+# TIER 4 - MASTERFUL RODS (Very difficult to craft)
+# ============================================================================
+
+wraith-spine:
+  # Result item - must match a CustomFishItems registry ID
+  result: wraith-spine
+  permission: longhardfish.craft.rod.tier4
+
+  # 3x3 crafting grid shape
+  shape:
+    - "123"     # Row 1: Wither Skeleton Skull, Bone Block, Dark Prismarine
+    - "4 5"     # Row 2: Stick, empty, Dark Prismarine
+    - " 6 "     # Row 3: empty, Stick, empty
+
+  # Map shape characters to materials
+  ingredients:
+    '1': WITHER_SKELETON_SKULL
+    '2': BONE_BLOCK
+    '3': DARK_PRISMARINE
+    '4': STICK
+    '5': DARK_PRISMARINE
+    '6': STICK
+
+slitherpole:
+  # Result item - must match a CustomFishItems registry ID
+  result: slitherpole
+  permission: longhardfish.craft.rod.tier4
+
+  # 3x3 crafting grid shape
+  shape:
+    - " 1 "     # Row 1: empty, Emerald, empty
+    - "234"     # Row 2: Tropical Fish, Stick, Slime Block
+    - "5 6"     # Row 3: Vine, empty, Stick
+
+  # Map shape characters to materials
+  ingredients:
+    '1': EMERALD
+    '2': TROPICAL_FISH
+    '3': STICK
+    '4': SLIME_BLOCK
+    '5': VINE
+    '6': STICK
+
+blooming-line:
+  # Result item - must match a CustomFishItems registry ID
+  result: blooming-line
+  permission: longhardfish.craft.rod.tier4
+
+  # 3x3 crafting grid shape
+  shape:
+    - " 1 "     # Row 1: empty, Flower (any), empty
+    - "234"     # Row 2: Lily Pad, Stick, Spore Blossom
+    - "5 6"     # Row 3: Moss Block, empty, Stick
+
+  # Map shape characters to materials
+  ingredients:
+    '1':
+      type: material_choice
+      materials:
+        - POPPY
+        - DANDELION
+        - BLUE_ORCHID
+        - ALLIUM
+        - AZURE_BLUET
+        - RED_TULIP
+        - ORANGE_TULIP
+        - WHITE_TULIP
+        - PINK_TULIP
+        - OXEYE_DAISY
+        - CORNFLOWER
+        - LILY_OF_THE_VALLEY
+        - TORCHFLOWER
+        - SUNFLOWER
+        - LILAC
+        - ROSE_BUSH
+        - PEONY
+    '2': LILY_PAD
+    '3': STICK
+    '4': SPORE_BLOSSOM
+    '5': MOSS_BLOCK
+    '6': STICK
+
+permafrost-pole:
+  # Result item - must match a CustomFishItems registry ID
+  result: permafrost-pole
+  permission: longhardfish.craft.rod.tier4
+
+  # 3x3 crafting grid shape
+  shape:
+    - "123"     # Row 1: Blue Ice, Packed Ice, Snow Block
+    - "4 5"     # Row 2: Stick, empty, Powder Snow Bucket
+    - " 6 "     # Row 3: empty, Stick, empty
+
+  # Map shape characters to materials
+  ingredients:
+    '1': BLUE_ICE
+    '2': PACKED_ICE
+    '3': SNOW_BLOCK
+    '4': STICK
+    '5': POWDER_SNOW_BUCKET
+    '6': STICK
