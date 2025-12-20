@@ -1,7 +1,7 @@
 glider-bananafish:
   name: Glider Bananafish
   rarity: COMMON
-  description: The most common of all the bananafish. It is always on the move eating anything it can and laying eggs anywhere possible. Although not the smartest, it has achieved the number one slot in "most invasive species".
+  description: Ubiquitous river invader multiplying rapidly. Most invasive freshwater species.
   open-water-required: true
   rain-required: false
   defaults:
@@ -32,7 +32,7 @@ glider-bananafish:
 glider-sturgeon:
   name: Glider Sturgeon
   rarity: COMMON
-  description: Armored river glider coasting just above silt.
+  description: Armored river glider with bony plates. Drifts above silted depths.
   open-water-required: true
   rain-required: false
   defaults:
@@ -62,7 +62,7 @@ glider-sturgeon:
 glider-chungus:
   name: Glider Chungus
   rarity: COMMON
-  description: Big-bellied drifter surprisingly light on fins.
+  description: Big-bellied drifter surprisingly light. Masters current flow with grace.
   open-water-required: true
   rain-required: false
   defaults:
@@ -92,7 +92,7 @@ glider-chungus:
 glider-gudgeon:
   name: Glider Gudgeon
   rarity: COMMON
-  description: Tiny dartfish that hitchhikes on ripples.
+  description: Tiny dartfish hitchhiking on ripples. Swift and elusive in streams.
   open-water-required: true
   rain-required: false
   defaults:
@@ -124,7 +124,7 @@ glider-gudgeon:
 rose-fili:
   name: Rose Fili
   rarity: COMMON
-  description: Blush-pink sprinter with petal-soft fins.
+  description: Blush-pink plains river sprinter. Glimmers gracefully at dawn.
   open-water-required: true
   rain-required: false
   defaults:
@@ -157,8 +157,7 @@ rose-fili:
 chonkler-pip:
   name: Chonkler Pip
   rarity: COMMON
-  description: A unique fish known as the Chonkler Pip, with distinctive traits and
-    behaviors.
+  description: Rotund woodland swimmer with chunky proportions. Surprisingly agile.
   open-water-required: true
   rain-required: false
   defaults:
@@ -186,8 +185,7 @@ chonkler-pip:
 mountain-bananafish:
   name: Mountain Bananafish
   rarity: COMMON
-  description: A unique fish known as the Mountain Bananafish, with distinctive traits
-    and behaviors.
+  description: Hardy generalist from peaks to jungle. Resilient invasive everywhere.
   open-water-required: true
   rain-required: false
   defaults:
@@ -218,8 +216,7 @@ mountain-bananafish:
 muddy-salmon:
   name: Muddy Salmon
   rarity: COMMON
-  description: A unique fish known as the Muddy Salmon, with distinctive traits and
-    behaviors.
+  description: Mud migrant navigating turbid swamps. Sensory organs guide through murk.
   open-water-required: true
   rain-required: false
   defaults:
@@ -248,8 +245,7 @@ muddy-salmon:
 tiger-carp:
   name: Tiger Carp
   rarity: COMMON
-  description: A unique fish known as the Tiger Carp, with distinctive traits and
-    behaviors.
+  description: Striped jungle predator with powerful jaws. Ambushes with lightning.
   open-water-required: true
   rain-required: false
   defaults:
@@ -278,8 +274,7 @@ tiger-carp:
 tiger-trout:
   name: Tiger Trout
   rarity: COMMON
-  description: A unique fish known as the Tiger Trout, with distinctive traits and
-    behaviors.
+  description: Rainforest river predator marked with fierce stripes. Jungle dominant.
   open-water-required: true
   rain-required: false
   defaults:
@@ -311,8 +306,7 @@ tiger-trout:
 glider-mystelune:
   name: Glider Mystelune
   rarity: COMMON
-  description: A unique fish known as the Glider Mystelune, with distinctive traits
-    and behaviors.
+  description: Supremely adaptable drifter. Thrives desert to forest to swamp.
   open-water-required: true
   rain-required: false
   defaults:
@@ -348,8 +342,7 @@ glider-mystelune:
 red-tailed-dart:
   name: Red-tailed Dart
   rarity: COMMON
-  description: A unique fish known as the Red Tailed Dart, with distinctive traits
-    and behaviors.
+  description: Swift dweller with distinctive crimson tail. Active at twilight.
   open-water-required: true
   rain-required: false
   defaults:
@@ -383,8 +376,7 @@ red-tailed-dart:
 muddy-brugis:
   name: Muddy Brugis
   rarity: COMMON
-  description: A unique fish known as the Muddy Brugis, with distinctive traits and
-    behaviors.
+  description: Twilight swamp dweller. Emerges when moon waxes and wanes.
   open-water-required: true
   rain-required: false
   defaults:
@@ -419,8 +411,7 @@ muddy-brugis:
 mossy-mudskip:
   name: Mossy Mudskip
   rarity: COMMON
-  description: A unique fish known as the Mossy Mudskip, with distinctive traits and
-    behaviors.
+  description: Moss-covered hopper. Can briefly leave water and skip across banks.
   open-water-required: true
   rain-required: false
   defaults:
@@ -451,8 +442,7 @@ mossy-mudskip:
 sandy-carp:
   name: Sandy Carp
   rarity: COMMON
-  description: A unique fish known as the Sandy Carp, with distinctive traits and
-    behaviors.
+  description: Desert water specialist with scaled armor. Thrives in arid oases.
   open-water-required: true
   rain-required: true
   defaults:
@@ -482,8 +472,7 @@ sandy-carp:
 muddy-estuary:
   name: Muddy Estuary
   rarity: COMMON
-  description: A unique fish known as the Muddy Estuary, with distinctive traits and
-    behaviors.
+  description: Hot wetland inhabitant active at morning. Bridges desert and swamps.
   open-water-required: true
   rain-required: false
   defaults:
@@ -515,8 +504,7 @@ muddy-estuary:
 muddy-bass:
   name: Muddy Bass
   rarity: COMMON
-  description: A unique fish known as the Muddy Bass, with distinctive traits and
-    behaviors.
+  description: Rainforest predator in jungle murk. Powerful ambush hunter.
   open-water-required: true
   rain-required: false
   defaults:
@@ -548,8 +536,7 @@ muddy-bass:
 bloodfin-phyra:
   name: Bloodfin Phyra
   rarity: COMMON
-  description: A unique fish known as the Bloodfin Phyra, with distinctive traits
-    and behaviors.
+  description: Mountain stream specialist with crimson fins. Requires cold rushing water.
   open-water-required: true
   rain-required: true
   defaults:
@@ -586,8 +573,7 @@ bloodfin-phyra:
 owhmiewemoa-shin:
   name: Owhmiewemoa Shin
   rarity: UNCOMMON
-  description: A unique fish known as the Owhmiewemoa Shin, with distinctive traits
-    and behaviors.
+  description: Desert river dweller with unusual morphology. Rarely encountered.
   open-water-required: true
   rain-required: false
   defaults:
@@ -620,8 +606,7 @@ owhmiewemoa-shin:
 wandering-ptidiwhiskir:
   name: Wandering Ptidiwhiskir
   rarity: UNCOMMON
-  description: A unique fish known as the Wandering Ptidiwhiskir, with distinctive
-    traits and behaviors.
+  description: Twilight forest wanderer with whisker barbels. Meanders through streams.
   open-water-required: true
   rain-required: false
   defaults:
@@ -656,8 +641,7 @@ wandering-ptidiwhiskir:
 ancient-boopsnoot:
   name: Ancient Boopsnoot
   rarity: COMMON
-  description: A unique fish known as the Ancient Boopsnoot, with distinctive traits
-    and behaviors.
+  description: Snout-nosed desert swamp resident. Primordial heat-adapted.
   open-water-required: true
   rain-required: false
   defaults:
@@ -688,8 +672,7 @@ ancient-boopsnoot:
 ancient-dorado:
   name: Ancient Dorado
   rarity: COMMON
-  description: A unique fish known as the Ancient Dorado, with distinctive traits
-    and behaviors.
+  description: Golden plains predator of ancient lineage. Legendary angler tale.
   open-water-required: true
   rain-required: false
   defaults:
@@ -719,8 +702,7 @@ ancient-dorado:
 ancient-elara:
   name: Ancient Elara
   rarity: COMMON
-  description: A unique fish known as the Ancient Elara, with distinctive traits and
-    behaviors.
+  description: Woodland spectre in wetland shadows. Nocturnal phantom rarely seen.
   open-water-required: true
   rain-required: false
   defaults:
@@ -750,8 +732,7 @@ ancient-elara:
 largemouth-bass:
   name: Largemouth Bass
   rarity: UNCOMMON
-  description: A unique fish known as the Largemouth Bass, with distinctive traits
-    and behaviors.
+  description: Swamp apex predator with cavernous mouth. Terrifying ambusher.
   open-water-required: true
   rain-required: false
   defaults:
@@ -786,8 +767,7 @@ largemouth-bass:
 mossy-goby:
   name: Mossy Goby
   rarity: COMMON
-  description: A unique fish known as the Mossy Goby, with distinctive traits and
-    behaviors.
+  description: Green-tinged forest stream dweller. Clings to rocks in rainforests.
   open-water-required: true
   rain-required: false
   defaults:
@@ -817,8 +797,7 @@ mossy-goby:
 rising-dancefin:
   name: Rising Dancefin
   rarity: COMMON
-  description: A unique fish known as the Rising Dancefin, with distinctive traits
-    and behaviors.
+  description: Mountain plains leaper from rapids. Aerial acrobatics at dawn.
   open-water-required: true
   rain-required: false
   defaults:
@@ -857,8 +836,7 @@ rising-dancefin:
 jade-bananafish:
   name: Jade Bananafish
   rarity: COMMON
-  description: A unique fish known as the Jade Bananafish, with distinctive traits
-    and behaviors.
+  description: Greenish river invader with jade scales. Fast-breeding generalist.
   open-water-required: true
   rain-required: false
   defaults:
@@ -887,8 +865,7 @@ jade-bananafish:
 honeykelp-flowfin:
   name: Honeykelp Flowfin
   rarity: UNCOMMON
-  description: A unique fish known as the Honeykelp Flowfin, with distinctive traits
-    and behaviors.
+  description: Forest dweller with graceful fins. Glides like liquid honey.
   open-water-required: true
   rain-required: false
   defaults:
@@ -924,8 +901,7 @@ honeykelp-flowfin:
 broseph-hookfin:
   name: Broseph Hookfin
   rarity: COMMON
-  description: A unique fish known as the Broseph Hookfin, with distinctive traits
-    and behaviors.
+  description: Charismatic river character with hook jaw. Friendly predator.
   open-water-required: true
   rain-required: false
   defaults:
@@ -961,8 +937,7 @@ broseph-hookfin:
 emerald-estuary:
   name: Emerald Estuary
   rarity: COMMON
-  description: A unique fish known as the Emerald Estuary, with distinctive traits
-    and behaviors.
+  description: Jungle-green shimmering like emeralds. Rainforest jewel.
   open-water-required: true
   rain-required: false
   defaults:
@@ -993,8 +968,7 @@ emerald-estuary:
 poison-soaked-sensei:
   name: Poison-soaked Sensei
   rarity: COMMON
-  description: A unique fish known as the Poison Soaked Sensei, with distinctive traits
-    and behaviors.
+  description: Toxic jungle master. Dangerous ancient predator.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1025,8 +999,7 @@ poison-soaked-sensei:
 coral-bylowin:
   name: Coral Bylowin
   rarity: COMMON
-  description: A unique fish known as the Coral Bylowin, with distinctive traits and
-    behaviors.
+  description: Rainforest coral-hued dweller. Found in jungle rivers.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1056,8 +1029,7 @@ coral-bylowin:
 coral-seraphine:
   name: Coral Seraphine
   rarity: COMMON
-  description: A unique fish known as the Coral Seraphine, with distinctive traits
-    and behaviors.
+  description: Divine coral fish with ethereal beauty. Rare and angelic.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1094,8 +1066,7 @@ coral-seraphine:
 loving-gutpike:
   name: Loving Gutpike
   rarity: COMMON
-  description: A unique fish known as the Loving Gutpike, with distinctive traits
-    and behaviors.
+  description: Affectionate nocturnal dweller. Seeks companionship gently.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1125,8 +1096,7 @@ loving-gutpike:
 glimmering-bananafish:
   name: Glimmering Bananafish
   rarity: COMMON
-  description: A unique fish known as the Glimmering Bananafish, with distinctive
-    traits and behaviors.
+  description: Mountain rainforest invader with luminescent scales.
   open-water-required: true
   rain-required: true
   defaults:
@@ -1156,8 +1126,7 @@ glimmering-bananafish:
 spotted-rhyb:
   name: Spotted Rhyb
   rarity: COMMON
-  description: A unique fish known as the Spotted Rhyb, with distinctive traits and
-    behaviors.
+  description: Desert river dweller with spotted pattern. Moon-phase sensitive.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1190,8 +1159,7 @@ spotted-rhyb:
 amethyst-riptideon:
   name: Amethyst Riptideon
   rarity: COMMON
-  description: A unique fish known as the Amethyst Riptideon, with distinctive traits
-    and behaviors.
+  description: Riverside dweller with amethyst striping. Near cave systems.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1223,8 +1191,7 @@ amethyst-riptideon:
 emerald-crytalanth:
   name: Emerald Crytalanth
   rarity: COMMON
-  description: A unique fish known as the Emerald Crytalanth, with distinctive traits
-    and behaviors.
+  description: Lush green crystal fish. Dweller in crystalline walls.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1256,8 +1223,7 @@ emerald-crytalanth:
 rainbow-piranha:
   name: Rainbow Piranha
   rarity: UNCOMMON
-  description: A unique fish known as the Rainbow Piranha, with distinctive traits
-    and behaviors.
+  description: Plains predator with multicolored markings. Fierce hunter.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1290,8 +1256,7 @@ rainbow-piranha:
 obsidian-bussernut:
   name: Obsidian Bussernut
   rarity: UNCOMMON
-  description: A unique fish known as the Obsidian Bussernut, with distinctive traits
-    and behaviors.
+  description: Cold river specialist with obsidian coloring. Moon-responsive.
   open-water-required: true
   rain-required: true
   defaults:
@@ -1327,8 +1292,7 @@ obsidian-bussernut:
 radiated-klauknbals:
   name: Radiated Klauknbals
   rarity: UNCOMMON
-  description: A unique fish known as the Radiated Klauknbals, with distinctive traits
-    and behaviors.
+  description: Mountain swamp nocturnal dweller. Radiates mysterious energy.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1369,8 +1333,7 @@ radiated-klauknbals:
 moonlit-schnozzer:
   name: Moonlit Schnozzer
   rarity: COMMON
-  description: A unique fish known as the Moonlit Schnozzer, with distinctive traits
-    and behaviors.
+  description: Mountain river fish active at night. Snout-like for feeding.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1406,8 +1369,7 @@ moonlit-schnozzer:
 prismarine-gutpike:
   name: Prismarine Gutpike
   rarity: COMMON
-  description: A unique fish known as the Prismarine Gutpike, with distinctive traits
-    and behaviors.
+  description: Cold swamp specialist shimmering prismarine. Cave dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1440,8 +1402,7 @@ prismarine-gutpike:
 prismarine-kelvorn:
   name: Prismarine Kelvorn
   rarity: COMMON
-  description: A unique fish known as the Prismarine Kelvorn, with distinctive traits
-    and behaviors.
+  description: Cold wetland dweller with prismarine reflections.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1474,8 +1435,7 @@ prismarine-kelvorn:
 pearlestra:
   name: Pearlestra
   rarity: UNCOMMON
-  description: A unique fish known as the Pearlestra, with distinctive traits and
-    behaviors.
+  description: Desert jungle hybrid with pearl-like scales. Reflects moonlight.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1515,8 +1475,7 @@ pearlestra:
 moonlit-boopsnoot:
   name: Moonlit Boopsnoot
   rarity: COMMON
-  description: A unique fish known as the Moonlit Boopsnoot, with distinctive traits
-    and behaviors.
+  description: Mountain woodland nocturnal. Snout-nosed moon specialist.
   open-water-required: true
   rain-required: true
   defaults:
@@ -1549,8 +1508,7 @@ moonlit-boopsnoot:
 cerulean-riptideon:
   name: Cerulean Riptideon
   rarity: COMMON
-  description: A unique fish known as the Cerulean Riptideon, with distinctive traits
-    and behaviors.
+  description: Cold blue river dweller. Lunar-responsive swimmer.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1588,8 +1546,7 @@ cerulean-riptideon:
 oxidized-copper-sturgeon:
   name: Oxidized-copper Sturgeon
   rarity: UNCOMMON
-  description: A unique fish known as the Oxidized Copper Sturgeon, with distinctive
-    traits and behaviors.
+  description: Mountain stream armored fish with copper patina.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1623,8 +1580,7 @@ oxidized-copper-sturgeon:
 berserker-doomageddon:
   name: Berserker Doomageddon
   rarity: UNCOMMON
-  description: A unique fish known as the Berserker Doomageddon, with distinctive
-    traits and behaviors.
+  description: Ferocious rainforest predator. Aggressive hunter.
   open-water-required: true
   rain-required: true
   defaults:
@@ -1660,8 +1616,7 @@ berserker-doomageddon:
 ecstatic-minsk:
   name: Ecstatic Minsk
   rarity: COMMON
-  description: A unique fish known as the Ecstatic Minsk, with distinctive traits
-    and behaviors.
+  description: Plains river dweller displaying joyful behavior. Active daylight.
   open-water-required: true
   rain-required: true
   defaults:
@@ -1692,8 +1647,7 @@ ecstatic-minsk:
 tiger-mudjack:
   name: Tiger Mudjack
   rarity: COMMON
-  description: A unique fish known as the Tiger Mudjack, with distinctive traits and
-    behaviors.
+  description: Rainforest striped mud-loving fish. Adapts to murky waters.
   open-water-required: true
   rain-required: true
   defaults:
@@ -1725,7 +1679,7 @@ tiger-mudjack:
 heidifish:
   name: Heidifish
   rarity: UNCOMMON
-  description: A unique fish known as the Heidifish, with distinctive traits and behaviors.
+  description: Cherry grove specialist. Rare biome dweller.
   open-water-required: true
   rain-required: false
   tier: 1
@@ -1761,8 +1715,7 @@ heidifish:
 sandy-woodskip:
   name: Sandy Woodskip
   rarity: COMMON
-  description: A unique fish known as the Sandy Woodskip, with distinctive traits
-    and behaviors.
+  description: Desert dweller skipping sandy riverbeds. Amphibious.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1792,8 +1745,7 @@ sandy-woodskip:
 glider-lingcod:
   name: Glider Lingcod
   rarity: COMMON
-  description: A unique fish known as the Glider Lingcod, with distinctive traits
-    and behaviors.
+  description: Cold water generalist. Icy stream drifter.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1829,8 +1781,7 @@ glider-lingcod:
 charging-pepet:
   name: Charging Pepet
   rarity: UNCOMMON
-  description: A unique fish known as the Charging Pepet, with distinctive traits
-    and behaviors.
+  description: Woodland river sprinter. Charges through obstacles.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1871,8 +1822,7 @@ charging-pepet:
 muddy-bream:
   name: Muddy Bream
   rarity: COMMON
-  description: A unique fish known as the Muddy Bream, with distinctive traits and
-    behaviors.
+  description: Rainforest swamp dweller preferring murky waters. Nocturnal.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1903,8 +1853,7 @@ muddy-bream:
 muddy-boopsnoot:
   name: Muddy Boopsnoot
   rarity: COMMON
-  description: A unique fish known as the Muddy Boopsnoot, with distinctive traits
-    and behaviors.
+  description: Rainforest plains swamp resident. Bottom-feeder.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1934,8 +1883,7 @@ muddy-boopsnoot:
 arctic-grayling:
   name: Arctic Grayling
   rarity: COMMON
-  description: A unique fish known as the Arctic Grayling, with distinctive traits
-    and behaviors.
+  description: Cold mountain stream specialist. Arctic waters preferred.
   open-water-required: true
   rain-required: false
   defaults:
@@ -1965,8 +1913,7 @@ arctic-grayling:
 dark-heidifish:
   name: Dark Heidifish
   rarity: UNCOMMON
-  description: A unique fish known as the Dark Heidifish, with distinctive traits
-    and behaviors.
+  description: Pale garden twilight dweller. Nocturnal cave specialist.
   open-water-required: true
   rain-required: false
   tier: 1
@@ -2005,8 +1952,7 @@ dark-heidifish:
 relic-canth:
   name: Relic Canth
   rarity: COMMON
-  description: A unique fish known as the Relic Canth, with distinctive traits and
-    behaviors.
+  description: Ancient relic sharp-toothed predator dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2036,8 +1982,7 @@ relic-canth:
 wavering-puckerfish:
   name: Wavering Puckerfish
   rarity: COMMON
-  description: A unique fish known as the Wavering Puckerfish, with distinctive traits
-    and behaviors.
+  description: Hesitant pursed-mouth uncertain dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2067,8 +2012,7 @@ wavering-puckerfish:
 glider-poppicok:
   name: Glider Poppicok
   rarity: COMMON
-  description: A unique fish known as the Glider Poppicok, with distinctive traits
-    and behaviors.
+  description: Drifting small sleek water glider.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2103,8 +2047,7 @@ glider-poppicok:
 arctic-minnoe:
   name: Arctic Minnoe
   rarity: COMMON
-  description: A unique fish known as the Arctic Minnoe, with distinctive traits and
-    behaviors.
+  description: Tiny arctic waters cold specialist.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2134,8 +2077,7 @@ arctic-minnoe:
 polar-bananafish:
   name: Polar Bananafish
   rarity: COMMON
-  description: A unique fish known as the Polar Bananafish, with distinctive traits
-    and behaviors.
+  description: Curved polar cold-water predator.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2165,8 +2107,7 @@ polar-bananafish:
 lonely-minsk:
   name: Lonely Minsk
   rarity: COMMON
-  description: A unique fish known as the Lonely Minsk, with distinctive traits and
-    behaviors.
+  description: Solitary isolated cold-water inhabitant.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2198,8 +2139,7 @@ lonely-minsk:
 polar-fili:
   name: Polar Fili
   rarity: COMMON
-  description: A unique fish known as the Polar Fili, with distinctive traits and
-    behaviors.
+  description: Icy fin-crested rain-loving cold dweller.
   open-water-required: true
   rain-required: true
   defaults:
@@ -2235,8 +2175,7 @@ polar-fili:
 arctic-tuna:
   name: Arctic Tuna
   rarity: COMMON
-  description: A unique fish known as the Arctic Tuna, with distinctive traits and
-    behaviors.
+  description: Fast powerful arctic cold-water hunter.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2265,7 +2204,7 @@ arctic-tuna:
 grubshark:
   name: Grubshark
   rarity: UNCOMMON
-  description: A unique fish known as the Grubshark, with distinctive traits and behaviors.
+  description: Worm-eating large-mouth predator.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2301,8 +2240,7 @@ grubshark:
 arctic-horizonfin:
   name: Arctic Horizonfin
   rarity: COMMON
-  description: A unique fish known as the Arctic Horizonfin, with distinctive traits
-    and behaviors.
+  description: Cold-water horizon-dwelling distant traveler.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2337,8 +2275,7 @@ arctic-horizonfin:
 arctic-mystelune:
   name: Arctic Mystelune
   rarity: COMMON
-  description: A unique fish known as the Arctic Mystelune, with distinctive traits
-    and behaviors.
+  description: Mysterious arctic cold-water enigmatic creature.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2372,8 +2309,7 @@ arctic-mystelune:
 arctic-bylowin:
   name: Arctic Bylowin
   rarity: COMMON
-  description: A unique fish known as the Arctic Bylowin, with distinctive traits
-    and behaviors.
+  description: Ancient cold-water dwelling mysterious fish.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2408,8 +2344,7 @@ arctic-bylowin:
 sand-minnoe:
   name: Sand Minnoe
   rarity: COMMON
-  description: A unique fish known as the Sand Minnoe, with distinctive traits and
-    behaviors.
+  description: Desert water specialist thriving in hot, sandy arid environments.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2437,8 +2372,7 @@ sand-minnoe:
 frozen-nautivora:
   name: Frozen Nautivora
   rarity: UNCOMMON
-  description: A unique fish known as the Frozen Nautivora, with distinctive traits
-    and behaviors.
+  description: Arctic predator of cold saltwater depths, moonlit nocturnal hunter.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2475,8 +2409,7 @@ frozen-nautivora:
 abraisive-traavelpin:
   name: Abraisive Traavelpin
   rarity: COMMON
-  description: A unique fish known as the Abraisive Traavelpin, with distinctive traits
-    and behaviors.
+  description: Abrasive river dweller inhabiting hot wetlands and streams.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2511,8 +2444,7 @@ abraisive-traavelpin:
 sahara-poppicok:
   name: Sahara Poppicok
   rarity: COMMON
-  description: A unique fish known as the Sahara Poppicok, with distinctive traits
-    and behaviors.
+  description: Desert specialist flourishing in hot, arid lands year-round.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2540,8 +2472,7 @@ sahara-poppicok:
 sky-tilapia:
   name: Sky Tilapia
   rarity: COMMON
-  description: A unique fish known as the Sky Tilapia, with distinctive traits and
-    behaviors.
+  description: Saltwater nomad of shallow and deep cold ocean currents.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2572,8 +2503,7 @@ sky-tilapia:
 glacial-albacore:
   name: Glacial Albacore
   rarity: COMMON
-  description: A unique fish known as the Glacial Albacore, with distinctive traits
-    and behaviors.
+  description: Swift predator of frigid saltwater, powerful cold-water hunter.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2601,8 +2531,7 @@ glacial-albacore:
 frostbite-fili:
   name: Frostbite Fili
   rarity: COMMON
-  description: A unique fish known as the Frostbite Fili, with distinctive traits
-    and behaviors.
+  description: Icy waters specialist with cold-adaptation to polar saltwater.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2632,8 +2561,7 @@ frostbite-fili:
 runic-menhaden:
   name: Runic Menhaden
   rarity: UNCOMMON
-  description: A unique fish known as the Runic Menhaden, with distinctive traits
-    and behaviors.
+  description: Mysterious saltwater inhabitant of moonlit nights and deep waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2672,8 +2600,7 @@ runic-menhaden:
 moonlit-aruana:
   name: Moonlit Aruana
   rarity: COMMON
-  description: A unique fish known as the Moonlit Aruana, with distinctive traits
-    and behaviors.
+  description: Nocturnal saltwater glider visible only by moonlight.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2710,8 +2637,7 @@ moonlit-aruana:
 glacial-boopsnoot:
   name: Glacial Boopsnoot
   rarity: COMMON
-  description: A unique fish known as the Glacial Boopsnoot, with distinctive traits
-    and behaviors.
+  description: Snout-nosed predator of frigid saltwater and deep waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2740,8 +2666,7 @@ glacial-boopsnoot:
 depressed-minsk:
   name: Depressed Minsk
   rarity: COMMON
-  description: A unique fish known as the Depressed Minsk, with distinctive traits
-    and behaviors.
+  description: Melancholic cold-water inhabitant active throughout day.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2776,8 +2701,7 @@ depressed-minsk:
 enlightened-albacore:
   name: Enlightened Albacore
   rarity: COMMON
-  description: A unique fish known as the Enlightened Albacore, with distinctive traits
-    and behaviors.
+  description: Dawn and daylight saltwater hunter of frigid waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2809,8 +2733,7 @@ enlightened-albacore:
 glacial-bananafish:
   name: Glacial Bananafish
   rarity: COMMON
-  description: A unique fish known as the Glacial Bananafish, with distinctive traits
-    and behaviors.
+  description: Elongated predator of icy saltwater depths, omnipresent dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2842,8 +2765,7 @@ glacial-bananafish:
 retreating-pepet:
   name: Retreating Pepet
   rarity: UNCOMMON
-  description: A unique fish known as the Retreating Pepet, with distinctive traits
-    and behaviors.
+  description: Shy cold-water specialist avoiding daylight saltwater hours.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2883,8 +2805,7 @@ retreating-pepet:
 dormant-doomageddon:
   name: Dormant Doomageddon
   rarity: UNCOMMON
-  description: A unique fish known as the Dormant Doomageddon, with distinctive traits
-    and behaviors.
+  description: Ominous predator dormant in cold saltwater depths.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2917,8 +2838,7 @@ dormant-doomageddon:
 primal-halibut:
   name: Primal Halibut
   rarity: COMMON
-  description: A unique fish known as the Primal Halibut, with distinctive traits
-    and behaviors.
+  description: Ancient flatfish of cold saltwater requiring rainy conditions.
   open-water-required: true
   rain-required: true
   defaults:
@@ -2952,8 +2872,7 @@ primal-halibut:
 blue-jellyjelly:
   name: Blue Jellyjelly
   rarity: COMMON
-  description: A unique fish known as the Blue Jellyjelly, with distinctive traits
-    and behaviors.
+  description: Gelatinous saltwater creature of azure hues and depths.
   open-water-required: true
   rain-required: false
   defaults:
@@ -2985,8 +2904,7 @@ blue-jellyjelly:
 boreal-tetra:
   name: Boreal Tetra
   rarity: COMMON
-  description: A unique fish known as the Boreal Tetra, with distinctive traits and
-    behaviors.
+  description: Small schooling fish of northern cold waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3017,8 +2935,7 @@ boreal-tetra:
 boreal-squid:
   name: Boreal Squid
   rarity: UNCOMMON
-  description: A unique fish known as the Boreal Squid, with distinctive traits and
-    behaviors.
+  description: Intelligent cephalopod of deep frigid nocturnal waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3055,8 +2972,7 @@ boreal-squid:
 voidborn-boopsnoot:
   name: Voidborn Boopsnoot
   rarity: COMMON
-  description: A unique fish known as the Voidborn Boopsnoot, with distinctive traits
-    and behaviors.
+  description: Otherworldly snout-nosed void saltwater creature.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3085,8 +3001,7 @@ voidborn-boopsnoot:
 boreal-coralspine:
   name: Boreal Coralspine
   rarity: COMMON
-  description: A unique fish known as the Boreal Coralspine, with distinctive traits
-    and behaviors.
+  description: Spined coral-dwelling reef inhabitant of warm waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3124,8 +3039,7 @@ boreal-coralspine:
 primal-glydefin:
   name: Primal Glydefin
   rarity: COMMON
-  description: A unique fish known as the Primal Glydefin, with distinctive traits
-    and behaviors.
+  description: Ancient finned creature of primordial saltwater.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3160,8 +3074,7 @@ primal-glydefin:
 voidborn-goldberg:
   name: Voidborn Goldberg
   rarity: COMMON
-  description: A unique fish known as the Voidborn Goldberg, with distinctive traits
-    and behaviors.
+  description: Void-touched fish of transcendent saltwater depths.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3192,8 +3105,7 @@ voidborn-goldberg:
 boreal-albacore:
   name: Boreal Albacore
   rarity: COMMON
-  description: A unique fish known as the Boreal Albacore, with distinctive traits
-    and behaviors.
+  description: Northern fast predator of deep saltwater nocturnal waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3232,8 +3144,7 @@ boreal-albacore:
 voidborn-seaglider:
   name: Voidborn Seaglider
   rarity: COMMON
-  description: A unique fish known as the Voidborn Seaglider, with distinctive traits
-    and behaviors.
+  description: Void-touched drifter of all saltwater conditions.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3266,8 +3177,7 @@ voidborn-seaglider:
 fading-dancefin:
   name: Fading Dancefin
   rarity: COMMON
-  description: A unique fish known as the Fading Dancefin, with distinctive traits
-    and behaviors.
+  description: Graceful dancer fading at twilight saltwater hours.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3301,8 +3211,7 @@ fading-dancefin:
 ruined-poppicok:
   name: Ruined Poppicok
   rarity: COMMON
-  description: A unique fish known as the Ruined Poppicok, with distinctive traits
-    and behaviors.
+  description: Ruined, decayed saltwater inhabitant of coastal waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3331,8 +3240,7 @@ ruined-poppicok:
 voidborn-minnoe:
   name: Voidborn Minnoe
   rarity: COMMON
-  description: A unique fish known as the Voidborn Minnoe, with distinctive traits
-    and behaviors.
+  description: Tiny void-touched fish of all saltwater conditions.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3363,8 +3271,7 @@ voidborn-minnoe:
 primal-mullet:
   name: Primal Mullet
   rarity: UNCOMMON
-  description: A unique fish known as the Primal Mullet, with distinctive traits and
-    behaviors.
+  description: Ancient bottom-grazer of primordial saltwater.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3396,8 +3303,7 @@ primal-mullet:
 read-herring:
   name: Read Herring
   rarity: COMMON
-  description: A unique fish known as the Read Herring, with distinctive traits and
-    behaviors.
+  description: Widespread herring of warm shallow saltwater everywhere.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3429,8 +3335,7 @@ read-herring:
 rhodonite-estuary:
   name: Rhodonite Estuary
   rarity: COMMON
-  description: A unique fish known as the Rhodonite Estuary, with distinctive traits
-    and behaviors.
+  description: Pink-hued estuary specialist inhabiting coastal shallow waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3458,8 +3363,7 @@ rhodonite-estuary:
 golden-albacore:
   name: Golden Albacore
   rarity: UNCOMMON
-  description: A unique fish known as the Golden Albacore, with distinctive traits
-    and behaviors.
+  description: Rare golden predator visible in daylight shallow waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3491,8 +3395,7 @@ golden-albacore:
 sunny-woodskip:
   name: Sunny Woodskip
   rarity: COMMON
-  description: A unique fish known as the Sunny Woodskip, with distinctive traits
-    and behaviors.
+  description: Sun-loving water-skipper of warm shallow seas.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3521,8 +3424,7 @@ sunny-woodskip:
 dawnglider-riptideon:
   name: Dawnglider Riptideon
   rarity: COMMON
-  description: A unique fish known as the Dawnglider Riptideon, with distinctive traits
-    and behaviors.
+  description: Swift dawn rider of warm saltwater currents.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3554,8 +3456,7 @@ dawnglider-riptideon:
 crimson-flounder:
   name: Crimson Flounder
   rarity: COMMON
-  description: A unique fish known as the Crimson Flounder, with distinctive traits
-    and behaviors.
+  description: Red-hued flatfish of shallow coastal bottom waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3585,8 +3486,7 @@ crimson-flounder:
 sunset-lionfish:
   name: Sunset Lionfish
   rarity: COMMON
-  description: A unique fish known as the Sunset Lionfish, with distinctive traits
-    and behaviors.
+  description: Venomous spined fish visible at dusk warm waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3616,8 +3516,7 @@ sunset-lionfish:
 sunset-goldberg:
   name: Sunset Goldberg
   rarity: COMMON
-  description: A unique fish known as the Sunset Goldberg, with distinctive traits
-    and behaviors.
+  description: Golden twilight dweller of evening shallow waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3646,8 +3545,7 @@ sunset-goldberg:
 dawnglider-poppicok:
   name: Dawnglider Poppicok
   rarity: COMMON
-  description: A unique fish known as the Dawnglider Poppicok, with distinctive traits
-    and behaviors.
+  description: Small dawn dancer of warm saltwater gliding.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3678,8 +3576,7 @@ dawnglider-poppicok:
 dawnglider-herring:
   name: Dawnglider Herring
   rarity: COMMON
-  description: A unique fish known as the Dawnglider Herring, with distinctive traits
-    and behaviors.
+  description: Herring following dawn and daylight shallow waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3712,8 +3609,7 @@ dawnglider-herring:
 lucid-puckerfish:
   name: Lucid Puckerfish
   rarity: COMMON
-  description: A unique fish known as the Lucid Puckerfish, with distinctive traits
-    and behaviors.
+  description: Clear-thinking pursed-mouth fish of all saltwater.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3744,8 +3640,7 @@ lucid-puckerfish:
 soulless-puckerfish:
   name: Soulless Puckerfish
   rarity: COMMON
-  description: A unique fish known as the Soulless Puckerfish, with distinctive traits
-    and behaviors.
+  description: Emotionless deep-water pursed-mouth creature nocturnal.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3783,8 +3678,7 @@ soulless-puckerfish:
 sunrise-boopsnoot:
   name: Sunrise Boopsnoot
   rarity: COMMON
-  description: A unique fish known as the Sunrise Boopsnoot, with distinctive traits
-    and behaviors.
+  description: Dawn snout-faced dweller greeting sunrise shallow.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3815,8 +3709,7 @@ sunrise-boopsnoot:
 albino-grayling:
   name: Albino Grayling
   rarity: COMMON
-  description: A unique fish known as the Albino Grayling, with distinctive traits
-    and behaviors.
+  description: Pale unpigmented cold-water dweller of saltwater.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3846,8 +3739,7 @@ albino-grayling:
 ascended-puckerfish:
   name: Ascended Puckerfish
   rarity: COMMON
-  description: A unique fish known as the Ascended Puckerfish, with distinctive traits
-    and behaviors.
+  description: Enlightened pursed-mouth fish of moonlit shallow waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3879,8 +3771,7 @@ ascended-puckerfish:
 crumbling-klauknbals:
   name: Crumbling Klauknbals
   rarity: COMMON
-  description: A unique fish known as the Crumbling Klauknbals, with distinctive traits
-    and behaviors.
+  description: Deteriorating dweller of mushroom field biomes.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3910,8 +3801,7 @@ crumbling-klauknbals:
 bottom-angelfish:
   name: Bottom Angelfish
   rarity: COMMON
-  description: A unique fish known as the Bottom Angelfish, with distinctive traits
-    and behaviors.
+  description: Wing-finned bottom dweller of saltwater depths.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3939,8 +3829,7 @@ bottom-angelfish:
 tiger-goby:
   name: Tiger Goby
   rarity: UNCOMMON
-  description: A unique fish known as the Tiger Goby, with distinctive traits and
-    behaviors.
+  description: Striped uncommon bottom-dwelling coastal goby.
   open-water-required: true
   rain-required: false
   defaults:
@@ -3971,8 +3860,7 @@ tiger-goby:
 gravel-finfin:
   name: Gravel Finfin
   rarity: COMMON
-  description: A unique fish known as the Gravel Finfin, with distinctive traits and
-    behaviors.
+  description: Finned dweller of rocky saltwater substrate. All-time ocean resident.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4004,8 +3892,7 @@ gravel-finfin:
 chonkler-finfin:
   name: Chonkler Finfin
   rarity: UNCOMMON
-  description: A unique fish known as the Chonkler Finfin, with distinctive traits
-    and behaviors.
+  description: Unusually rotund finned creature of saltwater depths.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4039,8 +3926,7 @@ chonkler-finfin:
 nanides-shin:
   name: Nanides Shin
   rarity: UNCOMMON
-  description: A unique fish known as the Nanides Shin, with distinctive traits and
-    behaviors.
+  description: Small exotic fish of warm saltwater everywhere.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4073,8 +3959,7 @@ nanides-shin:
 primal-bananafish:
   name: Primal Bananafish
   rarity: COMMON
-  description: A unique fish known as the Primal Bananafish, with distinctive traits
-    and behaviors.
+  description: Ancient curved predator of all saltwater conditions.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4105,8 +3990,7 @@ primal-bananafish:
 dry-aged-rhyb:
   name: Dry-aged Rhyb
   rarity: COMMON
-  description: A unique fish known as the Dry Aged Rhyb, with distinctive traits and
-    behaviors.
+  description: Cured evening twilight dweller of shallow waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4138,8 +4022,7 @@ dry-aged-rhyb:
 saltwater-bass:
   name: Saltwater Bass
   rarity: COMMON
-  description: A unique fish known as the Saltwater Bass, with distinctive traits
-    and behaviors.
+  description: Classic predator of all saltwater environments.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4168,8 +4051,7 @@ saltwater-bass:
 dark-boopsnoot:
   name: Dark Boopsnoot
   rarity: COMMON
-  description: A unique fish known as the Dark Boopsnoot, with distinctive traits
-    and behaviors.
+  description: Dark-nosed creature visible in moonless nights.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4203,8 +4085,7 @@ dark-boopsnoot:
 tropical-takoki:
   name: Tropical Takoki
   rarity: COMMON
-  description: A unique fish known as the Tropical Takoki, with distinctive traits
-    and behaviors.
+  description: Exotic warm-water dweller of shallow seas.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4235,8 +4116,7 @@ tropical-takoki:
 royal-gramma:
   name: Royal Gramma
   rarity: UNCOMMON
-  description: A unique fish known as the Royal Gramma, with distinctive traits and
-    behaviors.
+  description: Regal uncommon warm-water shallow specialist.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4268,8 +4148,7 @@ royal-gramma:
 waning-threadfin:
   name: Waning Threadfin
   rarity: COMMON
-  description: A unique fish known as the Waning Threadfin, with distinctive traits
-    and behaviors.
+  description: Threaded fish declining with moon phases.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4297,8 +4176,7 @@ waning-threadfin:
 forgetful-tang:
   name: Forgetful Tang
   rarity: UNCOMMON
-  description: A unique fish known as the Forgetful Tang, with distinctive traits
-    and behaviors.
+  description: Forgetful warm-water first-half specialist.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4334,8 +4212,7 @@ forgetful-tang:
 fatherly-clownfish:
   name: Fatherly Clownfish
   rarity: UNCOMMON
-  description: A unique fish known as the Fatherly Clownfish, with distinctive traits
-    and behaviors.
+  description: Protective striped warm-water first-half dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4372,8 +4249,7 @@ fatherly-clownfish:
 sunrise-threadfin:
   name: Sunrise Threadfin
   rarity: COMMON
-  description: A unique fish known as the Sunrise Threadfin, with distinctive traits
-    and behaviors.
+  description: Dawn-emerging threaded fish requiring storms.
   open-water-required: true
   rain-required: true
   defaults:
@@ -4404,8 +4280,7 @@ sunrise-threadfin:
 masked-blenny:
   name: Masked Blenny
   rarity: COMMON
-  description: A unique fish known as the Masked Blenny, with distinctive traits and
-    behaviors.
+  description: Masked small blenny of twilight warm waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4437,8 +4312,7 @@ masked-blenny:
 tropical-wobbletail:
   name: Tropical Wobbletail
   rarity: COMMON
-  description: A unique fish known as the Tropical Wobbletail, with distinctive traits
-    and behaviors.
+  description: Wobbly-tailed tropical warm-water swimmer.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4468,8 +4342,7 @@ tropical-wobbletail:
 sunstreak-butterflyfish:
   name: Sunstreak Butterflyfish
   rarity: COMMON
-  description: A unique fish known as the Sunstreak Butterflyfish, with distinctive
-    traits and behaviors.
+  description: Sun-striped delicate butterfly-wing fish.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4502,8 +4375,7 @@ sunstreak-butterflyfish:
 amethyst-cichilid:
   name: Amethyst Cichilid
   rarity: COMMON
-  description: A unique fish known as the Amethyst Cichilid, with distinctive traits
-    and behaviors.
+  description: Purple-hued cichlid of twilight warm waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4538,8 +4410,7 @@ amethyst-cichilid:
 full-moon-threadfin:
   name: Full-Moon Threadfin
   rarity: COMMON
-  description: A unique fish known as the Full Moon Threadfin, with distinctive traits
-    and behaviors.
+  description: Moonlit threaded fish of warm waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4572,8 +4443,7 @@ full-moon-threadfin:
 cerulean-razorback:
   name: Cerulean Razorback
   rarity: COMMON
-  description: A unique fish known as the Cerulean Razorback, with distinctive traits
-    and behaviors.
+  description: Blue spined moon-phase warm-water predator.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4608,8 +4478,7 @@ cerulean-razorback:
 moonlit-butterflyfish:
   name: Moonlit Butterflyfish
   rarity: COMMON
-  description: A unique fish known as the Moonlit Butterflyfish, with distinctive
-    traits and behaviors.
+  description: Nocturnal delicate butterfly-winged dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4639,8 +4508,7 @@ moonlit-butterflyfish:
 sunstreak-elara:
   name: Sunstreak Elara
   rarity: UNCOMMON
-  description: A unique fish known as the Sunstreak Elara, with distinctive traits
-    and behaviors.
+  description: Sun-marked phantom of mushroom-field warm waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4676,8 +4544,7 @@ sunstreak-elara:
 seafoam-waverunner:
   name: Seafoam Waverunner
   rarity: COMMON
-  description: A unique fish known as the Seafoam Waverunner, with distinctive traits
-    and behaviors.
+  description: Foam-white wave-riding warm-water nomad.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4709,8 +4576,7 @@ seafoam-waverunner:
 rainbow-bananafish:
   name: Rainbow Bananafish
   rarity: COMMON
-  description: A unique fish known as the Rainbow Bananafish, with distinctive traits
-    and behaviors.
+  description: Multi-colored moon-phase warm-water curved fish.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4743,8 +4609,7 @@ rainbow-bananafish:
 candy-drillcod:
   name: Candy Drillcod
   rarity: COMMON
-  description: A unique fish known as the Candy Drillcod, with distinctive traits
-    and behaviors.
+  description: Sweet-colored moon-sensitive warm-water dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4778,8 +4643,7 @@ candy-drillcod:
 courting-klauknbals:
   name: Courting Klauknbals
   rarity: UNCOMMON
-  description: A unique fish known as the Courting Klauknbals, with distinctive traits
-    and behaviors.
+  description: Mating-phase exotic warm-water specialist.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4819,8 +4683,7 @@ courting-klauknbals:
 rosegold-flowfin:
   name: Rosegold Flowfin
   rarity: COMMON
-  description: A unique fish known as the Rosegold Flowfin, with distinctive traits
-    and behaviors.
+  description: Pink-gold flowing-finned warm-water swimmer.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4849,8 +4712,7 @@ rosegold-flowfin:
 prismarine-betta:
   name: Prismarine Betta
   rarity: COMMON
-  description: A unique fish known as the Prismarine Betta, with distinctive traits
-    and behaviors.
+  description: Iridescent fighting fish of all saltwater.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4882,8 +4744,7 @@ prismarine-betta:
 aquamarine-estuary:
   name: Aquamarine Estuary
   rarity: COMMON
-  description: A unique fish known as the Aquamarine Estuary, with distinctive traits
-    and behaviors.
+  description: Blue-green estuary warm-water specialist.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4913,8 +4774,7 @@ aquamarine-estuary:
 fruity-albacore:
   name: Fruity Albacore
   rarity: COMMON
-  description: A unique fish known as the Fruity Albacore, with distinctive traits
-    and behaviors.
+  description: Sweet-scented moon-phase warm-water predator.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4946,8 +4806,7 @@ fruity-albacore:
 eroti-dancefin:
   name: Eroti Dancefin
   rarity: COMMON
-  description: A unique fish known as the Eroti Dancefin, with distinctive traits
-    and behaviors.
+  description: Passionate nocturnal moon-phase dancer.
   open-water-required: true
   rain-required: false
   defaults:
@@ -4981,8 +4840,7 @@ eroti-dancefin:
 tropical-zing:
   name: Tropical Zing
   rarity: COMMON
-  description: A unique fish known as the Tropical Zing, with distinctive traits and
-    behaviors.
+  description: Vibrant first-half warm-water specialist.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5012,8 +4870,7 @@ tropical-zing:
 bismuth-estuary:
   name: Bismuth Estuary
   rarity: UNCOMMON
-  description: A unique fish known as the Bismuth Estuary, with distinctive traits
-    and behaviors.
+  description: Metallic rare estuary of mixed waters.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5051,8 +4908,7 @@ bismuth-estuary:
 nightfall-threadfin:
   name: Nightfall Threadfin
   rarity: UNCOMMON
-  description: A unique fish known as the Nightfall Threadfin, with distinctive traits
-    and behaviors.
+  description: Rare twilight threaded cold-water fish.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5085,8 +4941,7 @@ nightfall-threadfin:
 heavenly-jetfin:
   name: Heavenly Jetfin
   rarity: UNCOMMON
-  description: A unique fish known as the Heavenly Jetfin, with distinctive traits
-    and behaviors.
+  description: Rare moon-phase shallow-water jet swimmer.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5122,8 +4977,7 @@ heavenly-jetfin:
 treasured-luminae:
   name: Treasured Luminae
   rarity: RARE
-  description: A unique fish known as the Treasured Luminae, with distinctive traits
-    and behaviors.
+  description: Glowing rare warm-water second-half dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5154,8 +5008,7 @@ treasured-luminae:
 glorious-dancefin:
   name: Glorious Dancefin
   rarity: UNCOMMON
-  description: A unique fish known as the Glorious Dancefin, with distinctive traits
-    and behaviors.
+  description: Magnificent dancing mushroom-field lover.
   open-water-required: true
   rain-required: true
   tier: 2
@@ -5194,8 +5047,7 @@ glorious-dancefin:
 elusive-eel:
   name: Elusive Eel
   rarity: RARE
-  description: A unique fish known as the Elusive Eel, with distinctive traits and
-    behaviors.
+  description: Mysterious rare twilight serpentine hunter.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5232,8 +5084,7 @@ elusive-eel:
 treasured-ptidiwhiskir:
   name: Treasured Ptidiwhiskir
   rarity: RARE
-  description: A unique fish known as the Treasured Ptidiwhiskir, with distinctive
-    traits and behaviors.
+  description: Rare whisker-barbeled moon-phase specialist.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5271,8 +5122,7 @@ treasured-ptidiwhiskir:
 ethereal-mindwatcher:
   name: Ethereal Mindwatcher
   rarity: LEGENDARY
-  description: A unique fish known as the Ethereal Mindwatcher, with distinctive traits
-    and behaviors.
+  description: Legendary transcendent deep-ocean dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5309,8 +5159,7 @@ ethereal-mindwatcher:
 dream-threadfin:
   name: Dream Threadfin
   rarity: RARE
-  description: A unique fish known as the Dream Threadfin, with distinctive traits
-    and behaviors.
+  description: Rare rain-requiring nocturnal warm-water dreamer.
   open-water-required: true
   rain-required: true
   defaults:
@@ -5343,8 +5192,7 @@ dream-threadfin:
 albino-dragling:
   name: Albino Dragling
   rarity: UNCOMMON
-  description: A unique fish known as the Albino Dragling, with distinctive traits
-    and behaviors.
+  description: Pale unpigmented saltwater drake-like dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5379,8 +5227,7 @@ albino-dragling:
 top-angelfish:
   name: Top Angelfish
   rarity: UNCOMMON
-  description: A unique fish known as the Top Angelfish, with distinctive traits and
-    behaviors.
+  description: Superior twilight moon-phase shallow-water angel.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5421,8 +5268,7 @@ top-angelfish:
 dream-squid:
   name: Dream Squid
   rarity: UNCOMMON
-  description: A unique fish known as the Dream Squid, with distinctive traits and
-    behaviors.
+  description: Uncommon cold-water nocturnal cephalopod.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5461,8 +5307,7 @@ dream-squid:
 treasured-minnoe:
   name: Treasured Minnoe
   rarity: RARE
-  description: A unique fish known as the Treasured Minnoe, with distinctive traits
-    and behaviors.
+  description: Rare beach biome moon-phase tiny swimmer.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5497,8 +5342,7 @@ treasured-minnoe:
 fulfilled-minsk:
   name: Fulfilled Minsk
   rarity: UNCOMMON
-  description: A unique fish known as the Fulfilled Minsk, with distinctive traits
-    and behaviors.
+  description: Satisfied moon-phase shallow-water inhabitant.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5535,8 +5379,7 @@ fulfilled-minsk:
 brosephina-hookfin:
   name: Brosephina Hookfin
   rarity: RARE
-  description: A unique fish known as the Brosephina Hookfin, with distinctive traits
-    and behaviors.
+  description: Rare storm-requiring cold-water hooked predator.
   open-water-required: true
   rain-required: true
   defaults:
@@ -5574,8 +5417,7 @@ brosephina-hookfin:
 sunset-threadfin:
   name: Sunset Threadfin
   rarity: UNCOMMON
-  description: A unique fish known as the Sunset Threadfin, with distinctive traits
-    and behaviors.
+  description: Uncommon twilight warm-water threaded dancer.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5614,8 +5456,7 @@ sunset-threadfin:
 commanding-pepet:
   name: Commanding Pepet
   rarity: RARE
-  description: A unique fish known as the Commanding Pepet, with distinctive traits
-    and behaviors.
+  description: Authoritative leadership pepet fish.
   open-water-required: true
   rain-required: true
   defaults:
@@ -5645,8 +5486,7 @@ commanding-pepet:
 luminous-lionfish:
   name: Luminous Lionfish
   rarity: UNCOMMON
-  description: A unique fish known as the Luminous Lionfish, with distinctive traits
-    and behaviors.
+  description: Glowing spined venomous hunter.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5687,8 +5527,7 @@ luminous-lionfish:
 golden-dart:
   name: Golden Dart
   rarity: UNCOMMON
-  description: A unique fish known as the Golden Dart, with distinctive traits and
-    behaviors.
+  description: Swift yellow speedy water runner.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5722,8 +5561,7 @@ golden-dart:
 full-moon-poppicok:
   name: Full-Moon Poppicok
   rarity: UNCOMMON
-  description: A unique fish known as the Full Moon Poppicok, with distinctive traits
-    and behaviors.
+  description: Moon-phase small moon-loving dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5758,8 +5596,7 @@ full-moon-poppicok:
 shrouded-ghostly-grubshark:
   name: Shrouded-Ghostly Grubshark
   rarity: LEGENDARY
-  description: A unique fish known as the Shrouded Ghostly Grubshark, with distinctive
-    traits and behaviors.
+  description: Phantom mysterious large-mouth ghost creature.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5798,8 +5635,7 @@ shrouded-ghostly-grubshark:
 prime-rhyb:
   name: Prime Rhyb
   rarity: RARE
-  description: A unique fish known as the Prime Rhyb, with distinctive traits and
-    behaviors.
+  description: Superior excellent ancient dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5833,8 +5669,7 @@ prime-rhyb:
 ghostly-puckerfish:
   name: Ghostly Puckerfish
   rarity: UNCOMMON
-  description: A unique fish known as the Ghostly Puckerfish, with distinctive traits
-    and behaviors.
+  description: Spectral phantom pursed-mouth mysterious creature.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5873,8 +5708,7 @@ ghostly-puckerfish:
 rose-goldfish:
   name: Rose Goldfish
   rarity: RARE
-  description: A unique fish known as the Rose Goldfish, with distinctive traits and
-    behaviors.
+  description: Pink-hued precious metallic ornamental fish.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5905,8 +5739,7 @@ rose-goldfish:
 isle-takoki:
   name: Isle Takoki
   rarity: UNCOMMON
-  description: A unique fish known as the Isle Takoki, with distinctive traits and
-    behaviors.
+  description: Island-dwelling exotic tropical creature.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5939,8 +5772,7 @@ isle-takoki:
 luminous-whelk:
   name: Luminous Whelk
   rarity: UNCOMMON
-  description: A unique fish known as the Luminous Whelk, with distinctive traits
-    and behaviors.
+  description: Glowing spiral shell-dwelling mollusk.
   open-water-required: true
   rain-required: false
   defaults:
@@ -5979,8 +5811,7 @@ luminous-whelk:
 beeper-sneepihr:
   name: Beeper Sneepihr
   rarity: UNCOMMON
-  description: A unique fish known as the Beeper Sneepihr, with distinctive traits
-    and behaviors.
+  description: Small beeping exotic warm-water dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6014,8 +5845,7 @@ beeper-sneepihr:
 yeeper-sneepihr:
   name: Yeeper Sneepihr
   rarity: UNCOMMON
-  description: A unique fish known as the Yeeper Sneepihr, with distinctive traits
-    and behaviors.
+  description: Noisy jumping exotic warm-water creature.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6047,8 +5877,7 @@ yeeper-sneepihr:
 bola-claymore:
   name: Bola & Claymore
   rarity: LEGENDARY
-  description: A unique fish known as the Bola Claymore, with distinctive traits and
-    behaviors.
+  description: Exotic cold-water blade weapon fish.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6081,8 +5910,7 @@ bola-claymore:
 pure-goldfish:
   name: Pure Goldfish
   rarity: RARE
-  description: A unique fish known as the Pure Goldfish, with distinctive traits and
-    behaviors.
+  description: Common golden ornamental water dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6118,8 +5946,7 @@ pure-goldfish:
 green-apple-goomi:
   name: Green-apple Goomi
   rarity: UNCOMMON
-  description: A unique fish known as the Green Apple Goomi, with distinctive traits
-    and behaviors.
+  description: Fruity green exotic warm-water fish.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6153,8 +5980,7 @@ green-apple-goomi:
 weeh-shee-wooshi:
   name: Weeh, Shee & Wooshi
   rarity: RARE
-  description: A unique fish known as the Weeh Shee Wooshi, with distinctive traits
-    and behaviors.
+  description: Mystical exotic warm-water dancer.
   open-water-required: true
   rain-required: false
   tier: 2
@@ -6192,8 +6018,7 @@ weeh-shee-wooshi:
 cerulean-merfish:
   name: Cerulean Merfish
   rarity: UNCOMMON
-  description: A unique fish known as the Cerulean Merfish, with distinctive traits
-    and behaviors.
+  description: Blue-tailed mermaid-like creature.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6225,8 +6050,7 @@ cerulean-merfish:
 travelling-belogna:
   name: Travelling Belogna
   rarity: RARE
-  description: A unique fish known as the Travelling Belogna, with distinctive traits
-    and behaviors.
+  description: Migrating exotic water nomad.
   open-water-required: true
   rain-required: false
   tier: 2
@@ -6266,8 +6090,7 @@ travelling-belogna:
 raging-boomfish:
   name: Raging Boomfish
   rarity: UNCOMMON
-  description: A unique fish known as the Raging Boomfish, with distinctive traits
-    and behaviors.
+  description: Aggressive explosive warm-water predator.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6306,8 +6129,7 @@ raging-boomfish:
 whoopee-anamalo:
   name: Whoopee Anamalo
   rarity: UNCOMMON
-  description: A unique fish known as the Whoopee Anamalo, with distinctive traits
-    and behaviors.
+  description: Vibrant chaotic exotic creature.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6341,8 +6163,7 @@ whoopee-anamalo:
 bronze-skrub:
   name: Bronze Skrub
   rarity: UNCOMMON
-  description: A unique fish known as the Bronze Skrub, with distinctive traits and
-    behaviors.
+  description: Copper-toned cleaning specialist fish.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6384,8 +6205,7 @@ bronze-skrub:
 ethereal-chungus:
   name: Ethereal Chungus
   rarity: RARE
-  description: A unique fish known as the Ethereal Chungus, with distinctive traits
-    and behaviors.
+  description: Legendary ghostly oversized swimmer.
   open-water-required: true
   rain-required: false
   tier: 2
@@ -6422,8 +6242,7 @@ ethereal-chungus:
 nightfall-puffer:
   name: Nightfall Puffer
   rarity: UNCOMMON
-  description: A unique fish known as the Nightfall Puffer, with distinctive traits
-    and behaviors.
+  description: Nocturnal bloated mysterious dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6458,8 +6277,7 @@ nightfall-puffer:
 sunrise-puffer:
   name: Sunrise Puffer
   rarity: UNCOMMON
-  description: A unique fish known as the Sunrise Puffer, with distinctive traits
-    and behaviors.
+  description: Dawn-emerging inflatable fish specialist.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6492,8 +6310,7 @@ sunrise-puffer:
 common-snail:
   name: Common Snail
   rarity: RARE
-  description: A unique fish known as the Common Snail, with distinctive traits and
-    behaviors.
+  description: Ordinary mollusk dweller everywhere.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6532,8 +6349,7 @@ common-snail:
 alto-falloshimp:
   name: Alto Falloshimp
   rarity: UNCOMMON
-  description: A unique fish known as the Alto Falloshimp, with distinctive traits
-    and behaviors.
+  description: High-note falling exotic dancer.
   open-water-required: true
   rain-required: false
   tier: 2
@@ -6575,8 +6391,7 @@ alto-falloshimp:
 jaques-clenshimp:
   name: Jaques Clenshimp
   rarity: RARE
-  description: A unique fish known as the Jaques Clenshimp, with distinctive traits
-    and behaviors.
+  description: Exotic cleaning personality fish.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6609,8 +6424,7 @@ jaques-clenshimp:
 common-gripper:
   name: Common Gripper
   rarity: UNCOMMON
-  description: A unique fish known as the Common Gripper, with distinctive traits
-    and behaviors.
+  description: Standard jaw-clamping predator.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6644,8 +6458,7 @@ common-gripper:
 nightmare-squid:
   name: Nightmare Squid
   rarity: RARE
-  description: A unique fish known as the Nightmare Squid, with distinctive traits
-    and behaviors.
+  description: Terrifying deep-sea cephalopod.
   open-water-required: true
   rain-required: false
   tier: 2
@@ -6678,8 +6491,7 @@ nightmare-squid:
 albino-kreken:
   name: Albino Kreken
   rarity: RARE
-  description: A unique fish known as the Albino Kreken, with distinctive traits and
-    behaviors.
+  description: Pale legendary sea monster dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6713,8 +6525,7 @@ albino-kreken:
 pink-jellyjelly:
   name: Pink Jellyjelly
   rarity: UNCOMMON
-  description: A unique fish known as the Pink Jellyjelly, with distinctive traits
-    and behaviors.
+  description: Rose-hued gelatinous creature.
   open-water-required: true
   rain-required: false
   tier: 2
@@ -6751,8 +6562,7 @@ pink-jellyjelly:
 haunted-fishbones:
   name: Haunted Fishbones
   rarity: COMMON
-  description: A unique fish known as the Haunted Fishbones, with distinctive traits
-    and behaviors.
+  description: Spectral skeletal ancient remnant.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6783,8 +6593,7 @@ haunted-fishbones:
 abyssal-jetfin:
   name: Abyssal Jetfin
   rarity: UNCOMMON
-  description: A unique fish known as the Abyssal Jetfin, with distinctive traits
-    and behaviors.
+  description: Deep-trench jet-powered hunter.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6821,8 +6630,7 @@ abyssal-jetfin:
 primal-canth:
   name: Primal Canth
   rarity: RARE
-  description: A unique fish known as the Primal Canth, with distinctive traits and
-    behaviors.
+  description: Ancient sharp-toothed predator.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6856,8 +6664,7 @@ primal-canth:
 concealed-eel:
   name: Concealed Eel
   rarity: UNCOMMON
-  description: A unique fish known as the Concealed Eel, with distinctive traits and
-    behaviors.
+  description: Hidden serpentine mysterious dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -6896,8 +6703,7 @@ concealed-eel:
 diamonite-bananafish:
   name: Diamonite Bananafish
   rarity: COMMON
-  description: A unique fish known as the Diamonite Bananafish, with distinctive traits
-    and behaviors.
+  description: Jeweled curved elongated predator.
   open-water-required: false
   rain-required: false
   defaults:
@@ -6930,8 +6736,7 @@ diamonite-bananafish:
 rubinite-salmon:
   name: Rubinite Salmon
   rarity: COMMON
-  description: A unique fish known as the Rubinite Salmon, with distinctive traits
-    and behaviors.
+  description: Red-gemmed migratory powerful fish.
   open-water-required: false
   rain-required: false
   defaults:
@@ -6962,8 +6767,7 @@ rubinite-salmon:
 quartzenite-gutpike:
   name: Quartzenite Gutpike
   rarity: COMMON
-  description: A unique fish known as the Quartzenite Gutpike, with distinctive traits
-    and behaviors.
+  description: Crystal-gemmed aggressive pike.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7000,8 +6804,7 @@ quartzenite-gutpike:
 charged-quartzenite-gutpike:
   name: Charged Quartzenite Gutpike
   rarity: UNCOMMON
-  description: A unique fish known as the Charged Quartzenite Gutpike, with distinctive
-    traits and behaviors.
+  description: Electrified crystalline aggressive pike.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7037,8 +6840,7 @@ charged-quartzenite-gutpike:
 prismarinite-minnoe:
   name: Prismarinite Minnoe
   rarity: COMMON
-  description: A unique fish known as the Prismarinite Minnoe, with distinctive traits
-    and behaviors.
+  description: Iridescent tiny water specialist.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7067,8 +6869,7 @@ prismarinite-minnoe:
 amethysite-minnoe:
   name: Amethysite Minnoe
   rarity: COMMON
-  description: A unique fish known as the Amethysite Minnoe, with distinctive traits
-    and behaviors.
+  description: Purple-gemmed tiny fish.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7098,8 +6899,7 @@ amethysite-minnoe:
 emerald-schmeckle:
   name: Emerald Schmeckle
   rarity: COMMON
-  description: A unique fish known as the Emerald Schmeckle, with distinctive traits
-    and behaviors.
+  description: Green-hued mysterious exotic dweller.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7129,8 +6929,7 @@ emerald-schmeckle:
 crystalline-back-rhyb:
   name: Crystalline Back Rhyb
   rarity: UNCOMMON
-  description: A unique fish known as the Crystalline Back Rhyb, with distinctive
-    traits and behaviors.
+  description: Crystal-scaled ancient dweller.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7169,8 +6968,7 @@ crystalline-back-rhyb:
 anchor-mimook:
   name: Anchor Mimook
   rarity: COMMON
-  description: A unique fish known as the Anchor Mimook, with distinctive traits and
-    behaviors.
+  description: Mooring-mimicking exotic creature.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7203,8 +7001,7 @@ anchor-mimook:
 fishhook-mimook:
   name: Fishhook Mimook
   rarity: COMMON
-  description: A unique fish known as the Fishhook Mimook, with distinctive traits
-    and behaviors.
+  description: Hook-shaped mimic exotic predator.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7237,8 +7034,7 @@ fishhook-mimook:
 azalea-grubshark:
   name: Azalea Grubshark
   rarity: UNCOMMON
-  description: A unique fish known as the Azalea Grubshark, with distinctive traits
-    and behaviors.
+  description: Flowery predatory large-mouthed hunter.
   open-water-required: false
   rain-required: false
   tier: 1
@@ -7279,8 +7075,7 @@ azalea-grubshark:
 emeraldite-discus:
   name: Emeraldite Discus
   rarity: COMMON
-  description: A unique fish known as the Emeraldite Discus, with distinctive traits
-    and behaviors.
+  description: Green-gemmed circular tropical swimmer.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7309,8 +7104,7 @@ emeraldite-discus:
 primal-eel:
   name: Primal Eel
   rarity: COMMON
-  description: A unique fish known as the Primal Eel, with distinctive traits and
-    behaviors.
+  description: Ancient serpentine predator dweller.
   open-water-required: false
   rain-required: true
   tier: 1
@@ -7347,8 +7141,7 @@ primal-eel:
 ruling-turok:
   name: Ruling Turok
   rarity: UNCOMMON
-  description: A unique fish known as the Ruling Turok, with distinctive traits and
-    behaviors.
+  description: Governing exotic predatory ruler.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7383,8 +7176,7 @@ ruling-turok:
 jasper-gripper:
   name: Jasper Gripper
   rarity: COMMON
-  description: A unique fish known as the Jasper Gripper, with distinctive traits
-    and behaviors.
+  description: Stone-colored jaw-clamping hunter.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7415,8 +7207,7 @@ jasper-gripper:
 lush-slimswimer:
   name: Lush Slimswimer
   rarity: COMMON
-  description: A unique fish known as the Lush Slimswimer, with distinctive traits
-    and behaviors.
+  description: Verdant slippery smooth dweller.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7447,8 +7238,7 @@ lush-slimswimer:
 reborn-puckerfish:
   name: Reborn Puckerfish
   rarity: COMMON
-  description: A unique fish known as the Reborn Puckerfish, with distinctive traits
-    and behaviors.
+  description: Resurrected pursed-mouth mysterious creature.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7480,8 +7270,7 @@ reborn-puckerfish:
 reborn-razorback:
   name: Reborn Razorback
   rarity: COMMON
-  description: A unique fish known as the Reborn Razorback, with distinctive traits
-    and behaviors.
+  description: Reincarnated spined predator dweller.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7515,8 +7304,7 @@ reborn-razorback:
 amethyst-sculblade:
   name: Amethyst Sculblade
   rarity: COMMON
-  description: A unique fish known as the Amethyst Sculblade, with distinctive traits
-    and behaviors.
+  description: Purple-gemmed blade-like aggressive fish.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7550,8 +7338,7 @@ amethyst-sculblade:
 crystal-jellyjelly:
   name: Crystal Jellyjelly
   rarity: RARE
-  description: A unique fish known as the Crystal Jellyjelly, with distinctive traits
-    and behaviors.
+  description: Transparent gelatinous crystalline dweller.
   open-water-required: false
   rain-required: false
   tier: 2
@@ -7587,8 +7374,7 @@ crystal-jellyjelly:
 crystal-jetfin:
   name: Crystal Jetfin
   rarity: COMMON
-  description: A unique fish known as the Crystal Jetfin, with distinctive traits
-    and behaviors.
+  description: Transparent speedy racing hunter.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7624,8 +7410,7 @@ crystal-jetfin:
 docile-doomageddon:
   name: Docile Doomageddon
   rarity: COMMON
-  description: A unique fish known as the Docile Doomageddon, with distinctive traits
-    and behaviors.
+  description: Gentle peaceful ominous predator.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7654,8 +7439,7 @@ docile-doomageddon:
 emeraldite-teetle:
   name: Emeraldite Teetle
   rarity: UNCOMMON
-  description: A unique fish known as the Emeraldite Teetle, with distinctive traits
-    and behaviors.
+  description: Green-gemmed tiny turtle-like dweller.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7691,8 +7475,7 @@ emeraldite-teetle:
 loving-scrubber:
   name: Loving Scrubber
   rarity: UNCOMMON
-  description: A unique fish known as the Loving Scrubber, with distinctive traits
-    and behaviors.
+  description: Affectionate cleaning specialist.
   open-water-required: false
   rain-required: false
   tier: 1
@@ -7733,8 +7516,7 @@ loving-scrubber:
 seafoam-zing:
   name: Seafoam Zing
   rarity: COMMON
-  description: A unique fish known as the Seafoam Zing, with distinctive traits and
-    behaviors.
+  description: White-foam energetic vibrant hunter.
   open-water-required: false
   rain-required: false
   defaults:
@@ -7765,8 +7547,7 @@ seafoam-zing:
 crimson-gripper:
   name: Crimson Gripper
   rarity: COMMON
-  description: A unique fish known as the Crimson Gripper, with distinctive traits
-    and behaviors.
+  description: Red jaw-clamping aggressive predator.
   open-water-required: true
   rain-required: false
   defaults:
@@ -7797,8 +7578,7 @@ crimson-gripper:
 dune-gripper:
   name: Dune Gripper
   rarity: COMMON
-  description: A unique fish known as the Dune Gripper, with distinctive traits and
-    behaviors.
+  description: Desert jaw-clamping hunter specialist.
   open-water-required: true
   rain-required: false
   defaults:
@@ -7829,8 +7609,7 @@ dune-gripper:
 obsidian-gripper:
   name: Obsidian Gripper
   rarity: UNCOMMON
-  description: A unique fish known as the Obsidian Gripper, with distinctive traits
-    and behaviors.
+  description: Black stone jaw-clamping dark predator.
   open-water-required: true
   rain-required: false
   defaults:
@@ -7867,8 +7646,7 @@ obsidian-gripper:
 bone-gripper:
   name: Bone Gripper
   rarity: UNCOMMON
-  description: A unique fish known as the Bone Gripper, with distinctive traits and
-    behaviors.
+  description: Skeletal pale jaw-clamping hunter.
   open-water-required: true
   rain-required: true
   defaults:
@@ -7905,8 +7683,7 @@ bone-gripper:
 sunset-gripper:
   name: Sunset Gripper
   rarity: COMMON
-  description: A unique fish known as the Sunset Gripper, with distinctive traits
-    and behaviors.
+  description: Twilight orange jaw-clamping specialist.
   open-water-required: true
   rain-required: false
   tier: 3
@@ -7941,8 +7718,7 @@ sunset-gripper:
 jade-gripper:
   name: Jade Gripper
   rarity: UNCOMMON
-  description: A unique fish known as the Jade Gripper, with distinctive traits and
-    behaviors.
+  description: Green-stone jaw-clamping hunter.
   open-water-required: true
   rain-required: false
   defaults:
@@ -7977,8 +7753,7 @@ jade-gripper:
 amethyst-gripper:
   name: Amethyst Gripper
   rarity: UNCOMMON
-  description: A unique fish known as the Amethyst Gripper, with distinctive traits
-    and behaviors.
+  description: Purple-gemmed jaw-clamping specialist.
   open-water-required: false
   rain-required: false
   defaults:
@@ -8014,8 +7789,7 @@ amethyst-gripper:
 twinhorn-gripper:
   name: Twinhorn Gripper
   rarity: RARE
-  description: A unique fish known as the Twinhorn Gripper, with distinctive traits
-    and behaviors.
+  description: Dual-horned jaw-clamping predator.
   open-water-required: false
   rain-required: true
   defaults:
@@ -8049,8 +7823,7 @@ twinhorn-gripper:
 wellfed-gripper:
   name: Wellfed Gripper
   rarity: UNCOMMON
-  description: A unique fish known as the Wellfed Gripper, with distinctive traits
-    and behaviors.
+  description: Satisfied jaw-clamping oversized hunter.
   open-water-required: true
   rain-required: true
   defaults:
@@ -8090,8 +7863,7 @@ wellfed-gripper:
 sunshine-gripper:
   name: Sunshine Gripper
   rarity: UNCOMMON
-  description: A unique fish known as the Sunshine Gripper, with distinctive traits
-    and behaviors.
+  description: Bright yellow jaw-clamping specialist.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8127,8 +7899,7 @@ sunshine-gripper:
 surface-gripper:
   name: Surface Gripper
   rarity: COMMON
-  description: A unique fish known as the Surface Gripper, with distinctive traits
-    and behaviors.
+  description: Shallow-water jaw-clamping hunter.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8159,8 +7930,7 @@ surface-gripper:
 radiated-gripper:
   name: Radiated Gripper
   rarity: UNCOMMON
-  description: A unique fish known as the Radiated Gripper, with distinctive traits
-    and behaviors.
+  description: Glowing jaw-clamping mysterious predator.
   open-water-required: false
   rain-required: false
   defaults:
@@ -8199,8 +7969,7 @@ radiated-gripper:
 mr-gripper:
   name: Mr. Gripper
   rarity: LEGENDARY
-  description: A unique fish known as the Mr Gripper, with distinctive traits and
-    behaviors.
+  description: Distinguished jaw-clamping gentleman fish.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8234,8 +8003,7 @@ mr-gripper:
 concealed-gripper:
   name: Concealed Gripper
   rarity: UNCOMMON
-  description: A unique fish known as the Concealed Gripper, with distinctive traits
-    and behaviors.
+  description: Hidden jaw-clamping mysterious hunter.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8270,8 +8038,7 @@ concealed-gripper:
 crawling-gripper:
   name: Crawling Gripper
   rarity: UNCOMMON
-  description: A unique fish known as the Crawling Gripper, with distinctive traits
-    and behaviors.
+  description: Walking jaw-clamping ground dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8305,8 +8072,7 @@ crawling-gripper:
 sonic-gripper:
   name: Sonic Gripper
   rarity: RARE
-  description: A unique fish known as the Sonic Gripper, with distinctive traits and
-    behaviors.
+  description: Speedy sonic jaw-clamping hunter.
   open-water-required: true
   rain-required: false
   tier: 3
@@ -8342,8 +8108,7 @@ sonic-gripper:
 pivot-gripper:
   name: Pivot Gripper
   rarity: UNCOMMON
-  description: A unique fish known as the Pivot Gripper, with distinctive traits and
-    behaviors.
+  description: Rotating jaw-clamping flexible specialist.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8383,8 +8148,7 @@ pivot-gripper:
 rhudon-gripper:
   name: Rhudon Gripper
   rarity: COMMON
-  description: A unique fish known as the Rhudon Gripper, with distinctive traits
-    and behaviors.
+  description: Exotic mythical jaw-clamping hunter.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8422,8 +8186,7 @@ rhudon-gripper:
 rockbash-gripper:
   name: Rockbash Gripper
   rarity: UNCOMMON
-  description: A unique fish known as the Rockbash Gripper, with distinctive traits
-    and behaviors.
+  description: Stone-smashing jaw-clamping predator.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8463,8 +8226,7 @@ rockbash-gripper:
 headhunt-gripper:
   name: Headhunt Gripper
   rarity: COMMON
-  description: A unique fish known as the Headhunt Gripper, with distinctive traits
-    and behaviors.
+  description: Hunting jaw-clamping aggressive specialist.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8499,8 +8261,7 @@ headhunt-gripper:
 bean-gripper:
   name: Bean Gripper
   rarity: UNCOMMON
-  description: A unique fish known as the Bean Gripper, with distinctive traits and
-    behaviors.
+  description: Small compact jaw-clamping hunter.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8537,8 +8298,7 @@ bean-gripper:
 bouncy-gripper:
   name: Bouncy Gripper
   rarity: RARE
-  description: A unique fish known as the Bouncy Gripper, with distinctive traits
-    and behaviors.
+  description: Elastic springy jaw-clamping dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8571,8 +8331,7 @@ bouncy-gripper:
 hypno-gripper:
   name: Hypno Gripper
   rarity: COMMON
-  description: A unique fish known as the Hypno Gripper, with distinctive traits and
-    behaviors.
+  description: Mesmerizing jaw-clamping mysterious creature.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8608,8 +8367,7 @@ hypno-gripper:
 emerald-gripper:
   name: Emerald Gripper
   rarity: COMMON
-  description: A unique fish known as the Emerald Gripper, with distinctive traits
-    and behaviors.
+  description: Green-hued jaw-clamping specialist.
   open-water-required: false
   rain-required: false
   defaults:
@@ -8644,8 +8402,7 @@ emerald-gripper:
 fleshrend-gripper:
   name: Fleshrend Gripper
   rarity: UNCOMMON
-  description: A unique fish known as the Fleshrend Gripper, with distinctive traits
-    and behaviors.
+  description: Carnivorous jaw-clamping aggressive predator.
   open-water-required: true
   rain-required: false
   tier: 3
@@ -8687,8 +8444,7 @@ fleshrend-gripper:
 til-a-i-pia:
   name: Til-A.I.-pia
   rarity: COMMON
-  description: A unique fish known as the Til A I Pia, with distinctive traits and
-    behaviors.
+  description: Exotic tilapia-like water dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8723,8 +8479,7 @@ til-a-i-pia:
 bigbyte-piranha:
   name: BigByte Piranha
   rarity: COMMON
-  description: A unique fish known as the Bigbyte Piranha, with distinctive traits
-    and behaviors.
+  description: Mechanical giant-toothed aggressive predator.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8756,8 +8511,7 @@ bigbyte-piranha:
 mechaphyra:
   name: Mechaphyra
   rarity: UNCOMMON
-  description: A unique fish known as the Mechaphyra, with distinctive traits and
-    behaviors.
+  description: Mechanical fin-creature hybrid.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -8796,8 +8550,7 @@ mechaphyra:
 troutomobile:
   name: Troutomobile
   rarity: UNCOMMON
-  description: A unique fish known as the Troutomobile, with distinctive traits and
-    behaviors.
+  description: Vehicle-like trout mechanical creation.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8833,8 +8586,7 @@ troutomobile:
 moderated-threadfin:
   name: Moderated Threadfin
   rarity: COMMON
-  description: A unique fish known as the Moderated Threadfin, with distinctive traits
-    and behaviors.
+  description: Balanced threaded calm-tempered dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8867,8 +8619,7 @@ moderated-threadfin:
 old-timey-poppicog:
   name: Old-Timey Poppicog
   rarity: UNCOMMON
-  description: A unique fish known as the Old Timey Poppicog, with distinctive traits
-    and behaviors.
+  description: Vintage mechanical small fish.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8907,8 +8658,7 @@ old-timey-poppicog:
 oled-anglefish:
   name: OLED Anglefish
   rarity: UNCOMMON
-  description: A unique fish known as the Oled Anglefish, with distinctive traits
-    and behaviors.
+  description: Light-emitting angle-dwelling dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -8944,7 +8694,7 @@ oled-anglefish:
 betafish:
   name: BETAfish
   rarity: RARE
-  description: A unique fish known as the Betafish, with distinctive traits and behaviors.
+  description: Testing experimental exotic dweller.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -8982,8 +8732,7 @@ betafish:
 escargobot:
   name: Escargobot
   rarity: COMMON
-  description: A unique fish known as the Escargobot, with distinctive traits and
-    behaviors.
+  description: Mechanical spiral-shelled slow dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -9015,8 +8764,7 @@ escargobot:
 escargomid:
   name: Escargomid
   rarity: UNCOMMON
-  description: A unique fish known as the Escargomid, with distinctive traits and
-    behaviors.
+  description: Hybrid mechanical snail-fish creature.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -9053,8 +8801,7 @@ escargomid:
 chronotrouter:
   name: Chronotrouter
   rarity: RARE
-  description: A unique fish known as the Chronotrouter, with distinctive traits and
-    behaviors.
+  description: Time-traveling routing magical fish.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -9091,8 +8838,7 @@ chronotrouter:
 initial-tee:
   name: Initial Tee
   rarity: UNCOMMON
-  description: A unique fish known as the Initial Tee, with distinctive traits and
-    behaviors.
+  description: Beginning perfect starter dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -9128,8 +8874,7 @@ initial-tee:
 snowgrave-rodtail:
   name: Snowgrave Rodtail
   rarity: COMMON
-  description: A unique fish known as the Snowgrave Rodtail, with distinctive traits
-    and behaviors.
+  description: Frozen lethal tail-wielding predator.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -9165,7 +8910,7 @@ snowgrave-rodtail:
 eelbow:
   name: Eelbow
   rarity: UNCOMMON
-  description: A unique fish known as the Eelbow, with distinctive traits and behaviors.
+  description: Serpentine elbowed unique creature.
   open-water-required: true
   rain-required: false
   defaults:
@@ -9201,7 +8946,7 @@ eelbow:
 locknplea:
   name: Locknplea
   rarity: RARE
-  description: A unique fish known as the Locknplea, with distinctive traits and behaviors.
+  description: Locking puzzle-fish mysterious dweller.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -9237,8 +8982,7 @@ locknplea:
 water-bybass:
   name: Water Bybass
   rarity: UNCOMMON
-  description: A unique fish known as the Water Bybass, with distinctive traits and
-    behaviors.
+  description: Aquatic bypass specialized creature.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -9277,8 +9021,7 @@ water-bybass:
 chromadine:
   name: Chromadine
   rarity: COMMON
-  description: A unique fish known as the Chromadine, with distinctive traits and
-    behaviors.
+  description: Color-shifting mystical magical fish.
   open-water-required: false
   rain-required: false
   defaults:
@@ -9310,8 +9053,7 @@ chromadine:
 broken-wheel:
   name: Broken Wheel
   rarity: UNCOMMON
-  description: A unique fish known as the Broken Wheel, with distinctive traits and
-    behaviors.
+  description: Damaged mechanical rotating dweller.
   open-water-required: false
   rain-required: false
   tier: 4
@@ -9352,8 +9094,7 @@ broken-wheel:
 dr-octogonapus:
   name: Dr Octogonapus
   rarity: LEGENDARY
-  description: A unique fish known as the Dr Octogonapus, with distinctive traits
-    and behaviors.
+  description: Doctor octagonal-bodied mysterious creature.
   open-water-required: false
   rain-required: false
   tier: 4
@@ -9388,7 +9129,7 @@ dr-octogonapus:
 cognutive:
   name: CogNUTive
   rarity: UNCOMMON
-  description: A unique fish known as the Cognutive, with distinctive traits and behaviors.
+  description: Mechanical thinking gear-minded dweller.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -9424,8 +9165,7 @@ cognutive:
 servo-moray:
   name: Servo-Moray
   rarity: COMMON
-  description: A unique fish known as the Servo Moray, with distinctive traits and
-    behaviors.
+  description: Mechanical eel-like servo creature.
   open-water-required: true
   rain-required: false
   defaults:
@@ -9458,8 +9198,7 @@ servo-moray:
 escargotop:
   name: Escargotop
   rarity: RARE
-  description: A unique fish known as the Escargotop, with distinctive traits and
-    behaviors.
+  description: Top-tier mechanical snail dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -9493,8 +9232,7 @@ escargotop:
 boopsnoototron:
   name: Boopsnoototron
   rarity: COMMON
-  description: A unique fish known as the Boopsnoototron, with distinctive traits
-    and behaviors.
+  description: Robotic snout-nosed mechanical creation.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -9531,8 +9269,7 @@ boopsnoototron:
 floundrive:
   name: Floundrive
   rarity: COMMON
-  description: A unique fish known as the Floundrive, with distinctive traits and
-    behaviors.
+  description: Mechanical flatfish technology dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -9563,7 +9300,7 @@ floundrive:
 autoboros:
   name: Autoboros
   rarity: RARE
-  description: A unique fish known as the Autoboros, with distinctive traits and behaviors.
+  description: Self-consuming automatic mechanical creature.
   open-water-required: true
   rain-required: false
   defaults:
@@ -9594,8 +9331,7 @@ autoboros:
 skulkborn-moray:
   name: Skulkborn Moray
   rarity: RARE
-  description: A unique fish known as the Skulkborn Moray, with distinctive traits
-    and behaviors.
+  description: Shadowy eel-like mysterious dweller.
   open-water-required: false
   rain-required: false
   tier: 4
@@ -9633,8 +9369,7 @@ skulkborn-moray:
 dimensional-basilisk:
   name: Dimensional Basilisk
   rarity: RARE
-  description: A unique fish known as the Dimensional Basilisk, with distinctive traits
-    and behaviors.
+  description: Extra-dimensional serpent legendary creature.
   open-water-required: false
   rain-required: false
   defaults:
@@ -9668,8 +9403,7 @@ dimensional-basilisk:
 ripper-roofin:
   name: Ripper Roofin
   rarity: LEGENDARY
-  description: A unique fish known as the Ripper Roofin, with distinctive traits and
-    behaviors.
+  description: Tearing roofing technology specialist.
   open-water-required: true
   rain-required: false
   defaults:
@@ -9706,8 +9440,7 @@ ripper-roofin:
 chip-skydark:
   name: Chip Skydark
   rarity: LEGENDARY
-  description: A unique fish known as the Chip Skydark, with distinctive traits and
-    behaviors.
+  description: Micro computer dark-sky dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -9740,8 +9473,7 @@ chip-skydark:
 rafflebones:
   name: Rafflebones
   rarity: LEGENDARY
-  description: A unique fish known as the Rafflebones, with distinctive traits and
-    behaviors.
+  description: Lucky skeleton-bone dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -9778,8 +9510,7 @@ rafflebones:
 goobly-gobbler:
   name: Goobly Gobbler
   rarity: RARE
-  description: A unique fish known as the Goobly Gobbler, with distinctive traits
-    and behaviors.
+  description: Sticky mouth-filling consumer.
   open-water-required: true
   rain-required: false
   defaults:
@@ -9815,8 +9546,7 @@ goobly-gobbler:
 yin-dynastii:
   name: Yin Dynastii
   rarity: RARE
-  description: A unique fish known as the Yin Dynastii, with distinctive traits and
-    behaviors.
+  description: Light-dark balanced ancient dynasty.
   open-water-required: true
   rain-required: false
   defaults:
@@ -9848,8 +9578,7 @@ yin-dynastii:
 yang-dynastii:
   name: Yang Dynastii
   rarity: RARE
-  description: A unique fish known as the Yang Dynastii, with distinctive traits and
-    behaviors.
+  description: Dark-light balanced ancient kingdom.
   open-water-required: true
   rain-required: false
   defaults:
@@ -9881,8 +9610,7 @@ yang-dynastii:
 dinkus-the-deep:
   name: Dinkus the Deep
   rarity: RARE
-  description: A unique fish known as the Dinkus The Deep, with distinctive traits
-    and behaviors.
+  description: Small silly deep-dwelling legendary.
   open-water-required: true
   rain-required: false
   defaults:
@@ -9915,8 +9643,7 @@ dinkus-the-deep:
 worldeater:
   name: Worldeater
   rarity: LEGENDARY
-  description: A unique fish known as the Worldeater, with distinctive traits and
-    behaviors.
+  description: Cosmos-consuming mythical legendary.
   open-water-required: true
   rain-required: false
   defaults:
@@ -9952,8 +9679,7 @@ worldeater:
 the-mindflayer:
   name: The Mindflayer
   rarity: LEGENDARY
-  description: A unique fish known as the The Mindflayer, with distinctive traits
-    and behaviors.
+  description: Psychic tentacled legendary creature.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -9992,8 +9718,7 @@ the-mindflayer:
 mr-boombastic:
   name: Mr Boombastic
   rarity: RARE
-  description: A unique fish known as the Mr Boombastic, with distinctive traits and
-    behaviors.
+  description: Dramatic explosive personality fish.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -10030,8 +9755,7 @@ mr-boombastic:
 needlessly-large-rodtail:
   name: Needlessly Large Rodtail
   rarity: UNCOMMON
-  description: A unique fish known as the Needlessly Large Rodtail, with distinctive
-    traits and behaviors.
+  description: Excessively oversized legendary tail-wielder.
   open-water-required: true
   rain-required: false
   defaults:
@@ -10067,8 +9791,7 @@ needlessly-large-rodtail:
 rodtail-of-domnion:
   name: Rodtail of Domnion
   rarity: RARE
-  description: A unique fish known as the Rodtail Of Domnion, with distinctive traits
-    and behaviors.
+  description: Royal legendary tail-bearing dominion ruler.
   open-water-required: true
   rain-required: false
   defaults:
@@ -10105,8 +9828,7 @@ rodtail-of-domnion:
 abaia-of-isles:
   name: Abaia of Isles
   rarity: RARE
-  description: A unique fish known as the Abaia Of Isles, with distinctive traits
-    and behaviors.
+  description: Island legendary serpent-dwelling creature.
   open-water-required: false
   rain-required: false
   defaults:
@@ -10138,7 +9860,7 @@ abaia-of-isles:
 jim:
   name: Jim
   rarity: LEGENDARY
-  description: A unique fish known as the Jim, with distinctive traits and behaviors.
+  description: Simple named mysterious legendary dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -10171,8 +9893,7 @@ jim:
 king-jellyjelly:
   name: King Jellyjelly
   rarity: RARE
-  description: A unique fish known as the King Jellyjelly, with distinctive traits
-    and behaviors.
+  description: Royal gelatinous legendary monarchy.
   open-water-required: true
   rain-required: false
   defaults:
@@ -10204,10 +9925,9 @@ king-jellyjelly:
       expected: 0.75
       can_be_zero: true
 wither-s-rodtail:
-  name: Wither’s Rodtail
+  name: Wither's Rodtail
   rarity: RARE
-  description: A unique fish known as the Wither S Rodtail, with distinctive traits
-    and behaviors.
+  description: Decaying legendary tail-bearing creature.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -10245,8 +9965,7 @@ wither-s-rodtail:
 shadowmaw-grubshark:
   name: Shadowmaw Grubshark
   rarity: RARE
-  description: A unique fish known as the Shadowmaw Grubshark, with distinctive traits
-    and behaviors.
+  description: Dark shadowy legendary large-mouth hunter.
   open-water-required: true
   rain-required: false
   defaults:
@@ -10280,8 +9999,7 @@ shadowmaw-grubshark:
 astrological-mindwatcher:
   name: Astrological Mindwatcher
   rarity: RARE
-  description: A unique fish known as the Astrological Mindwatcher, with distinctive
-    traits and behaviors.
+  description: Celestial cosmic legendary mind-seeing creature.
   open-water-required: true
   rain-required: false
   defaults:
@@ -10315,8 +10033,7 @@ astrological-mindwatcher:
 chuchu-pik:
   name: Chuchu Pik
   rarity: RARE
-  description: A unique fish known as the Chuchu Pik, with distinctive traits and
-    behaviors.
+  description: Explosive bubble-carrying cute specialist.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -10354,8 +10071,7 @@ chuchu-pik:
 illithid-maggot:
   name: Illithid Maggot
   rarity: COMMON
-  description: A unique fish known as the Illithid Maggot, with distinctive traits
-    and behaviors.
+  description: Mind-flayer larval form dweller.
   open-water-required: true
   rain-required: false
   defaults:
@@ -10396,7 +10112,7 @@ illithid-maggot:
 redacted:
   name: '[REDACTED]'
   rarity: LEGENDARY
-  description: A unique fish known as the Redacted, with distinctive traits and behaviors.
+  description: Unknown hidden mysterious classified creature.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -10442,8 +10158,7 @@ redacted:
 luminous-shulk:
   name: Luminous Shulk
   rarity: RARE
-  description: A unique fish known as the Luminous Shulk, with distinctive traits
-    and behaviors.
+  description: Glowing shell-bearing legendary dweller.
   open-water-required: true
   rain-required: false
   tier: 4
@@ -10491,8 +10206,7 @@ luminous-shulk:
 voidborn-moray:
   name: Voidborn Moray
   rarity: UNCOMMON
-  description: A unique fish known as the Voidborn Moray, with distinctive traits
-    and behaviors.
+  description: Void-touched serpentine eel creature.
   open-water-required: true
   rain-required: false
   defaults:
@@ -10539,8 +10253,7 @@ voidborn-moray:
 stray-seagrass:
   name: Stray Seagrass
   rarity: COMMON
-  description: A unique fish known as the Stray Seagrass, with distinctive traits
-    and behaviors.
+  description: Wandering aquatic plant-like dweller.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10568,7 +10281,7 @@ stray-seagrass:
 old-boot:
   name: Old Boot
   rarity: COMMON
-  description: A unique fish known as the Old Boot, with distinctive traits and behaviors.
+  description: Worn tattered discarded item.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10597,8 +10310,7 @@ old-boot:
 waterlogged-boot:
   name: Waterlogged Boot
   rarity: COMMON
-  description: A unique fish known as the Waterlogged Boot, with distinctive traits
-    and behaviors.
+  description: Soaked heavy drowned item.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10627,8 +10339,7 @@ waterlogged-boot:
 message-in-a-bottle:
   name: Message in a Bottle
   rarity: COMMON
-  description: A unique fish known as the Message In A Bottle, with distinctive traits
-    and behaviors.
+  description: Sealed mysterious ancient communication.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10654,8 +10365,7 @@ message-in-a-bottle:
 broken-chain:
   name: Broken Chain
   rarity: COMMON
-  description: A unique fish known as the Broken Chain, with distinctive traits and
-    behaviors.
+  description: Shattered linked metal remnant.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10684,8 +10394,7 @@ broken-chain:
 strange-biomass:
   name: Strange Biomass
   rarity: COMMON
-  description: A unique fish known as the Strange Biomass, with distinctive traits
-    and behaviors.
+  description: Odd organic mysterious material.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10716,8 +10425,7 @@ strange-biomass:
 chorus-kelp:
   name: Chorus Kelp
   rarity: COMMON
-  description: A unique fish known as the Chorus Kelp, with distinctive traits and
-    behaviors.
+  description: Musical plant-like singing dweller.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10748,8 +10456,7 @@ chorus-kelp:
 smooth-rock:
   name: Smooth Rock
   rarity: COMMON
-  description: A unique fish known as the Smooth Rock, with distinctive traits and
-    behaviors.
+  description: Polished stone ancient item.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10781,8 +10488,7 @@ smooth-rock:
 small-shell:
   name: Small Shell
   rarity: COMMON
-  description: A unique fish known as the Small Shell, with distinctive traits and
-    behaviors.
+  description: Tiny mollusk protective home.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10808,8 +10514,7 @@ small-shell:
 large-shell:
   name: Large Shell
   rarity: COMMON
-  description: A unique fish known as the Large Shell, with distinctive traits and
-    behaviors.
+  description: Oversized mollusk protective dwelling.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10835,8 +10540,7 @@ large-shell:
 coral-shell:
   name: Coral Shell
   rarity: UNCOMMON
-  description: A unique fish known as the Coral Shell, with distinctive traits and
-    behaviors.
+  description: Reef-dwelling mollusk protective home.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10867,8 +10571,7 @@ coral-shell:
 castaway-chest:
   name: Castaway Chest
   rarity: COMMON
-  description: A unique fish known as the Castaway Chest, with distinctive traits
-    and behaviors.
+  description: Stranded shipwreck treasure container.
   type: CHEST
   open-water-required: true
   rain-required: false
@@ -10896,8 +10599,7 @@ castaway-chest:
 seafarers-chest:
   name: Seafarers Chest
   rarity: UNCOMMON
-  description: A unique fish known as the Seafarers Chest, with distinctive traits
-    and behaviors.
+  description: Sailor-belonging treasure container.
   type: CHEST
   open-water-required: true
   rain-required: false
@@ -10930,8 +10632,7 @@ seafarers-chest:
 captains-chest:
   name: Captains Chest
   rarity: RARE
-  description: A unique fish known as the Captains Chest, with distinctive traits
-    and behaviors.
+  description: Leadership-belonging treasure container.
   type: CHEST
   open-water-required: true
   rain-required: false
@@ -10964,8 +10665,7 @@ captains-chest:
 chest-of-ancient-tributes:
   name: Chest of Ancient Tributes
   rarity: LEGENDARY
-  description: A unique fish known as the Chest Of Ancient Tributes, with distinctive
-    traits and behaviors.
+  description: Old legendary treasure container.
   type: CHEST
   open-water-required: true
   rain-required: false
@@ -10998,8 +10698,7 @@ chest-of-ancient-tributes:
 chest-of-wonderous-secrets:
   name: Chest of Wonderous Secrets
   rarity: LEGENDARY
-  description: A unique fish known as the Chest Of Wonderous Secrets, with distinctive
-    traits and behaviors.
+  description: Magical mysterious treasure container.
   type: CHEST
   open-water-required: true
   rain-required: false
@@ -11032,8 +10731,7 @@ chest-of-wonderous-secrets:
 broken-glasses:
   name: Broken Glasses
   rarity: COMMON
-  description: A unique fish known as the Broken Glasses, with distinctive traits
-    and behaviors.
+  description: Shattered see-through fragments.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -11064,8 +10762,7 @@ broken-glasses:
 rotting-produce:
   name: Rotting Produce
   rarity: COMMON
-  description: A unique fish known as the Rotting Produce, with distinctive traits
-    and behaviors.
+  description: Decaying organic food matter.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -11095,8 +10792,7 @@ rotting-produce:
 floating-kelp:
   name: Floating Kelp
   rarity: COMMON
-  description: A unique fish known as the Floating Kelp, with distinctive traits and
-    behaviors.
+  description: Drifting aquatic plant material.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -11122,8 +10818,7 @@ floating-kelp:
 pristine-pearl:
   name: Pristine Pearl
   rarity: UNCOMMON
-  description: A unique fish known as the Pristine Pearl, with distinctive traits
-    and behaviors.
+  description: Perfect lustrous gem treasure.
   type: JUNK
   open-water-required: true
   rain-required: false
@@ -11153,8 +10848,7 @@ pristine-pearl:
 oyster-of-secrets:
   name: Oyster of Secrets
   rarity: RARE
-  description: A unique fish known as the Oyster Of Secrets, with distinctive traits
-    and behaviors.
+  description: Mysterious shell-dwelling treasure.
   type: JUNK
   open-water-required: true
   rain-required: false
@@ -11184,8 +10878,7 @@ oyster-of-secrets:
 crumpled-bottle:
   name: Crumpled Bottle
   rarity: COMMON
-  description: A unique fish known as the Crumpled Bottle, with distinctive traits
-    and behaviors.
+  description: Wrinkled glass container.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -11217,7 +10910,7 @@ crumpled-bottle:
 dead-kelp:
   name: Dead Kelp
   rarity: COMMON
-  description: A unique fish known as the Dead Kelp, with distinctive traits and behaviors.
+  description: Deceased plant-like organic matter.
   type: JUNK
   open-water-required: false
   rain-required: true
@@ -11246,8 +10939,7 @@ dead-kelp:
 dark-pearl-cluster:
   name: Dark Pearl Cluster
   rarity: UNCOMMON
-  description: A unique fish known as the Dark Pearl Cluster, with distinctive traits
-    and behaviors.
+  description: Black-gemmed grouped treasures.
   type: JUNK
   open-water-required: true
   rain-required: false
@@ -11283,7 +10975,7 @@ dark-pearl-cluster:
 trash:
   name: Trash
   rarity: COMMON
-  description: A unique fish known as the Trash, with distinctive traits and behaviors.
+  description: Worthless discarded refuse.
   type: JUNK
   open-water-required: false
   rain-required: false
