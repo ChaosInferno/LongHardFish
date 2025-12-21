@@ -1,17 +1,18 @@
-// org/aincraft/packetblocks/GuttingStationRegistry.java
 package org.aincraft.packetblocks;
 
 import net.kyori.adventure.key.Key;
-import org.aincraft.BlockModel;
+import net.kyori.adventure.text.Component;
+import org.aincraft.BlockModelData;
 import org.aincraft.Bridge;
 import org.aincraft.BlockItemMeta;
-import org.aincraft.PacketBlock; // or PacketBlockMeta if that's the exposed type
+import org.aincraft.PacketBlockFactory;
 import org.aincraft.registry.Registry;
 import org.aincraft.registry.RegistryAccess;
 import org.aincraft.registry.RegistryAccessKeys;
 import org.bukkit.Material;
 
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.List;
 
 public final class GuttingStationRegistry {
     private GuttingStationRegistry() {}
@@ -21,31 +22,50 @@ public final class GuttingStationRegistry {
 
     /** Call this once during onEnable(), after the packetblocks core/bridge plugin has enabled. */
     public static void register() {
-        Registry<PacketBlock.PacketBlockMeta> metaRegistry = RegistryAccess.registryAccess()
-                .getRegistry(RegistryAccessKeys.PACKET_BLOCK_META);
+        PacketBlockFactory factory = Bridge.bridge().packetBlockFactory();
 
-        if (metaRegistry.isRegistered(ID)) return; // avoid double-register on reload
+        // Get registries
+        Registry<BlockModelData> modelRegistry = RegistryAccess.registryAccess()
+                .getRegistry(RegistryAccessKeys.BLOCK_MODEL_DATA);
+        Registry<BlockItemMeta> itemMetaRegistry = RegistryAccess.registryAccess()
+                .getRegistry(RegistryAccessKeys.BLOCK_ITEM_META);
 
-        BlockModel.BlockModelData data = BlockModel.BlockModelData.builder()
-                .itemModel(ID)
+        if (modelRegistry.isRegistered(ID)) return; // avoid double-register on reload
+
+        // Build the block model data using factory builder
+        BlockModelData data = factory.blockModelDataBuilder(ID)
                 .build();
 
-        PacketBlock.PacketBlockMeta meta = Bridge.bridge().packetBlockFactory().createBlockMeta(
-                ID,
-                new BlockItemMeta() {
-                    @Override public Key getItemModel() {
-                        // Item representation (inventory icon) — can be the same or different
-                        return Key.key("longhardfish:block/gutting_station");
-                    }
-                    @Override public Material getMaterial() {
-                        // The physical block material (server-side placeholder)
-                        return Material.STONE;
-                    }
-                },
-                data,                     // <-- typed model data (no setAttribute)
-                new HashMap<>()           // extra properties if you need them
-        );
+        // Implement BlockItemMeta interface
+        BlockItemMeta itemMeta = new BlockItemMeta() {
+            @Override
+            public Key key() {
+                return ID;
+            }
 
-        metaRegistry.register(meta);
+            @Override
+            public Key itemModel() {
+                return Key.key("longhardfish:block/gutting_station");
+            }
+
+            @Override
+            public Material material() {
+                return Material.STONE;
+            }
+
+            @Override
+            public Component displayName() {
+                return Component.text("Gutting Station");
+            }
+
+            @Override
+            public List<? extends Component> itemLore() {
+                return Collections.emptyList();
+            }
+        };
+
+        // Register both the model data and item meta
+        modelRegistry.register(data);
+        itemMetaRegistry.register(itemMeta);
     }
 }

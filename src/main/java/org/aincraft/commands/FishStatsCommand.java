@@ -1,5 +1,8 @@
 package org.aincraft.commands;
 
+import org.aincraft.i18n.MessageKey;
+import org.aincraft.i18n.MessageService;
+import org.aincraft.i18n.Placeholders;
 import org.aincraft.service.StatsService;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,17 +19,19 @@ import java.util.concurrent.CompletableFuture;
 
 public final class FishStatsCommand implements CommandExecutor, TabCompleter {
     private final JavaPlugin plugin;
+    private final MessageService messageService;
     private final StatsService stats;
 
-    public FishStatsCommand(JavaPlugin plugin, StatsService stats) {
+    public FishStatsCommand(JavaPlugin plugin, MessageService messageService, StatsService stats) {
         this.plugin = plugin;
+        this.messageService = messageService;
         this.stats = stats;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!sender.hasPermission("longhardfish.stats")) {
-            sender.sendMessage(ChatColor.RED + "You don’t have permission.");
+            sender.sendMessage(messageService.getMessage(MessageKey.Error.PERMISSION_DENIED));
             return true;
         }
 
@@ -40,7 +45,7 @@ public final class FishStatsCommand implements CommandExecutor, TabCompleter {
             targetName = off.getName() != null ? off.getName() : args[0];
         } else {
             if (!(sender instanceof Player p)) {
-                sender.sendMessage(ChatColor.YELLOW + "Usage: /" + label + " <player> [limit]");
+                sender.sendMessage(messageService.getMessage(MessageKey.Error.PLAYERS_ONLY));
                 return true;
             }
             targetUuid = p.getUniqueId();
@@ -60,12 +65,12 @@ public final class FishStatsCommand implements CommandExecutor, TabCompleter {
         CompletableFuture<Map<String, Integer>> fut = stats.topFishAsync(targetUuid, flimit);
         fut.whenComplete((map, ex) -> Bukkit.getScheduler().runTask(plugin, () -> {
             if (ex != null) {
-                sender.sendMessage(ChatColor.RED + "Error reading stats: " + ex.getMessage());
+                sender.sendMessage(messageService.getMessage(MessageKey.Error.DATABASE_ERROR));
                 return;
             }
-            sender.sendMessage(ChatColor.GOLD + "Top " + flimit + " fish for " + fTargetName + ":");
+            sender.sendMessage(messageService.getMessage(MessageKey.Command.STATS_VIEWED, Placeholders.player(fTargetName)));
             if (map == null || map.isEmpty()) {
-                sender.sendMessage(ChatColor.GRAY + "No data yet.");
+                sender.sendMessage(messageService.getMessage(MessageKey.Command.STATS_NO_DATA, Placeholders.player(fTargetName)));
                 return;
             }
             int rank = 1;

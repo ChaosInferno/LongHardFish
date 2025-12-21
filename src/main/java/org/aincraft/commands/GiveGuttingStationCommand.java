@@ -4,6 +4,8 @@ package org.aincraft.commands;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.aincraft.ItemService;
+import org.aincraft.i18n.MessageKey;
+import org.aincraft.i18n.MessageService;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.*;
@@ -16,10 +18,16 @@ import java.util.List;
 
 public final class GiveGuttingStationCommand implements CommandExecutor, TabCompleter {
 
+    private final MessageService messageService;
+
+    public GiveGuttingStationCommand(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage("Players only.");
+            sender.sendMessage(messageService.getMessage(MessageKey.Error.PLAYERS_ONLY));
             return true;
         }
 
@@ -36,7 +44,7 @@ public final class GiveGuttingStationCommand implements CommandExecutor, TabComp
         item.setItemMeta(meta);
 
         player.getInventory().addItem(item);
-        player.sendMessage("§aGave Gutting Station.");
+        player.sendMessage(messageService.getMessage(MessageKey.Command.GIVE_SUCCESS));
         return true;
     }
 

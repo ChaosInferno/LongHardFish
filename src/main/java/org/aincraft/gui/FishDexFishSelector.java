@@ -88,6 +88,9 @@ public class FishDexFishSelector {
     private static final String NS = "longhardfish";
     private static final int PAGE_SIZE = 35;
 
+    // Cached sorted fish list (avoids re-sorting on every open)
+    private List<NamespacedKey> sortedFishCache;
+
     // Expose hotbar indices for listener
     public static final int HOTBAR_PREV_ALL = 1;  // "previous-all"
     public static final int HOTBAR_PREV_1   = 2;  // "previous-1"
@@ -197,6 +200,23 @@ public class FishDexFishSelector {
     /** Expose plugin so listener can schedule reopen on click. */
     public JavaPlugin plugin() { return plugin; }
 
+    /** Returns cached sorted fish list, building it once on first access. */
+    private List<NamespacedKey> getSortedFishList() {
+        if (sortedFishCache == null && allFishIds != null) {
+            sortedFishCache = new ArrayList<>(allFishIds.get());
+            sortedFishCache.sort(Comparator.comparingInt(id -> {
+                FishModel fm = modelLookup.get(id);
+                return (fm != null && fm.getModelNumber() > 0) ? fm.getModelNumber() : Integer.MAX_VALUE;
+            }));
+        }
+        return sortedFishCache;
+    }
+
+    /** Invalidate sorted cache (call if fish list changes at runtime). */
+    public void invalidateSortedCache() {
+        sortedFishCache = null;
+    }
+
     /** Open the GUI for a specific fish. */
     public void open(Player player, NamespacedKey fishId, boolean playOpenSound) {
         DexHolder holder = new DexHolder();
@@ -229,15 +249,14 @@ public class FishDexFishSelector {
 
         // ===== Fish list & paging =====
         holder.slotToFish.clear();
-        List<NamespacedKey> sorted = null;
+        List<NamespacedKey> sorted = getSortedFishList();
         int pageIndex;
 
-        if (allFishIds != null) {
-            sorted = new ArrayList<>(allFishIds.get());
-            sorted.sort(Comparator.comparingInt(id -> {
-                FishModel fm = modelLookup.get(id);
-                return (fm != null && fm.getModelNumber() > 0) ? fm.getModelNumber() : Integer.MAX_VALUE;
-            }));
+        // Build progress cache for this render to avoid repeated DB lookups
+        UUID playerId = player.getUniqueId();
+        Map<NamespacedKey, Progress> progressCache = new HashMap<>();
+
+        if (sorted != null && !sorted.isEmpty()) {
             holder.ordered = sorted;
             holder.pagingEnabled = true;
 
@@ -248,16 +267,17 @@ public class FishDexFishSelector {
             for (int i = 0; i < FISH_GRID_SLOTS.length && (start + i) < sorted.size(); i++) {
                 NamespacedKey idOnPage = sorted.get(start + i);
                 FishModel fm = modelLookup.get(idOnPage);
-                Progress pgr = (progressLookup != null)
-                        ? progressLookup.get(player.getUniqueId(), idOnPage)
-                        : Progress.CAUGHT;
+
+                // Use cached progress lookup
+                Progress pgr = progressCache.computeIfAbsent(idOnPage,
+                    k -> progressLookup != null ? progressLookup.get(playerId, k) : Progress.CAUGHT);
 
                 String baseTex = idOnPage.getKey().toLowerCase(Locale.ENGLISH);
                 if (baseTex != null && !baseTex.isEmpty()) {
                     int guiSlot = FISH_GRID_SLOTS[i];
 
-                    // NEW: pick texture by progress
-                    String texToUse = textureForProgress(player, idOnPage, baseTex);
+                    // Pick texture by cached progress
+                    String texToUse = textureForProgressCached(pgr, baseTex);
 
                     putIcon(gui, guiSlot, texToUse);
                     holder.slotToFish.put(guiSlot, idOnPage);
@@ -400,7 +420,8 @@ public class FishDexFishSelector {
         if (env != null && env.getEnvironmentBiomes() != null) {
             env.getEnvironmentBiomes().forEach((biome, weight) -> {
                 if (weight != null && weight > 0d && biome != null) {
-                    fishBiomes.add(biome.name()); // UPPER_CASE
+                    // Use getKey() instead of deprecated name()
+                    fishBiomes.add(biome.getKey().getKey().toUpperCase(Locale.ENGLISH));
                 }
             });
         }
@@ -440,14 +461,6 @@ public class FishDexFishSelector {
         String last = iconBase.substring(iconBase.lastIndexOf('/') + 1); // "env-warm-oceans"
         if (last.startsWith("env-")) last = last.substring(4);
         return last.replace('-', ' ');
-    }
-
-
-    private static String prettyEnvGroupName(String iconBase) {
-        // iconBase like "icons/env-warm-oceans"
-        String s = iconBase;
-        if (s.startsWith("icons/env-")) s = s.substring("icons/env-".length());
-        return s.replace('-', ' ');
     }
 
     // ===== Flags (rain required) + tooltip =====
@@ -551,11 +564,6 @@ public class FishDexFishSelector {
     }
 
     // ===== Utilities =====
-    private int chooseMenuSlotFromModel(int modelNumber) {
-        int pageIndex = Math.max(0, (modelNumber - 1) / PAGE_SIZE);
-        return Math.min(6, pageIndex);
-    }
-
     private void putIcon(Inventory inv, int slot, String modelSuffix) {
         GuiItemSlot.putImmovableIcon(inv, slot, Material.COD, Key.key(NS, modelSuffix), IMMOVABLE_KEY, false);
     }
@@ -657,16 +665,8 @@ public class FishDexFishSelector {
     }
 
     public void openPage(Player player, int targetPageIndex) {
-        if (allFishIds == null) return; // paging not enabled
-
-        // Build sorted list the same way as in open(...)
-        List<NamespacedKey> sorted = new ArrayList<>(allFishIds.get());
-        sorted.sort(Comparator.comparingInt(id -> {
-            FishModel fm = modelLookup.get(id);
-            return (fm != null && fm.getModelNumber() > 0) ? fm.getModelNumber() : Integer.MAX_VALUE;
-        }));
-
-        if (sorted.isEmpty()) return;
+        List<NamespacedKey> sorted = getSortedFishList();
+        if (sorted == null || sorted.isEmpty()) return;
 
         int pageCount = (sorted.size() + PAGE_SIZE - 1) / PAGE_SIZE;
         int clamped   = Math.max(0, Math.min(targetPageIndex, pageCount - 1));
@@ -696,19 +696,6 @@ public class FishDexFishSelector {
     }
 
     // -- Tooltip hiders -----------------------------------------------------------
-    private static void trySetHideTooltip(ItemMeta meta, boolean hide) {
-        // Paper 1.20.5+/1.21+: meta.setHideTooltip(boolean)
-        try {
-            meta.getClass().getMethod("setHideTooltip", boolean.class).invoke(meta, hide);
-        } catch (Throwable ignored) {
-            // Fallback: blank name + no lore + hide extra lines
-            meta.displayName(Component.empty());
-            meta.lore(null);
-            try { meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES); } catch (Throwable __) {}
-            try { meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE); } catch (Throwable __) {}
-        }
-    }
-
     private void hideTooltipTop(Inventory gui, int slot) {
         ItemStack s = gui.getItem(slot);
         if (s == null) return;
@@ -734,31 +721,21 @@ public class FishDexFishSelector {
         p.getInventory().setItem(slot, s);
     }
 
-    private void hideTooltipHotbar(Player p, int index) {
-        int slot = GuiItemSlot.hotbar(index);
-        ItemStack s = p.getInventory().getItem(slot);
-        if (s == null) return;
-        ItemMeta m = s.getItemMeta();
-        if (m == null) return;
-        m.setHideTooltip(true);
-        m.displayName(null);
-        m.lore(null);
-        s.setItemMeta(m);
-        p.getInventory().setItem(slot, s);
-    }
-
     private String textureForProgress(Player player, NamespacedKey fishId, String baseTex) {
         if (progressLookup == null || player == null || fishId == null) return baseTex;
 
         Progress prog = progressLookup.get(player.getUniqueId(), fishId);
+        return textureForProgressCached(prog, baseTex);
+    }
+
+    /** Texture selection using pre-cached progress (avoids repeated DB lookups). */
+    private String textureForProgressCached(Progress prog, String baseTex) {
         if (prog == null) return baseTex;
 
         switch (prog) {
             case UNSEEN:
-                // single generic model named "unknown" in the longhardfish namespace
                 return "unknown";
             case SEEN:
-                // per-fish “seen but not caught” variant
                 return baseTex + "_ud";
             case CAUGHT:
             default:
@@ -776,11 +753,6 @@ public class FishDexFishSelector {
             case CAUGHT:
             default:     return baseOffsetTex;
         }
-    }
-
-    private static Key texKey(String path) {
-        String safe = (path == null ? "" : path).toLowerCase(java.util.Locale.ROOT).replace(' ', '_');
-        return Key.key(NS, safe);
     }
 
     private void putPlayerItemMain(Player p, int row, int col, ItemStack stack) {

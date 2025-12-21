@@ -32,10 +32,10 @@ public class FishEnvironmentDefaultsProvider {
         ConfigurationSection biomeSection = section.getConfigurationSection("biomes");
         if (biomeSection != null) {
             for (String biomeKey : biomeSection.getKeys(false)) {
-                try {
-                    Biome biome = Biome.valueOf(biomeKey.toUpperCase(Locale.ENGLISH));
+                Biome biome = org.bukkit.Registry.BIOME.get(org.bukkit.NamespacedKey.minecraft(biomeKey.toLowerCase(Locale.ENGLISH)));
+                if (biome != null) {
                     biomes.put(biome, biomeSection.getDouble(biomeKey));
-                } catch (IllegalArgumentException e) {
+                } else {
                     plugin.getLogger().warning("Invalid biome in defaults '" + group + "': " + biomeKey);
                 }
             }

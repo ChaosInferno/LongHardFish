@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.aincraft.container.FishTimeCycle;
 import org.aincraft.ingame_items.FishFinderItem;
+import org.aincraft.util.BiomeUtils;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.event.EventHandler;
@@ -79,7 +80,7 @@ public final class FishFinderListener implements Listener {
 
         // Current biome (pretty-printed)
         Biome biome = e.getPlayer().getLocation().getBlock().getBiome();
-        String biomeName = prettify(biome);
+        String biomeName = BiomeUtils.prettify(biome);
 
         // Action bar message
         String msg = String.format(
@@ -103,17 +104,5 @@ public final class FishFinderListener implements Listener {
     private static boolean inRangeWrap(int tick, int start, int end) {
         if (start < end) return tick >= start && tick < end;
         return tick >= start || tick < end;
-    }
-
-    // WINDSWEPT_FOREST -> "Windswept Forest"
-    private static String prettify(Biome biome) {
-        String s = biome.name().toLowerCase(java.util.Locale.ENGLISH).replace('_', ' ');
-        String[] parts = s.split(" ");
-        StringBuilder sb = new StringBuilder();
-        for (String p : parts) {
-            if (p.isEmpty()) continue;
-            sb.append(Character.toUpperCase(p.charAt(0))).append(p.substring(1)).append(' ');
-        }
-        return sb.toString().trim();
     }
 }

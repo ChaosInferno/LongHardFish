@@ -10268,16 +10268,11 @@ stray-seagrass:
     RIVER: 0.01
   model: 301
   materials:
-    fish_fillet:
+    seagrass:
       chance: 1.0
-      range: 1-1
+      range: 1-2
       expected: 1.0
       can_be_zero: false
-    fish_oil:
-      chance: 0.5
-      range: 1-1
-      expected: 0.5
-      can_be_zero: true
 old-boot:
   name: Old Boot
   rarity: COMMON
@@ -10297,16 +10292,11 @@ old-boot:
     DRIPSTONE_CAVES: 0.01
     LUSH_CAVES: 0.01
   materials:
-    fish_fillet:
+    leather:
       chance: 1.0
-      range: 1-1
-      expected: 1.0
+      range: 1-2
+      expected: 1.5
       can_be_zero: false
-    fish_oil:
-      chance: 0.5
-      range: 1-1
-      expected: 0.5
-      can_be_zero: true
 waterlogged-boot:
   name: Waterlogged Boot
   rarity: COMMON
@@ -10326,20 +10316,15 @@ waterlogged-boot:
     RIVER: 0.01
   model: 303
   materials:
-    fish_fillet:
+    leather:
       chance: 1.0
-      range: 1-1
-      expected: 1.0
+      range: 1-2
+      expected: 0.75
       can_be_zero: false
-    fish_oil:
-      chance: 0.5
-      range: 1-1
-      expected: 0.5
-      can_be_zero: true
-message-in-a-bottle:
-  name: Message in a Bottle
+eulogy-bottle:
+  name: Eulogy Bottle
   rarity: COMMON
-  description: Sealed mysterious ancient communication.
+  description: A bottle with a special adornment commemorating an event. It must be from someone lost a long time ago. Best not to read it
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10352,16 +10337,11 @@ message-in-a-bottle:
   tier: 1
   model: 304
   materials:
-    fish_fillet:
+    glass_bottle:
       chance: 1.0
       range: 1-1
       expected: 1.0
       can_be_zero: false
-    fish_oil:
-      chance: 0.5
-      range: 1-1
-      expected: 0.5
-      can_be_zero: true
 broken-chain:
   name: Broken Chain
   rarity: COMMON
@@ -10381,15 +10361,15 @@ broken-chain:
     DRIPSTONE_CAVES: 0.01
     LUSH_CAVES: 0.01
   materials:
-    fish_fillet:
-      chance: 1.0
+    iron_ingot:
+      chance: 0.33
       range: 1-1
       expected: 1.0
       can_be_zero: false
-    fish_oil:
-      chance: 0.5
-      range: 1-1
-      expected: 0.5
+    iron_nugget:
+      chance: 0.66
+      range: 1-2
+      expected: 1.0
       can_be_zero: true
 strange-biomass:
   name: Strange Biomass
@@ -10412,16 +10392,16 @@ strange-biomass:
     END_BARRENS: 0.01
   model: 306
   materials:
-    fish_fillet:
-      chance: 1.0
-      range: 1-1
-      expected: 1.0
-      can_be_zero: false
-    fish_oil:
-      chance: 0.5
+    chorus_fruit:
+      chance: 0.50
       range: 1-1
       expected: 0.5
       can_be_zero: true
+    rotten_flesh:
+      chance: 1.0
+      range: 1-2
+      expected: 0.5
+      can_be_zero: false
 chorus-kelp:
   name: Chorus Kelp
   rarity: COMMON
@@ -10443,20 +10423,20 @@ chorus-kelp:
     END_BARRENS: 0.01
   model: 307
   materials:
-    fish_fillet:
-      chance: 1.0
+    chorus_fruit:
+      chance: 0.9
       range: 1-1
       expected: 1.0
       can_be_zero: false
-    fish_oil:
-      chance: 0.5
-      range: 1-1
-      expected: 0.5
+    kelp:
+      chance: 0.9
+      range: 1-3
+      expected: 1.5
       can_be_zero: true
 smooth-rock:
   name: Smooth Rock
   rarity: COMMON
-  description: Polished stone ancient item.
+  description: Polished stone item.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10475,20 +10455,15 @@ smooth-rock:
     LUSH_CAVES: 0.01
   model: 308
   materials:
-    fish_fillet:
+    stone:
       chance: 1.0
-      range: 1-1
+      range: 1-2
       expected: 1.0
       can_be_zero: false
-    fish_oil:
-      chance: 0.5
-      range: 1-1
-      expected: 0.5
-      can_be_zero: true
-small-shell:
-  name: Small Shell
+shell-chunk:
+  name: Shell Chunk
   rarity: COMMON
-  description: Tiny mollusk protective home.
+  description: A broken shell piece.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10500,17 +10475,7 @@ small-shell:
     - no-bait
   tier: 1
   model: 309
-  materials:
-    fish_fillet:
-      chance: 1.0
-      range: 1-1
-      expected: 1.0
-      can_be_zero: false
-    fish_oil:
-      chance: 0.5
-      range: 1-1
-      expected: 0.5
-      can_be_zero: true
+  can_be_gutted: false
 large-shell:
   name: Large Shell
   rarity: COMMON
@@ -10527,18 +10492,13 @@ large-shell:
   tier: 1
   model: 310
   materials:
-    fish_fillet:
+    shell-chunk:
       chance: 1.0
-      range: 1-1
-      expected: 1.0
+      range: 2-4
+      expected: 2.5
       can_be_zero: false
-    fish_oil:
-      chance: 0.5
-      range: 1-1
-      expected: 0.5
-      can_be_zero: true
-coral-shell:
-  name: Coral Shell
+snail-shell:
+  name: Snail Shell
   rarity: UNCOMMON
   description: Reef-dwelling mollusk protective home.
   type: JUNK
@@ -10553,21 +10513,16 @@ coral-shell:
   tier: 1
   model: 311
   materials:
-    fish_fillet:
+    shell-chunk:
       chance: 1.0
       range: 1-2
       expected: 1.5
       can_be_zero: false
-    fish_oil:
-      chance: 0.55
-      range: 1-2
-      expected: 0.825
-      can_be_zero: true
-    fish_guts:
-      chance: 0.75
-      range: 1-1
-      expected: 0.75
-      can_be_zero: true
+    slimeball:
+      chance: 0.80
+      range: 2-4
+      expected: 2
+      can_be_zero: false
 castaway-chest:
   name: Castaway Chest
   rarity: COMMON
@@ -10585,17 +10540,6 @@ castaway-chest:
   biomes:
     RIVER: 0.01
   model: 312
-  materials:
-    fish_fillet:
-      chance: 1.0
-      range: 1-1
-      expected: 1.0
-      can_be_zero: false
-    fish_oil:
-      chance: 0.5
-      range: 1-1
-      expected: 0.5
-      can_be_zero: true
 seafarers-chest:
   name: Seafarers Chest
   rarity: UNCOMMON
@@ -10613,22 +10557,6 @@ seafarers-chest:
   biomes:
     RIVER: 0.01
   model: 313
-  materials:
-    fish_fillet:
-      chance: 1.0
-      range: 1-2
-      expected: 1.5
-      can_be_zero: false
-    fish_oil:
-      chance: 0.55
-      range: 1-2
-      expected: 0.825
-      can_be_zero: true
-    fish_guts:
-      chance: 0.75
-      range: 1-1
-      expected: 0.75
-      can_be_zero: true
 captains-chest:
   name: Captains Chest
   rarity: RARE
@@ -10646,22 +10574,6 @@ captains-chest:
   biomes:
     RIVER: 0.01
   model: 314
-  materials:
-    fish_fillet:
-      chance: 1.0
-      range: 1-3
-      expected: 2.0
-      can_be_zero: false
-    fish_oil:
-      chance: 0.6
-      range: 1-3
-      expected: 1.2
-      can_be_zero: true
-    fin_spine:
-      chance: 0.75
-      range: 1-1
-      expected: 0.75
-      can_be_zero: true
 chest-of-ancient-tributes:
   name: Chest of Ancient Tributes
   rarity: LEGENDARY
@@ -10679,22 +10591,6 @@ chest-of-ancient-tributes:
   biomes:
     RIVER: 0.01
   model: 315
-  materials:
-    fish_fillet:
-      chance: 1.0
-      range: 1-4
-      expected: 2.5
-      can_be_zero: false
-    fish_oil:
-      chance: 0.65
-      range: 1-4
-      expected: 1.625
-      can_be_zero: true
-    intact_eyes:
-      chance: 1.0
-      range: 1-1
-      expected: 1.0
-      can_be_zero: false
 chest-of-wonderous-secrets:
   name: Chest of Wonderous Secrets
   rarity: LEGENDARY
@@ -10712,22 +10608,6 @@ chest-of-wonderous-secrets:
   biomes:
     RIVER: 0.01
   model: 316
-  materials:
-    fish_fillet:
-      chance: 1.0
-      range: 1-4
-      expected: 2.5
-      can_be_zero: false
-    fish_oil:
-      chance: 0.65
-      range: 1-4
-      expected: 1.625
-      can_be_zero: true
-    intact_eyes:
-      chance: 1.0
-      range: 1-1
-      expected: 1.0
-      can_be_zero: false
 broken-glasses:
   name: Broken Glasses
   rarity: COMMON
@@ -10749,21 +10629,15 @@ broken-glasses:
     LUSH_CAVES: 0.01
   model: 317
   materials:
-    fish_fillet:
+    glass:
       chance: 1.0
-      range: 1-1
-      expected: 1.0
-      can_be_zero: false
-    fish_oil:
-      chance: 0.5
-      range: 1-1
+      range: 1-2
       expected: 0.5
-      can_be_zero: true
+      can_be_zero: false
 rotting-produce:
   name: Rotting Produce
   rarity: COMMON
   description: Decaying organic food matter.
-  type: JUNK
   open-water-required: false
   rain-required: false
   defaults:
@@ -10779,20 +10653,15 @@ rotting-produce:
     LUSH_CAVES: 0.01
   model: 318
   materials:
-    fish_fillet:
-      chance: 1.0
-      range: 1-1
+    bone_meal:
+      chance: 0.5
+      range: 1-3
       expected: 1.0
       can_be_zero: false
-    fish_oil:
-      chance: 0.5
-      range: 1-1
-      expected: 0.5
-      can_be_zero: true
 floating-kelp:
   name: Floating Kelp
   rarity: COMMON
-  description: Drifting aquatic plant material.
+  description: A piece of floating kelp caught in the line.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10805,20 +10674,15 @@ floating-kelp:
   tier: 1
   model: 319
   materials:
-    fish_fillet:
+    kelp:
       chance: 1.0
       range: 1-1
       expected: 1.0
       can_be_zero: false
-    fish_oil:
-      chance: 0.5
-      range: 1-1
-      expected: 0.5
-      can_be_zero: true
 pristine-pearl:
   name: Pristine Pearl
   rarity: UNCOMMON
-  description: Perfect lustrous gem treasure.
+  description: A pearl of perfect quality.
   type: JUNK
   open-water-required: true
   rain-required: false
@@ -10829,22 +10693,7 @@ pristine-pearl:
     - all-bait
   tier: 1
   model: 320
-  materials:
-    fish_fillet:
-      chance: 1.0
-      range: 1-2
-      expected: 1.5
-      can_be_zero: false
-    fish_oil:
-      chance: 0.55
-      range: 1-2
-      expected: 0.825
-      can_be_zero: true
-    fish_guts:
-      chance: 0.75
-      range: 1-1
-      expected: 0.75
-      can_be_zero: true
+  can_be_gutted: false
 oyster-of-secrets:
   name: Oyster of Secrets
   rarity: RARE
@@ -10860,25 +10709,20 @@ oyster-of-secrets:
   tier: 1
   model: 321
   materials:
-    fish_fillet:
+    shell-chunk:
       chance: 1.0
-      range: 1-3
-      expected: 2.0
+      range: 1-2
+      expected: 1.0
       can_be_zero: false
-    fish_oil:
-      chance: 0.6
-      range: 1-3
-      expected: 1.2
+    pristine-pearl:
+      chance: 0.8
+      range: 1-2
+      expected: 2.0
       can_be_zero: true
-    fin_spine:
-      chance: 0.75
-      range: 1-1
-      expected: 0.75
-      can_be_zero: true
-crumpled-bottle:
-  name: Crumpled Bottle
+garbage:
+  name: Garbage
   rarity: COMMON
-  description: Wrinkled glass container.
+  description: Just some leftover garbage, best to recycle it.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10897,20 +10741,20 @@ crumpled-bottle:
     LUSH_CAVES: 0.01
   model: 322
   materials:
-    fish_fillet:
-      chance: 1.0
-      range: 1-1
-      expected: 1.0
-      can_be_zero: false
-    fish_oil:
-      chance: 0.5
-      range: 1-1
-      expected: 0.5
+    iron_nugget:
+      chance: 0.4
+      range: 1-3
+      expected: 0.75
+      can_be_zero: true
+    gold_nugget:
+      chance: 0.1
+      range: 1-2
+      expected: 0.25
       can_be_zero: true
 dead-kelp:
   name: Dead Kelp
   rarity: COMMON
-  description: Deceased plant-like organic matter.
+  description: A clump of dead kelp. Is that mold or was this burnt?
   type: JUNK
   open-water-required: false
   rain-required: true
@@ -10926,20 +10770,15 @@ dead-kelp:
     DRIPSTONE_CAVES: 0.01
     LUSH_CAVES: 0.01
   materials:
-    fish_fillet:
-      chance: 1.0
-      range: 1-1
-      expected: 1.0
-      can_be_zero: false
-    fish_oil:
+    dried_kelp:
       chance: 0.5
       range: 1-1
-      expected: 0.5
+      expected: 1.0
       can_be_zero: true
 dark-pearl-cluster:
   name: Dark Pearl Cluster
   rarity: UNCOMMON
-  description: Black-gemmed grouped treasures.
+  description: It looks like a pearl mixed with some ender energy? Maybe it can be untangled?.
   type: JUNK
   open-water-required: true
   rain-required: false
@@ -10957,25 +10796,20 @@ dark-pearl-cluster:
     DEEP_DARK: 0.01
     DRIPSTONE_CAVES: 0.01
   materials:
-    fish_fillet:
+    ender_pearl:
       chance: 1.0
-      range: 1-2
-      expected: 1.5
+      range: 1-5
+      expected: 1.0
       can_be_zero: false
-    fish_oil:
-      chance: 0.55
-      range: 1-2
-      expected: 0.825
-      can_be_zero: true
-    fish_guts:
-      chance: 0.75
-      range: 1-1
-      expected: 0.75
+    pristine-pearl:
+      chance: 0.85
+      range: 1-3
+      expected: 1.0
       can_be_zero: true
 trash:
   name: Trash
   rarity: COMMON
-  description: Worthless discarded refuse.
+  description: Just some garbage caught on the line.
   type: JUNK
   open-water-required: false
   rain-required: false
@@ -10994,15 +10828,15 @@ trash:
     LUSH_CAVES: 0.01
   model: 325
   materials:
-    fish_fillet:
-      chance: 1.0
-      range: 1-1
-      expected: 1.0
-      can_be_zero: false
-    fish_oil:
+    string:
       chance: 0.5
-      range: 1-1
-      expected: 0.5
+      range: 1-3
+      expected: 1.0
+      can_be_zero: true
+    paper:
+      chance: 0.4
+      range: 1-2
+      expected: 1.0
       can_be_zero: true
 cod:
   name: Cod
@@ -11022,8 +10856,7 @@ cod:
     LUKEWARM_OCEAN: 0.01
   model: 326
   bait:
-    grubb: 0.01
-    tick: 0.01
+    all-bait: 0.01
   materials:
     fish_fillet:
       chance: 1.0
@@ -11052,8 +10885,7 @@ salmon:
     FROZEN_RIVER: 0.01
   model: 327
   bait:
-    grubb: 0.01
-    dragonfly: 0.01
+    all-bait: 0.01
   materials:
     fish_fillet:
       chance: 1.0
@@ -11082,8 +10914,7 @@ pufferfish:
     LUKEWARM_OCEAN: 0.01
   model: 328
   bait:
-    spiderling: 0.01
-    wasp: 0.01
+    all-bait: 0.01
   materials:
     fish_fillet:
       chance: 1.0
@@ -11111,8 +10942,7 @@ tropical-fish:
     WARM_OCEAN: 0.01
   model: 329
   bait:
-    dragonfly: 0.01
-    rhino_beetle: 0.01
+    all-bait: 0.01
   materials:
     fish_fillet:
       chance: 1.0

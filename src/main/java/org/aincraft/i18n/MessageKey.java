@@ -18,10 +18,41 @@ public final class MessageKey {
         public static final String GIVE_INVALID_PLAYER = "command.give.invalid_player";
         public static final String GIVE_INVALID_ITEM = "command.give.invalid_item";
         public static final String GIVE_INVALID_QUANTITY = "command.give.invalid_quantity";
+        public static final String GIVE_TOOL_USAGE = "command.give.tool_usage";
+        public static final String GIVE_TOOL_UNKNOWN = "command.give.tool_unknown";
+        public static final String GIVE_TOOL_AVAILABLE = "command.give.tool_available";
         public static final String STATS_VIEWED = "command.stats.viewed";
         public static final String STATS_NO_DATA = "command.stats.no_data";
         public static final String LHF_USAGE = "command.lhf.usage";
         public static final String LHF_UNKNOWN_SUBCOMMAND = "command.lhf.unknown_subcommand";
+        public static final String LHF_MAIN_USAGE = "command.lhf.main_usage";
+        public static final String LHF_SUBCOMMANDS = "command.lhf.subcommands";
+        public static final String LHF_GIVE_USAGE = "command.lhf.give_usage";
+        public static final String LHF_TOOL_USAGE = "command.lhf.tool_usage";
+        public static final String LHF_BAIT_USAGE = "command.lhf.bait_usage";
+        public static final String LHF_STATS_USAGE = "command.lhf.stats_usage";
+        public static final String LHF_ADMIN_USAGE = "command.lhf.admin_usage";
+        public static final String LHF_GUI_USAGE = "command.lhf.gui_usage";
+        // Admin command messages
+        public static final String ADMIN_USAGE = "command.admin.usage";
+        public static final String ADMIN_USAGE_SEEN = "command.admin.usage_seen";
+        public static final String ADMIN_USAGE_CAUGHT = "command.admin.usage_caught";
+        public static final String ADMIN_USAGE_CAUGHT_SET = "command.admin.usage_caught_set";
+        public static final String ADMIN_USAGE_CAUGHT_ADD = "command.admin.usage_caught_add";
+        public static final String ADMIN_USAGE_CAUGHT_REMOVE = "command.admin.usage_caught_remove";
+        public static final String ADMIN_USAGE_LIST = "command.admin.usage_list";
+        public static final String ADMIN_SEEN_ADD_ALL = "command.admin.seen_add_all";
+        public static final String ADMIN_SEEN_ADD = "command.admin.seen_add";
+        public static final String ADMIN_SEEN_REMOVE_ALL = "command.admin.seen_remove_all";
+        public static final String ADMIN_SEEN_REMOVE = "command.admin.seen_remove";
+        public static final String ADMIN_LIST_RESULT = "command.admin.list_result";
+        public static final String ADMIN_CAUGHT_SET = "command.admin.caught_set";
+        public static final String ADMIN_CAUGHT_ADD_ALL = "command.admin.caught_add_all";
+        public static final String ADMIN_CAUGHT_REMOVE_ALL = "command.admin.caught_remove_all";
+        public static final String ADMIN_EXPECTED_ADD_REMOVE = "command.admin.expected_add_remove";
+        public static final String ADMIN_EXPECTED_SET_ADD_REMOVE = "command.admin.expected_set_add_remove";
+        public static final String ADMIN_NUMBER_REQUIRED = "command.admin.number_required";
+        public static final String ADMIN_ERROR = "command.admin.error";
     }
 
     // Tool messages
@@ -46,6 +77,11 @@ public final class MessageKey {
         public static final String CATCH_FAILURE = "fishing.catch.failure";
         public static final String CATCH_TREASURE = "fishing.catch.treasure";
         public static final String CATCH_JUNK = "fishing.catch.junk";
+        public static final String CATCH_NO_VALID_FISH = "fishing.catch.no_valid_fish";
+        public static final String CATCH_NO_FISH_AVAILABLE = "fishing.catch.no_fish_available";
+        public static final String CATCH_PICK_ERROR = "fishing.catch.pick_error";
+        public static final String CATCH_CREATE_ERROR = "fishing.catch.create_error";
+        public static final String CATCH_ENTITY_ERROR = "fishing.catch.entity_error";
         public static final String FISH_DISCOVERY = "fishing.fish_discovery";
         public static final String BAIT_APPLIED = "fishing.bait.applied";
         public static final String BAIT_MISSING = "fishing.bait.missing";
@@ -74,6 +110,7 @@ public final class MessageKey {
         public static final String PERMISSION_DENIED = "error.permission_denied";
         public static final String PLAYER_NOT_FOUND = "error.player_not_found";
         public static final String ITEM_NOT_FOUND = "error.item_not_found";
+        public static final String PLAYERS_ONLY = "error.players_only";
     }
 
     // UI/Info messages

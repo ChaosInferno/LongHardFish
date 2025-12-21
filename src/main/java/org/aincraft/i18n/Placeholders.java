@@ -208,4 +208,45 @@ public final class Placeholders {
     public static TagResolver usage(String usageHint) {
         return TagResolver.resolver("usage", Tag.selfClosingInserting(Component.text(usageHint)));
     }
+
+    /**
+     * Placeholder for command label (the alias used).
+     */
+    public static TagResolver label(String commandLabel) {
+        return TagResolver.resolver("label", Tag.selfClosingInserting(Component.text(commandLabel)));
+    }
+
+    /**
+     * Placeholder for generic 'value' placeholder.
+     */
+    public static TagResolver value(String val) {
+        return TagResolver.resolver("value", Tag.selfClosingInserting(Component.text(val)));
+    }
+
+    /**
+     * Placeholder for seen status.
+     */
+    public static TagResolver seenStatus(boolean seen) {
+        return TagResolver.resolver("seen_status", Tag.selfClosingInserting(
+            Component.text(seen ? "true" : "false", seen ? net.kyori.adventure.text.format.NamedTextColor.GREEN : net.kyori.adventure.text.format.NamedTextColor.RED)
+        ));
+    }
+
+    /**
+     * Placeholder for caught status.
+     */
+    public static TagResolver caughtStatus(boolean caught) {
+        return TagResolver.resolver("caught_status", Tag.selfClosingInserting(
+            Component.text(caught ? "true" : "false", caught ? net.kyori.adventure.text.format.NamedTextColor.GREEN : net.kyori.adventure.text.format.NamedTextColor.RED)
+        ));
+    }
+
+    /**
+     * Placeholder for optional seen note (e.g., "(seen=true)").
+     */
+    public static TagResolver seenNote(boolean seen) {
+        return TagResolver.resolver("seen_note", Tag.selfClosingInserting(
+            seen ? Component.text(" (seen=true)") : Component.empty()
+        ));
+    }
 }

@@ -60,7 +60,6 @@ public final class RecipeRegistrationService {
 
         // Set shape (convert List<String> to String[])
         recipe.shape(def.shape().toArray(new String[0]));
-        plugin.getLogger().info("[Recipes] Recipe '" + def.id() + "' shape: " + def.shape());
 
         // Set ingredients
         for (Map.Entry<Character, RecipeDefinition.IngredientChoice> entry : def.ingredients().entrySet()) {
@@ -70,10 +69,7 @@ public final class RecipeRegistrationService {
         }
 
         // Register with Bukkit
-        boolean added = Bukkit.addRecipe(recipe);
-        if (added) {
-            plugin.getLogger().info("[Recipes] Recipe '" + def.id() + "' registered successfully");
-        } else {
+        if (!Bukkit.addRecipe(recipe)) {
             plugin.getLogger().warning("[Recipes] Recipe '" + def.id()
                 + "' may already exist or failed to register");
         }

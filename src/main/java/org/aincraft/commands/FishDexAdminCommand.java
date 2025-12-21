@@ -1,6 +1,9 @@
 // org/aincraft/commands/FishDexAdminCommand.java
 package org.aincraft.commands;
 
+import org.aincraft.i18n.MessageKey;
+import org.aincraft.i18n.MessageService;
+import org.aincraft.i18n.Placeholders;
 import org.aincraft.storage.Database;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -11,27 +14,32 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public final class FishDexAdminCommand implements CommandExecutor, TabCompleter {
+    private final MessageService messageService;
     private final Database db;
 
     // default namespace to apply when user omits it
     private static final String DEFAULT_NS = "longhardfish";
 
-    public FishDexAdminCommand(Database db) {
+    public FishDexAdminCommand(MessageService messageService, Database db) {
+        this.messageService = messageService;
         this.db = db;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!sender.hasPermission("lhf.admin")) {
-            sender.sendMessage("§cYou don't have permission."); return true;
+            sender.sendMessage(messageService.getMessage(MessageKey.Error.PERMISSION_DENIED));
+            return true;
         }
         if (args.length < 2) {
-            usage(sender, label); return true;
+            usage(sender, label);
+            return true;
         }
 
         OfflinePlayer target = resolvePlayer(args[0]);
         if (target == null || target.getUniqueId() == null) {
-            sender.sendMessage("§cUnknown player: " + args[0]); return true;
+            sender.sendMessage(messageService.getMessage(MessageKey.Error.PLAYER_NOT_FOUND));
+            return true;
         }
         UUID uuid = target.getUniqueId();
 
@@ -44,7 +52,7 @@ public final class FishDexAdminCommand implements CommandExecutor, TabCompleter 
                 default       -> usage(sender, label);
             }
         } catch (Exception e) {
-            sender.sendMessage("§cError: " + e.getMessage());
+            sender.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_ERROR, Placeholders.value(e.getMessage())));
             e.printStackTrace();
         }
         return true;
@@ -52,87 +60,112 @@ public final class FishDexAdminCommand implements CommandExecutor, TabCompleter 
 
     private void handleSeen(CommandSender s, String label, UUID uuid, String[] a) throws Exception {
         // seen <add|remove> <fishKey|all>
-        if (a.length < 2) { s.sendMessage("§eUsage: /" + label + " <player> seen <add|remove> <fishKey|all>"); return; }
+        if (a.length < 2) {
+            s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_USAGE_SEEN, Placeholders.label(label)));
+            return;
+        }
         String act = a[0].toLowerCase(Locale.ROOT);
         String keyArg = a[1];
 
         if ("add".equals(act)) {
             if ("all".equalsIgnoreCase(keyArg)) {
                 db.setAllSeen(uuid, true);
-                s.sendMessage("§aMarked §eall§a fish as §aseen§a for player.");
+                s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_SEEN_ADD_ALL));
             } else {
                 String key = ensureNs(keyArg);
                 db.setSeenFlag(uuid, key, true, null);
-                s.sendMessage("§aMarked §d" + stripNs(key) + "§a as §aseen§a.");
+                s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_SEEN_ADD, Placeholders.fish(stripNs(key))));
             }
         } else if ("remove".equals(act)) {
             if ("all".equalsIgnoreCase(keyArg)) {
                 db.setAllSeen(uuid, false);
-                s.sendMessage("§aCleared §eall§a seen flags for player.");
+                s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_SEEN_REMOVE_ALL));
             } else {
                 String key = ensureNs(keyArg);
                 db.setSeenFlag(uuid, key, false, null);
-                db.setCaughtCount(uuid, key, 0, null); // “as if never caught”
-                s.sendMessage("§aCleared §d" + stripNs(key) + "§a seen and reset caught to 0.");
+                db.setCaughtCount(uuid, key, 0, null); // "as if never caught"
+                s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_SEEN_REMOVE, Placeholders.fish(stripNs(key))));
             }
         } else {
-            s.sendMessage("§cExpected add/remove.");
+            s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_EXPECTED_ADD_REMOVE));
         }
     }
 
     private void handleList(CommandSender s, String label, UUID uuid, String[] a) throws Exception {
         // list <fishKey>
-        if (a.length < 1) { s.sendMessage("§eUsage: /" + label + " <player> list <fishKey>"); return; }
+        if (a.length < 1) {
+            s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_USAGE_LIST, Placeholders.label(label)));
+            return;
+        }
         String key = ensureNs(a[0]);
         boolean seen   = db.hasDropSeen(uuid, key);
         boolean caught = db.hasCaught(uuid, key);
         int count      = db.caughtCount(uuid, key);
-        s.sendMessage("§b" + stripNs(key) + "§7 → seen: " + (seen ? "§atrue" : "§cfalse")
-                + "§7, caught: " + (caught ? "§atrue" : "§cfalse")
-                + "§7, count: §e" + count);
+        s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_LIST_RESULT,
+                Placeholders.fish(stripNs(key)),
+                Placeholders.seenStatus(seen),
+                Placeholders.caughtStatus(caught),
+                Placeholders.amount(count)));
     }
 
     private void handleCaught(CommandSender s, String label, UUID uuid, String[] a) throws Exception {
         // caught <set|add|remove> ...
-        if (a.length < 1) { s.sendMessage("§eUsage: /" + label + " <player> caught <set|add|remove> ..."); return; }
+        if (a.length < 1) {
+            s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_USAGE_CAUGHT, Placeholders.label(label)));
+            return;
+        }
         String act = a[0].toLowerCase(Locale.ROOT);
 
         switch (act) {
             case "set" -> {
                 // caught set <fishKey> <number>
-                if (a.length < 3) { s.sendMessage("§eUsage: /" + label + " <player> caught set <fishKey> <number>"); return; }
+                if (a.length < 3) {
+                    s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_USAGE_CAUGHT_SET, Placeholders.label(label)));
+                    return;
+                }
                 String key = ensureNs(a[1]);
                 int n;
-                try { n = Integer.parseInt(a[2]); } catch (NumberFormatException e) { s.sendMessage("§cNumber required."); return; }
+                try {
+                    n = Integer.parseInt(a[2]);
+                } catch (NumberFormatException e) {
+                    s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_NUMBER_REQUIRED));
+                    return;
+                }
 
                 if (n <= 0) {
                     db.setCaughtCount(uuid, key, 0, null);
-                    s.sendMessage("§aSet caught for §d" + stripNs(key) + "§a to §e0§a.");
+                    s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_CAUGHT_SET,
+                            Placeholders.fish(stripNs(key)),
+                            Placeholders.amount(0),
+                            Placeholders.seenNote(false)));
                 } else {
                     db.setSeenFlag(uuid, key, true, null);  // also mark seen
                     db.setCaughtCount(uuid, key, n, null);
-                    s.sendMessage("§aSet caught for §d" + stripNs(key) + "§a to §e" + n + "§a (seen=true).");
+                    s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_CAUGHT_SET,
+                            Placeholders.fish(stripNs(key)),
+                            Placeholders.amount(n),
+                            Placeholders.seenNote(true)));
                 }
             }
             case "add" -> {
                 // caught add all
                 if (a.length < 2 || !"all".equalsIgnoreCase(a[1])) {
-                    s.sendMessage("§eUsage: /" + label + " <player> caught add all");
+                    s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_USAGE_CAUGHT_ADD, Placeholders.label(label)));
                     return;
                 }
                 db.setAllCaughtAtLeastOne(uuid);
-                s.sendMessage("§aMarked §eall§a fish as caught(1) where not already caught; preserved existing counts.");
+                s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_CAUGHT_ADD_ALL));
             }
             case "remove" -> {
                 // caught remove all
                 if (a.length < 2 || !"all".equalsIgnoreCase(a[1])) {
-                    s.sendMessage("§eUsage: /" + label + " <player> caught remove all");
+                    s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_USAGE_CAUGHT_REMOVE, Placeholders.label(label)));
                     return;
                 }
                 db.clearAllCaught(uuid);
-                s.sendMessage("§aCleared caught for §eall§a fish (seen unchanged).");
+                s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_CAUGHT_REMOVE_ALL));
             }
-            default -> s.sendMessage("§cExpected set/add/remove.");
+            default -> s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_EXPECTED_SET_ADD_REMOVE));
         }
     }
 
@@ -213,13 +246,12 @@ public final class FishDexAdminCommand implements CommandExecutor, TabCompleter 
         return Bukkit.getOfflinePlayer(name);
     }
 
-    private static void usage(CommandSender s, String label) {
-        s.sendMessage("§eUsage:");
-        s.sendMessage("§7/" + label + " <player> seen add <fishKey|all>");
-        s.sendMessage("§7/" + label + " <player> seen remove <fishKey|all>");
-        s.sendMessage("§7/" + label + " <player> list <fishKey>");
-        s.sendMessage("§7/" + label + " <player> caught set <fishKey> <number>");
-        s.sendMessage("§7/" + label + " <player> caught add all");
-        s.sendMessage("§7/" + label + " <player> caught remove all");
+    private void usage(CommandSender s, String label) {
+        s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_USAGE));
+        s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_USAGE_SEEN, Placeholders.label(label)));
+        s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_USAGE_LIST, Placeholders.label(label)));
+        s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_USAGE_CAUGHT_SET, Placeholders.label(label)));
+        s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_USAGE_CAUGHT_ADD, Placeholders.label(label)));
+        s.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_USAGE_CAUGHT_REMOVE, Placeholders.label(label)));
     }
 }

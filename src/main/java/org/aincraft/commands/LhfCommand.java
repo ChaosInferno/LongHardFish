@@ -1,6 +1,9 @@
 package org.aincraft.commands;
 
 import org.aincraft.LongHardFish;
+import org.aincraft.i18n.MessageKey;
+import org.aincraft.i18n.MessageService;
+import org.aincraft.i18n.Placeholders;
 import org.aincraft.listener.TackleBoxService;
 import org.aincraft.processor.FishProcessorUI;
 import org.aincraft.service.StatsService;
@@ -18,6 +21,7 @@ import java.util.Locale;
 public final class LhfCommand implements TabExecutor {
 
     private final LongHardFish plugin;
+    private final MessageService messageService;
     private final GiveFishItemsCommand giveCmd;
     private final GiveToolCommand giveToolCmd;
     private final GiveBaitCommand giveBaitCmd;
@@ -28,6 +32,7 @@ public final class LhfCommand implements TabExecutor {
 
     public LhfCommand(
         LongHardFish plugin,
+        MessageService messageService,
         GiveFishItemsCommand giveCmd,
         GiveToolCommand giveToolCmd,
         GiveBaitCommand giveBaitCmd,
@@ -37,6 +42,7 @@ public final class LhfCommand implements TabExecutor {
         TackleBoxService tackleBoxService
     ) {
         this.plugin = plugin;
+        this.messageService = messageService;
         this.giveCmd = giveCmd;
         this.giveToolCmd = giveToolCmd;
         this.giveBaitCmd = giveBaitCmd;
@@ -73,12 +79,12 @@ public final class LhfCommand implements TabExecutor {
 
     private boolean handleAdmin(CommandSender sender, String label, String[] args) {
         if (!sender.hasPermission("lhf.admin")) {
-            sender.sendMessage("§cYou don't have permission.");
+            sender.sendMessage(messageService.getMessage(MessageKey.Error.PERMISSION_DENIED));
             return true;
         }
         if (args.length < 2) {
-            sender.sendMessage("§eUsage: §7/" + label + " admin <player> <subcommand> ...");
-            sender.sendMessage("§7Subcommands: seen, caught, list");
+            sender.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_USAGE));
+            sender.sendMessage(messageService.getMessage(MessageKey.Command.ADMIN_USAGE_SEEN, Placeholders.label(label)));
             return true;
         }
         // Create a fake command for compatibility with FishDexAdminCommand
@@ -87,7 +93,7 @@ public final class LhfCommand implements TabExecutor {
 
     private boolean handleGui(CommandSender sender, String label, String[] args) {
         if (!(sender instanceof Player p)) {
-            sender.sendMessage("Players only.");
+            sender.sendMessage(messageService.getMessage(MessageKey.Error.PLAYERS_ONLY));
             return true;
         }
 
@@ -97,7 +103,7 @@ public final class LhfCommand implements TabExecutor {
             return true;
         }
 
-        sender.sendMessage("§eUsage: §7/" + label + " gui [processor]");
+        sender.sendMessage(messageService.getMessage(MessageKey.Command.LHF_GUI_USAGE, Placeholders.label(label)));
         return true;
     }
 
@@ -151,16 +157,16 @@ public final class LhfCommand implements TabExecutor {
     }
 
     private void sendMainUsage(CommandSender sender, String label) {
-        sender.sendMessage("§e/§b" + label + "§e - LongHardFish command suite");
-        sender.sendMessage("§7Subcommands:");
-        sender.sendMessage("§7  /" + label + " give <rod|fish|knife|tool|bait> ...");
-        sender.sendMessage("§7  /" + label + " tool <tool-id> [player] [amount]");
-        sender.sendMessage("§7  /" + label + " bait <bait-id> [amount] [player]");
-        sender.sendMessage("§7  /" + label + " stats [player] [limit]");
+        sender.sendMessage(messageService.getMessage(MessageKey.Command.LHF_MAIN_USAGE, Placeholders.label(label)));
+        sender.sendMessage(messageService.getMessage(MessageKey.Command.LHF_SUBCOMMANDS));
+        sender.sendMessage(messageService.getMessage(MessageKey.Command.LHF_GIVE_USAGE, Placeholders.label(label)));
+        sender.sendMessage(messageService.getMessage(MessageKey.Command.LHF_TOOL_USAGE, Placeholders.label(label)));
+        sender.sendMessage(messageService.getMessage(MessageKey.Command.LHF_BAIT_USAGE, Placeholders.label(label)));
+        sender.sendMessage(messageService.getMessage(MessageKey.Command.LHF_STATS_USAGE, Placeholders.label(label)));
         if (sender.hasPermission("lhf.admin")) {
-            sender.sendMessage("§7  /" + label + " admin <player> <seen|caught|list> ...");
+            sender.sendMessage(messageService.getMessage(MessageKey.Command.LHF_ADMIN_USAGE, Placeholders.label(label)));
         }
-        sender.sendMessage("§7  /" + label + " gui  - Open fish processor");
+        sender.sendMessage(messageService.getMessage(MessageKey.Command.LHF_GUI_USAGE, Placeholders.label(label)));
     }
 
     private static class FakeCommand extends Command {

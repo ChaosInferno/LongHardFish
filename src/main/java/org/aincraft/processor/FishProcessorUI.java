@@ -9,6 +9,9 @@ import org.aincraft.items.Keys;
 import org.aincraft.knives.KnifeDurability; // << add
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
@@ -23,8 +26,12 @@ import org.bukkit.NamespacedKey;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+
+import org.aincraft.container.FishModel;
 
 import static net.kyori.adventure.key.Key.key;
 import static net.kyori.adventure.text.Component.text;
@@ -35,6 +42,7 @@ public final class FishProcessorUI implements Listener {
     private static final String NS = "longhardfish";
     private static final String NAV_EMPTY_TEX = "icons/empty";
     private final NamespacedKey IMMOVABLE_KEY;
+    private final Map<NamespacedKey, FishModel> fishModelMap;
     private static final Component TITLE =
             Component.empty()
                     // your icon glyphs (using the RP "interface" font)
@@ -42,7 +50,7 @@ public final class FishProcessorUI implements Listener {
                             .font(key(NS, "interface"))
                             .color(TextColor.color(0xFFFFFF)))
                     // a little spacing + the label in classic gold & bold, not italic
-                    .append(text("Fish Cleaning Station",
+                    .append(text("Fish Processing Station",
                             NamedTextColor.DARK_GRAY))
                     .decoration(TextDecoration.ITALIC, false);
 
@@ -65,9 +73,10 @@ public final class FishProcessorUI implements Listener {
     private final JavaPlugin plugin;
     private final FishMaterialProvider provider;
 
-    public FishProcessorUI(JavaPlugin plugin, FishMaterialProvider provider) {
+    public FishProcessorUI(JavaPlugin plugin, FishMaterialProvider provider, Map<NamespacedKey, FishModel> fishModelMap) {
         this.plugin = plugin;
         this.provider = provider;
+        this.fishModelMap = fishModelMap != null ? fishModelMap : new HashMap<>();
         this.IMMOVABLE_KEY = new NamespacedKey(plugin, "immovable");
     }
 
@@ -314,37 +323,67 @@ public final class FishProcessorUI implements Listener {
             int durabilityBudget = remaining;
             int consumedThisRun = 0;
 
-            // Sample output to validate we can produce something
-            List<ItemStack> sampleOutputs = null;
+            // Pre-calculate ALL outputs and cache them to ensure consistency
+            // Key: slot index, Value: list of (fish_count, cached_outputs)
+            List<List<ItemStack>> preCalculatedOutputs = new ArrayList<>();
+            Map<Material, Integer> requiredSpace = new HashMap<>();
+            int totalFishToProcess = 0;
+            boolean hasAnyOutput = false;
+
             for (int s : INPUT_SLOTS) {
                 ItemStack in = inv.getItem(s);
                 if (in == null || in.getType().isAir()) continue;
                 String fk = FishKeys.getFishKey(plugin, in);
                 if (fk == null || fk.isBlank()) continue;
-                List<ItemStack> samples = provider.materialFor(fk, 1);
-                if (samples != null && !samples.isEmpty()) {
-                    sampleOutputs = new ArrayList<>(samples);
-                    break;
+
+                // Check if fish can be gutted
+                NamespacedKey fishNsKey = NamespacedKey.fromString(fk);
+                FishModel model = fishNsKey != null ? fishModelMap.get(fishNsKey) : null;
+                if (model != null && !model.canBeGutted()) {
+                    continue;
+                }
+
+                int amt = in.getAmount();
+                for (int i = 0; i < amt; i++) {
+                    List<ItemStack> outputs = provider.materialFor(fk, 1);
+                    if (outputs == null || outputs.isEmpty()) continue;
+
+                    // Cache these outputs for later use
+                    preCalculatedOutputs.add(new ArrayList<>(outputs));
+
+                    for (ItemStack out : outputs) {
+                        if (out != null && !out.getType().isAir() && out.getAmount() > 0) {
+                            hasAnyOutput = true;
+                            Material mat = out.getType();
+                            requiredSpace.merge(mat, out.getAmount(), Integer::sum);
+                        }
+                    }
+                    totalFishToProcess++;
                 }
             }
-            if (sampleOutputs == null || sampleOutputs.isEmpty()) {
+
+            if (!hasAnyOutput) {
                 player.sendMessage(ChatColor.GRAY + "[FishProc] Nothing to produce from these fish.");
                 return;
             }
 
-            // Calculate total capacity needed for all output types
-            int capLeft = 0;
-            for (ItemStack sample : sampleOutputs) {
-                capLeft += calcCapacity(inv, sample, OUTPUT_SLOTS);
-            }
-            if (capLeft <= 0) {
-                player.sendMessage(ChatColor.RED + "[FishProc] No space in output.");
-                return;
+            // Check if we have enough space for ALL materials
+            // Use the actual output items to check capacity (accounts for custom metadata)
+            for (List<ItemStack> outputs : preCalculatedOutputs) {
+                for (ItemStack out : outputs) {
+                    if (out == null || out.getType().isAir() || out.getAmount() <= 0) continue;
+
+                    int available = calcCapacity(inv, out, OUTPUT_SLOTS);
+                    if (available < out.getAmount()) {
+                        player.sendMessage(ChatColor.RED + "[FishProc] Not enough output space. Clear some slots and try again.");
+                        return;
+                    }
+                }
             }
 
             int processed = 0, produced = 0;
-            boolean broke = false, outOfSpace = false;
-            List<ItemStack> accumulatedOutputs = new ArrayList<>();
+            boolean broke = false;
+            int outputIndex = 0; // Track which pre-calculated output to use
 
             outer:
             for (int s : INPUT_SLOTS) {
@@ -353,12 +392,22 @@ public final class FishProcessorUI implements Listener {
                 String fk = FishKeys.getFishKey(plugin, in);
                 if (fk == null || fk.isBlank()) continue;
 
+                // Check if fish can be gutted
+                NamespacedKey fishNsKey = NamespacedKey.fromString(fk);
+                FishModel model = fishNsKey != null ? fishModelMap.get(fishNsKey) : null;
+                if (model != null && !model.canBeGutted()) {
+                    continue;
+                }
+
                 int amt = in.getAmount();
-                while (amt > 0) {
-                    List<ItemStack> outputs = provider.materialFor(fk, 1);
+                while (amt > 0 && outputIndex < preCalculatedOutputs.size()) {
+                    // Use pre-calculated outputs instead of calling provider again
+                    List<ItemStack> outputs = preCalculatedOutputs.get(outputIndex);
+                    outputIndex++;
+
                     if (outputs == null || outputs.isEmpty()) { amt--; continue; }
 
-                    // Calculate total yield from all outputs
+                    // Calculate total yield
                     int totalYield = 0;
                     for (ItemStack out : outputs) {
                         if (out != null && !out.getType().isAir() && out.getAmount() > 0) {
@@ -368,21 +417,17 @@ public final class FishProcessorUI implements Listener {
 
                     if (totalYield <= 0) { amt--; continue; }
 
-                    if (capLeft < totalYield) {
-                        outOfSpace = true;
-                        writeBack(inv, s, in, amt); // do not consume this fish
-                        updateViewers(inv);
-                        break outer;
-                    }
-
                     // consume 1 fish
                     amt--;
                     processed++;
                     produced += totalYield;
-                    capLeft -= totalYield;
 
-                    // Accumulate the actual outputs
-                    accumulatedOutputs.addAll(outputs);
+                    // Deposit outputs immediately to ensure space tracking is accurate
+                    for (ItemStack outItem : outputs) {
+                        if (outItem != null && !outItem.getType().isAir() && outItem.getAmount() > 0) {
+                            depositMany(inv, outItem.clone(), outItem.getAmount(), OUTPUT_SLOTS);
+                        }
+                    }
 
                     int beforeRem = KnifeDurability.getRemaining(plugin, knife);
 
@@ -423,28 +468,28 @@ public final class FishProcessorUI implements Listener {
                 writeBack(inv, s, in, amt);
             }
 
+            // Outputs are already deposited immediately during processing
             if (produced > 0) {
-                // Deposit all accumulated outputs
-                for (ItemStack outItem : accumulatedOutputs) {
-                    if (outItem != null && !outItem.getType().isAir() && outItem.getAmount() > 0) {
-                        depositMany(inv, outItem.clone(), outItem.getAmount(), OUTPUT_SLOTS);
-                    }
-                }
                 player.playSound(player, Sound.UI_LOOM_TAKE_RESULT, 1.0f, 1.1f);
 
+                // Count total items in output slots
+                int itemsInTable = 0;
+                for (int slot : OUTPUT_SLOTS) {
+                    ItemStack stack = inv.getItem(slot);
+                    if (stack != null && !stack.getType().isAir()) {
+                        itemsInTable += stack.getAmount();
+                    }
+                }
+
                 int left = Math.max(0, totalFish - processed);
+                player.sendMessage(ChatColor.GOLD + "" + processed + " Fish " + ChatColor.GREEN + "processed. " +
+                        ChatColor.GOLD + itemsInTable + " Items " + ChatColor.GREEN + "left in table.");
                 if (broke) {
-                    player.sendMessage(ChatColor.YELLOW + "[FishProc] Processed " + processed + " fish → " + produced +
-                            " item(s); knife broke with " + left + " fish left.");
+                    player.sendMessage(ChatColor.RED + "Knife broken. " + ChatColor.GOLD + left + " Fish " + ChatColor.RED + "left in table.");
                     player.playSound(player, Sound.ENTITY_ITEM_BREAK, 1.0f, 0.9f);
-                } else if (outOfSpace) {
-                    player.sendMessage(ChatColor.GOLD + "[FishProc] Processed " + processed + " fish → " + produced +
-                            " item(s); outputs are full (" + left + " fish left).");
-                } else {
-                    player.sendMessage(ChatColor.GREEN + "[FishProc] Processed " + processed + " fish → " + produced + " item(s).");
                 }
             } else {
-                player.sendMessage(ChatColor.GRAY + "[FishProc] Nothing to produce.");
+                player.sendMessage(ChatColor.GRAY + "Nothing to produce.");
             }
 
             updateViewers(inv); // final safety refresh
@@ -740,5 +785,130 @@ public final class FishProcessorUI implements Listener {
         if (block == null) return;
         org.bukkit.Location loc = block.getLocation();
         handleBlockBreak(block.getWorld(), blockKeyFrom(loc), loc.toCenterLocation());
+    }
+
+    // Persistence methods for saving/loading table states across restarts
+    public void saveToDisk() {
+        File dataFile = new File(plugin.getDataFolder(), "gutting_tables.yml");
+        FileConfiguration config = new YamlConfiguration();
+
+        for (Map.Entry<BlockKey, TableState> entry : tables.entrySet()) {
+            BlockKey key = entry.getKey();
+            TableState state = entry.getValue();
+
+            String path = key.worldId.toString() + "." + key.x + "." + key.y + "." + key.z;
+
+            // Save inputs
+            for (int i = 0; i < state.inputs.length; i++) {
+                if (state.inputs[i] != null && !state.inputs[i].getType().isAir()) {
+                    config.set(path + ".inputs." + i, state.inputs[i]);
+                }
+            }
+
+            // Save outputs
+            for (int i = 0; i < state.outputs.length; i++) {
+                if (state.outputs[i] != null && !state.outputs[i].getType().isAir()) {
+                    config.set(path + ".outputs." + i, state.outputs[i]);
+                }
+            }
+
+            // Save knife
+            if (state.knife != null && !state.knife.getType().isAir()) {
+                config.set(path + ".knife", state.knife);
+            }
+        }
+
+        try {
+            config.save(dataFile);
+            plugin.getLogger().info("Saved " + tables.size() + " gutting table states");
+        } catch (IOException e) {
+            plugin.getLogger().severe("Failed to save gutting table states: " + e.getMessage());
+        }
+    }
+
+    public void loadFromDisk() {
+        File dataFile = new File(plugin.getDataFolder(), "gutting_tables.yml");
+        if (!dataFile.exists()) {
+            return;
+        }
+
+        FileConfiguration config = YamlConfiguration.loadConfiguration(dataFile);
+        int loaded = 0;
+
+        for (String worldIdStr : config.getKeys(false)) {
+            java.util.UUID worldId;
+            try {
+                worldId = java.util.UUID.fromString(worldIdStr);
+            } catch (IllegalArgumentException e) {
+                plugin.getLogger().warning("Invalid world UUID in gutting_tables.yml: " + worldIdStr);
+                continue;
+            }
+
+            ConfigurationSection worldSection = config.getConfigurationSection(worldIdStr);
+            if (worldSection == null) continue;
+
+            for (String xStr : worldSection.getKeys(false)) {
+                ConfigurationSection xSection = worldSection.getConfigurationSection(xStr);
+                if (xSection == null) continue;
+
+                for (String yStr : xSection.getKeys(false)) {
+                    ConfigurationSection ySection = xSection.getConfigurationSection(yStr);
+                    if (ySection == null) continue;
+
+                    for (String zStr : ySection.getKeys(false)) {
+                        int x, y, z;
+                        try {
+                            x = Integer.parseInt(xStr);
+                            y = Integer.parseInt(yStr);
+                            z = Integer.parseInt(zStr);
+                        } catch (NumberFormatException e) {
+                            continue;
+                        }
+
+                        BlockKey key = new BlockKey(worldId, x, y, z);
+                        TableState state = new TableState();
+
+                        ConfigurationSection tableSection = ySection.getConfigurationSection(zStr);
+                        if (tableSection == null) continue;
+
+                        // Load inputs
+                        ConfigurationSection inputsSection = tableSection.getConfigurationSection("inputs");
+                        if (inputsSection != null) {
+                            for (String slotStr : inputsSection.getKeys(false)) {
+                                try {
+                                    int slot = Integer.parseInt(slotStr);
+                                    if (slot >= 0 && slot < state.inputs.length) {
+                                        state.inputs[slot] = inputsSection.getItemStack(slotStr);
+                                    }
+                                } catch (NumberFormatException ignored) {}
+                            }
+                        }
+
+                        // Load outputs
+                        ConfigurationSection outputsSection = tableSection.getConfigurationSection("outputs");
+                        if (outputsSection != null) {
+                            for (String slotStr : outputsSection.getKeys(false)) {
+                                try {
+                                    int slot = Integer.parseInt(slotStr);
+                                    if (slot >= 0 && slot < state.outputs.length) {
+                                        state.outputs[slot] = outputsSection.getItemStack(slotStr);
+                                    }
+                                } catch (NumberFormatException ignored) {}
+                            }
+                        }
+
+                        // Load knife
+                        if (tableSection.contains("knife")) {
+                            state.knife = tableSection.getItemStack("knife");
+                        }
+
+                        tables.put(key, state);
+                        loaded++;
+                    }
+                }
+            }
+        }
+
+        plugin.getLogger().info("Loaded " + loaded + " gutting table states");
     }
 }

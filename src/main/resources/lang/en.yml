@@ -11,12 +11,43 @@ command:
     invalid_player: "<red>Player '<player>' not found.</red>"
     invalid_item: "<red>Item '<item>' not found.</red>"
     invalid_quantity: "<red>Quantity must be a positive number.</red>"
+    tool_usage: "<yellow>Usage:</yellow> <gray>/<label> tool <tool-id> [player] [amount]</gray>"
+    tool_unknown: "<red>Unknown tool id:</red> <white><item></white>"
+    tool_available: "<gray>Available:</gray> <white><value></white>"
   stats:
     viewed: "<green>Stats for <player>:</green>"
     no_data: "<yellow>No statistics found for <player>.</yellow>"
   lhf:
     usage: "<green>LongHardFish v1.0</green>\n<yellow>Usage:</yellow> /lhf <subcommand> [args]\n<yellow>Available:</yellow> give, stats, admin, fishdex, processor, tacklebox"
     unknown_subcommand: "<red>Unknown subcommand: '<yellow><value></yellow>'. Use /lhf for help.</red>"
+    main_usage: "<yellow>/</yellow><aqua><label></aqua><yellow> - LongHardFish command suite</yellow>"
+    subcommands: "<gray>Subcommands:</gray>"
+    give_usage: "<gray>  /<label> give <rod|fish|knife|tool|bait> ...</gray>"
+    tool_usage: "<gray>  /<label> tool <tool-id> [player] [amount]</gray>"
+    bait_usage: "<gray>  /<label> bait <bait-id> [amount] [player]</gray>"
+    stats_usage: "<gray>  /<label> stats [player] [limit]</gray>"
+    admin_usage: "<gray>  /<label> admin <player> <seen|caught|list> ...</gray>"
+    gui_usage: "<gray>  /<label> gui  - Open fish processor</gray>"
+  admin:
+    usage: "<yellow>Usage:</yellow>"
+    usage_seen: "<gray>/<label> <player> seen <add|remove> <fishKey|all></gray>"
+    usage_caught: "<gray>/<label> <player> caught <set|add|remove> ...</gray>"
+    usage_caught_set: "<gray>/<label> <player> caught set <fishKey> <number></gray>"
+    usage_caught_add: "<gray>/<label> <player> caught add all</gray>"
+    usage_caught_remove: "<gray>/<label> <player> caught remove all</gray>"
+    usage_list: "<gray>/<label> <player> list <fishKey></gray>"
+    seen_add_all: "<green>Marked <yellow>all</yellow> fish as <green>seen</green> for player.</green>"
+    seen_add: "<green>Marked <light_purple><fish></light_purple> as <green>seen</green>.</green>"
+    seen_remove_all: "<green>Cleared <yellow>all</yellow> seen flags for player.</green>"
+    seen_remove: "<green>Cleared <light_purple><fish></light_purple> seen and reset caught to 0.</green>"
+    list_result: "<aqua><fish></aqua><gray> → seen: <seen_status>, caught: <caught_status>, count: </gray><yellow><amount></yellow>"
+    caught_set: "<green>Set caught for <light_purple><fish></light_purple> to <yellow><amount></yellow><seen_note>.</green>"
+    caught_add_all: "<green>Marked <yellow>all</yellow> fish as caught(1) where not already caught; preserved existing counts.</green>"
+    caught_remove_all: "<green>Cleared caught for <yellow>all</yellow> fish (seen unchanged).</green>"
+    expected_add_remove: "<red>Expected add/remove.</red>"
+    expected_set_add_remove: "<red>Expected set/add/remove.</red>"
+    number_required: "<red>Number required.</red>"
+    error: "<red>Error:</red> <value>"
 
 tool:
   fish_finder:
@@ -44,6 +75,11 @@ fishing:
     failure: "<red>You lost your catch...</red>"
     treasure: "<gold>You found treasure: <item></gold>"
     junk: "<gray>You caught junk: <item></gray>"
+    no_valid_fish: "<red>Your rod can't catch any fish here (tier too low or wrong bait).</red>"
+    no_fish_available: "<red>No fish are available to catch right now.</red>"
+    pick_error: "<red>Something went wrong while picking a fish.</red>"
+    create_error: "<red>Failed to create custom fish item.</red>"
+    entity_error: "<red>Caught entity is not an item.</red>"
   fish_discovery: "<green>Discovered new fish: <fish>!</green>"
   bait:
     applied: "<green>Applied <item> to your rod.</green>"
@@ -73,6 +109,7 @@ error:
   permission_denied: "<red>You don't have permission to do that.</red>"
   player_not_found: "<red>Player '<player>' not found.</red>"
   item_not_found: "<red>Item '<item>' not found.</red>"
+  players_only: "<red>This command can only be used by players.</red>"
 
 ui:
   page_indicator: "<gray>Page <amount> of <value></gray>"
