@@ -1,0 +1,83 @@
+# LongHardFish English Language File
+# Uses MiniMessage format: https://docs.adventure.kyori.net/minimessage.html
+
+command:
+  fishdex:
+    open: "<green>Opened FishDex!</green>"
+    no_permission: "<red>You don't have permission to use FishDex.</red>"
+  give:
+    success: "<green>Given <item><aqua><amount></aqua></item> to <player>.</green>"
+    invalid_args: "<red>Invalid arguments. Usage: /lhf give <type> <name> [player] [amount]</red>"
+    invalid_player: "<red>Player '<player>' not found.</red>"
+    invalid_item: "<red>Item '<item>' not found.</red>"
+    invalid_quantity: "<red>Quantity must be a positive number.</red>"
+  stats:
+    viewed: "<green>Stats for <player>:</green>"
+    no_data: "<yellow>No statistics found for <player>.</yellow>"
+  lhf:
+    usage: "<green>LongHardFish v1.0</green>\n<yellow>Usage:</yellow> /lhf <subcommand> [args]\n<yellow>Available:</yellow> give, stats, admin, fishdex, processor, tacklebox"
+    unknown_subcommand: "<red>Unknown subcommand: '<yellow><value></yellow>'. Use /lhf for help.</red>"
+
+tool:
+  fish_finder:
+    active: "<gold>Fish Finder activated!</gold>"
+    searching: "<yellow>Searching for fish in nearby waters...</yellow>"
+  biome_radar:
+    active: "<gold>Biome Radar activated!</gold>"
+    nearby: "<green>Nearby biome: <biome></green>"
+  weather_radio:
+    checking: "<yellow>Checking weather...</yellow>"
+    result: "<aqua>Current weather: <weather></aqua>"
+  sextant:
+    checking: "<yellow>Checking stars...</yellow>"
+    result: "<aqua>Lunar phase: <moon_phase></aqua>"
+  watch:
+    checking: "<yellow>Checking time...</yellow>"
+    result: "<aqua>Time: <time></aqua>"
+  tackled_box:
+    empty: "<yellow>Your TackleBox is empty.</yellow>"
+    opened: "<green>TackleBox opened!</green>"
+
+fishing:
+  catch:
+    success: "<green>You caught a <fish><gold> (<rarity>)</gold>!</green>"
+    failure: "<red>You lost your catch...</red>"
+    treasure: "<gold>You found treasure: <item></gold>"
+    junk: "<gray>You caught junk: <item></gray>"
+  fish_discovery: "<green>Discovered new fish: <fish>!</green>"
+  bait:
+    applied: "<green>Applied <item> to your rod.</green>"
+    missing: "<red>You need bait to fish!</red>"
+    incompatible: "<red>This bait doesn't work in <biome>.</red>"
+  hook:
+    breaking: "<yellow>Your hook is breaking!</yellow>"
+    broke: "<red>Your hook broke!</red>"
+  rod:
+    breaking: "<yellow>Your rod is breaking!</yellow>"
+    broke: "<red>Your rod broke!</red>"
+
+processor:
+  gutting:
+    started: "<yellow>Gutting <fish>...</yellow>"
+    completed: "<green>Gutting complete! You received:</green>"
+    failed: "<red>Gutting failed!</red>"
+    invalid_fish: "<red>Cannot gut that item.</red>"
+  processing:
+    success: "<green>Processing successful!</green>"
+    failed: "<red>Processing failed!</red>"
+
+error:
+  generic: "<red>An error occurred. Please try again.</red>"
+  database: "<red>Database error: <reason></red>"
+  config: "<red>Configuration error: <reason></red>"
+  permission_denied: "<red>You don't have permission to do that.</red>"
+  player_not_found: "<red>Player '<player>' not found.</red>"
+  item_not_found: "<red>Item '<item>' not found.</red>"
+
+ui:
+  page_indicator: "<gray>Page <amount> of <value></gray>"
+  no_items: "<yellow>No items to display.</yellow>"
+  loading: "<yellow>Loading...</yellow>"
+  confirmed: "<green>Confirmed!</green>"
+  cancelled: "<gray>Cancelled.</gray>"
+  placeholder_value: "<value>"
