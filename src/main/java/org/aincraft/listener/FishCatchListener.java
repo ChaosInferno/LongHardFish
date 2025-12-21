@@ -7,6 +7,8 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import org.aincraft.calculator.FishCalculator;
 import org.aincraft.container.FishDistribution;
 import org.aincraft.container.FishRarity;
+import org.aincraft.i18n.MessageKey;
+import org.aincraft.i18n.MessageService;
 import org.aincraft.list.FishCreator;
 import org.aincraft.list.FishFilter;
 import org.aincraft.list.FishPercentCalculator;
@@ -40,6 +42,7 @@ public class FishCatchListener implements Listener {
 
     private final JavaPlugin plugin;
     private final StatsService stats;
+    private final MessageService messageService;
 
     private final FishEnvironmentProvider environmentProvider;
     private final FishRarityProvider rarityProvider;
@@ -51,20 +54,97 @@ public class FishCatchListener implements Listener {
     private final RodProvider rodProvider;
     private final Map<NamespacedKey, FishModel> modelMap;
 
+    // Cached provider data (avoid re-parsing on every fish catch)
+    private volatile Map<NamespacedKey, FishDistribution> cachedDistributions;
+    private volatile Map<NamespacedKey, FishRarity> cachedRarityMap;
+    private volatile Map<NamespacedKey, Integer> cachedTierMap;
+    private volatile Map<NamespacedKey, org.aincraft.container.FishEnvironment> cachedEnvironments;
+
     public FishCatchListener(JavaPlugin plugin,
                              FishEnvironmentProvider environmentProvider,
                              FishRarityProvider rarityProvider,
                              FishModelProvider modelProvider,
                              StatsService stats,
-                             RodProvider rodProvider) {
+                             RodProvider rodProvider,
+                             MessageService messageService) {
         this.plugin = Objects.requireNonNull(plugin, "plugin");
         this.stats = Objects.requireNonNull(stats, "StatsService is null");
+        this.messageService = Objects.requireNonNull(messageService, "MessageService is null");
         this.environmentProvider = environmentProvider;
         this.rarityProvider = rarityProvider;
         this.fishCreator = new FishCreator(plugin, modelProvider.parseFishModelObjects());
         this.filter = new FishFilter();
         this.rodProvider = rodProvider;
         this.modelMap = modelProvider.parseFishModelObjects();
+
+        // Initialize caches
+        refreshCaches();
+    }
+
+    /**
+     * Refreshes all cached provider data. Call this when fish configs are reloaded.
+     */
+    public void refreshCaches() {
+        // Use single-pass parsing to avoid double iteration
+        org.aincraft.provider.FishRarityProvider.ParseResult result = rarityProvider.parseAll();
+
+        this.cachedDistributions = result.distributions;
+        this.cachedRarityMap = result.rarityMap;
+        this.cachedTierMap = environmentProvider.parseFishTierMap();
+        this.cachedEnvironments = environmentProvider.parseFishEnvironmentObjects();
+    }
+
+    /**
+     * Invalidates caches, forcing re-parse on next fish catch.
+     */
+    public void invalidateCaches() {
+        this.cachedDistributions = null;
+        this.cachedRarityMap = null;
+        this.cachedTierMap = null;
+        this.cachedEnvironments = null;
+    }
+
+    // Lazy cache getters (thread-safe double-checked locking pattern)
+    private Map<NamespacedKey, FishRarity> getRarityMap() {
+        Map<NamespacedKey, FishRarity> map = cachedRarityMap;
+        if (map == null) {
+            synchronized (this) {
+                map = cachedRarityMap;
+                if (map == null) {
+                    refreshCaches();
+                    map = cachedRarityMap;
+                }
+            }
+        }
+        return map;
+    }
+
+    private Map<NamespacedKey, Integer> getTierMap() {
+        Map<NamespacedKey, Integer> map = cachedTierMap;
+        if (map == null) {
+            synchronized (this) {
+                map = cachedTierMap;
+                if (map == null) {
+                    refreshCaches();
+                    map = cachedTierMap;
+                }
+            }
+        }
+        return map;
+    }
+
+    private Map<NamespacedKey, org.aincraft.container.FishEnvironment> getEnvironmentMap() {
+        Map<NamespacedKey, org.aincraft.container.FishEnvironment> map = cachedEnvironments;
+        if (map == null) {
+            synchronized (this) {
+                map = cachedEnvironments;
+                if (map == null) {
+                    refreshCaches();
+                    map = cachedEnvironments;
+                }
+            }
+        }
+        return map;
     }
 
     private static ItemStack findUsedRod(Player p) {
@@ -141,76 +221,72 @@ public class FishCatchListener implements Listener {
         Bukkit.getScheduler().runTask(plugin, () -> processingHooks.remove(hookId));
         boolean loggedSample = false;
 
-        // Build rarity map
-        Map<NamespacedKey, FishDistribution> raw = rarityProvider.parseFishDistributorObjects();
-        Map<NamespacedKey, FishRarity> rarityMap = new HashMap<>();
-        for (var e : raw.entrySet()) rarityMap.put(e.getKey(), e.getValue().getRarity());
+        // Use cached rarity map and environment map (no re-parsing per event)
+        Map<NamespacedKey, FishRarity> rarityMap = getRarityMap();
+        Map<NamespacedKey, org.aincraft.container.FishEnvironment> environments = getEnvironmentMap();
 
-        // ✅ Use the existing field 'filter' (DO NOT new FishFilter())
+        // ✅ Use the existing field 'filter' with cached data (DO NOT new FishFilter())
         Map<NamespacedKey, Double> validFish =
-                filter.getValidFish(player, hookLocation, hook, environmentProvider, rarityMap);
+                filter.getValidFish(player, hookLocation, hook, environments, rarityMap);
 
         ItemStack rodStack = findUsedRod(player);
         String currentRodId = org.aincraft.rods.RodUtil.getRodId(plugin, rodStack);
         RodDefinition currentRod = (currentRodId != null) ? rodProvider.get(currentRodId) : null;
         int rodTier = (currentRod != null) ? Math.max(1, currentRod.tier()) : 1;
 
-        // Get fish tiers once and remove those above the rod’s tier
-        Map<NamespacedKey, Integer> fishTierMap = environmentProvider.parseFishTierMap();
-        for (Iterator<Map.Entry<NamespacedKey, Double>> itTier = validFish.entrySet().iterator(); itTier.hasNext();) {
-            Map.Entry<NamespacedKey, Double> en = itTier.next();
-            Integer fishTier = fishTierMap.get(en.getKey());
-            int t = (fishTier != null) ? fishTier.intValue() : 1; // default tier-1 if missing
-            if (t > rodTier) {
-                itTier.remove();
-            }
-        }
-        if (validFish.isEmpty()) {
-            player.sendMessage("Your rod can’t catch any fish here (tier too low).");
-            return;
-        }
-
+        // Get bait ID for filtering
         String rodBaitId = null;
         if (rodStack != null) {
             rodBaitId = org.aincraft.items.BaitKeys.getRodBait(plugin, rodStack);
             if (rodBaitId != null) rodBaitId = rodBaitId.toLowerCase(Locale.ENGLISH);
         }
 
-        Map<NamespacedKey, org.aincraft.container.FishEnvironment> envMap =
-                environmentProvider.parseFishEnvironmentObjects();
+        // Use cached maps (no re-parsing per event)
+        Map<NamespacedKey, Integer> fishTierMap = getTierMap();
+        Map<NamespacedKey, org.aincraft.container.FishEnvironment> envMap = getEnvironmentMap();
 
-        Iterator<Map.Entry<NamespacedKey, Double>> it = validFish.entrySet().iterator();
-        while (it.hasNext()) {
+        // Single pass: apply tier filter + bait filter/bonus together
+        for (Iterator<Map.Entry<NamespacedKey, Double>> it = validFish.entrySet().iterator(); it.hasNext();) {
             Map.Entry<NamespacedKey, Double> e = it.next();
             NamespacedKey fishKey = e.getKey();
             double weight = e.getValue();
+
+            // Skip invalid weights
             if (weight <= 0) { it.remove(); continue; }
 
+            // Tier filter: remove fish above rod tier
+            Integer fishTier = fishTierMap.get(fishKey);
+            int t = (fishTier != null) ? fishTier.intValue() : 1;
+            if (t > rodTier) { it.remove(); continue; }
+
+            // Bait filter/bonus
             org.aincraft.container.FishEnvironment env = envMap.get(fishKey);
-            if (env == null) continue;
+            if (env != null) {
+                Map<String, Double> baitMap = env.getEnvironmentBaits();
+                if (baitMap != null && !baitMap.isEmpty()) {
+                    Double bonus = null;
+                    if (rodBaitId != null && baitMap.containsKey(rodBaitId)) {
+                        bonus = baitMap.get(rodBaitId);
+                    } else if (baitMap.containsKey("none")) {
+                        bonus = baitMap.get("none");
+                    } else {
+                        // bait table exists, no matching bait and no 'none' -> block this fish
+                        it.remove();
+                        continue;
+                    }
 
-            Map<String, Double> baitMap = env.getEnvironmentBaits(); // id -> bonus
-            if (baitMap == null || baitMap.isEmpty()) {
-                // no bait table defined -> nothing to do
-                continue;
+                    // Apply bonus (multiplicative)
+                    double b = (bonus == null ? 0.0 : bonus.doubleValue());
+                    weight = weight * (1.0 + b);
+                    if (weight <= 0.0) { it.remove(); continue; }
+                    e.setValue(weight);
+                }
             }
+        }
 
-            Double bonus = null;
-            if (rodBaitId != null && baitMap.containsKey(rodBaitId)) {
-                bonus = baitMap.get(rodBaitId);
-            } else if (baitMap.containsKey("none")) {
-                bonus = baitMap.get("none");
-            } else {
-                // bait table exists, no matching bait and no 'none' -> block this fish
-                it.remove();
-                continue;
-            }
-
-            // Apply bonus (multiplicative)
-            double b = (bonus == null ? 0.0 : bonus.doubleValue());
-            weight = weight * (1.0 + b);
-            if (weight <= 0.0) { it.remove(); continue; }
-            e.setValue(weight);
+        if (validFish.isEmpty()) {
+            player.sendMessage(messageService.getMessage(MessageKey.Fishing.CATCH_NO_VALID_FISH));
+            return;
         }
 
         // ==== Rod bonuses =========================================================
@@ -291,7 +367,7 @@ public class FishCatchListener implements Listener {
 
         Map<NamespacedKey, Double> validFishPercent = FishPercentCalculator.calculatePercentages(validFish);
         if (validFishPercent.isEmpty()) {
-            player.sendMessage("No fish are available to catch right now.");
+            player.sendMessage(messageService.getMessage(MessageKey.Fishing.CATCH_NO_FISH_AVAILABLE));
             return;
         }
 
@@ -322,8 +398,7 @@ public class FishCatchListener implements Listener {
                     if (fm != null && fm.getName() != null && !fm.getName().isEmpty()) {
                         name = fm.getName();
                     } else {
-                        name = id.getKey().replace('_', ' ');
-                        name = Character.toUpperCase(name.charAt(0)) + name.substring(1);
+                        name = org.aincraft.util.BiomeUtils.prettifyKey(id.getKey());
                     }
 
                     if (!first) sb.append("§8, ");
@@ -340,7 +415,7 @@ public class FishCatchListener implements Listener {
         FishCalculator calc = new FishCalculator(validFishPercent);
         NamespacedKey chosenFishKey = calc.getRandomFish();
         if (chosenFishKey == null) {
-            player.sendMessage("Something went wrong while picking a fish.");
+            player.sendMessage(messageService.getMessage(MessageKey.Fishing.CATCH_PICK_ERROR));
             return;
         }
 
@@ -349,7 +424,7 @@ public class FishCatchListener implements Listener {
                 chosenFishKey,
                 rarityMap.get(chosenFishKey));
         if (customFish == null) {
-            player.sendMessage("Failed to create custom fish item.");
+            player.sendMessage(messageService.getMessage(MessageKey.Fishing.CATCH_CREATE_ERROR));
             return;
         }
 
@@ -373,9 +448,9 @@ public class FishCatchListener implements Listener {
         }
 
         if (displayNameText == null) {
-            String pretty = chosenFishKey.getKey().replace('_',' ');
-            displayNameText = Character.toUpperCase(pretty.charAt(0)) + pretty.substring(1);
+            displayNameText = org.aincraft.util.BiomeUtils.prettifyKey(chosenFishKey.getKey());
         }
+        final String finalDisplayName = displayNameText;
 
         // Get the fish rarity for sound priority determination
         FishRarity caughtFishRarity = rarityMap.get(chosenFishKey);
@@ -396,11 +471,11 @@ public class FishCatchListener implements Listener {
             if (!seenFishKeys.isEmpty()) {
                 stats.markMultipleDropSeenAsyncWithCallback(player.getUniqueId(), seenFishKeys, newlySeenCount -> {
                     // Combine messages: play caught sound and display message with seen count appended if applicable
-                    playFishDiscoverySoundWithSeenCount(player, isFirstCatch, caughtFishRarity, newlySeenCount);
+                    playFishDiscoverySoundWithSeenCount(player, isFirstCatch, caughtFishRarity, finalDisplayName, newlySeenCount);
                 });
             } else {
                 // No other fish to mark as seen, just play the caught sound
-                playFishDiscoverySoundWithSeenCount(player, isFirstCatch, caughtFishRarity, 0);
+                playFishDiscoverySoundWithSeenCount(player, isFirstCatch, caughtFishRarity, finalDisplayName, 0);
             }
         });
 
@@ -411,7 +486,7 @@ public class FishCatchListener implements Listener {
                 caughtItem.getWorld().dropItemNaturally(caughtItem.getLocation(), customFish.clone());
             }
         } else {
-            player.sendMessage("Caught entity is not an item.");
+            player.sendMessage(messageService.getMessage(MessageKey.Fishing.CATCH_ENTITY_ERROR));
         }
 
         // Manually apply durability damage to fishing rod
@@ -474,39 +549,68 @@ public class FishCatchListener implements Listener {
      * @param rarity The rarity of the caught fish (can be null if not a first catch)
      * @param newlySeenCount Count of newly seen fish (0 if none were seen)
      */
-    private void playFishDiscoverySoundWithSeenCount(Player player, boolean isFirstCatch, @javax.annotation.Nullable FishRarity rarity, int newlySeenCount) {
+    private void playFishDiscoverySoundWithSeenCount(Player player, boolean isFirstCatch, @javax.annotation.Nullable FishRarity rarity, String fishName, int newlySeenCount) {
         String soundKey = null;
-        String message = null;
+        Component message = null;
+
+        // Build hover text for fish info
+        String rarityRaw = (rarity != null) ? rarity.name() : "UNKNOWN";
+        String rarityName = rarityRaw.charAt(0) + rarityRaw.substring(1).toLowerCase();
+        NamedTextColor rarityColor = switch (rarity) {
+            case LEGENDARY -> NamedTextColor.GOLD;
+            case RARE -> NamedTextColor.AQUA;
+            case UNCOMMON -> NamedTextColor.GREEN;
+            case EVENT -> NamedTextColor.LIGHT_PURPLE;
+            case null, default -> NamedTextColor.GRAY;
+        };
+
+        // Format current date/time with timezone
+        java.time.ZonedDateTime now = java.time.ZonedDateTime.now();
+        String dateStr = now.format(java.time.format.DateTimeFormatter.ofPattern("MMM d, yyyy h:mm a z"));
+
+        Component hoverText = Component.text(fishName, NamedTextColor.WHITE)
+                .append(Component.newline())
+                .append(Component.text(rarityName, rarityColor))
+                .append(Component.newline())
+                .append(Component.text("Caught on " + dateStr, NamedTextColor.GRAY));
+
+        // Hover event for fish info
+        var hover = net.kyori.adventure.text.event.HoverEvent.showText(hoverText);
 
         // Determine the primary message and sound based on whether this is a first catch
         if (isFirstCatch) {
             // Playing a catch sound - apply priority based on rarity
             if (rarity == FishRarity.LEGENDARY) {
                 soundKey = "longhardfish:catch.new-caught-legendary";
-                message = "Unknown species discovered, creating index entry";
+                message = Component.text("Unknown species discovered", NamedTextColor.GOLD).hoverEvent(hover)
+                        .append(Component.text(", registered to index.", NamedTextColor.GREEN));
             } else if (rarity == FishRarity.RARE) {
                 soundKey = "longhardfish:catch.new-caught-rare";
-                message = "Rare fish discovered, registering index entry";
+                message = Component.text("Rare fish discovered", NamedTextColor.GOLD).hoverEvent(hover)
+                        .append(Component.text(", registered to index.", NamedTextColor.GREEN));
             } else {
                 // For COMMON, UNCOMMON, EVENT: play generic first-catch sound
                 soundKey = "longhardfish:catch.new-caught";
-                message = "Index entry registered";
+                message = Component.text("New fish discovered", NamedTextColor.GOLD).hoverEvent(hover)
+                        .append(Component.text(", registered to index.", NamedTextColor.GREEN));
             }
 
-            // Append seen message if other fish were newly seen
+            // Append seen message if other fish were newly seen (on new line)
             if (newlySeenCount == 1) {
-                message += ". New entry added to index";
+                message = message.append(Component.newline())
+                        .append(Component.text("New fish detected in water, updating index.", NamedTextColor.GREEN));
             } else if (newlySeenCount > 1) {
-                message += ". New entries added to index";
+                message = message.append(Component.newline())
+                        .append(Component.text("Multiple new fish detected in water, updating index.", NamedTextColor.GREEN));
             }
-        } else if (newlySeenCount > 0) {
-            // Not a first catch, but other fish were newly seen
+        } else if (newlySeenCount == 1) {
+            // Not a first catch, but one fish was newly seen
             soundKey = "longhardfish:catch.new-seen";
-            if (newlySeenCount == 1) {
-                message = "New entry added to index";
-            } else {
-                message = "New entries added to index";
-            }
+            message = Component.text("New fish detected in water, updating index.", NamedTextColor.GREEN);
+        } else if (newlySeenCount > 1) {
+            // Not a first catch, but multiple fish were newly seen
+            soundKey = "longhardfish:catch.new-seen";
+            message = Component.text("Multiple new fish detected in water, updating index.", NamedTextColor.GREEN);
         }
 
         // Play sound and display message
@@ -514,7 +618,7 @@ public class FishCatchListener implements Listener {
             try {
                 player.playSound(Sound.sound(Key.key(soundKey), Sound.Source.PLAYER, 1.0f, 1.0f));
                 if (message != null) {
-                    player.sendActionBar(net.kyori.adventure.text.Component.text(message, NamedTextColor.GOLD));
+                    player.sendMessage(message);
                 }
             } catch (Exception e) {
                 plugin.getLogger().warning("Failed to play fish discovery sound '" + soundKey + "': " + e.getMessage());

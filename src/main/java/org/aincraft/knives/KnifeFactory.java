@@ -29,30 +29,33 @@ public final class KnifeFactory {
 
     /** MAIN_HAND on modern servers; fallback to HAND on older ones. */
     private static AttributeModifier modMainHand(String name, double amount, AttributeModifier.Operation op) {
-        // Prefer the legacy, single-slot ctor: (…, EquipmentSlot)
+        // Modern Paper 1.21+: NamespacedKey-based ctor (no UUID)
         try {
             var ctor = AttributeModifier.class.getConstructor(
-                    UUID.class, String.class, double.class,
-                    AttributeModifier.Operation.class, org.bukkit.inventory.EquipmentSlot.class
+                    NamespacedKey.class, double.class,
+                    AttributeModifier.Operation.class, org.bukkit.inventory.EquipmentSlotGroup.class
             );
-            return ctor.newInstance(UUID.randomUUID(), name, amount, op, org.bukkit.inventory.EquipmentSlot.HAND);
+            NamespacedKey key = NamespacedKey.fromString("longhardfish:" + name.toLowerCase(java.util.Locale.ENGLISH).replace(' ', '_'));
+            return ctor.newInstance(key, amount, op, org.bukkit.inventory.EquipmentSlotGroup.MAINHAND);
         } catch (Throwable ignore) {
-            // Fallback: newer group-based ctor: (…, EquipmentSlotGroup)
+            // Fallback: legacy single-slot ctor (…, EquipmentSlot)
             try {
                 var ctor = AttributeModifier.class.getConstructor(
                         UUID.class, String.class, double.class,
-                        AttributeModifier.Operation.class, org.bukkit.inventory.EquipmentSlotGroup.class
+                        AttributeModifier.Operation.class, org.bukkit.inventory.EquipmentSlot.class
                 );
-                Object main;
-                try {
-                    main = org.bukkit.inventory.EquipmentSlotGroup.class.getField("MAIN_HAND").get(null);
-                } catch (NoSuchFieldException noMain) {
-                    main = org.bukkit.inventory.EquipmentSlotGroup.class.getField("HAND").get(null);
-                }
-                return ctor.newInstance(UUID.randomUUID(), name, amount, op, main);
+                return ctor.newInstance(UUID.randomUUID(), name, amount, op, org.bukkit.inventory.EquipmentSlot.HAND);
             } catch (Throwable ignore2) {
-                // Last resort (shouldn’t be needed)
-                return new AttributeModifier(UUID.randomUUID(), name, amount, op);
+                // Last resort: group-based with UUID
+                try {
+                    var ctor = AttributeModifier.class.getConstructor(
+                            UUID.class, String.class, double.class,
+                            AttributeModifier.Operation.class, org.bukkit.inventory.EquipmentSlotGroup.class
+                    );
+                    return ctor.newInstance(UUID.randomUUID(), name, amount, op, org.bukkit.inventory.EquipmentSlotGroup.MAINHAND);
+                } catch (Throwable ignore3) {
+                    throw new IllegalStateException("No compatible AttributeModifier constructor found");
+                }
             }
         }
     }

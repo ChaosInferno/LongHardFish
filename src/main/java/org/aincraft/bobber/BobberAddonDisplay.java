@@ -28,6 +28,8 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
+import com.comphenix.protocol.wrappers.WrappedDataWatcher.Serializer;
+
 public final class BobberAddonDisplay implements Listener {
 
     public interface RodResolver {
@@ -37,6 +39,12 @@ public final class BobberAddonDisplay implements Listener {
     public interface BobberItemFactory {
         ItemStack createItemForBobberKey(String bobberModelKey);
     }
+
+    // Cached serializers (ProtocolLib API deprecated but functional)
+    @SuppressWarnings("removal")
+    private static final Serializer BYTE_SERIALIZER = WrappedDataWatcher.Registry.get(Byte.class, false);
+    @SuppressWarnings("removal")
+    private static final Serializer BOOLEAN_SERIALIZER = WrappedDataWatcher.Registry.get(Boolean.class, false);
 
     private final Plugin plugin;
     private final ProtocolManager protocol;
@@ -216,14 +224,14 @@ public final class BobberAddonDisplay implements Listener {
 
         // Entity shared flags (index 0, Byte) -> set Invisible bit (0x20)
         byte entityFlags = 0x20; // invisible
-        values.add(new WrappedDataValue(0, WrappedDataWatcher.Registry.get(Byte.class), entityFlags));
+        values.add(new WrappedDataValue(0, BYTE_SERIALIZER, entityFlags));
 
         // NoGravity (index 5, Boolean)
-        values.add(new WrappedDataValue(5, WrappedDataWatcher.Registry.get(Boolean.class), true));
+        values.add(new WrappedDataValue(5, BOOLEAN_SERIALIZER, true));
 
         // ArmorStand flags (index 15, Byte): 0x01=small, 0x10=marker
         byte asFlags = (byte) (0x01 | 0x10);
-        values.add(new WrappedDataValue(15, WrappedDataWatcher.Registry.get(Byte.class), asFlags));
+        values.add(new WrappedDataValue(15, BYTE_SERIALIZER, asFlags));
 
         PacketContainer meta = new PacketContainer(PacketType.Play.Server.ENTITY_METADATA);
         meta.getIntegers().write(0, id);
@@ -246,7 +254,7 @@ public final class BobberAddonDisplay implements Listener {
 
         // Keep it light: just NoGravity true (index 5)
         List<WrappedDataValue> values = new ArrayList<>();
-        values.add(new WrappedDataValue(5, WrappedDataWatcher.Registry.get(Boolean.class), true));
+        values.add(new WrappedDataValue(5, BOOLEAN_SERIALIZER, true));
 
         PacketContainer meta = new PacketContainer(PacketType.Play.Server.ENTITY_METADATA);
         meta.getIntegers().write(0, id);

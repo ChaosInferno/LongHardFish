@@ -301,3 +301,33 @@ permafrost-pole:
   bonus:
     rarity:
       COMMON: 0.25
+
+# ===== DEV TOOLS =====
+
+omega-x:
+  description: "[DEV] Guarantees only RARE fish can be caught."
+  tier: 99
+  model: minecraft:fishing_rod
+  bobber_model: minecraft:fishing_rod
+  bonus:
+    rarity:
+      COMMON: -100.0
+      UNCOMMON: -100.0
+      RARE: 100.0
+      LEGENDARY: -100.0
+      EVENT: -100.0
+    speed: 0.95
+
+omega-z:
+  description: "[DEV] Guarantees only LEGENDARY fish can be caught."
+  tier: 99
+  model: minecraft:fishing_rod
+  bobber_model: minecraft:fishing_rod
+  bonus:
+    rarity:
+      COMMON: -100.0
+      UNCOMMON: -100.0
+      RARE: -100.0
+      LEGENDARY: 100.0
+      EVENT: -100.0
+    speed: 0.95

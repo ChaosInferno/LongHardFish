@@ -58,11 +58,11 @@ public class FishEnvironmentProvider {
             ConfigurationSection biomesSection = section.getConfigurationSection("biomes");
             if (biomesSection != null) {
                 for (String biomeKey : biomesSection.getKeys(false)) {
-                    try {
-                        Biome biome = Biome.valueOf(biomeKey.toUpperCase(Locale.ENGLISH));
+                    Biome biome = org.bukkit.Registry.BIOME.get(NamespacedKey.minecraft(biomeKey.toLowerCase(Locale.ENGLISH)));
+                    if (biome != null) {
                         double weight = biomesSection.getDouble(biomeKey);
                         biomeWeights.put(biome, weight);
-                    } catch (IllegalArgumentException e) {
+                    } else {
                         plugin.getLogger().warning("Unknown biome: " + biomeKey + " in fish: " + key);
                     }
                 }

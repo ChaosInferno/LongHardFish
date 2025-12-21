@@ -71,8 +71,12 @@ public class FishModelProvider {
             // Parse materials section
             List<FishMaterial> materials = parseFishMaterials(fishKey, section);
 
+            // Parse can_be_gutted (defaults to false for CHEST type, true otherwise)
+            boolean defaultCanBeGutted = (type != org.aincraft.container.FishType.CHEST);
+            boolean canBeGutted = section.getBoolean("can_be_gutted", defaultCanBeGutted);
+
             NamespacedKey key = new NamespacedKey(plugin, fishKey);
-            modelMap.put(key, new FishModel(name, description, modelNumber, material, type, materials));
+            modelMap.put(key, new FishModel(name, description, modelNumber, material, type, materials, canBeGutted));
         }
 
         return modelMap;

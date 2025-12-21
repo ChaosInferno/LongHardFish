@@ -4,9 +4,7 @@ import org.aincraft.container.FishEnvironment;
 import org.aincraft.container.FishMoonCycle;
 import org.aincraft.container.FishRarity;
 import org.aincraft.container.FishTimeCycle;
-import org.aincraft.provider.FishEnvironmentProvider;
 import org.aincraft.provider.MinecraftTimeParser;
-import org.aincraft.service.StatsService;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
@@ -26,7 +24,7 @@ public class FishFilter {
             Player player,
             Location hookLocation,
             FishHook hook,
-            FishEnvironmentProvider provider,
+            Map<NamespacedKey, FishEnvironment> environments,
             Map<NamespacedKey, FishRarity> rarityMap
     ) {
         Map<NamespacedKey, Double> distributedFish = new HashMap<>();
@@ -38,9 +36,6 @@ public class FishFilter {
         int moonPhaseIndex = (int) (world.getFullTime() / 24000) % 8;
         FishMoonCycle currentMoonPhase = FishMoonCycle.values()[moonPhaseIndex];
         FishTimeCycle currentTime = MinecraftTimeParser.getCurrentTimeCycle();
-
-        // NOTE: you may want to cache this map elsewhere to avoid reparsing every time
-        Map<NamespacedKey, FishEnvironment> environments = provider.parseFishEnvironmentObjects();
 
         final boolean isOpenWater = hook.isInOpenWater();
         final boolean isRaining   = world.hasStorm();

@@ -1,6 +1,8 @@
 package org.aincraft.commands;
 
 import org.aincraft.gui.FishDexFishSelector;
+import org.aincraft.i18n.MessageKey;
+import org.aincraft.i18n.MessageService;
 import org.aincraft.container.FishModel;
 import org.aincraft.service.InventoryBackupService;
 import org.bukkit.NamespacedKey;
@@ -16,17 +18,20 @@ import java.util.stream.Collectors;
 
 public final class FishDexCommand implements CommandExecutor, TabCompleter {
     private final JavaPlugin plugin;
+    private final MessageService messageService;
     private final FishDexFishSelector selector;
     private final Set<NamespacedKey> allFishIds;
     private final FishDexFishSelector.ModelLookup modelLookup;
     private final InventoryBackupService backup;
 
     public FishDexCommand(JavaPlugin plugin,
+                          MessageService messageService,
                           FishDexFishSelector selector,
                           Set<NamespacedKey> allFishIds,
                           FishDexFishSelector.ModelLookup modelLookup,
                           InventoryBackupService backup) {
         this.plugin = plugin;
+        this.messageService = messageService;
         this.selector = selector;
         this.allFishIds = allFishIds;
         this.modelLookup = modelLookup;
@@ -36,7 +41,7 @@ public final class FishDexCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player p)) {
-            sender.sendMessage("Players only.");
+            sender.sendMessage(messageService.getMessage(MessageKey.Error.PLAYERS_ONLY));
             return true;
         }
 
@@ -60,7 +65,7 @@ public final class FishDexCommand implements CommandExecutor, TabCompleter {
         }
 
         if (target == null) {
-            p.sendMessage("§cCouldn't find that fish.");
+            p.sendMessage(messageService.getMessage(MessageKey.Error.ITEM_NOT_FOUND));
             return true;
         }
 

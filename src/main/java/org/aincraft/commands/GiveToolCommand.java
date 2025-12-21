@@ -1,6 +1,9 @@
 package org.aincraft.commands;
 
 import org.aincraft.ItemService;
+import org.aincraft.i18n.MessageKey;
+import org.aincraft.i18n.MessageService;
+import org.aincraft.i18n.Placeholders;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -30,9 +33,15 @@ public final class GiveToolCommand implements TabExecutor {
         "tacklebox", "gutting_station"
     );
 
-    private static boolean noPerm(CommandSender sender) {
+    private final MessageService messageService;
+
+    public GiveToolCommand(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
+    private boolean noPerm(CommandSender sender) {
         if (!sender.hasPermission("longhardfish.give") && !sender.isOp()) {
-            sender.sendMessage("§cYou don't have permission.");
+            sender.sendMessage(messageService.getMessage(MessageKey.Error.PERMISSION_DENIED));
             return true;
         }
         return false;
@@ -43,7 +52,7 @@ public final class GiveToolCommand implements TabExecutor {
         if (noPerm(sender)) return true;
 
         if (args.length < 1) {
-            sender.sendMessage("§eUsage: §7/" + label + " tool <tool-id> [player] [amount]");
+            sender.sendMessage(messageService.getMessage(MessageKey.Command.GIVE_TOOL_USAGE, Placeholders.label(label)));
             return true;
         }
 
@@ -52,8 +61,8 @@ public final class GiveToolCommand implements TabExecutor {
         allTools.addAll(SPECIAL_TOOLS);
 
         if (!allTools.contains(toolId)) {
-            sender.sendMessage("§cUnknown tool id: §f" + toolId);
-            sender.sendMessage("§7Available: §f" + String.join(", ", allTools));
+            sender.sendMessage(messageService.getMessage(MessageKey.Command.GIVE_TOOL_UNKNOWN, Placeholders.item(toolId)));
+            sender.sendMessage(messageService.getMessage(MessageKey.Command.GIVE_TOOL_AVAILABLE, Placeholders.value(String.join(", ", allTools))));
             return true;
         }
 
@@ -73,7 +82,7 @@ public final class GiveToolCommand implements TabExecutor {
 
     private boolean handleGuttingStation(CommandSender sender, String label, String[] args) {
         if (!sender.hasPermission("lhf.admin")) {
-            sender.sendMessage("§cYou don't have permission.");
+            sender.sendMessage(messageService.getMessage(MessageKey.Error.PERMISSION_DENIED));
             return true;
         }
 
@@ -93,26 +102,26 @@ public final class GiveToolCommand implements TabExecutor {
         if (args.length >= 2) {
             target = Bukkit.getPlayerExact(args[1]);
             if (target == null) {
-                sender.sendMessage("§cPlayer not found: §f" + args[1]);
+                sender.sendMessage(messageService.getMessage(MessageKey.Error.PLAYER_NOT_FOUND));
                 return true;
             }
         } else if (sender instanceof Player p) {
             target = p;
         } else {
-            sender.sendMessage("§cConsole must specify a player.");
+            sender.sendMessage(messageService.getMessage(MessageKey.Error.GENERIC_ERROR));
             return true;
         }
 
         target.getInventory().addItem(item);
-        sender.sendMessage("§aGave §f" + target.getName() + "§a a Gutting Station.");
-        if (sender != target) target.sendMessage("§aYou received a Gutting Station.");
+        sender.sendMessage(messageService.getMessage(MessageKey.Command.GIVE_SUCCESS));
+        if (sender != target) target.sendMessage(messageService.getMessage(MessageKey.Command.GIVE_SUCCESS));
         return true;
     }
 
     private boolean handleTacklebox(CommandSender sender, String label, String[] args) {
         ItemStack item = CustomFishItems.create("tacklebox");
         if (item == null) {
-            sender.sendMessage("§cFailed to create tacklebox item.");
+            sender.sendMessage(messageService.getMessage(MessageKey.Error.ITEM_NOT_FOUND));
             return true;
         }
 
@@ -120,19 +129,19 @@ public final class GiveToolCommand implements TabExecutor {
         if (args.length >= 2) {
             target = Bukkit.getPlayerExact(args[1]);
             if (target == null) {
-                sender.sendMessage("§cPlayer not found: §f" + args[1]);
+                sender.sendMessage(messageService.getMessage(MessageKey.Error.PLAYER_NOT_FOUND));
                 return true;
             }
         } else if (sender instanceof Player p) {
             target = p;
         } else {
-            sender.sendMessage("§cConsole must specify a player.");
+            sender.sendMessage(messageService.getMessage(MessageKey.Error.GENERIC_ERROR));
             return true;
         }
 
         target.getInventory().addItem(item);
-        sender.sendMessage("§aGave §f" + target.getName() + "§a a Tacklebox.");
-        if (sender != target) target.sendMessage("§aYou received a Tacklebox.");
+        sender.sendMessage(messageService.getMessage(MessageKey.Command.GIVE_SUCCESS));
+        if (sender != target) target.sendMessage(messageService.getMessage(MessageKey.Command.GIVE_SUCCESS));
         return true;
     }
 
@@ -154,7 +163,7 @@ public final class GiveToolCommand implements TabExecutor {
                     amount = parseAmount(args[1], sender);
                     if (amount == -1) return true;
                 } else {
-                    sender.sendMessage("§cConsole must specify a valid player.");
+                    sender.sendMessage(messageService.getMessage(MessageKey.Error.GENERIC_ERROR));
                     return true;
                 }
             }
@@ -162,14 +171,14 @@ public final class GiveToolCommand implements TabExecutor {
             if (sender instanceof Player p) {
                 target = p;
             } else {
-                sender.sendMessage("§cConsole must specify a player.");
+                sender.sendMessage(messageService.getMessage(MessageKey.Error.GENERIC_ERROR));
                 return true;
             }
         }
 
         ItemStack toolItem = CustomFishItems.create(toolId);
         if (toolItem == null) {
-            sender.sendMessage("§cFailed to create tool item for: §f" + toolId);
+            sender.sendMessage(messageService.getMessage(MessageKey.Error.ITEM_NOT_FOUND));
             return true;
         }
 
@@ -180,8 +189,8 @@ public final class GiveToolCommand implements TabExecutor {
             target.getWorld().dropItemNaturally(target.getLocation(), it);
         }
 
-        sender.sendMessage("§aGave §f" + target.getName() + "§a x§f" + amount + "§a tool(s) §b" + toolId + "§a.");
-        if (sender != target) target.sendMessage("§aYou received x§f" + amount + "§a tool(s) §b" + toolId + "§a.");
+        sender.sendMessage(messageService.getMessage(MessageKey.Command.GIVE_SUCCESS));
+        if (sender != target) target.sendMessage(messageService.getMessage(MessageKey.Command.GIVE_SUCCESS));
         return true;
     }
 
@@ -191,7 +200,7 @@ public final class GiveToolCommand implements TabExecutor {
             if (v < 1 || v > 64) throw new NumberFormatException();
             return v;
         } catch (NumberFormatException e) {
-            sender.sendMessage("§cAmount must be a number 1-64.");
+            sender.sendMessage(messageService.getMessage(MessageKey.Command.GIVE_INVALID_QUANTITY));
             return -1;
         }
     }

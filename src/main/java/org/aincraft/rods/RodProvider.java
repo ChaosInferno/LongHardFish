@@ -121,9 +121,8 @@ public final class RodProvider {
                 ConfigurationSection bSec = bonus.getConfigurationSection("biome");
                 if (bSec != null) {
                     for (String bKey : bSec.getKeys(false)) {
-                        Biome b;
-                        try { b = Biome.valueOf(bKey.toUpperCase(Locale.ENGLISH)); }
-                        catch (IllegalArgumentException ex) { plugin.getLogger().warning("[Rods] Unknown biome '" + bKey + "' in rod '" + id + "'"); continue; }
+                        Biome b = org.bukkit.Registry.BIOME.get(org.bukkit.NamespacedKey.minecraft(bKey.toLowerCase(Locale.ENGLISH)));
+                        if (b == null) { plugin.getLogger().warning("[Rods] Unknown biome '" + bKey + "' in rod '" + id + "'"); continue; }
 
                         if (bSec.isConfigurationSection(bKey)) {
                             // nested

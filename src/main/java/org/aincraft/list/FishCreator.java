@@ -58,7 +58,10 @@ public class FishCreator {
             item.setData(DataComponentTypes.MAX_STACK_SIZE, 64);
         }
 
-        item.setData(DataComponentTypes.ITEM_NAME, Component.text(fish.getName()));
+        // Set name to white, not italic
+        item.setData(DataComponentTypes.ITEM_NAME, Component.text(fish.getName())
+                .color(NamedTextColor.WHITE)
+                .decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false));
         item.setData(DataComponentTypes.LORE, ItemLore.lore(List.of(Component.text(fish.getDescription()))));
 
         ItemMeta meta = item.getItemMeta();
@@ -78,11 +81,32 @@ public class FishCreator {
         ItemStack item = createFishItem(key);
         if (item == null) return null;
 
+        FishModel fish = modelMap.get(key);
+        org.aincraft.container.FishType fishType = (fish != null) ? fish.getType() : null;
+
+        // Build rarity line
         Component rarityValue = rarity != null
                 ? rarityComponent(rarity)
                 : Component.text("Unknown", NamedTextColor.GRAY);
-
         Component rarityLine = Component.text("", NamedTextColor.GRAY).append(rarityValue);
+
+        // For JUNK and CHEST types, show rarity + optional "Right click" hint
+        if (fishType == org.aincraft.container.FishType.JUNK || fishType == org.aincraft.container.FishType.CHEST) {
+            if (fishType == org.aincraft.container.FishType.CHEST) {
+                // CHEST: Show rarity, then "Right click in hand to open"
+                item.setData(DataComponentTypes.LORE, ItemLore.lore(List.of(
+                        rarityLine,
+                        Component.text("Right click in hand to open", NamedTextColor.GRAY)
+                                .decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, true)
+                )));
+            } else {
+                // JUNK: Just show rarity
+                item.setData(DataComponentTypes.LORE, ItemLore.lore(List.of(rarityLine)));
+            }
+            return item;
+        }
+
+        // Normal fish: show rarity
         item.setData(DataComponentTypes.LORE, ItemLore.lore(List.of(rarityLine)));
         return item;
     }

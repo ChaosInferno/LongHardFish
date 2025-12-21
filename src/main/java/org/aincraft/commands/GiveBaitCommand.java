@@ -1,5 +1,8 @@
 package org.aincraft.commands;
 
+import org.aincraft.i18n.MessageKey;
+import org.aincraft.i18n.MessageService;
+import org.aincraft.i18n.Placeholders;
 import org.aincraft.items.BaitRegistry;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -18,9 +21,15 @@ public final class GiveBaitCommand implements TabExecutor {
         "grubb", "tick", "wasp", "spiderling", "dragonfly", "rhino_beetle", "scarab"
     );
 
-    private static boolean noPerm(CommandSender sender) {
+    private final MessageService messageService;
+
+    public GiveBaitCommand(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
+    private boolean noPerm(CommandSender sender) {
         if (!sender.hasPermission("longhardfish.give") && !sender.isOp()) {
-            sender.sendMessage("§cYou don't have permission.");
+            sender.sendMessage(messageService.getMessage(MessageKey.Error.PERMISSION_DENIED));
             return true;
         }
         return false;
@@ -31,15 +40,15 @@ public final class GiveBaitCommand implements TabExecutor {
         if (noPerm(sender)) return true;
 
         if (args.length < 1) {
-            sender.sendMessage("§eUsage: §7/" + label + " bait <bait-id> [amount] [player]");
+            sender.sendMessage(messageService.getMessage(MessageKey.Command.LHF_BAIT_USAGE, Placeholders.label(label)));
             return true;
         }
 
         String baitId = args[0].toLowerCase(Locale.ENGLISH);
 
         if (!BAIT_IDS.contains(baitId)) {
-            sender.sendMessage("§cUnknown bait id: §f" + baitId);
-            sender.sendMessage("§7Available: §f" + String.join(", ", BAIT_IDS));
+            sender.sendMessage(messageService.getMessage(MessageKey.Command.GIVE_TOOL_UNKNOWN, Placeholders.item(baitId)));
+            sender.sendMessage(messageService.getMessage(MessageKey.Command.GIVE_TOOL_AVAILABLE, Placeholders.value(String.join(", ", BAIT_IDS))));
             return true;
         }
 
@@ -57,7 +66,7 @@ public final class GiveBaitCommand implements TabExecutor {
                     // Amount given, so next arg is player
                     target = Bukkit.getPlayerExact(args[2]);
                     if (target == null) {
-                        sender.sendMessage("§cPlayer not found: §f" + args[2]);
+                        sender.sendMessage(messageService.getMessage(MessageKey.Error.PLAYER_NOT_FOUND));
                         return true;
                     }
                 } else {
@@ -65,7 +74,7 @@ public final class GiveBaitCommand implements TabExecutor {
                     if (sender instanceof Player p) {
                         target = p;
                     } else {
-                        sender.sendMessage("§cConsole must specify a player.");
+                        sender.sendMessage(messageService.getMessage(MessageKey.Error.GENERIC_ERROR));
                         return true;
                     }
                 }
@@ -80,7 +89,7 @@ public final class GiveBaitCommand implements TabExecutor {
                     }
                 } else {
                     // Neither amount nor player
-                    sender.sendMessage("§cCould not parse amount or find player: §f" + args[1]);
+                    sender.sendMessage(messageService.getMessage(MessageKey.Error.GENERIC_ERROR));
                     return true;
                 }
             }
@@ -89,7 +98,7 @@ public final class GiveBaitCommand implements TabExecutor {
             if (sender instanceof Player p) {
                 target = p;
             } else {
-                sender.sendMessage("§cConsole must specify a player.");
+                sender.sendMessage(messageService.getMessage(MessageKey.Error.GENERIC_ERROR));
                 return true;
             }
         }
@@ -97,7 +106,7 @@ public final class GiveBaitCommand implements TabExecutor {
         // Create bait item
         ItemStack baitItem = BaitRegistry.create(baitId, amount);
         if (baitItem == null) {
-            sender.sendMessage("§cFailed to create bait item for: §f" + baitId);
+            sender.sendMessage(messageService.getMessage(MessageKey.Error.ITEM_NOT_FOUND));
             return true;
         }
 
@@ -108,8 +117,8 @@ public final class GiveBaitCommand implements TabExecutor {
             target.getWorld().dropItemNaturally(target.getLocation(), it);
         }
 
-        sender.sendMessage("§aGave §f" + target.getName() + "§a x§f" + amount + "§a bait §b" + baitId + "§a.");
-        if (sender != target) target.sendMessage("§aYou received x§f" + amount + "§a bait §b" + baitId + "§a.");
+        sender.sendMessage(messageService.getMessage(MessageKey.Command.GIVE_SUCCESS));
+        if (sender != target) target.sendMessage(messageService.getMessage(MessageKey.Command.GIVE_SUCCESS));
         return true;
     }
 
@@ -129,7 +138,7 @@ public final class GiveBaitCommand implements TabExecutor {
             if (v < 1 || v > 64) throw new NumberFormatException();
             return v;
         } catch (NumberFormatException e) {
-            sender.sendMessage("§cAmount must be a number 1-64.");
+            sender.sendMessage(messageService.getMessage(MessageKey.Command.GIVE_INVALID_QUANTITY));
             return -1;
         }
     }

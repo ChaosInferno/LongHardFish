@@ -1,2 +1,9 @@
+# LongHardFish Configuration
+
+# Language setting for message localization
+# Supported: en (English)
+# Place custom language files in the 'lang/' folder
+language: en
+
 database:
   type: sqlite

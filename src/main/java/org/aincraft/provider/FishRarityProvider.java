@@ -22,10 +22,28 @@ public class FishRarityProvider {
         this.plugin = plugin;
     }
 
-    public Map<NamespacedKey, FishDistribution> parseFishDistributorObjects() {
+    /**
+     * Result container for parsed rarity data - avoids double iteration.
+     */
+    public static class ParseResult {
+        public final Map<NamespacedKey, FishDistribution> distributions;
+        public final Map<NamespacedKey, FishRarity> rarityMap;
+
+        ParseResult(Map<NamespacedKey, FishDistribution> distributions, Map<NamespacedKey, FishRarity> rarityMap) {
+            this.distributions = distributions;
+            this.rarityMap = rarityMap;
+        }
+    }
+
+    /**
+     * Parses fish rarity data and returns both distributions and rarity map in a single pass.
+     * This avoids the need to iterate twice.
+     */
+    public ParseResult parseAll() {
         FileConfiguration config = holder.getConfig();
         Set<String> keys = config.getKeys(false);
-        Map<NamespacedKey, FishDistribution> rarityDistribution = new HashMap<>();
+        Map<NamespacedKey, FishDistribution> distributions = new HashMap<>(keys.size());
+        Map<NamespacedKey, FishRarity> rarityMap = new HashMap<>(keys.size());
 
         for (String key : keys) {
             ConfigurationSection configurationSection = config.getConfigurationSection(key);
@@ -35,13 +53,23 @@ public class FishRarityProvider {
                     try {
                         FishRarity rarity = FishRarity.valueOf(rarityString.toUpperCase(Locale.ENGLISH));
                         NamespacedKey namespacedKey = new NamespacedKey(plugin, key);
-                        rarityDistribution.put(namespacedKey, new FishDistribution(rarity));
+                        FishDistribution distribution = new FishDistribution(rarity);
+                        distributions.put(namespacedKey, distribution);
+                        rarityMap.put(namespacedKey, rarity);
                     } catch (IllegalArgumentException e) {
                         plugin.getLogger().warning("Invalid rarity: " + rarityString + " for fish: " + key);
                     }
                 }
             }
         }
-            return rarityDistribution;
+        return new ParseResult(distributions, rarityMap);
+    }
+
+    /**
+     * @deprecated Use {@link #parseAll()} instead to avoid double iteration.
+     */
+    @Deprecated
+    public Map<NamespacedKey, FishDistribution> parseFishDistributorObjects() {
+        return parseAll().distributions;
     }
 }

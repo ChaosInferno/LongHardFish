@@ -686,25 +686,32 @@ public final class SQLiteDatabase implements Database, AutoCloseable {
         try (Connection c = ds.getConnection()) {
             c.setAutoCommit(false);
             try {
+                String playerId_str = playerId.toString();
+
                 // Ensure player exists
                 try (PreparedStatement psPlayer = c.prepareStatement(SQL_INSERT_PLAYER_IF_NEEDED)) {
-                    psPlayer.setString(1, playerId.toString());
+                    psPlayer.setString(1, playerId_str);
                     psPlayer.executeUpdate();
                 }
 
-                // Count how many fish have drop_seen = 0 BEFORE update
+                // Count how many fish have drop_seen = 0 BEFORE update using single query with IN clause
                 int newlySeenCount = 0;
-                String playerId_str = playerId.toString();
+                StringBuilder inClause = new StringBuilder();
+                for (int i = 0; i < fishKeys.size(); i++) {
+                    if (i > 0) inClause.append(',');
+                    inClause.append('?');
+                }
+                String checkNewlySeenSql = "SELECT COUNT(*) FROM player_fish_stats " +
+                        "WHERE player_uuid = ? AND fish_key IN (" + inClause + ") AND drop_seen = 0";
 
-                String checkNewlySeenSql = "SELECT COUNT(*) FROM player_fish_stats WHERE player_uuid = ? AND fish_key = ? AND drop_seen = 0";
                 try (PreparedStatement psCheck = c.prepareStatement(checkNewlySeenSql)) {
-                    for (String fishKey : fishKeys) {
-                        psCheck.setString(1, playerId_str);
-                        psCheck.setString(2, fishKey);
-                        try (ResultSet rs = psCheck.executeQuery()) {
-                            if (rs.next() && rs.getInt(1) > 0) {
-                                newlySeenCount++;
-                            }
+                    psCheck.setString(1, playerId_str);
+                    for (int i = 0; i < fishKeys.size(); i++) {
+                        psCheck.setString(2 + i, fishKeys.get(i));
+                    }
+                    try (ResultSet rs = psCheck.executeQuery()) {
+                        if (rs.next()) {
+                            newlySeenCount = rs.getInt(1);
                         }
                     }
                 }

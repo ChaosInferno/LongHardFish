@@ -3,6 +3,7 @@ package org.aincraft.listener;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.aincraft.ingame_items.BiomeRadarItem;
+import org.aincraft.util.BiomeUtils;
 import org.bukkit.block.Biome;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -42,24 +43,12 @@ public final class BiomeRadarListener implements Listener {
         e.getPlayer().setCooldown(item.getType(), 5);
 
         Biome biome = e.getPlayer().getLocation().getBlock().getBiome();
-        String pretty = prettify(biome);
+        String pretty = BiomeUtils.prettify(biome);
 
         e.getPlayer().sendActionBar(
                 Component.text("Current Biome: ", NamedTextColor.AQUA)
                         .append(Component.text(pretty, NamedTextColor.AQUA))
         );
-    }
-
-    private String prettify(Biome biome) {
-        // e.g. WINDSWEPT_FOREST -> Windswept Forest
-        String s = biome.name().toLowerCase(java.util.Locale.ENGLISH).replace('_', ' ');
-        String[] parts = s.split(" ");
-        StringBuilder sb = new StringBuilder();
-        for (String p : parts) {
-            if (p.isEmpty()) continue;
-            sb.append(Character.toUpperCase(p.charAt(0))).append(p.substring(1)).append(' ');
-        }
-        return sb.toString().trim();
     }
 }
 

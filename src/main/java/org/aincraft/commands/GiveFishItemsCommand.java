@@ -2,6 +2,7 @@ package org.aincraft.commands;
 
 import org.aincraft.ItemService;
 import org.aincraft.LongHardFish;
+import org.aincraft.i18n.MessageService;
 import org.aincraft.items.CustomFishItems;
 import org.aincraft.rods.RodDefinition;
 import org.aincraft.rods.RodItemFactory;
@@ -41,6 +42,7 @@ import org.bukkit.persistence.PersistentDataType;
 public final class GiveFishItemsCommand implements TabExecutor {
 
     private final LongHardFish plugin;
+    private final MessageService messageService;
     private final KnifeProvider knifeProvider; // may be null if not wired
     private final RodItemFactory rodItemFactory;
 
@@ -60,24 +62,26 @@ public final class GiveFishItemsCommand implements TabExecutor {
     private final NamespacedKey guttingOutputKey;
 
     // Back-compat: existing constructor still works (no knives, no fish)
-    public GiveFishItemsCommand(LongHardFish plugin) {
-        this(plugin, null, null, null, null);
+    public GiveFishItemsCommand(LongHardFish plugin, MessageService messageService) {
+        this(plugin, messageService, null, null, null, null);
     }
 
     // Back-compat: pass KnifeProvider so /lhfgive knife works (no fish)
-    public GiveFishItemsCommand(LongHardFish plugin, KnifeProvider knifeProvider) {
-        this(plugin, knifeProvider, null, null, null);
+    public GiveFishItemsCommand(LongHardFish plugin, MessageService messageService, KnifeProvider knifeProvider) {
+        this(plugin, messageService, knifeProvider, null, null, null);
     }
 
     // Preferred: pass all providers for rod, knife, fish, and materials support
     public GiveFishItemsCommand(
         LongHardFish plugin,
+        MessageService messageService,
         KnifeProvider knifeProvider,
         FishModelProvider modelProvider,
         FishRarityProvider rarityProvider,
         Map<String, GuttingOutput> guttingOutputMap
     ) {
         this.plugin = plugin;
+        this.messageService = messageService;
         this.knifeProvider = knifeProvider;
         this.rodItemFactory = new RodItemFactory(plugin);
         this.guttingOutputMap = guttingOutputMap;
@@ -105,9 +109,9 @@ public final class GiveFishItemsCommand implements TabExecutor {
         this.giveBaitCmd = baitCmd;
     }
 
-    private static boolean noPerm(CommandSender sender) {
+    private boolean noPerm(CommandSender sender) {
         if (!sender.hasPermission("longhardfish.give") && !sender.isOp()) {
-            sender.sendMessage("§cYou don't have permission.");
+            sender.sendMessage(messageService.getMessage("error.permission_denied"));
             return true;
         }
         return false;
@@ -255,13 +259,13 @@ public final class GiveFishItemsCommand implements TabExecutor {
         if (args.length >= 3) {
             target = Bukkit.getPlayerExact(args[2]);
             if (target == null) {
-                sender.sendMessage("§cPlayer not found: §f" + args[2]);
+                sender.sendMessage(messageService.getMessage("error.player_not_found"));
                 return true;
             }
         } else if (sender instanceof Player p) {
             target = p;
         } else {
-            sender.sendMessage("§cConsole must specify a player.");
+            sender.sendMessage(messageService.getMessage("error.generic"));
             return true;
         }
 
